@@ -1,0 +1,9751 @@
+[
+  {
+    "name": "Accounting and Taxation",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/upload/other/praesentation-accounting-und-taxation.pdf"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/business-taxation/teaching/bachelor-business-and-economics/specialization-accounting-and-taxation"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Business Information Systems",
+    "abbr": "BIS",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "IT-Spezialisierung",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/business-information-systems"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/ec/student-courses/sbwl-business-information-systems"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 1.5,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Change Management und Management Development",
+    "abbr": "CMMD",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/change-management-und-management-development"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/cmmd/teaching/sbwl-cmmd"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 3.75,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Climate Change Economics, Policy, and Justice",
+    "abbr": "",
+    "study": {
+      "wupol23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/climate-change-economics-policy-and-justice"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Courses Abroad",
+    "abbr": "",
+    "study": {
+      "bw23": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/change-management-und-management-development"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/cmmd/teaching/sbwl-cmmd"
+      }
+    ]
+  },
+  {
+    "name": "Data Science",
+    "abbr": "DS",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "IT-Spezialisierung",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/data-science"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/dpkm/teaching/sbwl-data-science"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Decision Sciences: Game Theory, Psychology and Data Analysis",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "Nicht-IT-Spez.",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/decision-sciences-game-theory-psychology-und-data-analysis"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/ims/teaching/sbwl-decision-sciences"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Digital Marketing",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "Nicht-IT-Spez.",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/service-und-digital-marketing"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/mca/students-point/bachelor-specialization-sbwl-digital-marketing"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 3.33,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Diversitätsmanagement",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/diversitaetsmanagement"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/diversity/lehre/sbwl-diversitaetsmanagement"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Ecological Economics - Economy, Climate Change, and Sustainability",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung",
+      "wupol23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/ecological-economics"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2.5,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Economics Core",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/economics-core"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/economics/study/bachelors-program-business-and-economics/bbe-specializations/economics-core"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Economics Fields",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/economics-fields"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/economics/study/bachelors-program-business-and-economics/bbe-specializations/economics-fields#:~:text=The%20specialization%20in%20economics%20consists,Industrial%20Organization%2C%20and%20Labor%20Economics."
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Entrepreneurship & Innovation",
+    "abbr": "E&I",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "Nicht-IT-Spez.",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/entrepreneurship-und-innovation"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/entrep/students/bachelor"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Ethics for Management,Organizations and Society",
+    "abbr": "EMOS",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Nicht-IT-Spez.",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/ethics-for-management-organizations-and-society-emos"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/eim/lehre/emos/"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 3.75,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.56,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 3.75,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 3.75,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 3.75,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2.5,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 2.08,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3.75,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "European and International Economic Law",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/eir/studium/wahlfachh"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 2.5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2.5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Finance: Markets, Institutions, and Instruments",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/finance-markets-institutions-and-instruments"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/finance/study/bsc/sbwl-finance-markets-institutions-instruments"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Handel und Marketing",
+    "abbr": "H&M",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/handel-und-marketing"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/retail/study/bachelor"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3.5,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3.5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 1.5,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Health and Social Policy",
+    "abbr": "H&SP",
+    "study": {
+      "bw19": "Kein BW-Bezug",
+      "bw23": "Spezialisierung",
+      "test19": "Kein BW-Bezug",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/health-und-social-policy"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/sozialpolitik/lehre/spezialisierung-health-and-social-policy"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Information Management and Control",
+    "abbr": "IMC",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "IT-Spezialisierung",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/information-management-and-control"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/imc/teaching/sbwl"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Interactions of Economy and Society",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/upload/other/bbe-interactions-of-economy-and-society.pptx"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/interactions-of-economy-and-society"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "International Accounting and Controlling",
+    "abbr": "IAC",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/international-accounting-und-controlling"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/accounting/lehre/sbwl-international-accounting-controlling"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 4.25,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "International and European Tax Law",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/upload/other/bbespecialization-internationalandeuropeantaxlaw.pptx"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/fileadmin/wu/d/i/taxlaw/Lehre_Teaching/BBE_Folder_GESAMT.pdf"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "International Business Communication",
+    "abbr": "IBC",
+    "study": {
+      "bw19": "Kein BW-Bezug",
+      "bw23": "Spezialisierung",
+      "test19": "Kein BW-Bezug",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/international-business-communication"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/ebc/student-platform/specialization-international-business-communication"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "International Business",
+    "abbr": "IB",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/international-business"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/iib/iib/studies/sbwl"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "International Marketing Management",
+    "abbr": "IMM",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/international-marketing-management"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/imm"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Knowledge Management",
+    "abbr": "",
+    "study": {
+      "bw23": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "IT-Spezialisierung",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/process-und-knowledge-management"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/dpkm/teaching/sbwl-process-knowledge-management"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Marketing",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/marketing"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/mm/lehre/sbwl-marketing"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Marketing and Consumer Research",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/marketing-und-consumer-research"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/mcore/teaching/bachelor"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Mathematical Methods",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": ""
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Organisation",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/organisation"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/orgstudies/teaching/bachelor-prog/sbwl-organisation"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Personalmanagement",
+    "abbr": "",
+"study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/personalmanagement"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/persm/lehre/renamed-sbwl"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 4.5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Philosophy: Logic and Ethics",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/philosophy-logic-and-ethics"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Politik des gesellschaftlichen Wandels",
+    "abbr": "",
+    "study": {
+      "wupol23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/politik-des-gesellschaftlichen-wandels"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Produktionsmanagement",
+    "abbr": "POM",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf19": "Spezialisierung",
+      "winf23": "IT-Spezialisierung",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/produktionsmanagement"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/prodman/studyguide/testseite-1/sbwl-produktionsmanagement"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Public und Nonprofit Management",
+    "abbr": "",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/public-und-nonprofit-management"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/pubmgt/teaching/sbwl-overview"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Rechnungslegung und Steuerlehre",
+    "abbr": "ReSt",
+"study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/rechnungslegung-und-steuerlehre"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/accounting/lehre/sbwl-rechnungslegung-und-steuerlehre"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Recht der Wirtschaft",
+    "abbr": "",
+"study": {
+      "bw23": "Komplementärfach",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach"
+    },    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/ars/lehre/bac/wiso-neu"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Responsibility and Sustainability in Global Business",
+    "abbr": "",
+"study": {
+      "bw23": "Spezialisierung",
+      "ibw23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach"
+    },    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/rsgb/for-students/bachelor-specialization-sbwl"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Steuerrecht",
+    "abbr": "",
+    "study": {
+      "bw23": "Komplementärfach",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/taxlaw/teaching/process/das-ausbildungskonzept-fuer-das-komplementaerfach-steuerrecht-im-bachelorstudium-wirtschafts-und-sozialwissenschaften"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Strategy and Organization",
+    "abbr": "S&O",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/strategy-und-organization"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/iod/for-students/bachelor-studies"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Supply Chain and Operations Management",
+    "abbr": "",
+"study": {
+      "bbe": "Spezialisierung"
+    },    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/upload/other/sbwl-scom-2021-12-07.pdf"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/itl/lehre/bachelor/sbwl/bbe-spezialization-supply-chain-and-operations-management-scom"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 3.5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Supply Networks and Services",
+    "abbr": "SNS",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/supply-networks-und-services"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/itl/teaching/bachelor/sbwl/sbwl-supply-networks-and-services"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Sustainability Reporting",
+    "abbr": "",
+    "study": {
+      "bw23": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/accounting/lehre/sbwl-sustainability-reporting"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Transportwirtschaft und Logistik",
+    "abbr": "T&L",
+"study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/transportwirtschaft-und-logistik"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/itl/lehre/bachelor/sbwl/sbwl"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1.5,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1.5,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 2.5,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 3.5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Topics in Economics and Social History",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/socioeconomics/topics-in-economic-and-social-history"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Unternehmensführung und Controlling / Strategy & Management Accounting",
+    "abbr": "IFU",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/unternehmensfuehrung-und-controllingstrategyand-managerial-accounting"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/en/ifu/studium/bac/specialization-strategy-and-managerial-accounting"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 3.75,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 3.33,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Urban and Regional Economics",
+    "abbr": "",
+    "study": {
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/upload/other/presentation-specialization2021-urban-regional-economics.pdf"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/urban-and-regional-economics"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1.25,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 1.25,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3.75,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2.5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Verhaltenswissenschaftlich orientiertes Management",
+    "abbr": "VoM",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/verhaltenswissenschaftlich-orientiertes-management"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/ivm/lehre/sbwl-vom/vom-bachelor"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 3.5,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 3.5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Wirtschaftstraining & Bildungsmanagement",
+    "abbr": "WuB",
+    "study": {
+      "bw19": "Spezialisierung",
+      "bw23": "Spezialisierung",
+      "test19": "Spezialisierung",
+      "test23": "Spezialisierung",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/wirtschaftstraining-und-bildungsmanagement"
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/wipaed/study-programmes/wirtschaftstraining-und-bildungsmanagement"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 2.5,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 4,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 1.67,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Wirtschaft und Gesellschaft",
+    "abbr": "WuB",
+    "study": {
+      "bw23": "Komplementärfach",
+      "winf23": "Komplementärfach",
+      "vw23": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": ""
+      },
+      {
+        "id": 2,
+        "link": "https://www.wu.ac.at/soziooekonomie/wirtschaft-und-gesellschaft"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 1,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 1,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 3,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 4,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 0,
+        "type": "format"
+      }
+    ]
+  },
+  {
+    "name": "Wirtschaftsmathematik / Business Mathematics",
+    "abbr": "",
+    "study": {
+      "bw19": "Kein BW-Bezug",
+      "bw23": "Kein BW-Bezug",
+      "test19": "Kein BW-Bezug",
+      "winf19": "Spezialisierung",
+      "winf23": "Nicht-IT-Spez.",
+      "vw23": "Spezialisierung",
+      "wupol23": "Komplementärfach",
+      "wire16": "Spezialisierung",
+      "wire23": "Spezialisierung",
+      "bbe": "Spezialisierung"
+    },
+    "website_links": [
+      {
+        "id": 1,
+        "link": "https://oeh-wu.at/service/aktuelle-studien-infos/wirtschaftsmathematikbusiness-mathematics"
+      },
+      {
+        "id": 2,
+        "link": "https://statmath.wu.ac.at/wimath/en/"
+      }
+    ],
+    "evaluation": [
+      {
+        "id": 2,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 3,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 4,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 5,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 6,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 7,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 8,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 9,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 10,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 11,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 12,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 13,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 14,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 15,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 16,
+        "answer": 3,
+        "type": "content"
+      },
+      {
+        "id": 17,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 18,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 19,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 20,
+        "answer": 2,
+        "type": "content"
+      },
+      {
+        "id": 21,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 22,
+        "answer": 5,
+        "type": "content"
+      },
+      {
+        "id": 23,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 24,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 25,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 26,
+        "answer": 0,
+        "type": "content"
+      },
+      {
+        "id": 27,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 28,
+        "answer": 2,
+        "type": "format"
+      },
+      {
+        "id": 29,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 30,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 31,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 32,
+        "answer": 0,
+        "type": "format"
+      },
+      {
+        "id": 33,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 34,
+        "answer": 5,
+        "type": "format"
+      },
+      {
+        "id": 35,
+        "answer": 5,
+        "type": "format"
+      }
+    ]
+  }
+]
