@@ -5,13 +5,12 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Gochi Hand';
-    src: url('../fonts/GochiHand-Regular.ttf') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-body {
+#app {
     font-family: 'Dosis', sans-serif;
+}
+.text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6 {
+    color: #00B9F7
+}
+body {
+    color: grey
 }

@@ -8,15 +8,20 @@
         </transition>
       </router-view>
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
   </div>
 </template>
 
 <script>
 import TaigoEmblemVue from './components/TaigoEmblem.vue';
+import Footer from './components/foot.vue';
 
 export default {
   components: {
     TaigoEmblem: TaigoEmblemVue,
+    Footer
   },
   computed: {
 
@@ -34,9 +39,8 @@ export default {
 </script>
 
 <style>
-html,
-body {
-  min-height: 100%;
+html, body {
+  height: 100%;
   margin: 0;
 }
 
@@ -44,11 +48,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
 }
 
 .content {
   flex: 1;
 }
+
+
 </style>
