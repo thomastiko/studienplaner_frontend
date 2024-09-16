@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 text-caption">Concept and development by Georg Haunschmidt and Thomas Tikovits</div>
+    <div class="col-12 text-caption">Da steht dann unser name :)</div>
   </div>
 </template>
 
