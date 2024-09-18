@@ -3,7 +3,6 @@
     <div class="container">
       <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm">Studien&shy;planer</div>
       <div class="text-h5 text-center text-weight-medium text-uppercase q-mb-lg">Your tool to keep track of your studies</div>
-      <q-separator color="blue-3 q-mb-lg" inset />
       <div :class="bg"></div>
       <div class="info q-pa-md">
         <div class="row q-mb-xl row wrap justify-center">

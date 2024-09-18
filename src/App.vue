@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <TaigoEmblem style="display: none" />
+    <div class="navbar">
+      <Navbar />
+    </div>
     <div class="content">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -17,11 +20,13 @@
 <script>
 import TaigoEmblemVue from './components/TaigoEmblem.vue';
 import Footer from './components/foot.vue';
+import Navbar from './components/navbar.vue';
 
 export default {
   components: {
     TaigoEmblem: TaigoEmblemVue,
-    Footer
+    Footer,
+    Navbar
   },
   computed: {
 
