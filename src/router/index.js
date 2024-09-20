@@ -3,7 +3,6 @@ import { trackRouter } from "vue-gtag-next";
 import HomePage from "../views/HomePage.vue";
 import Login from "@/components/login.vue";
 import Register from "@/components/register.vue";
-import Dashboard from "@/components/dashboard.vue";
 
 // Erstelle den Router
 const router = createRouter({
@@ -25,12 +24,6 @@ const router = createRouter({
       name: "register",
       component: Register,
       meta: { requiresAuth: false },
-    },
-    {
-      path: "/dashboard",
-      name: "dashboard",
-      component: Dashboard,
-      meta: { requiresAuth: true },
     },
   ],
 });

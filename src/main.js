@@ -40,7 +40,6 @@ async function startApp() {
   app.use(createPinia());
   app.use(router);
 
-  app.mount('#app');
-}
+  app.mount('#app');}
 
 startApp();

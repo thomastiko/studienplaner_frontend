@@ -8,7 +8,25 @@
           </q-avatar>
 
           <q-toolbar-title>ÖH WU</q-toolbar-title>
-            <q-btn flat class="text-h6 text-white" size="md" icon-right="login" label="Login" />
+          
+          <!-- Überprüfe, ob der Benutzer eingeloggt ist -->
+          <q-btn
+            v-if="userStore.loggedIn"
+            flat
+            class="text-h6 text-white"
+            size="md"
+            icon-right="person"
+            :label="userStore.user.email"
+          />
+          <q-btn
+            v-else
+            flat
+            class="text-h6 text-white"
+            size="md"
+            icon-right="login"
+            label="Login"
+            @click="this.$router.push({ name: 'login', path: '/login'})"
+          />
         </q-toolbar>
 
         <q-tabs v-model="tab">
@@ -22,18 +40,18 @@
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user.store.js'; // Importiere den User-Store
+
 export default {
-  components: {
-  },
   setup() {
-  },
-  computed: {
-  },
-  methods: {
+    const userStore = useUserStore(); // Hole den User-Store
+
+    return {
+      userStore, // Verfügbarmachen des Stores in der Komponente
+    };
   },
 };
 </script>
 
 <style scoped>
-
 </style>

@@ -11,31 +11,34 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router'; // Importiere useRouter
+import { useUserStore } from '@/stores/user.store'; // Importiere den Store
 
 export default {
-  data() {
+  setup() {
+    const router = useRouter(); // Hole den Router
+    const userStore = useUserStore();
+
+    const email = ref('');
+    const password = ref('');
+    const error = ref('');
+
+    const login = async () => {
+      try {
+        await userStore.login(email.value, password.value, router); // Router übergeben
+      } catch (err) {
+        error.value = 'Fehler bei der Anmeldung: ' + (err.response?.data?.message || 'Unbekannter Fehler');
+        console.error(err);
+      }
+    };
+
     return {
-      email: '',
-      password: '',
-      error: ''
+      email,
+      password,
+      error,
+      login,
     };
   },
-  methods: {
-    async login() {
-      try {
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
-          email: this.email,
-          password: this.password
-        });
-
-        localStorage.setItem('token', response.data.token);
-        this.$router.push('/dashboard');
-      } catch (error) {
-        this.error = 'Fehler bei der Anmeldung: ' + (error.response?.data?.message || 'Unbekannter Fehler');
-        console.error(error);
-      }
-    }
-  }
 };
 </script>
