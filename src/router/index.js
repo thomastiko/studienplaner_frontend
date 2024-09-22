@@ -3,6 +3,7 @@ import { trackRouter } from "vue-gtag-next";
 import HomePage from "../views/HomePage.vue";
 import Login from "@/components/login.vue";
 import Register from "@/components/register.vue";
+import MyStudy from "../views/MyStudy.vue";
 
 // Erstelle den Router
 const router = createRouter({
@@ -25,6 +26,12 @@ const router = createRouter({
       component: Register,
       meta: { requiresAuth: false },
     },
+    {
+      path: "/my-study",
+      name: "my-study",
+      component: MyStudy,
+      meta: { requiresAuth: true },
+    }
   ],
 });
 

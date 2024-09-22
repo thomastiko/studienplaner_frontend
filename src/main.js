@@ -1,20 +1,21 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import { Quasar, Notify } from 'quasar'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import { Quasar, Notify } from 'quasar';
+import { useUserStore } from '@/stores/user.store'; // Importiere den Store
 import VueGtag from "vue-gtag-next";
 import './assets/styles/styles.css';
 
 // Import icon libraries
-import '@quasar/extras/roboto-font/roboto-font.css'
-import '@quasar/extras/material-icons/material-icons.css'
-import '@quasar/extras/fontawesome-v5/fontawesome-v5.css'
-import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
+import '@quasar/extras/roboto-font/roboto-font.css';
+import '@quasar/extras/material-icons/material-icons.css';
+import '@quasar/extras/fontawesome-v5/fontawesome-v5.css';
+import '@quasar/extras/fontawesome-v6/fontawesome-v6.css';
 
 // Import Quasar css
-import 'quasar/src/css/index.sass'
+import 'quasar/src/css/index.sass';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import router from './router';
 
 import setupI18n from './i18n';
 
@@ -37,9 +38,15 @@ async function startApp() {
   });
 
   app.use(i18n);
-  app.use(createPinia());
-  app.use(router);
+  
+  const pinia = createPinia();
+  app.use(pinia);
 
-  app.mount('#app');}
+  const userStore = useUserStore(); // Initialisiere den User-Store
+  await userStore.checkAuthState(); // Überprüfe den Auth-Status beim Laden der App
+
+  app.use(router);
+  app.mount('#app');
+}
 
 startApp();

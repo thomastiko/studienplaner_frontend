@@ -8,30 +8,22 @@ export const useUserStore = defineStore('user', {
     loggedIn: false,
     user: {
       email: '',
-      name: '', // Hier auch den Namen initialisieren
     },
   }),
 
   actions: {
-    async login(email, password, router) { // Router als Argument hinzufügen
+    async login(email, password, router) {
       try {
         const response = await axios.post(`${apiUrl}/login`, { email, password });
 
-        // Überprüfe die Struktur des Response
-        console.log(response.data); // Füge diese Zeile hinzu, um die Response zu sehen
-
-        // Speichere den Token in localStorage
         localStorage.setItem('token', response.data.token);
 
-        // Setze den Benutzer als eingeloggt und speichere die Daten
         this.loggedIn = true;
         this.user = {
-          email: response.data.email, // Hier auf response.data.email zugreifen
-          name: '', // Name bleibt leer, da er nicht vom Backend kommt
+          email: response.data.email,
         };
 
-        // Weiterleitung zur Dashboard-Seite oder einer anderen Seite
-        router.push({ name: 'home', path: '/' }); // Router verwenden
+        router.push({ name: 'my-study', path: '/my-study' });
       } catch (error) {
         console.error('Login-Fehler: ', error.response?.data?.message || error.message);
         throw error;
@@ -41,18 +33,15 @@ export const useUserStore = defineStore('user', {
     async fetchUser() {
       try {
         const token = localStorage.getItem('token');
-
         if (!token) {
           this.clearAuthState();
           return;
         }
 
-        // Authentifizierungs-Header setzen
         const response = await axios.get(`${apiUrl}/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        // Benutzerdaten setzen
         this.user = {
           email: response.data.email,
           name: response.data.name,
@@ -64,15 +53,23 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async logout() {
+    async checkAuthState() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        await this.fetchUser();
+      } else {
+        this.clearAuthState();
+      }
+    },
+
+    async logout(router) {
       try {
-        // Optional: Server-Seite über Logout informieren
         await axios.post(`${apiUrl}/logout`, {}, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
 
         this.clearAuthState();
-        window.location.href = '/'; // Leite den Benutzer zur Startseite
+        router.push({ name: 'login', path: '/login' })
       } catch (error) {
         console.error('Logout-Fehler: ', error);
         this.clearAuthState();
@@ -82,8 +79,6 @@ export const useUserStore = defineStore('user', {
     clearAuthState() {
       this.loggedIn = false;
       this.user = { email: '', name: '' };
-
-      // Entferne Token aus localStorage
       localStorage.removeItem('token');
     },
   },

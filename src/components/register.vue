@@ -34,7 +34,7 @@ export default {
           password: this.password
         });
         localStorage.setItem('token', response.data.token);
-        this.$router.push('/dashboard');
+        this.$router.push('/');
       } catch (error) {
         console.error(error);
         alert('Fehler bei der Registrierung');
