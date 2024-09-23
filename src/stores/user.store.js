@@ -8,6 +8,22 @@ export const useUserStore = defineStore('user', {
     loggedIn: false,
     user: {
       email: '',
+      /**
+         * _id: string,
+         * student_id: string,
+         * role: "USER", "ADMIN", "MODERATOR"
+         * studies: [
+         *    {
+         *      study_id: string; // The study id
+         *      subject_states: [{
+         *        subject_id: string;
+         *        status: string;
+         *        grade: number;
+         *      }]
+         *    }
+         * ]
+         */
+      
     },
   }),
 

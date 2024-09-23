@@ -1,0 +1,763 @@
+{
+    "subjects": [
+        {
+            "_id": "1",
+            "name": "Betriebswirtschaft und digitale Ökonomie",
+            "subject_type": "LVP",
+            "ects": 6,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "2",
+            "name": "Volkswirtschaftslehre und Zukunftsfähiges Wirtschaften",
+            "subject_type": "LVP",
+            "ects": 6,
+            "ch": null,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "3",
+            "name": "Europäisches und öffentliches Wirtschaftsrecht",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": null,
+            "color": "#F8BBD0",
+            "grade": null
+        },
+        {
+            "_id": "4",
+            "name": "Jahresabschluss und Unternehmensbereichte",
+            "subject_type": "VUE",
+            "ects": 8,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "5",
+            "name": "Grundlagen der Wirtschaftsinformatik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "6",
+            "name": "Global Business",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "7",
+            "name": "Funktionsübergreifende Betriebswirtschaftslehre - Prozesse und Entscheidungen",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "8",
+            "name": "Mikroökonomik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "9",
+            "name": "Makroökonomik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "10",
+            "name": "Wirtschaftsprivatrecht",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": null,
+            "color": "#F8BBD0",
+            "grade": null
+        },
+        {
+            "_id": "11",
+            "name": "Zukunfstfähiges Wirtschaften: Vertiefungen und Anwendungen",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "12",
+            "name": "Mathematik",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": null,
+            "color": "#B8D8DC",
+            "grade": null
+        },
+        {
+            "_id": "13",
+            "name": "Statistik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#B8D8DC",
+            "grade": null
+        },
+        {
+            "_id": "14",
+            "name": "Standards wissenschaftlichen Arbeitens und Zitierens",
+            "subject_type": "PI",
+            "ects": 3,
+            "ch": null,
+            "color": "#C8E6C9",
+            "grade": null
+        },
+        {
+            "_id": "15",
+            "name": "Finanzwirtschaften",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "16",
+            "name": "Marketing",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "17",
+            "name": "Personal, Führung, Organisation",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "18",
+            "name": "Unternehmensrechnung und Unternehmensplanung",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "19",
+            "name": "Beschaffung, Logistik, Produktion",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "20",
+            "name": "Strategie und Innovationen",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "21",
+            "name": "Business in Global Markets I",
+            "subject_type": "VUE",
+            "ects": 5,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "22",
+            "name": "Business in Global Markets II",
+            "subject_type": "VUE",
+            "ects": 5,
+            "ch": null,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "23",
+            "name": "Fremdsprachliche Wirtschaftskommunikation I",
+            "subject_type": "PI",
+            "ects": 5,
+            "ch": null,
+            "color": "#BBDEFB",
+            "grade": null
+        },
+        {
+            "_id": "24",
+            "name": "Fremdsprachliche Wirtschaftskommunikation II",
+            "subject_type": "PI",
+            "ects": 5,
+            "ch": null,
+            "color": "#BBDEFB",
+            "grade": null
+        },
+        {
+            "_id": "25",
+            "name": "Interkulturelle Kompetenz",
+            "subject_type": "PI",
+            "ects": 3,
+            "ch": null,
+            "color": "#AFC4FF",
+            "grade": null
+        },
+        {
+            "_id": "26",
+            "name": "Communicating in International Contexts",
+            "subject_type": "PI",
+            "ects": 6,
+            "ch": null,
+            "color": "#AFC4FF",
+            "grade": null
+        },
+        {
+            "_id": "27",
+            "name": "Grundzüge des Unternehmensrecht",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": null,
+            "color": "#F8BBD0",
+            "grade": null
+        },
+        {
+            "_id": "28",
+            "name": "Spezialisierung",
+            "subject_type": "SBWL",
+            "ects": 20,
+            "ch": null,
+            "color": "#FFEE58",
+            "grade": null
+        },
+        {
+            "_id": "29",
+            "name": "Internationale Erfahrung (Richtlinien beachten s. Studienplan)",
+            "subject_type": "Int",
+            "ects": 20,
+            "ch": null,
+            "color": "#A8FAEC",
+            "grade": null
+        },
+        {
+            "_id": "30",
+            "name": "Freie Wahlfächer (Richtlinien beachten s. Studienplan)",
+            "subject_type": "ANY",
+            "ects": 10,
+            "ch": null,
+            "color": "#B2DFDB",
+            "grade": null
+        },
+        {
+            "_id": "31",
+            "name": "Bachelorarbeit",
+            "subject_type": "BA",
+            "ects": 10,
+            "ch": null,
+            "color": "#E8AE72",
+            "grade": null
+        }
+    ],
+    "study": {
+        "_id": "wiso-ibw-23",
+        "name": "Bachelorstudium Wirtschafts- und Sozialwissenschaften 2023 Studienzweig Internationale Betriebswirtschaft",
+        "program_code": "J 033 561",
+        "abbr": "Int. Betriebswirtschaft 2023",
+        "academic_degree": "Bachelor of Science (WU)",
+        "academic_degree_abbr": "BSc. (WU)",
+        "subjects": [
+            {
+                "subject_id": "1",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "2",
+                "category": "Volkswirtschaftslehre",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "3",
+                "category": "Rechtswissenschaften",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "4",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "5",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "6",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "7",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "8",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "9",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "10",
+                "category": "Rechtswissenschaften",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "11",
+                "category": "Wirtschaft - Umwelt - Politik",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "12",
+                "category": "Mathematik und Statistik",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "13",
+                "category": "Mathematik und Statistik",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "14",
+                "category": "Wissenschaftliches Arbeiten",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "15",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "16",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "17",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "18",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "19",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "20",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "21",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "22",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "23",
+                "category": "Fremdsprachliche Wirtschaftskommunikation",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "24",
+                "category": "Fremdsprachliche Wirtschaftskommunikation",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "25",
+                "category": "Interkulturelle Kompetenz und Kommunikation",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "26",
+                "category": "Interkulturelle Kompetenz und Kommunikation",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "27",
+                "category": "Rechtswissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "28",
+                "category": "Spezielle Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "29",
+                "category": "Internationale Erfahrung",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "30",
+                "category": "Freies Wahlfach",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "31",
+                "category": "Bachelorarbeit",
+                "phase": "Hauptstudium"
+            }
+        ]
+    },
+    "subjectStatusEntry": [
+        {
+            "subject_id": 1,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 2,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 3,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 4,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 5,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 6,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 7,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 8,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 9,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 10,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 11,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 12,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 13,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 14,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 15,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 16,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 17,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 18,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 19,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 20,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 21,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 22,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 23,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 24,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 25,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 26,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 27,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 28,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 29,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 30,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 31,
+            "status": "unavailable"
+        }
+    ],
+    "sbwls": [
+        {
+            "_id": 1,
+            "name": "Business and Information Systems",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 2,
+            "name": "Change Management & Management Development",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 3,
+            "name": "Data Science",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 4,
+            "name": "Decision Sciences: Game Theory, Psychology, and Data Analysis",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 5,
+            "name": "Digital Marketing",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 6,
+            "name": "Diversitätsmanagement",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 7,
+            "name": "Entrepreneurship & Innovation",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 8,
+            "name": "Ethics for Management, Organizations, and Society",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 9,
+            "name": "Finance: Markets, Institutions & Instruments",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 10,
+            "name": "Handel und Marketing",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 11,
+            "name": "Health and Social Policy",
+            "color": "#B8C6F4",
+            "category": "Spezialisierung"
+        },
+        {
+            "_id": 12,
+            "name": "Information Management and Control",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 13,
+            "name": "International Accounting & Controlling",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 14,
+            "name": "International Business",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 15,
+            "name": "International Business Communication",
+            "color": "#B8C6F4",
+            "category": "Spezialisierung"
+        },
+        {
+            "_id": 16,
+            "name": "International Marketing Management",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 17,
+            "name": "Knowledge Management",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 18,
+            "name": "Marketing",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 19,
+            "name": "Marketing and Consumer Research",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 20,
+            "name": "Organisation",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 21,
+            "name": "Personalmanagement",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 22,
+            "name": "Produktionsmanagement",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 23,
+            "name": "Public und Nonprofit Management",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 24,
+            "name": "Rechnungslegung & Steuerlehre",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 25,
+            "name": "Strategy and Organization",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 26,
+            "name": "Supply Networks and Services",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 27,
+            "name": "Transportwirtschaft und Logistik",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 28,
+            "name": "Unternehmensführung und Controlling",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 29,
+            "name": "Verhaltenswissenschaftlich orientiertes Management",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        },
+        {
+            "_id": 30,
+            "name": "Wirtschaftsmathematik",
+            "color": "#B8C6F4",
+            "category": "Spezialisierung"
+        },
+        {
+            "_id": 31,
+            "name": "Wirtschaftstraining und Bildungsmanagement",
+            "color": "#B8C6F4",
+            "category": "SBWL"
+        }
+        
+    ]
+}

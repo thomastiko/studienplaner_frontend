@@ -1,0 +1,970 @@
+{
+    "subjects": [
+        {
+            "_id": "1",
+            "name": "Einführung in die Betriebswirtschaftslehre",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "2",
+            "name": "Grundlagen der Volkswirtschaftslehre",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "3",
+            "name": "Europäisches und öffentliches Wirtschaftsrecht",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#F8BBD0",
+            "grade": null
+        },
+        {
+            "_id": "4",
+            "name": "Mathematik",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#B8D8DC",
+            "grade": null
+        },
+        {
+            "_id": "5",
+            "name": "Accounting und Management Control I",
+            "subject_type": "LVP",
+            "ects": 6,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "6",
+            "name": "Accounting und Management Control II",
+            "subject_type": "LVP",
+            "ects": 6,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "7",
+            "name": "Betriebliche Informationssysteme I",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "8",
+            "name": "Angewandte Mikroökonomik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "9",
+            "name": "Internationale Makroökonomik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "10",
+            "name": "Wirtschaftsprivatrecht I",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#F8BBD0",
+            "grade": null
+        },
+        {
+            "_id": "11",
+            "name": "Statistik",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#B8D8DC",
+            "grade": null
+        },
+        {
+            "_id": "12",
+            "name": "Introduction to Business Communication",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#BBDEFB",
+            "grade": null
+        },
+        {
+            "_id": "13",
+            "name": "Zukunftsfähiges Wirtschaften I",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "14",
+            "name": "Finanzierung",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "15",
+            "name": "Beschaffung, Logistik, Produktion",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "16",
+            "name": "Marketing",
+            "subject_type": "LVP",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "17",
+            "name": "Personal, Führung, Organisation",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFF9C4",
+            "grade": null
+        },
+        {
+            "_id": "18",
+            "name": "Wirtschaftspolitik",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "19",
+            "name": "Pol. Ökonomie und Theoriegeschichte",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "20",
+            "name": "Finanzwissenschaft I",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "21",
+            "name": "Sozialpolitik",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "22",
+            "name": "Einführung in die emp. Sozialforschung",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "23",
+            "name": "Sozial- und wirtschaftswiss. Info-Systeme",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "24",
+            "name": "Ökonometrie I",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "25",
+            "name": "Statistik für VW und Sozioök.",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#FFE0B2",
+            "grade": null
+        },
+        {
+            "_id": "26",
+            "name": "Wirtschaftsgeographie",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "27",
+            "name": "Wirtschaftsgeschichte",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "28",
+            "name": "Wirtschaftssoziologie",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "29",
+            "name": "Soziale Kompetenz",
+            "subject_type": "PI",
+            "ects": 3,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "30",
+            "name": "Interkulturelle Kompetenz",
+            "subject_type": "PI",
+            "ects": 3,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "31",
+            "name": "Vertiefung volks. Forschungsmethoden",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#A6FFF3",
+            "grade": null
+        },
+        {
+            "_id": "32",
+            "name": "Spezialgebiete der Wirtschaftspol.",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#A6FFF3",
+            "grade": null
+        },
+        {
+            "_id": "33",
+            "name": "Accounting und Management Control III",
+            "subject_type": "VUE",
+            "ects": 4,
+            "ch": 2,
+            "color": "#A6FFF3",
+            "grade": null
+        },
+        {
+            "_id": "34",
+            "name": "Ausgewählte Forschungsbereiche",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#A6FFF3",
+            "grade": null
+        },
+        {
+            "_id": "35",
+            "name": "Grundlagen wissenschaftlichen Arbeitens",
+            "subject_type": "PI",
+            "ects": 3,
+            "ch": 2,
+            "color": "#C8E6C9",
+            "grade": null
+        },
+        {
+            "_id": "36",
+            "name": "Forschungsmethoden",
+            "subject_type": "PI",
+            "ects": 3,
+            "ch": 2,
+            "color": "#C8E6C9",
+            "grade": null
+        },
+        {
+            "_id": "37",
+            "name": "Freie Wahlfächer",
+            "subject_type": "ANY",
+            "ects": 6,
+            "ch": null,
+            "color": "#B2DFDB",
+            "grade": null
+        },
+        {
+            "_id": "38",
+            "name": "Gruppen",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "39",
+            "name": "Organisation",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "40",
+            "name": "Theorien sozioök. Entwicklung",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "41",
+            "name": "Sozialwiss. Theorien: Historische Grundlagen",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "42",
+            "name": "Sozialwiss. Theorien: Moderne Entwicklungen",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "43",
+            "name": "Empirische qualitative Studien",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "44",
+            "name": "Empirische quantitative Studien",
+            "subject_type": "PI",
+            "ects": 4,
+            "ch": 2,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "45",
+            "name": "Moderne Gesellschaften I",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "46",
+            "name": "Moderne Gesellschaften II",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "47",
+            "name": "Ökonomie und Gesellschaften I",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "48",
+            "name": "Ökonomie und Gesellschaften II",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "49",
+            "name": "Sozioök. Problemlagen I",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "50",
+            "name": "Sozioök. Problemlagen II",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "51",
+            "name": "Internationales Wahlfach I",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "52",
+            "name": "Internationales Wahlfach II",
+            "subject_type": "PI",
+            "ects": 8,
+            "ch": 4,
+            "color": "#E1BEE7",
+            "grade": null
+        },
+        {
+            "_id": "53",
+            "name": "Bachelorarbeit",
+            "subject_type": "BA",
+            "ects": 8,
+            "ch": null,
+            "color": "#E8AE72",
+            "grade": null
+        }
+    ],
+    "study": {
+        "_id": "wiso-sz",
+        "name": "Bachelorstudium Wirtschafts- und Sozialwissenschaften 2019 Studienzweig Sozioökonomie",
+        "abbr": "Sozioökonomie 2019",
+        "program_code": "J 033 560",
+        "academic_degree": "Bachelor of Science (WU)",
+        "academic_degree_abbr": "BSc. (WU)",
+        "subjects": [
+            {
+                "subject_id": "1",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "2",
+                "category": "Volkswirtschaftslehre",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "3",
+                "category": "Rechtswissenschaften",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "4",
+                "category": "Mathematik und Statistik",
+                "phase": "STEOP"
+            },
+            {
+                "subject_id": "5",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "6",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "7",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "8",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "9",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "10",
+                "category": "Rechtswissenschaften",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "11",
+                "category": "Mathematik und Statistik",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "12",
+                "category": "Wirtschaftskommunikation",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "13",
+                "category": "Sozioökonomie",
+                "phase": "Common Body of Knowledge"
+            },
+            {
+                "subject_id": "14",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "15",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "16",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "17",
+                "category": "Betriebswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "18",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "19",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "20",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "21",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "22",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "23",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "24",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "25",
+                "category": "Volkswirtschaftslehre",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "26",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "27",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "28",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "29",
+                "category": "Soz. Kompetenz",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "30",
+                "category": "Soz. Kompetenz",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "31",
+                "category": "Wahlfach",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "32",
+                "category": "Wahlfach",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "33",
+                "category": "Wahlfach",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "34",
+                "category": "Wahlfach",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "35",
+                "category": "Grundlagen wissenschaftlichen Arbeitens",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "36",
+                "category": "Grundlagen wissenschaftlichen Arbeitens",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "37",
+                "category": "Freies Wahlfach",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "38",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "39",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "40",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "41",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "42",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "43",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "44",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "45",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "46",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "47",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "48",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "49",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "50",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "51",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "52",
+                "category": "Sozialwissenschaften",
+                "phase": "Hauptstudium"
+            },
+            {
+                "subject_id": "53",
+                "category": "Bachelorarbeit",
+                "phase": "Hauptstudium"
+            }
+        ]
+    },
+    "subjectStatusEntry": [
+        {
+            "subject_id": 1,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 2,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 3,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 4,
+            "status": "can-do"
+        },
+        {
+            "subject_id": 5,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 6,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 7,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 8,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 9,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 10,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 11,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 12,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 13,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 14,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 15,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 16,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 17,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 18,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 19,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 20,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 21,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 22,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 23,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 24,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 25,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 26,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 27,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 28,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 29,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 30,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 31,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 32,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 33,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 34,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 35,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 36,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 37,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 38,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 39,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 40,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 41,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 42,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 43,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 44,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 45,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 46,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 47,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 48,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 49,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 50,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 51,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 52,
+            "status": "unavailable"
+        },
+        {
+            "subject_id": 53,
+            "status": "unavailable"
+        }
+    ]
+}

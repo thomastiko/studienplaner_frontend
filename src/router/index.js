@@ -5,6 +5,7 @@ import Login from "@/components/login.vue";
 import Register from "@/components/register.vue";
 import MyStudy from "../views/MyStudy.vue";
 import Studies from "../views/Studies.vue";
+import StudyPlan from "../views/StudyPlan.vue";
 
 // Erstelle den Router
 const router = createRouter({
@@ -38,6 +39,13 @@ const router = createRouter({
       name: "studies",
       component: Studies,
       meta: { requiresAuth: false },
+    },
+    {
+      path: "/plan/:id",
+      name: "Studyplan",
+      component: StudyPlan,
+      meta: { requiresAuth: true },
+      props: true,
     }
   ],
 });
