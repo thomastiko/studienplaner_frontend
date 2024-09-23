@@ -16,11 +16,11 @@ export default {
         userStore,
     };
   },
-  async created() {
+  /* async created() {
     if (!this.userStore.loggedIn) {
       this.$router.push("/");
     }
-  },
+  },*/
   methods: {},
   computed: {},
 };

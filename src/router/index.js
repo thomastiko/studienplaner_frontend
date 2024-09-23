@@ -4,6 +4,7 @@ import HomePage from "../views/HomePage.vue";
 import Login from "@/components/login.vue";
 import Register from "@/components/register.vue";
 import MyStudy from "../views/MyStudy.vue";
+import Studies from "../views/Studies.vue";
 
 // Erstelle den Router
 const router = createRouter({
@@ -31,12 +32,18 @@ const router = createRouter({
       name: "my-study",
       component: MyStudy,
       meta: { requiresAuth: true },
+    },
+    {
+      path: "/studies",
+      name: "studies",
+      component: Studies,
+      meta: { requiresAuth: false },
     }
   ],
 });
 
 // Router-Guard für geschützte Routen
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
 
   if (to.matched.some(record => record.meta.requiresAuth) && !token) {
@@ -45,7 +52,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-});
+});*/
 
 // Analysiere den Router
 trackRouter(router);

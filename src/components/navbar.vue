@@ -36,9 +36,10 @@
         </q-toolbar>
 
         <q-tabs v-model="tab">
-          <q-tab name="images" label="MY STUDY" @click="this.$router.push({ name: 'my-study', path: '/my-study' })" />
-          <q-tab name="videos" label="LV-PLANER" />
-          <q-tab name="articles" label="PROFCHECK" />
+          <q-tab  label="MY STUDY" @click="this.$router.push({ name: 'my-study', path: '/my-study' })" />
+          <q-tab  label="LV-PLANER" />
+          <q-tab  label="PROFCHECK" />
+          <q-tab  label="STUDIES" @click="this.$router.push({ name: 'studies', path: '/studies'})" />
         </q-tabs>
       </q-header>
     </q-layout>
