@@ -107,7 +107,7 @@
                 v-ripple
                 class="my-box cursor-pointer"
                 style="min-width: 300px"
-                @click="selectYear('WIRE 16')"
+                @click="selectYear('wire-16')"
               >
                 <q-card-section class="bg-blue-4">
                   <div class="text-h4 text-white">WIRE 16</div>
@@ -120,7 +120,7 @@
                 v-ripple
                 class="my-box cursor-pointer"
                 style="min-width: 300px"
-                @click="selectYear('WIRE 23')"
+                @click="selectYear('wire-23')"
               >
                 <q-card-section class="bg-blue-4">
                   <div class="text-h4 text-white">WIRE 23</div>
@@ -155,35 +155,35 @@
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Betriebswirtschaft')"
+                @click="selectBranch('wiso-bwl-23')"
               />
               <q-btn
                 label="Internationale Betriebswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Internationale Betriebswirtschaft')"
+                @click="selectBranch('wiso-ibw-23')"
               />
               <q-btn
                 label="Volkswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Volkswirtschaft')"
+                @click="selectBranch('wiso-vwl-23')"
               />
               <q-btn
                 label="Wirtschaftsinformatik"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Wirtschaftsinformatik')"
+                @click="selectBranch('wiso-winf-23')"
               />
               <q-btn
                 label="Wirtschaft - Umwelt - Politik"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Wirtschaft-Umwelt-Politik')"
+                @click="selectBranch('wiso-wupol-23')"
               />
             </div>
           </div>
@@ -202,28 +202,35 @@
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Betriebswirtschaft')"
+                @click="selectBranch('wiso-bwl')"
               />
               <q-btn
                 label="Internationale Betriebswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Internationale Betriebswirtschaft')"
+                @click="selectBranch('wiso-ibw')"
               />
               <q-btn
                 label="Volkswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Volkswirtschaft und Sozioökonomie')"
+                @click="selectBranch('wiso-vwl')"
+              />
+              <q-btn
+                label="Sozioökonomie"
+                color="blue-4"
+                padding="sm xl"
+                size="lg"
+                @click="selectBranch('wiso-sz')"
               />
               <q-btn
                 label="Wirtschaftsinformatik"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
-                @click="selectBranch('Wirtschaftsinformatik')"
+                @click="selectBranch('wiso-winf')"
               />
             </div>
           </div>
