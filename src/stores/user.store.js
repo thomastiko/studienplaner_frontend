@@ -2,32 +2,28 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 
 const apiUrl = 'http://localhost:5000/api/auth';
+const url = 'http://localhost:5000/api/user';
 
 export const useUserStore = defineStore('user', {
   state: () => ({
     loggedIn: false,
     user: {
       email: '',
-      /**
-         * _id: string,
-         * student_id: string,
-         * role: "USER", "ADMIN", "MODERATOR"
-         * studies: [
-         *    {
-         *      study_id: string; // The study id
-         *      subject_states: [{
-         *        subject_id: string;
-         *        status: string;
-         *        grade: number;
-         *      }]
-         *    }
-         * ]
-         */
-      
+      student_id: '',
+      role: '',
+      studies: [], // Studiengänge werden hier gespeichert
+      course_entries: [] // Kursbelegungen
     },
   }),
 
   actions: {
+    getToken() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Token nicht vorhanden. Benutzer muss sich erneut einloggen.');
+      }
+      return token;
+    },
     async login(email, password, router) {
       try {
         const response = await axios.post(`${apiUrl}/login`, { email, password });
@@ -37,6 +33,10 @@ export const useUserStore = defineStore('user', {
         this.loggedIn = true;
         this.user = {
           email: response.data.email,
+          student_id: response.data.student_id,
+          role: response.data.role,
+          studies: response.data.studies,
+          course_entries: response.data.course_entries,
         };
 
         router.push({ name: 'my-study', path: '/my-study' });
@@ -48,19 +48,22 @@ export const useUserStore = defineStore('user', {
 
     async fetchUser() {
       try {
-        const token = localStorage.getItem('token');
+        const token = this.getToken();
         if (!token) {
           this.clearAuthState();
           return;
         }
 
-        const response = await axios.get(`${apiUrl}/user`, {
+        const response = await axios.get(`${url}/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         this.user = {
           email: response.data.email,
-          name: response.data.name,
+          student_id: response.data.student_id,
+          role: response.data.role,
+          studies: response.data.studies,
+          course_entries: response.data.course_entries,
         };
         this.loggedIn = true;
       } catch (error) {
@@ -70,14 +73,33 @@ export const useUserStore = defineStore('user', {
     },
 
     async checkAuthState() {
-      const token = localStorage.getItem('token');
+      const token = this.getToken();
       if (token) {
         await this.fetchUser();
       } else {
         this.clearAuthState();
       }
     },
-
+    async addStudy(studyId) {
+      try {
+        const token = this.getToken();  // Token über die neue Methode abrufen
+    
+        const response = await axios.post(`${url}/studies/${studyId}`, {}, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+    
+        this.user.studies.push(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          console.error("Fehler beim Hinzufügen des Studiengangs:", error.response.data.message);
+          throw new Error(error.response.data.message); // Nachricht vom Backend an das Frontend weiterleiten
+        } else {
+          console.error("Fehler beim Hinzufügen des Studiengangs:", error.message || error);
+          throw error; // Andere Fehler weitergeben
+        }
+      }
+    },
+    
     async logout(router) {
       try {
         await axios.post(`${apiUrl}/logout`, {}, {
@@ -85,7 +107,7 @@ export const useUserStore = defineStore('user', {
         });
 
         this.clearAuthState();
-        router.push({ name: 'login', path: '/login' })
+        router.push({ name: 'login', path: '/login' });
       } catch (error) {
         console.error('Logout-Fehler: ', error);
         this.clearAuthState();
@@ -94,7 +116,7 @@ export const useUserStore = defineStore('user', {
 
     clearAuthState() {
       this.loggedIn = false;
-      this.user = { email: '', name: '' };
+      this.user = { email: '', student_id: '', role: '', studies: [], course_entries: [] };
       localStorage.removeItem('token');
     },
   },

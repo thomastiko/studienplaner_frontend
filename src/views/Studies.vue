@@ -50,7 +50,7 @@
                 v-ripple
                 class="my-box cursor-pointer"
                 style="min-width: 300px"
-                @click="selectStudy('BBE')"
+                @click="selectStudy('bbe')"
               >
                 <q-card-section class="bg-blue-4">
                   <div class="text-h4 text-white">BBE</div>
@@ -248,13 +248,13 @@
             <q-card-section>
               <div class="text-h6">Deine Auswahl</div>
               <p><strong>Studiengang:</strong> {{ selectedStudy }}</p>
-              <p v-if="selectedYear && selectedStudy !== 'BBE'">
+              <p v-if="selectedYear && selectedStudy !== 'bbe'">
                 <strong>Jahrgang:</strong> {{ selectedYear }}
               </p>
               <p
                 v-if="
                   selectedBranch &&
-                  selectedStudy !== 'BBE' &&
+                  selectedStudy !== 'bbe' &&
                   selectedStudy !== 'WIRE'
                 "
               >
@@ -292,9 +292,11 @@
 
 <script>
 import { ref } from "vue";
+import { useUserStore } from "@/stores/user.store";
 
 export default {
   setup() {
+    const userStore = useUserStore();
     const step = ref(1);
     const selectedStudy = ref(null);
     const selectedYear = ref(null);
@@ -302,7 +304,7 @@ export default {
 
     const selectStudy = (study) => {
       selectedStudy.value = study;
-      if (study === "BBE") {
+      if (study === "bbe") {
         step.value = 4;
         selectedYear.value = null;
         selectedBranch.value = null;
@@ -327,12 +329,28 @@ export default {
       step.value = 4;
     };
 
-    const confirmSelection = () => {
-      alert(
-        `Auswahl bestätigt: ${selectedStudy.value}, ${selectedYear.value}, ${
-          selectedBranch.value || "kein Zweig"
-        }`
-      );
+    const confirmSelection = async () => {
+      // Formatieren der Study ID
+      let studyId = selectedStudy.value;
+      if (selectedYear.value) {
+        studyId = selectedYear.value;
+      }
+      if (selectedBranch.value) {
+        studyId = selectedBranch.value; // Zweig verwenden, wenn vorhanden
+      }
+
+      try {
+        // Studiengang speichern
+        await userStore.addStudy(studyId);
+
+        alert(
+          `Auswahl bestätigt und gespeichert: ${selectedStudy.value}, ${selectedYear.value}, ${
+            selectedBranch.value || "kein Zweig"
+          }`
+        );
+      } catch (error) {
+        console.error("Fehler beim Speichern des Studiengangs:", error);
+      }
     };
 
     return {
