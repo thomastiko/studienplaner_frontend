@@ -6,6 +6,9 @@ import Register from "@/components/register.vue";
 import MyStudy from "../views/MyStudy.vue";
 import Studies from "../views/Studies.vue";
 import StudyPlan from "../views/StudyPlan.vue";
+import LvPlaner from "../views/LvPlaner.vue"
+import Profcheck from "../views/Profcheck.vue"
+import ProfessorPage from "../views/ProfessorPage.vue"
 
 // Erstelle den Router
 const router = createRouter({
@@ -46,9 +49,26 @@ const router = createRouter({
       component: StudyPlan,
       meta: { requiresAuth: true },
       props: true,
+    },
+    {
+      path: "/lvplaner",
+      name: "LvPlaner",
+      component: LvPlaner,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/profcheck",
+      name: "Profcheck",
+      component: Profcheck,
+      meta: { requiresAuth: false },
+
+    },
+    {
+
     }
   ],
 });
+
 
 // Router-Guard für geschützte Routen
 /*router.beforeEach((to, from, next) => {

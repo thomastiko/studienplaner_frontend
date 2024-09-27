@@ -37,8 +37,8 @@
 
         <q-tabs v-model="tab">
           <q-tab  label="MY STUDY" @click="this.$router.push({ name: 'my-study', path: '/my-study' })" />
-          <q-tab  label="LV-PLANER" />
-          <q-tab  label="PROFCHECK" />
+          <q-tab  label="LV-PLANER" @click="this.$router.push({ name: 'LvPlaner', path: '/lvplaner' })" />
+          <q-tab  label="PROFCHECK" @click="this.$router.push({ name: 'Profcheck', path: '/profcheck' })" />
           <q-tab  label="STUDIES" @click="this.$router.push({ name: 'studies', path: '/studies'})" />
         </q-tabs>
       </q-header>
