@@ -43,7 +43,7 @@ async function startApp() {
   app.use(pinia);
 
   const userStore = useUserStore(); // Initialisiere den User-Store
-  await userStore.checkAuthState(); // Überprüfe den Auth-Status beim Laden der App
+  await userStore.checkAuthState(router); // Überprüfe den Auth-Status beim Laden der App
 
   app.use(router);
   app.mount('#app');

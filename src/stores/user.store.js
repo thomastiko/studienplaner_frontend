@@ -20,7 +20,7 @@ export const useUserStore = defineStore('user', {
     getToken() {
       const token = localStorage.getItem('token');
       if (!token) {
-        throw new Error('Token nicht vorhanden. Benutzer muss sich erneut einloggen.');
+        return null;
       }
       return token;
     },
@@ -46,11 +46,12 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async fetchUser() {
+    async fetchUser(router) {
       try {
         const token = this.getToken();
         if (!token) {
           this.clearAuthState();
+          router.push({ name: 'login', path: '/login' });
           return;
         }
 
@@ -72,12 +73,13 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async checkAuthState() {
+    async checkAuthState(router) {
       const token = this.getToken();
       if (token) {
         await this.fetchUser();
       } else {
         this.clearAuthState();
+        router.push({ name: 'login', path: '/login' });
       }
     },
     async addStudy(studyId) {
