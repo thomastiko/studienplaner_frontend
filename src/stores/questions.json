@@ -1,0 +1,173 @@
+[
+    {
+        "id": 1,
+        "text": "Wähle dein Studium aus",
+        "type": "select"
+    },
+    {
+        "id": 2,
+        "text": "Haben dich die Themen, die in AMC bzw. JUB behandelt wurden, interessiert?",
+        "type": "content"
+    },
+    {
+        "id": 3,
+        "text": "Interessieren dich Themen, die sich mit dem Bereich Organisation beschäftigen, wie Einkauf, Beschaffung, Management oder Personalwesen?",
+        "type": "content"
+    },
+    {
+        "id": 4,
+        "text": "Interessierst du dich für Themen wie Verkauf, Marketing, Public Relations oder Kundenbeziehungen?",
+        "type": "content"
+    },
+    {
+        "id": 5,
+        "text": "Kannst du dir vorstellen, später bei Versicherungen, in der Vermögensverwaltung, bei Banken oder Investoren (z.B. Private Equity) zu arbeiten?",
+        "type": "content"
+    },
+    {
+        "id": 6,
+        "text": "Möchtest du in der Spezialisierung spezielle Einblicke in die Unternehmensberatung bekommen?",
+        "type": "content"
+    },
+    {
+        "id": 7,
+        "text": "Beschäftigst du dich gerne mit Themen wie Algorithmen, Programmiersprachen, Softwaretechnik, Datenbanken oder Informationstechnik?",
+        "type": "content"
+    },
+    {
+        "id": 8,
+        "text": "Möchtest du weitere Einblicke in Rechtsvorschriften erhalten?",
+        "type": "content"
+    },
+    {
+        "id": 9,
+        "text": "Beschäftigst du dich gerne mit Mathematik?",
+        "type": "content"
+    },
+    {
+        "id": 10,
+        "text": "Ist es dir wichtig, dass die Spezialisierung einen speziellen internationalen Fokus hat?",
+        "type": "content"
+    },
+    {
+        "id": 11,
+        "text": "Bist du interessiert an den Themen Philosophie und Ethik?",
+        "type": "content"
+    },
+    {
+        "id": 12,
+        "text": "Interessiert dich Psychologie?",
+        "type": "content"
+    },
+    {
+        "id": 13,
+        "text": "Möchtest du mehr über Selbsständigkeit und Startups erfahren?",
+        "type": "content"
+    },
+    {
+        "id": 14,
+        "text": "Interessierst du dich für finanzielle Themen und deren Einfluss auf das Unternehmen?",
+        "type": "content"
+    },
+    {
+        "id": 15,
+        "text": "Bist du interessiert daran, Koordination, Prozesse und Abläufe in Unternehmen zu analysieren und zu verbessern?",
+        "type": "content"
+    },
+    {
+        "id": 16,
+        "text": "Wie interessiert bist du daran, kreative Ideen zu entwickeln und umzusetzen, um ein Produkt oder eine Dienstleistung zu bewerben?",
+        "type": "content"
+    },
+    {
+        "id": 17,
+        "text": "Interessierst du dich für Aktien und möchtest dich in deiner Spezialisierung mit dem Thema befassen?",
+        "type": "content"
+    },
+    {
+        "id": 18,
+        "text": "Wie interessiert bist du daran, technologische Lösungen zu entwickeln und zu implementieren, um Geschäftsprozesse zu verbessern?",
+        "type": "content"
+    },
+    {
+        "id": 19,
+        "text": "Interessierst du dich grundsätzlich für juristische Fächer?",
+        "type": "content"
+    },
+    {
+        "id": 20,
+        "text": "Möchtest du eine Spezialisierung, bei der man auch rechnen und mit Zahlen umgehen muss?",
+        "type": "content"
+    },
+    {
+        "id": 21,
+        "text": "Wie wichtig ist es dir, dein Verständnis für den globalen Markt, internationale Geschäftspraktiken und andere Kulturen zu vertiefen?",
+        "type": "content"
+    },
+    {
+        "id": 22,
+        "text": "Beschäftigst du dich gerne mit Fragen der Moral und Gerechtigkeit in der Wirtschaft?",
+        "type": "content"
+    },
+    {
+        "id": 23,
+        "text": "Möchtest du eine Spezialisierung, die dabei hilft, Verhalten, Motivation und Persönlichkeitsentwicklung von Menschen besser zu verstehen?",
+        "type": "content"
+    },
+    {
+        "id": 24,
+        "text": "Möchtest du deine Excel Kenntnisse in der Spezialisierung erweitern?",
+        "type": "format"
+    },
+    {
+        "id": 25,
+        "text": "Möchtest du in der Spezialisierung eine Porgrammiersprache (z.B. R) erlernen?",
+        "type": "format"
+    },
+    {
+        "id": 26,
+        "text": "Ist es dir wichtig, dass es im Zuge der Spezialisierung Workshops mit externen Vortragenden aus Unternehmen oder dem öffentlichen Sektor gibt?",
+        "type": "format"
+    },
+    {
+        "id": 27,
+        "text": "Ist es dir wichtig, dass die Spezialisierung auch ein Praxisprojekt mit einem Unternehmen beinhaltet?",
+        "type": "format"
+    },
+    {
+        "id": 28,
+        "text": "Hältst du gerne Präsentationen?",
+        "type": "format"
+    },
+    {
+        "id": 29,
+        "text": "Möchtest du eine Spezialisierung, bei der die Bewertung anhand von schriftlichen Arbeiten (Case Studies, Reflexionsarbeiten...) erfolgt?",
+        "type": "format"
+    },
+    {
+        "id": 30,
+        "text": "Möchtest du eine Spezialisierung, bei der die Bewertung anhand von Prüfungen erfolgt?",
+        "type": "format"
+    },
+    {
+        "id": 31,
+        "text": "Möchtest du eine englischsprachige Spezialisierung?",
+        "type": "format"
+    },
+    {
+        "id": 32,
+        "text": "Bist du auch bereit, für die Spezialisierung einen Einstiegstest zu machen?",
+        "type": "format"
+    },
+    {
+        "id": 33,
+        "text": "Beschäftigst du dich gerne mit dem Thema Umwelt und Nachhaltigkeit?",
+        "type": "format"
+    },
+    {
+        "id": 34,
+        "text": "Interessiert dich, wie gesellschaftliche Faktoren wie Kultur, Normen und Institutionen wirtschaftliche Prozesse und Entscheidungen beeinflussen?",
+        "type": "format"
+    }
+
+]

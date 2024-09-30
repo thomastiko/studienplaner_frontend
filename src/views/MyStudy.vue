@@ -5,7 +5,7 @@
     </div>
     <div class="column items-center">
       <div class="col" v-for="(study, i) in this.userStore.user.studies" :key="i" >
-        <q-card class="my-card cursor-pointer" v-ripple>
+        <q-card class="my-card cursor-pointer" v-ripple @click="openStudy(study.study_id)">
       <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
         <div class="absolute-bottom">
           <div class="text-h4 text-white"> {{study.study_name_short}} </div>
@@ -28,10 +28,15 @@ export default {
         userStore,
     };
   },
-  methods: {},
+  methods: {
+    openStudy(study_id) {
+      this.$router.push({ name: 'Studyplan', params: { study_id } });
+    },
+  },
   computed: {},
   mounted() {
-    console.log(this.userStore.user)
+    this.userStore.fetchUser();
+    console.log(this.userStore.user);
   },
 };
 </script>

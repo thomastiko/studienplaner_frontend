@@ -8,7 +8,6 @@ import Studies from "../views/Studies.vue";
 import StudyPlan from "../views/StudyPlan.vue";
 import LvPlaner from "../views/LvPlaner.vue"
 import Profcheck from "../views/Profcheck.vue"
-import ProfessorPage from "../views/ProfessorPage.vue"
 
 // Erstelle den Router
 const router = createRouter({
@@ -44,7 +43,7 @@ const router = createRouter({
       meta: { requiresAuth: false },
     },
     {
-      path: "/plan/:id",
+      path: "/my-study/:study_id",
       name: "Studyplan",
       component: StudyPlan,
       meta: { requiresAuth: true },

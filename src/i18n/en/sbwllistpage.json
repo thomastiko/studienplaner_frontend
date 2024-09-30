@@ -1,0 +1,9 @@
+{
+    "all_spezializations": "All Specializations",
+    "green_thumb_up": "At least 1 of this type must be completed; no upper limit",
+    "blue_thumb_up": "A maximum of 2 of this type may be completed",
+    "orange_thumb_up": "A maximum of 1 of this type may be completed",
+    "close": "Not included in the branch of study",
+    "select_study": "Select study",
+    "show_all": "Show all"
+}
