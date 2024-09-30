@@ -2,14 +2,19 @@
   <div>
     <div v-if="selectedStudy">
       <!-- Iteration durch Phasen und die Fächer, die zu diesen Phasen gehören -->
-      <div v-for="(subjects, phase) in groupedSubjects" :key="phase" class="col-12 shadow-1 q-ma-md">
-        <div class="q-pa-md">
+      <div v-for="(subjects, phase) in groupedSubjects" :key="phase" class="shadow-1 q-ma-md">
+        <div class="q-pa-md row q-col-gutter-md items-stretch">
           <div class="col-12 row justify-between items-center">
-          <div class="text-h5 text-bold">{{ phase }}</div>
-          <div> {{subjects.length}} Lehrveranstalungen </div>
+            <div class="text-h5 text-bold text-uppercase">{{ phase }}</div>
+            <div>{{ subjects.length }} Lehrveranstalungen</div>
           </div>
-          <div v-for="subject in subjects" :key="subject._id">
-            <Subject :subject="subject" />
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            style="max-width: 400px"
+            v-for="subject in subjects"
+            :key="subject._id"
+          >
+            <Subject :subject="subject" @status-change="updateStatus" />
           </div>
         </div>
       </div>
@@ -44,6 +49,11 @@ export default {
   data() {
     return {
       studyId: this.study_id
+    }
+  },
+  methods: {
+    updateStatus(subjectId, status) {
+      this.userStore.updateSubjectStatus(this.studyId, subjectId, status)
     }
   },
   computed: {
