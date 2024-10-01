@@ -52,8 +52,8 @@ export default {
     }
   },
   methods: {
-    updateStatus(subjectId, status) {
-      this.userStore.updateSubjectStatus(this.studyId, subjectId, status)
+    updateStatus(subjectId, status, grade) {
+      this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
     }
   },
   computed: {

@@ -105,13 +105,13 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
-    async updateSubjectStatus(studyId, subjectId, status) {
+    async updateSubjectStatus(studyId, subjectId, status, grade) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
 
         const response = await axios.patch(
           `${url}/studies/${studyId}/subjects`,
-          { studyId, subjectId, status },
+          { studyId, subjectId, status, grade },
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -137,10 +137,12 @@ export const useUserStore = defineStore('user', {
 
         // Aktualisiere den Status des Faches
         subjectToUpdate.status = updatedSubject.status
+        subjectToUpdate.grade = updatedSubject.grade
 
         console.log(
-          `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status}`
+          `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
         )
+        console.log(this.user.studies)
       } catch (error) {
         if (error.response && error.response.status === 400) {
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message)

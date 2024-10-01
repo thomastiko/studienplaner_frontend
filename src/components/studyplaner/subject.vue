@@ -16,14 +16,9 @@
         {{ subject.ects }}
         ECTS
       </q-chip>
-      <q-chip outline square clickable>
-        {{ subject.grade || model }}
-        <div>Grade</div>
-        <q-popup-edit v-model="model">
-          <div v-close-popup v-for="grade in grades" :key="grade">
-            <q-btn @click="model = grade" flat :label="grade" />
-          </div>
-        </q-popup-edit>
+      <q-chip outline square>
+        {{ subject.grade }}
+        GRADE
       </q-chip>
     </q-card-actions>
 
@@ -42,7 +37,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup @click="setStatus('done')">
+          <q-item clickable v-close-popup @click="dialog = true">
             <q-item-section>
               <q-item-label>Done</q-item-label>
             </q-item-section>
@@ -51,6 +46,28 @@
       </q-btn-dropdown>
     </q-card-actions>
   </q-card>
+
+  <!-- Dialog nachdem der Status auf "done" geändert werden will -->
+  <q-dialog v-model="dialog" persistent>
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">Gratuliere!</div>
+      </q-card-section>
+
+      <q-card-section class="q-pt-none">
+        Du hast das Fach <strong>{{ this.subject.name }}</strong> erfolgreich abgeschlossen. Bitte
+        gib deine Note an:
+      </q-card-section>
+      <q-card-section>
+        <q-option-group v-model="grade" :options="grades" color="primary" inline />
+      </q-card-section>
+
+      <q-card-actions align="right">
+        <q-btn flat label="Cancel" color="primary" v-close-popup />
+        <q-btn flat label="OK" color="primary" @click="setStatus('done')" v-close-popup />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>
@@ -63,10 +80,11 @@ export default {
     }
   },
   setup() {
-    const grades = [1, 2, 3, 4, 5]
+    const grades = [{ label: "1", value: 1 }, { label: "2", value: 2 }, { label: "3", value: 3 }, { label: "4", value: 4 }]
 
     return {
-      model: ref(null),
+      grade: ref(1),
+      dialog: ref(false),
       grades
     }
   },
@@ -85,8 +103,11 @@ export default {
       return color || '#FFFFFF'
     },
     setStatus(status) {
-      this.$emit('status-change', this.subject._id, status)
-    }
+      if (status !== 'done') {
+        this.grade = null
+      }
+      this.$emit('status-change', this.subject._id, status, this.grade)
+    },
   },
   mounted() {
     console.log(this.subject)
