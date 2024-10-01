@@ -9,8 +9,8 @@
             <div>{{ subjects.length }} Lehrveranstalungen</div>
           </div>
           <div
-            class="col-12 col-md-6 col-lg-4"
-            style="max-width: 400px"
+            class="col-12 col-md-3"
+            style="max-width: 450px"
             v-for="subject in subjects"
             :key="subject._id"
           >

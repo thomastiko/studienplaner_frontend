@@ -7,7 +7,9 @@
             <img src="../assets/oeh_logo.svg" />
           </q-avatar>
 
-          <q-toolbar-title class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/'})">ÖH WU</q-toolbar-title>
+          <q-toolbar-title class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/'})">Studienplaner
+            <q-badge align="top" color="orange">BETA</q-badge>
+          </q-toolbar-title>
 
           <!-- Überprüfe, ob der Benutzer eingeloggt ist -->
           <q-btn-dropdown
