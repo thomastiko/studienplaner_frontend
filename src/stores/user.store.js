@@ -105,6 +105,26 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    async deleteStudy(studyId) {
+      try {
+        const token = this.getToken() 
+        const response = await axios.delete(
+          `${url}/studies/${studyId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
+        this.user.studies = response.data.studies
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          console.error('Fehler beim Löschen des Studiengangs:', error.response.data.message)
+          throw new Error(error.response.data.message) 
+        } else {
+          console.error('Fehler beim Löschen des Studiengangs:', error.message || error)
+          throw error 
+        }
+      }
+    },
     async updateSubjectStatus(studyId, subjectId, status, grade) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
