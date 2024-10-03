@@ -107,7 +107,7 @@
                 v-ripple
                 class="my-box cursor-pointer"
                 style="min-width: 300px"
-                @click="selectYear('wire-16')"
+                @click="selectYear('wire')"
               >
                 <q-card-section class="bg-blue-4">
                   <div class="text-h4 text-white">WIRE 16</div>
