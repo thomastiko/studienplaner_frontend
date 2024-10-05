@@ -110,7 +110,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.subject)
   }
 }
 </script>

@@ -37,7 +37,7 @@
           />
         </q-toolbar>
 
-        <q-tabs v-model="tab">
+        <q-tabs>
           <q-tab  label="MY STUDY" @click="this.$router.push({ name: 'my-study', path: '/my-study' })" />
           <q-tab  label="LV-PLANER" @click="this.$router.push({ name: 'LvPlaner', path: '/lvplaner' })" />
           <q-tab  label="PROFCHECK" @click="this.$router.push({ name: 'Profcheck', path: '/profcheck' })" />
