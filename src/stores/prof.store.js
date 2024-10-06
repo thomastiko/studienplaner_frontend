@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { useUserStore } from './user.store'
 
 const profUrl = 'http://localhost:5001/api/profs'
 
@@ -43,6 +44,41 @@ export const useProfStore = defineStore('prof', {
               } catch (e) {
                 return { status: e.code, message: e.message };
               }
+            }
+          },
+          async rateProfessor(profId, rating, router) {
+            console.log('Rating:', rating)
+            const userStore = useUserStore() // Zugriff auf den User Store
+      
+            // Authentifizierungsstatus überprüfen
+            await userStore.checkAuthState(router)
+      
+            if (userStore.loggedIn) {
+              try {
+                const token = userStore.getToken() // Token abrufen
+      
+                // Anfrage an das Backend zum Hinzufügen eines Ratings senden
+                const response = await axios.patch(
+                  `${profUrl}/${profId}/rate`,
+                  rating,
+                  { headers: { Authorization: `Bearer ${token}` } }
+                )
+      
+                console.log(`Rating für Professor ${profId} hinzugefügt:`, response.data)
+      
+                // Optional: Professor-Objekt im Store aktualisieren, falls das Backend die aktualisierten Daten zurücksendet
+                const updatedProf = this.professors.find((p) => p._id === profId)
+                if (updatedProf) {
+                  updatedProf.ratings = response.data.ratings // Aktualisiere die Bewertungen, falls vorhanden
+                }
+      
+              } catch (error) {
+                console.error('Fehler beim Hinzufügen des Ratings: ', error.response?.data?.message || error.message)
+                throw error
+              }
+            } else {
+              console.error('Benutzer ist nicht eingeloggt')
+              return
             }
           },
     }

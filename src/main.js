@@ -14,6 +14,9 @@ import '@quasar/extras/fontawesome-v6/fontawesome-v6.css';
 // Import Quasar css
 import 'quasar/src/css/index.sass';
 
+import QCalendar from '@quasar/quasar-ui-qcalendar'
+import '@quasar/quasar-ui-qcalendar/dist/index.css'
+
 import App from './App.vue';
 import router from './router';
 
@@ -41,6 +44,7 @@ async function startApp() {
   
   const pinia = createPinia();
   app.use(pinia);
+  app.use(QCalendar)
 
   const userStore = useUserStore(); // Initialisiere den User-Store
   await userStore.checkAuthState(router); // Überprüfe den Auth-Status beim Laden der App

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="row q-ma-md" v-if="profStore.selectedProf">
+      {{ profStore.selectedProf }}
       <div class="col-12 text-h4">
         Bewerten: {{ profStore.selectedProf.fname }} {{ profStore.selectedProf.lname }}
       </div>
@@ -21,7 +22,7 @@
         <div class="col-12 text-h4">Kommentar hinzufügen:</div>
         <q-input class="full-width" v-model="comment" outlined autogrow />
       </div>
-      <q-btn class="q-mt-md" label="Bewertung absenden" color="primary" />
+      <q-btn class="q-mt-md" label="Bewertung absenden" color="primary" @click="updateRate" />
     </div>
   </div>
 </template>
@@ -77,6 +78,32 @@ export default {
         },
         { title: 'Empfehlung', criteria: 'I would recommend this presenter to others.', value: 0 }
       ])
+    }
+  },
+  methods: {
+    async updateRate() {
+      const ratings = this.rateSystem.map((factor) => factor.value) // Sammle alle Bewertungen
+      const comment = this.comment // Hole den Kommentar
+
+      console.log(ratings) // Nur für Debugging, um sicherzustellen, dass die Bewertungen korrekt gesammelt werden
+      console.log(comment)
+
+      // Erstelle ein Objekt, das die Ratings und den Kommentar enthält
+      const ratingData = {
+        ratings,
+        comment
+      }
+
+      try {
+        // Übergebe das `profId` und die Bewertungen/Kommentare an die Funktion, die mit dem Backend interagiert
+        await this.profStore.rateProfessor(
+          this.profStore.selectedProf._id,
+          ratingData,
+          this.$router
+        )
+      } catch (error) {
+        console.error('Fehler beim Hinzufügen der Bewertung:', error)
+      }
     }
   }
 }

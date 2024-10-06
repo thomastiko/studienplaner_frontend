@@ -9,13 +9,13 @@
       </div>
       <template v-for="(factor, i) in profStore.selectedProf.factors" :key="i">
         <div v-if="factor.ratings > 0">
-          <div>Ratings: {{ factor.ratings }}</div>
-          <div>Lerninhalt und -aufbereitung: {{ factor.lerninhahlte }}</div>
-          <div>Atmosphäre: {{ factor.atmospahre }}</div>
-          <div>Benotung: {{ factor.benotung }}</div>
-          <div>Verfügbarkeit: {{ factor.verfugbarkeit }}</div>
-          <div>Empfehlung: {{ factor.empfhelung }}</div>
-          <div>Gesamt: {{ factor.gesamt }}</div>
+          <div>Ratings: {{ factor.ratings.toFixed(2) }}</div>
+          <div>Lerninhalt und -aufbereitung: {{ factor.lerninhahlte.toFixed(2) }}</div>
+          <div>Atmosphäre: {{ factor.atmospahre.toFixed(2) }}</div>
+          <div>Benotung: {{ factor.benotung.toFixed(2) }}</div>
+          <div>Verfügbarkeit: {{ factor.verfugbarkeit.toFixed(2) }}</div>
+          <div>Empfehlung: {{ factor.empfhelung.toFixed(2) }}</div>
+          <div>Gesamt: {{ factor.gesamt.toFixed(2) }}</div>
         </div>
         <div v-else>
           <p>No ratings yet.</p>

@@ -17,7 +17,7 @@ export const useUserStore = defineStore('user', {
   }),
 
   actions: {
-    /* USER FUNCTIONS */
+    /* USER LOGIN/LOGOUT & FETCH USER & AUTH */
     /************************************************************************************/
 
     getToken() {
@@ -47,6 +47,29 @@ export const useUserStore = defineStore('user', {
         console.error('Login-Fehler: ', error.response?.data?.message || error.message)
         throw error
       }
+    },
+    async logout(router) {
+      try {
+        await axios.post(
+          `${apiUrl}/logout`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          }
+        )
+
+        this.clearAuthState()
+        router.push({ name: 'login', path: '/login' })
+      } catch (error) {
+        console.error('Logout-Fehler: ', error)
+        this.clearAuthState()
+      }
+    },
+
+    clearAuthState() {
+      this.loggedIn = false
+      this.user = { email: '', student_id: '', role: '', studies: [], course_entries: [] }
+      localStorage.removeItem('token')
     },
 
     async fetchUser(router) {
@@ -85,6 +108,11 @@ export const useUserStore = defineStore('user', {
         router.push({ name: 'login', path: '/login' })
       }
     },
+
+    /* USER STUDY ADDING/REMOVING/UPDATING */
+    /************************************************************************************/
+
+
     async addStudy(studyId) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
@@ -174,28 +202,40 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async logout(router) {
-      try {
-        await axios.post(
-          `${apiUrl}/logout`,
-          {},
-          {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-          }
-        )
+    /* USER CALENDAR ADDING/REMOVING/UPDATING */
+    /************************************************************************************/
 
-        this.clearAuthState()
-        router.push({ name: 'login', path: '/login' })
+
+    async addCourse(course) {
+      try {
+        const token = this.getToken()
+        // Füge den Kurs zur Benutzerobjekt hinzu
+        this.user.course_entries.push(course)
+
+        // Optional: Sende den Kurs an das Backend zur dauerhaften Speicherung
+        await axios.post(`${url}/course`, course, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
       } catch (error) {
-        console.error('Logout-Fehler: ', error)
-        this.clearAuthState()
+        console.error('Fehler beim Hinzufügen des Kurses:', error)
+        throw error
       }
     },
-
-    clearAuthState() {
-      this.loggedIn = false
-      this.user = { email: '', student_id: '', role: '', studies: [], course_entries: [] }
-      localStorage.removeItem('token')
-    }
+    async deleteCourse(courseCode, semester) {
+      try {
+        const token = this.getToken(); // Token für die Authentifizierung abrufen
+        
+        // Sende die Anfrage zum Löschen des Kurses an das Backend
+        const response = await axios.delete(`${url}/course`, { 
+          headers: { Authorization: `Bearer ${token}` }, // Token in den Header einfügen
+          data: { courseCode, semester } // Die Kursdaten im Body der Anfrage senden
+        });
+        
+        this.user = response.data.user; // Aktualisiere die Benutzerinformationen mit den neuen Kursdaten
+      } catch (error) {
+        console.error('Fehler beim Löschen des Kurses:', error);
+        throw error; // Werfe den Fehler weiter, damit der Aufrufer darauf reagieren kann
+      }
+    },
   }
 })

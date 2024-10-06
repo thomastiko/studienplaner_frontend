@@ -10,6 +10,7 @@ import LvPlaner from "../views/LvPlaner.vue"
 import Profcheck from "../views/Profcheck.vue"
 import ProfessorPage from "../views/ProfessorPage.vue"
 import RateProfessor from "../views/RateProfessor.vue"
+import AddLv from "../views/AddLv.vue"
 
 // Erstelle den Router
 const router = createRouter({
@@ -55,6 +56,12 @@ const router = createRouter({
       path: "/lvplaner",
       name: "LvPlaner",
       component: LvPlaner,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/addlv",
+      name: "AddLv",
+      component: AddLv,
       meta: { requiresAuth: true },
     },
     {

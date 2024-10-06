@@ -64,7 +64,7 @@ export default {
         {
           name: 'ratingSummary',
           label: 'Rating Summary',
-          field: (row) => row.factors[0]?.gesamt || '-',
+          field: (row) => (row.factors[0]?.gesamt ? row.factors[0].gesamt.toFixed(2) : '-'),
           align: 'center',
           sortable: true
         }
