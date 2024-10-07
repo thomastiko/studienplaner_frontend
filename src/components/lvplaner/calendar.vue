@@ -29,6 +29,73 @@
               </q-card-actions>
             </q-card>
           </q-dialog>
+          <q-btn-dropdown flat label="Meine Kurse">
+            <q-list separator>
+              <q-item v-for="(course, i) in this.userStore.user.course_entries" :key="i">
+                <q-item-section avatar>
+                  <q-fab
+                    :style="{
+                      backgroundColor: course.color || 'lightblue',
+                      border: '2px solid lightgray',
+                      position: 'fixed',
+                    }"
+                    padding="none"
+                    icon="none"
+                    :direction="setDirection"
+                    text-color="white"
+                  >
+                    <q-color
+                      no-footer
+                      no-header
+                      default-view="palette"
+                      :palette="[
+                        '#ffcc5c',
+                        '#f2774e',
+                        '#d9534f',
+                        '#f6a6b2',
+                        '#d76b78',
+                        '#6b353c',
+                        '#adcbe3',
+                        '#5bbdf4',
+                        '#4b86b4',
+                        '#2e4c5c',
+                        '#a4d4a3',
+                        '#52bf90',
+                        '#36802d',
+                        '#234d20',
+                        '#d0b783',
+                        '#967259',
+                        '#6f4d37',
+                        '#bfb5b2',
+                        '#86949f',
+                        '#5d5c61',
+                      ]"
+                      class="my-picker"
+                      @change="changeColor(course, $event)"
+                    />
+                  </q-fab>
+                </q-item-section>
+                <q-item-section>
+                  <div class="col-12 row">
+                    <div class="col-12 row items-center">
+                      {{ course.name }}
+                      <span class="text-weight-bold q-ml-xs"
+                        >({{ course.course_code }})</span
+                      >
+                    </div>
+                  </div>
+                </q-item-section>
+                <q-item-section side>
+                  <q-btn
+                    icon="delete"
+                    flat
+                    color="negative"
+                    @click.stop="deleteCourse(course)"
+                  />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
           <q-btn-dropdown flat label="Ansicht">
             <q-list>
               <q-item clickable v-close-popup @click="() => updateSelected('day', 'week')">
@@ -130,6 +197,28 @@ export default defineComponent({
     const openDownloadDialog = ref(false);
     const checkbox = ref([]);
 
+    const deleteCourse = async (course) => {
+      try {
+        await userStore.deleteCourse(course.course_code, course.semester);
+        // Optional: Benutzer über den Erfolg informieren oder die Benutzeroberfläche aktualisieren
+      } catch (error) {
+        console.error('Fehler beim Löschen des Kurses:', error);
+        // Optional: Fehlerbehandlung, z.B. Benachrichtigung anzeigen
+      }
+    };
+    const changeColor = async (course, newColor) => {
+      try {
+        // Update the color in the local state
+        course.color = newColor;
+
+        // Call the userStore method to update the color in the backend
+        await userStore.updateCourseColor(course.course_code, course.semester, newColor);
+      } catch (error) {
+        console.error('Fehler beim Ändern der Farbe:', error);
+        // Optionally, show an error message to the user
+      }
+    };
+
     function onToday() {
       calendar.value?.moveToToday();
     }
@@ -227,6 +316,8 @@ export default defineComponent({
     }
 
     return {
+      deleteCourse,
+      changeColor,
       selectedDate,
       calendar,
       selectedCalendar,
@@ -273,6 +364,9 @@ export default defineComponent({
       });
       return map;
     },
+    setDirection() {
+      return this.$q.platform.is.desktop ? "left" : "right";
+    },
   },
   methods: {
     updateSelected(calendar, view) {
@@ -299,5 +393,17 @@ export default defineComponent({
   width: 100%;
   position: absolute;
   border: solid lightgray 1px;
+}
+
+.my-picker :deep(.q-color-picker__cube) {
+  width: 32px; /* Erhöhte Standardgröße */
+  height: 32px;
+  margin: 4px; /* Optional: Abstand zwischen den Cubes anpassen */
+  transition: transform 0.2s;
+}
+
+.my-picker :deep(.q-color-picker__cube:hover) {
+  transform: scale(1.2); /* Beim Hover noch größer machen */
+  z-index: 1;
 }
 </style>

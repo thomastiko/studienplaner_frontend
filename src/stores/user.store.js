@@ -209,6 +209,7 @@ export const useUserStore = defineStore('user', {
     async addCourse(course) {
       try {
         const token = this.getToken()
+        course.color = "#5bbdf4"; // Setze eine Standardfarbe für den Kurs
         // Füge den Kurs zur Benutzerobjekt hinzu
         this.user.course_entries.push(course)
 
@@ -235,6 +236,29 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         console.error('Fehler beim Löschen des Kurses:', error);
         throw error; // Werfe den Fehler weiter, damit der Aufrufer darauf reagieren kann
+      }
+    },
+    async updateCourseColor(courseCode, semester, newColor) {
+      try {
+        const token = this.getToken();
+
+        // Send a request to the backend to update the course color
+        await axios.patch(
+          `${url}/course`,
+          { courseCode, semester, color: newColor },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        // Update the color in the local state
+        const course = this.user.course_entries.find(
+          (c) => c.course_code === courseCode && c.semester === semester
+        );
+        if (course) {
+          course.color = newColor;
+        }
+      } catch (error) {
+        console.error('Fehler beim Aktualisieren der Kursfarbe:', error);
+        throw error;
       }
     },
   }
