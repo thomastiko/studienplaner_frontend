@@ -3,11 +3,14 @@
     <q-layout view="lHh lpr lFf" container style="min-height: 100px">
       <q-header class="bg-blue-4">
         <q-toolbar>
-          <q-avatar class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/'})">
+          <q-avatar class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/' })">
             <img src="../assets/oeh_logo.svg" />
           </q-avatar>
 
-          <q-toolbar-title class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/'})">Studienplaner
+          <q-toolbar-title
+            class="cursor-pointer"
+            @click="this.$router.push({ name: 'home', path: '/' })"
+            >Studienplaner
             <q-badge align="top" color="orange">BETA</q-badge>
           </q-toolbar-title>
 
@@ -25,7 +28,7 @@
                 <q-item-label>Logout</q-item-label>
               </q-item-section>
             </q-item>
-            </q-btn-dropdown>
+          </q-btn-dropdown>
           <q-btn
             v-else
             flat
@@ -38,10 +41,27 @@
         </q-toolbar>
 
         <q-tabs>
-          <q-tab  label="MY STUDY" @click="this.$router.push({ name: 'my-study', path: '/my-study' })" />
-          <q-tab  label="LV-PLANER" @click="this.$router.push({ name: 'LvPlaner', path: '/lvplaner' })" />
-          <q-tab  label="PROFCHECK" @click="this.$router.push({ name: 'Profcheck', path: '/profcheck' })" />
-          <q-tab  label="STUDIES" @click="this.$router.push({ name: 'studies', path: '/studies'})" />
+          <q-tab
+            label="MY STUDY"
+            @click="this.$router.push({ name: 'my-study', path: '/my-study' })"
+          />
+          <q-tab
+            label="LV-PLANER"
+            @click="this.$router.push({ name: 'LvPlaner', path: '/lvplaner' })"
+          />
+          <q-tab
+            label="PROFCHECK"
+            @click="this.$router.push({ name: 'Profcheck', path: '/profcheck' })"
+          />
+          <q-tab
+            label="STUDIES"
+            @click="this.$router.push({ name: 'studies', path: '/studies' })"
+          />
+          <q-tab
+            v-if="userStore.loggedIn && userStore.user.role === 'admin'"
+            label="ADMIN PANEL"
+            @click="this.$router.push({ name: 'AdminPanel', path: '/admin-panel' })"
+          />
         </q-tabs>
       </q-header>
     </q-layout>
@@ -49,23 +69,23 @@
 </template>
 
 <script>
-import { useUserStore } from "@/stores/user.store.js"; // Importiere den User-Store
-import { useRouter } from 'vue-router'; // Importiere useRouter
+import { useUserStore } from '@/stores/user.store.js' // Importiere den User-Store
+import { useRouter } from 'vue-router' // Importiere useRouter
 
 export default {
   setup() {
-    const userStore = useUserStore(); // Hole den User-Store
-    const router = useRouter();
+    const userStore = useUserStore() // Hole den User-Store
+    const router = useRouter()
     const logout = async () => {
-      await userStore.logout(router); // Router übergeben
-    };
+      await userStore.logout(router) // Router übergeben
+    }
 
     return {
       userStore, // Verfügbarmachen des Stores in der Komponente
-      logout,
-    };
-  },
-};
+      logout
+    }
+  }
+}
 </script>
 
 <style scoped></style>

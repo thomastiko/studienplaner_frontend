@@ -8,6 +8,7 @@ export const useProfStore = defineStore('prof', {
     state: () => ({
       professors: [],
       selectedProf: null,
+      comments: [],
     }),
 
     actions: {
@@ -81,5 +82,38 @@ export const useProfStore = defineStore('prof', {
               return
             }
           },
+          async fetchAllComments() {
+            try {
+              // Abrufen aller Kommentare vom Backend
+              const response = await axios.get(`${profUrl}/comments/all`);
+              this.comments = response.data;
+            } catch (error) {
+              console.error('Fehler beim Abrufen der Kommentare: ', error.response?.data?.message || error.message);
+              throw error;
+            }
+          },
+          async deleteComment(commentId) {
+            try {
+              await axios.delete(`${profUrl}/comments/${commentId}`);
+              this.comments = this.comments.filter(comment => comment._id !== commentId); // Kommentar aus dem State entfernen
+            } catch (error) {
+              console.error('Fehler beim Löschen des Kommentars:', error.response?.data?.message || error.message);
+              throw error;
+            }
+          },
+      
+          async approveComment(profId, commentId, commentText) {
+            try {
+              // Sende den Kommentartext als Teil des Anfrage-Bodys
+              await axios.post(`${profUrl}/comments/${profId}/release/${commentId}`, {
+                commentText: commentText,
+              });
+              // Kommentar aus der lokalen Liste entfernen
+              this.comments = this.comments.filter(comment => comment._id !== commentId);
+            } catch (error) {
+              console.error('Fehler beim Freigeben des Kommentars:', error.response?.data?.message || error.message);
+              throw error;
+            }
+          }
     }
 })
