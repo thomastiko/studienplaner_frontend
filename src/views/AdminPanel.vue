@@ -12,7 +12,9 @@
             this.$router.push({ name: 'ManageCommentary', path: '/admin-panel/manage-commentary' })
           "
         />
-        <q-btn label="LVs aktualisieren" no-caps flat icon-right="arrow_right" />
+        <q-btn label="LVs aktualisieren" no-caps flat icon-right="arrow_right" @click="
+            this.$router.push({ name: 'FetchLvs', path: '/admin-panel/fetch-lvs' })
+          " />
       </div>
     </div>
     <div class="row q-ma-md">

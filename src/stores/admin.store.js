@@ -65,6 +65,20 @@ export const useAdminStore = defineStore('admin', {
               throw error
             }
           },
+          async startScraper(links, semester) {
+            const token = this.getToken()
+            try {
+              const payload = { links, semester };
+              const response = await axios.post(`${adminUrl}/scrape`, payload, {
+                headers: { Authorization: `Bearer ${token}` }
+              });
+              console.log(response.data);
+              // Optional: Aktualisiere den State oder benachrichtige den Benutzer
+            } catch (error) {
+              console.error('Fehler beim Scraping:', error.response?.data?.message || error.message);
+              throw error;
+            }
+          },
 
     }
 })

@@ -14,6 +14,7 @@ import RateProfessor from "../views/RateProfessor.vue"
 import AddLv from "../views/AddLv.vue"
 import AdminPanel from "../views/AdminPanel.vue"
 import ManageCommentary from "../views/ManageCommentary.vue"
+import FetchLvs from "../views/FetchLvs.vue"
 
 // Erstelle den Router
 const router = createRouter({
@@ -95,6 +96,12 @@ const router = createRouter({
       path: "/admin-panel/manage-commentary",
       name: "ManageCommentary",
       component: ManageCommentary,
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: "/admin-panel/fetch-lvs",
+      name: "FetchLvs",
+      component: FetchLvs,
       meta: { requiresAuth: true, requiresAdmin: true },
     },
   ],
