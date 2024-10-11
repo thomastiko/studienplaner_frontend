@@ -18,6 +18,17 @@
           </div>
         </div>
       </div>
+
+      <!-- SBWLs -->
+
+      <div>
+        <SbwlCarousel :selectedStudy="selectedStudy" />
+      </div>
+
+      <!-- Freie Wahlfächer -->
+      <div>
+        <FreeElectiveCarousel />
+      </div>
     </div>
     <div v-else>
       <p>Study not found.</p>
@@ -28,10 +39,14 @@
 <script>
 import { useUserStore } from '@/stores/user.store'
 import Subject from '../components/studyplaner/subject.vue'
+import SbwlCarousel from '../components/studyplaner/sbwlCarousel.vue'
+import FreeElectiveCarousel from '../components/studyplaner/freeElectiveCarousel.vue'
 import { ref } from 'vue'
 export default {
   components: {
-    Subject
+    Subject,
+    SbwlCarousel,
+    FreeElectiveCarousel
   },
   props: ['study_id'],
   setup(props) {
@@ -54,7 +69,7 @@ export default {
   methods: {
     updateStatus(subjectId, status, grade) {
       this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
-    }
+    },
   },
   computed: {
     selectedStudy() {
@@ -75,8 +90,11 @@ export default {
         return groups
       }, {})
     }
+  },
+  mounted() {
+    console.log(this.userStore.user)
   }
-}
+ }
 </script>
 
 <style></style>

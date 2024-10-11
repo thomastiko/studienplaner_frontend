@@ -112,7 +112,6 @@ export const useUserStore = defineStore('user', {
     /* USER STUDY ADDING/REMOVING/UPDATING */
     /************************************************************************************/
 
-
     async addStudy(studyId) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
@@ -201,15 +200,50 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    /** USER SBWL ADDING/REMOVING/UPDATING */
+    /************************************************************************ */
+    async addSbwlToStudy(studyId, sbwl) {
+      try {
+        const token = this.getToken()
+        const response = await axios.post(
+          `${url}/studies/${studyId}/sbwls/${sbwl.name}`,
+          { studyId, sbwl },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.sbwl_states = response.data.sbwl_states
+      } catch (error) {
+        console.error('Fehler beim Hinzufügen der SBWL:', error)
+        throw error
+      }
+    },
+    async deleteSbwlFromStudy(studyId, sbwl) {
+      try {
+        const token = this.getToken()
+        const response = await axios.delete(
+          `${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            data: { studyId, sbwl }
+          }
+        )
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.sbwl_states = response.data.sbwl_states
+      } catch (error) {
+        console.error('Fehler beim Löschen der SBWL:', error)
+        throw error
+      }
+    },
 
     /* USER CALENDAR ADDING/REMOVING/UPDATING */
     /************************************************************************************/
 
-
     async addCourse(course) {
       try {
         const token = this.getToken()
-        course.color = "#5bbdf4"; // Setze eine Standardfarbe für den Kurs
+        course.color = '#5bbdf4' // Setze eine Standardfarbe für den Kurs
         // Füge den Kurs zur Benutzerobjekt hinzu
         this.user.course_entries.push(course)
 
@@ -224,42 +258,42 @@ export const useUserStore = defineStore('user', {
     },
     async deleteCourse(courseCode, semester) {
       try {
-        const token = this.getToken(); // Token für die Authentifizierung abrufen
-        
+        const token = this.getToken() // Token für die Authentifizierung abrufen
+
         // Sende die Anfrage zum Löschen des Kurses an das Backend
-        const response = await axios.delete(`${url}/course`, { 
+        const response = await axios.delete(`${url}/course`, {
           headers: { Authorization: `Bearer ${token}` }, // Token in den Header einfügen
           data: { courseCode, semester } // Die Kursdaten im Body der Anfrage senden
-        });
-        
-        this.user = response.data.user; // Aktualisiere die Benutzerinformationen mit den neuen Kursdaten
+        })
+
+        this.user = response.data.user // Aktualisiere die Benutzerinformationen mit den neuen Kursdaten
       } catch (error) {
-        console.error('Fehler beim Löschen des Kurses:', error);
-        throw error; // Werfe den Fehler weiter, damit der Aufrufer darauf reagieren kann
+        console.error('Fehler beim Löschen des Kurses:', error)
+        throw error // Werfe den Fehler weiter, damit der Aufrufer darauf reagieren kann
       }
     },
     async updateCourseColor(courseCode, semester, newColor) {
       try {
-        const token = this.getToken();
+        const token = this.getToken()
 
         // Send a request to the backend to update the course color
         await axios.patch(
           `${url}/course`,
           { courseCode, semester, color: newColor },
           { headers: { Authorization: `Bearer ${token}` } }
-        );
+        )
 
         // Update the color in the local state
         const course = this.user.course_entries.find(
           (c) => c.course_code === courseCode && c.semester === semester
-        );
+        )
         if (course) {
-          course.color = newColor;
+          course.color = newColor
         }
       } catch (error) {
-        console.error('Fehler beim Aktualisieren der Kursfarbe:', error);
-        throw error;
+        console.error('Fehler beim Aktualisieren der Kursfarbe:', error)
+        throw error
       }
-    },
+    }
   }
 })
