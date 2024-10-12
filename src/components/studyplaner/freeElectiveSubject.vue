@@ -1,6 +1,6 @@
 <template>
   <q-card class="my-card">
-    <q-card-section style="background-color: rgb(91, 189, 244)">
+    <q-card-section style="background-color: rgb(152, 242, 128)">
       <q-badge class="badge">
       <q-btn round color="grey-5" icon="close" style="opacity: 0.8" @click="deleteFreeElective(subject)" />
     </q-badge>

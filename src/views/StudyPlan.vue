@@ -1,6 +1,10 @@
 <template>
   <div>
     <div v-if="selectedStudy">
+      <div class="text-h4 text-center text-bold">{{ selectedStudy.study_name }}</div>
+      <div class="row justify-center">
+        <Dashboard :selectedStudy="selectedStudy" />
+      </div>
       <!-- Iteration durch Phasen und die Fächer, die zu diesen Phasen gehören -->
       <div v-for="(subjects, phase) in groupedSubjects" :key="phase" class="shadow-1 q-ma-md">
         <div class="q-pa-md row q-col-gutter-md items-stretch">
@@ -19,16 +23,20 @@
         </div>
       </div>
 
-      <!-- SBWLs -->
 
+      <!-- SBWLs -->
       <div>
         <SbwlCarousel :selectedStudy="selectedStudy" />
       </div>
+
+
 
       <!-- Freie Wahlfächer -->
       <div v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
         <FreeElectiveCarousel :selectedStudy="selectedStudy" />
       </div>
+
+
     </div>
     <div v-else>
       <p>Study not found.</p>
@@ -41,12 +49,15 @@ import { useUserStore } from '@/stores/user.store'
 import Subject from '../components/studyplaner/subject.vue'
 import SbwlCarousel from '../components/studyplaner/sbwlCarousel.vue'
 import FreeElectiveCarousel from '../components/studyplaner/freeElectiveCarousel.vue'
+import Dashboard from '../components/studyplaner/dashboard.vue'
 import { ref } from 'vue'
 export default {
   components: {
     Subject,
     SbwlCarousel,
-    FreeElectiveCarousel
+    FreeElectiveCarousel,
+    Dashboard
+
   },
   props: ['study_id'],
   setup(props) {
