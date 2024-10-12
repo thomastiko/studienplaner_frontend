@@ -26,8 +26,8 @@
       </div>
 
       <!-- Freie Wahlfächer -->
-      <div>
-        <FreeElectiveCarousel />
+      <div v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
+        <FreeElectiveCarousel :selectedStudy="selectedStudy" />
       </div>
     </div>
     <div v-else>
@@ -69,7 +69,7 @@ export default {
   methods: {
     updateStatus(subjectId, status, grade) {
       this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
-    },
+    }
   },
   computed: {
     selectedStudy() {
@@ -94,7 +94,7 @@ export default {
   mounted() {
     console.log(this.userStore.user)
   }
- }
+}
 </script>
 
 <style></style>

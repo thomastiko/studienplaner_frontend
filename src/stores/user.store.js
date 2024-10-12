@@ -222,13 +222,10 @@ export const useUserStore = defineStore('user', {
     async deleteSbwlFromStudy(studyId, sbwl) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(
-          `${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-            data: { studyId, sbwl }
-          }
-        )
+        const response = await axios.delete(`${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`, {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { studyId, sbwl }
+        })
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
       } catch (error) {
@@ -236,6 +233,96 @@ export const useUserStore = defineStore('user', {
         throw error
       }
     },
+    async updateSbwlSubjectStatus(studyId, subjectId, status, grade, sbwl) {
+      try {
+        const token = this.getToken();
+        const response = await axios.patch(
+          `${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`,
+          { studyId, subjectId, status, grade, sbwl },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        );
+        console.log(response.data);
+        const updatedSubject = response.data.subject;
+    
+        // Suche den Study im Store basierend auf studyId
+        const study = this.user.studies.find((s) => s.study_id === studyId);
+    
+        if (!study) {
+          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`);
+          return;
+        }
+    
+        // Suche das Fach (subject) im study.subject_states basierend auf subject._id
+        const sbwlToUpdate = study.sbwl_states.find((s) => s.sbwl_name === sbwl.sbwl_name);
+    
+        if (sbwlToUpdate) {
+          const subjectToUpdate = sbwlToUpdate.subjects.find(
+            (subject) => subject._id === subjectId
+          );
+          if (subjectToUpdate) {
+            // Aktualisiere den Status des Faches
+            subjectToUpdate.status = updatedSubject.status;
+            subjectToUpdate.grade = updatedSubject.grade;
+            console.log('Subject gefunden:', subjectToUpdate);
+    
+            console.log(
+              `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
+            );
+            console.log(this.user.studies);
+          } else {
+            console.log('Kein passendes Subject gefunden');
+          }
+        } else {
+          console.log('Keine passende SBWL gefunden');
+        }
+    
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message);
+          throw new Error(error.response.data.message); // Nachricht vom Backend an das Frontend weiterleiten
+        } else {
+          console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error);
+          throw error; // Andere Fehler weitergeben
+        }
+      }
+    },
+    /* USER FREE ELECTIVES ADDING/REMOVING/UPDATING */
+    /************************************************************************************/
+
+    async addFreeElectiveToStudy(studyId, freeElective) {
+      try {
+        const token = this.getToken()
+        const response = await axios.post(
+          `${url}/studies/${studyId}/free-electives`,
+          { studyId, freeElective },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.free_electives = response.data.free_electives
+      } catch (error) {
+        console.error('Fehler beim Hinzufügen des Wahlfachs:', error)
+        throw error
+      }
+    },
+    async deleteFreeElectiveFromStudy(studyId, freeElective) {
+      try {
+        const token = this.getToken()
+        const response = await axios.delete(`${url}/studies/${studyId}/free-electives`, {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { studyId, freeElective }
+        })
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.free_electives = response.data.free_electives
+      } catch (error) {
+        console.error('Fehler beim Löschen des Wahlfachs:', error)
+        throw error
+      }
+    },
+    
 
     /* USER CALENDAR ADDING/REMOVING/UPDATING */
     /************************************************************************************/

@@ -4,7 +4,7 @@
       <div class="q-pa-md row q-col-gutter-md items-stretch">
         <div class="col-12 row justify-between items-center">
           <div class="text-h5 text-bold text-uppercase">SBWLs</div>
-          <div>14 Lehrveranstalungen</div>
+          <div> {{getSbwlLength().length}} SBWLs </div>
         </div>
       </div>
       <div class="q-pa-sm row" v-for="(sbwl, i) in getSbwlLength()" :key="i">
@@ -27,14 +27,14 @@
           </q-btn-dropdown>
         </div>
       </div>
-      <div class="col-12 row">
+      <div class="col-12 row q-ma-md">
         <div v-for="(sbwl, i) in selectedStudy.sbwl_states" :key="i" class="col-12">
           <div class="text-h5">{{ sbwl.sbwl_name }}</div>
           <q-btn label="löschen" color="red" @click="deleteSbwl(sbwl)" />
           <div class="col-12 row q-col-gutter-md">
           <div v-for="subject in sbwl.subjects" class="col-12 col-md-3"
             style="max-width: 450px" :key="subject.subject_id">
-            <Subject :subject="subject" />
+            <Subject :subject="subject" @status-change="(subjectId, status, grade) => updateStatus(subjectId, status, grade, sbwl)" />
           </div>
           </div>
         </div>
@@ -72,6 +72,9 @@ export default {
       return this.selectedStudy.subject_states.filter((obj) => {
         return specialCategories.includes(obj.category)
       })
+    },
+    updateStatus(subjectId, status, grade, sbwl) {
+      this.userStore.updateSbwlSubjectStatus(this.selectedStudy.study_id, subjectId, status, grade, sbwl)
     },
     selectSbwl(sbwl) {
       this.userStore.addSbwlToStudy(this.selectedStudy.study_id, sbwl)
