@@ -37,6 +37,10 @@
       </div>
 
 
+    <!-- Cart -->
+    <div>
+      <Cart />
+      </div>
     </div>
     <div v-else>
       <p>Study not found.</p>
@@ -50,13 +54,15 @@ import Subject from '../components/studyplaner/subject.vue'
 import SbwlCarousel from '../components/studyplaner/sbwlCarousel.vue'
 import FreeElectiveCarousel from '../components/studyplaner/freeElectiveCarousel.vue'
 import Dashboard from '../components/studyplaner/dashboard.vue'
+import Cart from '../components/studyplaner/cart.vue'
 import { ref } from 'vue'
 export default {
   components: {
     Subject,
     SbwlCarousel,
     FreeElectiveCarousel,
-    Dashboard
+    Dashboard,
+    Cart
 
   },
   props: ['study_id'],
