@@ -8,10 +8,18 @@ export const useProfStore = defineStore('prof', {
     state: () => ({
       professors: [],
       selectedProf: null,
+      profPreview: null,
       comments: [],
     }),
 
     actions: {
+      getToken() {
+        const token = localStorage.getItem('token')
+        if (!token) {
+          return null
+        }
+        return token
+      },
         async fetchProfs() {
             try {
               const response = await axios.get(`${profUrl}/all`) 
@@ -45,6 +53,24 @@ export const useProfStore = defineStore('prof', {
               } catch (e) {
                 return { status: e.code, message: e.message };
               }
+            }
+            console.log('Selected Prof:', this.selectedProf);
+          },
+          async fetchProfPreview(prof) {
+            try {
+              console.log('Prof:', prof);
+              const response = await axios.post(
+                `${profUrl}/preview`,
+                {
+                  fname: prof.fname,
+                  lname: prof.lname
+                 },
+              );
+              console.log('Professoren-Vorschau:', response.data);
+              this.profPreview = response.data;
+            } catch (error) {
+              console.error('Fehler beim Abrufen der Professoren-Vorschau: ', error.response?.data?.message || error.message);
+              throw error;
             }
           },
           async rateProfessor(profId, rating, router) {

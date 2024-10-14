@@ -29,6 +29,9 @@
         </q-item>
       </q-list>
     </div>
+    <div v-else>
+      <div class="text-h4">No professor selected.</div>
+    </div>
   </div>
 </template>
 
