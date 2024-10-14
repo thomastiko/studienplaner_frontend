@@ -23,23 +23,19 @@
         </div>
       </div>
 
-
       <!-- SBWLs -->
       <div>
         <SbwlCarousel :selectedStudy="selectedStudy" />
       </div>
-
-
 
       <!-- Freie Wahlfächer -->
       <div v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
         <FreeElectiveCarousel :selectedStudy="selectedStudy" />
       </div>
 
-
-    <!-- Cart -->
-    <div>
-      <Cart />
+      <!-- Cart -->
+      <div>
+        <Cart />
       </div>
     </div>
     <div v-else>
@@ -50,6 +46,7 @@
 
 <script>
 import { useUserStore } from '@/stores/user.store'
+import { getChecker } from '@/stores/study_logic'
 import Subject from '../components/studyplaner/subject.vue'
 import SbwlCarousel from '../components/studyplaner/sbwlCarousel.vue'
 import FreeElectiveCarousel from '../components/studyplaner/freeElectiveCarousel.vue'
@@ -63,7 +60,6 @@ export default {
     FreeElectiveCarousel,
     Dashboard,
     Cart
-
   },
   props: ['study_id'],
   setup(props) {
@@ -74,8 +70,10 @@ export default {
     }
 
     const userStore = useUserStore()
+    const checker = getChecker(studyId.value)
     return {
-      userStore
+      userStore,
+      checker
     }
   },
   data() {
@@ -84,8 +82,14 @@ export default {
     }
   },
   methods: {
-    updateStatus(subjectId, status, grade) {
-      this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
+    async updateStatus(subjectId, status, grade) {
+      await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
+      let update_array = this.checker.executeAll(this.selectedStudy)
+      console.log(update_array)
+    },
+    processUpdates() {
+      let update_array = this.checker.executeAll(this.selectedStudy)
+      return update_array
     }
   },
   computed: {
