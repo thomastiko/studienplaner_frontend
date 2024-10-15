@@ -84,8 +84,9 @@ export default {
   methods: {
     async updateStatus(subjectId, status, grade) {
       await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
-      let update_array = this.checker.executeAll(this.selectedStudy)
-      console.log(update_array)
+      let update_array = await this.checker.executeAll(this.selectedStudy)
+      console.log("update_array", update_array)
+      this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
     },
     processUpdates() {
       let update_array = this.checker.executeAll(this.selectedStudy)

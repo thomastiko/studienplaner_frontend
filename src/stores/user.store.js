@@ -200,6 +200,54 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    async updateBulkSubjectStatus(studyId, subjects) {
+      try {
+        const token = this.getToken() // Token über die neue Methode abrufen
+
+        const response = await axios.patch(
+          `${url}/studies/${studyId}/subjects/bulk`,
+          { studyId, subjects },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
+        console.log(response.data)
+        const updatedSubjects = response.data.subjects
+
+        // Suche den Study im Store basierend auf studyId
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+
+        if (!study) {
+          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`)
+          return
+        }
+
+        // Aktualisiere den Status der Fächer
+        updatedSubjects.forEach((updatedSubject) => {
+          const subjectToUpdate = study.subject_states.find((s) => s._id === updatedSubject._id)
+
+          if (!subjectToUpdate) {
+            console.error(`Fach mit der ID ${updatedSubject._id} nicht im Studiengang ${studyId} gefunden`)
+            return
+          }
+
+          // Aktualisiere den Status des Faches
+          subjectToUpdate.status = updatedSubject.status
+          subjectToUpdate.grade = updatedSubject.grade
+
+        })
+
+        console.log(this.user.studies)
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message);
+          throw new Error(error.response.data.message); // Nachricht vom Backend an das Frontend weiterleiten
+        } else {
+          console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error);
+          throw error; // Andere Fehler weitergeben
+        }
+      }
+    },
     /** USER SBWL ADDING/REMOVING/UPDATING */
     /************************************************************************ */
     async addSbwlToStudy(studyId, sbwl) {

@@ -61,6 +61,7 @@ async function checkCBK(study) {
     }
     return update_array;
   }
+
   async function checkHauptstudium(study) {
     const update_array = [];
     const hauptstudium = study.subject_states.slice(14, 27);
@@ -88,7 +89,8 @@ async function checkCBK(study) {
       })
     return update_array;
   }
-  /*async function checkSbwl(study) {
+  /*
+  async function checkSbwl(study) {
     const update_array = [];
     const sbwl1 = study.subject_states.find((i) => i.subject_id == "21");
     const sbwl2 = study.subject_states.find((i) => i.subject_id == "22");
@@ -171,7 +173,7 @@ async function checkCBK(study) {
       });
   }
   return update_array;
-  }*/
+  }
   
   
   async function checkBachelorarbeit(study) {
@@ -203,36 +205,43 @@ async function checkCBK(study) {
 
   return update_array;
   }
-  export default {
-    /** @TIKO @TODO Documentation
-  * Checks the study plan for the WISO IBW Bachelor
-  * @param {*} study The study object
-  * @returns {Array} update_array An array of subject updates that have to be pushed to the backend
   */
- async executeAll(study) {
-   const update_array = [
-     /**
-      * { 
-      *   study_id: string,
-      *   subject_id: number,
-      *   status: string,
-      *   grade: number
-      * }
-      * */
-   ];
-
-    const cbkValues = await checkCBK(study);
-    const wahlfachValues = await checkWahlfach(study);
-    const hauptstudiumValues = await checkHauptstudium(study);
-    //const sbwlValues = await checkSbwl(study);
-    const bachelorarbeitValues = await checkBachelorarbeit(study);
-
-    update_array.push({cbkValues})
-    update_array.push({wahlfachValues})
-    update_array.push({hauptstudiumValues})
-    //update_array.push({sbwlValues})
-    update_array.push({bachelorarbeitValues})
-
-     return update_array;
+  export default {
+    async executeAll(study) {
+      let update_array = [];
+  
+      // 1. checkCBK ausführen und in update_array einfügen
+      const cbkValues = await checkCBK(study);
+      cbkValues.forEach((item) => {
+        update_array = updateOrAdd(update_array, item);
+      });
+  
+      // 2. checkWahlfach ausführen und sicherstellen, dass vorhandene Subjects überschrieben werden
+      const wahlfachValues = await checkWahlfach(study);
+      wahlfachValues.forEach((item) => {
+        update_array = updateOrAdd(update_array, item);
+      });
+  
+      // Weitere Funktionen können hier ebenfalls hinzugefügt werden und den gleichen Mechanismus nutzen
+      // ...
+  
+      return update_array;
+    }
+  }/**
+ * Funktion, die ein Subject in update_array aktualisiert oder hinzufügt.
+ * Wenn das Subject bereits existiert, wird es überschrieben.
+ * @param {Array} array - Das bestehende update_array
+ * @param {Object} newItem - Das neue Item, das hinzugefügt oder ersetzt werden soll
+ * @returns {Array} - Das aktualisierte update_array
+ */
+function updateOrAdd(array, newItem) {
+  const index = array.findIndex(item => item._id === newItem._id);
+  if (index > -1) {
+    // Überschreiben des bereits vorhandenen Eintrags
+    array[index] = newItem;
+  } else {
+    // Neues Item hinzufügen
+    array.push(newItem);
   }
+  return array;
 }
