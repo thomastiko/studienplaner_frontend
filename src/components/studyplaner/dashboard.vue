@@ -1,26 +1,31 @@
 <template>
-  <div>
+  <div v-if="selectedStudy">
     <ul>
       <li>
-        <div>Aktuelle LVs: {{allCurrentSubjects.length}} </div>
+        <div>Aktuelle LVs: {{ userStore.allCurrentSubjects(selectedStudy.study_id).length }} </div>
       </li>
       <li>
-        <div>Aktuelle ECTS: {{allCurrentEcts}} </div>
+        <div>Aktuelle ECTS: {{ userStore.allCurrentEcts(selectedStudy.study_id) }} </div>
       </li>
       <li>
-        <div>Abgeschlossene LVs: {{allCompletedSubjects.length}} </div>
+        <div>Abgeschlossene LVs: {{ userStore.allCompletedSubjects(selectedStudy.study_id).length }} </div>
       </li>
       <li>
-        <div>Abgeschlossene ECTS: {{allCompletedEcts}} </div>
+        <div>Abgeschlossene ECTS: {{ userStore.allCompletedEcts(selectedStudy.study_id) }} </div>
       </li>
       <li>
-        <div>Notendurchschnitt: {{averageGrade}} </div>
+        <div>Notendurchschnitt: {{ userStore.gpa(selectedStudy.study_id) }} </div>
       </li>
     </ul>
+  </div>
+  <div v-else>
+    <p>Daten werden geladen...</p>
   </div>
 </template>
 
 <script>
+import { useUserStore } from '@/stores/user.store.js';
+
 export default {
   props: {
     selectedStudy: {
@@ -28,69 +33,13 @@ export default {
       required: true
     }
   },
-  computed: {
-  // Berechnung der aktuellen Fächer (subject_states, sbwl_states und free electives)
-  allCurrentSubjects() {
-    const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
-    
-    const currentSubjects = this.selectedStudy.subject_states.filter(
-      subject => subject.status === 'doing' && !excludedCategories.includes(subject.category)
-    );
-    
-    const currentSbwlSubjects = this.selectedStudy.sbwl_states.flatMap(sbwl => 
-      sbwl.subjects.filter(subject => subject.status === 'doing')
-    );
-    
-    const currentFreeElectives = this.selectedStudy.free_electives.filter(
-      elective => elective.status === 'doing' // Alle free_electives ohne Berücksichtigung der Kategorie
-    );
-    
-    return [...currentSubjects, ...currentSbwlSubjects, ...currentFreeElectives];
-  },
+  setup() {
+    const userStore = useUserStore();
 
-  // Berechnung der abgeschlossenen Fächer (subject_states, sbwl_states und free electives)
-  allCompletedSubjects() {
-    const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
-    
-    const completedSubjects = this.selectedStudy.subject_states.filter(
-      subject => subject.status === 'done' && !excludedCategories.includes(subject.category)
-    );
-    
-    const completedSbwlSubjects = this.selectedStudy.sbwl_states.flatMap(sbwl => 
-      sbwl.subjects.filter(subject => subject.status === 'done')
-    );
-    
-    const completedFreeElectives = this.selectedStudy.free_electives.filter(
-      elective => elective.status === 'done' // Alle free_electives ohne Berücksichtigung der Kategorie
-    );
-    
-    return [...completedSubjects, ...completedSbwlSubjects, ...completedFreeElectives];
-  },
 
-  // Berechnung der aktuellen ECTS
-  allCurrentEcts() {
-    return this.allCurrentSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
-  },
-
-  // Berechnung der abgeschlossenen ECTS
-  allCompletedEcts() {
-    return this.allCompletedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
-  },
-
-  // Berechnung des gewichteten Notendurchschnitts
-  averageGrade() {
-    const gradedSubjects = this.allCompletedSubjects.filter(subject => subject.grade != null);
-    
-    const totalWeightedGrade = gradedSubjects.reduce((acc, subject) => acc + (subject.grade * subject.ects), 0);
-    const totalEcts = gradedSubjects.reduce((acc, subject) => acc + subject.ects, 0);
-    
-    return totalEcts ? (totalWeightedGrade / totalEcts).toFixed(2) : '-';
+    return {
+      userStore,
+    };
   }
-}
-
-
-}
+};
 </script>
-
-<style>
-</style>

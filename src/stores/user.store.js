@@ -15,6 +15,127 @@ export const useUserStore = defineStore('user', {
       course_entries: [] // Kursbelegungen
     }
   }),
+  getters: {
+    allCurrentSubjects: (state) => (studyId) => {
+      if (!state.user.studies || !state.user.studies.length) return [];
+
+      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
+      if (!selectedStudy || !selectedStudy.subject_states) return [];
+
+      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+
+      const currentSubjects = selectedStudy.subject_states.filter(
+        subject => subject.status === 'doing' && !excludedCategories.includes(subject.category)
+      );
+
+      const currentSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
+        sbwl.subjects?.filter(subject => subject.status === 'doing') || []
+      ) || [];
+
+      const currentFreeElectives = selectedStudy.free_electives?.filter(
+        elective => elective.status === 'doing'
+      ) || [];
+
+      return [...currentSubjects, ...currentSbwlSubjects, ...currentFreeElectives];
+    },
+
+    // Berechnet die aktuellen ECTS direkt basierend auf dem `studyId` und den aktuellen Fächern
+    allCurrentEcts: (state) => (studyId) => {
+      if (!state.user.studies || !state.user.studies.length) return 0;
+
+      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
+      if (!selectedStudy || !selectedStudy.subject_states) return 0;
+
+      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+
+      // Finde die aktuellen Fächer und SBWLs, die gerade "doing" sind
+      const currentSubjects = selectedStudy.subject_states.filter(
+        subject => subject.status === 'doing' && !excludedCategories.includes(subject.category)
+      );
+
+      const currentSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
+        sbwl.subjects?.filter(subject => subject.status === 'doing') || []
+      ) || [];
+
+      const currentFreeElectives = selectedStudy.free_electives?.filter(
+        elective => elective.status === 'doing'
+      ) || [];
+
+      // Berechnung der ECTS
+      const allCurrentSubjects = [...currentSubjects, ...currentSbwlSubjects, ...currentFreeElectives];
+      return allCurrentSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+    },
+
+    allCompletedSubjects: (state) => (studyId) => {
+      if (!state.user.studies || !state.user.studies.length) return [];
+
+      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
+      if (!selectedStudy || !selectedStudy.subject_states) return [];
+
+      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+
+      const completedSubjects = selectedStudy.subject_states.filter(
+        subject => subject.status === 'done' && !excludedCategories.includes(subject.category)
+      );
+
+      const completedSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
+        sbwl.subjects?.filter(subject => subject.status === 'done') || []
+      ) || [];
+
+      const completedFreeElectives = selectedStudy.free_electives?.filter(
+        elective => elective.status === 'done'
+      ) || [];
+
+      return [...completedSubjects, ...completedSbwlSubjects, ...completedFreeElectives];
+    },
+
+    // Berechnet die abgeschlossenen ECTS direkt basierend auf dem `studyId` und den abgeschlossenen Fächern
+    allCompletedEcts: (state) => (studyId) => {
+      if (!state.user.studies || !state.user.studies.length) return 0;
+
+      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
+      if (!selectedStudy || !selectedStudy.subject_states) return 0;
+
+      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+
+      // Finde die abgeschlossenen Fächer und SBWLs, die den Status "done" haben
+      const completedSubjects = selectedStudy.subject_states.filter(
+        subject => subject.status === 'done' && !excludedCategories.includes(subject.category)
+      );
+
+      const completedSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
+        sbwl.subjects?.filter(subject => subject.status === 'done') || []
+      ) || [];
+
+      const completedFreeElectives = selectedStudy.free_electives?.filter(
+        elective => elective.status === 'done'
+      ) || [];
+
+      // Berechnung der ECTS
+      const allCompletedSubjects = [...completedSubjects, ...completedSbwlSubjects, ...completedFreeElectives];
+      return allCompletedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+    },
+    // Berechnet den gewichteten Notendurchschnitt (GPA)
+    gpa: (state) => (studyId) => {
+      if (!state.user.studies || !state.user.studies.length) return '-';
+
+      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
+      if (!selectedStudy || !selectedStudy.subject_states) return '-';
+
+      // Finde die Fächer, die eine Note haben (d.h. `grade` ist nicht null)
+      const gradedSubjects = selectedStudy.subject_states.filter(
+        subject => subject.status === 'done' && subject.grade != null
+      );
+
+      // Berechne den gewichteten GPA basierend auf den ECTS
+      const totalWeightedGrade = gradedSubjects.reduce((acc, subject) => acc + (subject.grade * subject.ects), 0);
+      const totalEcts = gradedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+
+      return totalEcts ? (totalWeightedGrade / totalEcts).toFixed(2) : '-';
+    }
+  },
+  
+  
 
   actions: {
     /* USER LOGIN/LOGOUT & FETCH USER & AUTH */
