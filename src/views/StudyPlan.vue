@@ -88,14 +88,13 @@ export default {
       console.log("update_array", update_array)
       this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
     },
-    processUpdates() {
-      let update_array = this.checker.executeAll(this.selectedStudy)
-      return update_array
-    }
   },
   computed: {
     selectedStudy() {
       return this.userStore.user.studies.find((study) => study.study_id === this.studyId)
+    },
+    sbwlSubjects() {
+      return this.selectedStudy.subject_states.filter(subject => subject.subject_type === 'SBWL');
     },
     groupedSubjects() {
       if (!this.selectedStudy || !this.selectedStudy.subject_states) {
@@ -113,6 +112,17 @@ export default {
       }, {})
     }
   },
+  watch: {
+    sbwlSubjects: {
+      handler(newVal, oldVal) {
+        // Hier kannst du die Logik einfügen, die ausgeführt werden soll, wenn sich der Status eines SBWL-Subjects ändert
+        // newVal gibt einzelnd die Objekte zurück 
+        // this.userStore.deleteSbwl()
+      },
+      deep: true // 'deep' sorgt dafür, dass auch Änderungen an verschachtelten Objekten beobachtet werden
+    }
+
+  },  
   mounted() {
     console.log(this.userStore.user)
   }
