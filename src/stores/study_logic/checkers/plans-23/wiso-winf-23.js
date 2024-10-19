@@ -17,7 +17,7 @@ async function checkCBK(study) {
     })
   } else {
     study.subject_states.forEach((item) => {
-      if (parseInt(item._id, 10) > 3 && item._id !== 25) {
+      if (parseInt(item._id, 10) > 3 && item._id !== "25") {
         item.status = 'unavailable'
         update_array.push({
           study_id: study.study_id,
