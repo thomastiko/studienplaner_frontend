@@ -181,14 +181,23 @@ export default {
     const filteredOptions = ref([])
 
     const courses = computed(() => lvStore.list || [])
+    const cartItems = computed(() => lvStore.cart)
 
     const uniqueSubjectNames = computed(() => {
       return [...new Set(courses.value.map((course) => course.subject_name))]
     })
 
     const filteredCourses = computed(() => {
-      if (!selectedSubject.value) {
-        return []
+      if (!selectedSubject.value && cartItems.value.length > 0) {
+        const matchedCourses = courses.value.filter((course) =>
+          cartItems.value.some((cartItem) => cartItem.name === course.subject_name)
+        )
+
+        return matchedCourses.sort((a, b) => {
+          const indexA = cartItems.value.findIndex((cartItem) => cartItem.name === a.subject_name)
+          const indexB = cartItems.value.findIndex((cartItem) => cartItem.name === b.subject_name)
+          return indexA - indexB // Sortiere aufsteigend nach der Reihenfolge im Cart
+        })
       }
       return courses.value.filter(
         (course) =>

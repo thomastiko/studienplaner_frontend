@@ -1,8 +1,8 @@
 <template>
-  <q-card class="my-card">
-    <q-card-section :style="{ backgroundColor: getSubjectColor() }">
-      <div class="text-h6 text-grey-9">{{ subject.name }}</div>
-      <div class="text-subtitle2">{{ subject.category }}</div>
+  <q-card class="my-card cursor-pointer">
+    <q-card-section :style="{ backgroundColor: getSubjectColor() }" :draggable="true" @dragstart="handleDragStart($event, subject)" @dragend="handleDragEnd">
+      <div class="text-h6 text-grey-9" style="user-select: none">{{ subject.name }}</div>
+      <div class="text-subtitle2" style="user-select: none">{{ subject.category }}</div>
     </q-card-section>
 
     <q-separator />
@@ -79,7 +79,7 @@ export default {
       required: true
     }
   },
-  emits: ['status-change'],
+  emits: ['status-change', 'handle-drag-start', 'drag', 'dragend'],
   setup() {
     const grades = [{ label: "1", value: 1 }, { label: "2", value: 2 }, { label: "3", value: 3 }, { label: "4", value: 4 }]
 
@@ -109,10 +109,18 @@ export default {
       }
       this.$emit('status-change', this.subject._id, status, this.grade)
     },
+    handleDragStart($event, subject) {
+      this.$emit("handle-drag-start", $event, subject);
+    },
+    handleDragEnd() {
+      this.$emit("dragend");
+    }
   },
   mounted() {
   }
 }
 </script>
 
-<style></style>
+<style scoped>
+
+</style>

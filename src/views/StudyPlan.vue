@@ -18,7 +18,7 @@
             v-for="subject in subjects"
             :key="subject._id"
           >
-            <Subject :subject="subject" @status-change="updateStatus" />
+            <Subject :subject="subject" @status-change="updateStatus" @handle-drag-start="handleDragStart($event, subject)" @drag="handleDrag" @dragend="handleDragEnd" />
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
 
       <!-- Cart -->
       <div>
-        <Cart />
+        <Cart :seamless="seamless" @drop="handleDrop" @update:seamless="updateSeamless" />
       </div>
     </div>
     <div v-else>
@@ -46,6 +46,7 @@
 
 <script>
 import { useUserStore } from '@/stores/user.store'
+import { useLvStore } from '@/stores/lv.store'
 import { getChecker } from '@/stores/study_logic'
 import Subject from '../components/studyplaner/subject.vue'
 import SbwlCarousel from '../components/studyplaner/sbwlCarousel.vue'
@@ -70,10 +71,13 @@ export default {
     }
 
     const userStore = useUserStore()
+    const lvStore = useLvStore()
     const checker = getChecker(studyId.value)
     return {
       userStore,
-      checker
+      lvStore,
+      checker,
+      seamless: ref(false),
     }
   },
   data() {
@@ -85,8 +89,58 @@ export default {
     async updateStatus(subjectId, status, grade) {
       await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
       let update_array = await this.checker.executeAll(this.selectedStudy)
-      console.log("update_array", update_array)
       this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
+    },
+    updateSeamless(value) {
+      this.seamless = value;
+    },
+    handleDragStart(evt, subject) {
+      this.seamless = true;
+
+      // DataTransfer object setup
+      evt.dataTransfer.dropEffect = "move";
+      evt.dataTransfer.effectAllowed = "move";
+      evt.dataTransfer.setData("SubjectName", subject.name);
+      evt.dataTransfer.setData("SubjectEcts", subject.ects);
+
+      // Creating a custom drag image
+      const dragImage = document.createElement("div");
+      dragImage.style.width = "150px";
+      dragImage.style.height = "100px";
+      dragImage.style.border = "1px solid #ccc";
+      dragImage.style.borderRadius = "6px";
+      dragImage.style.backgroundColor = "white";
+      dragImage.style.display = "flex";
+      dragImage.style.alignItems = "center";
+      dragImage.style.justifyContent = "center";
+      dragImage.style.boxShadow = "0 1px 5px rgba(0, 0, 0, 0.2)";
+      dragImage.innerHTML = `<strong>${subject.name}</strong>`;
+      
+      document.body.appendChild(dragImage);
+
+      // Set custom drag image
+      evt.dataTransfer.setDragImage(dragImage, 75, 50);
+
+      // Remove drag image after drag ends
+      evt.target.addEventListener('dragend', () => {
+        dragImage.remove();
+      });
+    },
+    handleDrag(evt) {
+      evt.preventDefault();
+    },
+    handleDragEnd() {
+      if (this.lvStore.cart.length === 0) {
+        this.seamless = false;
+      }
+      else {
+        return;
+      }
+    },
+    handleDrop(evt) {
+      let name = evt.dataTransfer.getData("SubjectName");
+      let ects = evt.dataTransfer.getData("SubjectEcts");
+      this.lvStore.addToCart(name, ects);
     },
   },
   computed: {
@@ -129,4 +183,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+
+</style>

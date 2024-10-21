@@ -42,6 +42,18 @@ export const useLvStore = defineStore("lv", {
     },
 
   actions: {
+    addToCart(name, ects) {
+        const isNameInCart = this.cart.some(item => item.name === name);
+        if (!isNameInCart) {
+            this.cart.push({ name, ects })
+        } else {
+            return
+        }
+
+    },
+    removeFromCart(index) {
+        this.cart.splice(index, 1)
+    },
     async fetchCourses() {
       try {
           const response = await axios.get(`${lvUrl}/search`, {
