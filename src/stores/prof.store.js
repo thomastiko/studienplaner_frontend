@@ -5,12 +5,12 @@ import { useUserStore } from './user.store'
 /**
  * API-URLs für Localhost
  */
-//const profUrl = 'http://localhost:5001/api/profs'
+const profUrl = 'http://localhost:5001/api/profs'
 
 /**
  * API-URLs für Stage
  */
-const profUrl = 'https://taigowiz.org/api/profs';
+//const profUrl = 'https://taigowiz.org/api/profs';
 
 
 export const useProfStore = defineStore('prof', {
