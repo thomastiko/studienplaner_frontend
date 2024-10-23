@@ -1,8 +1,18 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-const apiUrl = 'http://localhost:5000/api/auth'
-const lvUrl = 'http://localhost:5000/api/user/lv'
+
+/**
+ * API-URLs für Localhost
+ */
+//const lvUrl = 'http://localhost:5000/api/user/lv'
+
+/**
+ * API-URLs für Stage
+ */
+
+const lvUrl = 'https://taigowiz.org/api/user/lv';
+
 
 export const useLvStore = defineStore("lv", {
     state: () => {

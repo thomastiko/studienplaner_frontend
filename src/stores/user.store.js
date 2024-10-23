@@ -1,8 +1,21 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-const apiUrl = 'http://localhost:5000/api/auth'
-const url = 'http://localhost:5000/api/user'
+
+/**
+ * API-URLs für Localhost
+ */
+//const apiUrl = 'http://localhost:5000/api/auth'
+//const url = 'http://localhost:5000/api/user'
+
+
+/**
+ * API-Urls für Stage
+ */
+
+const apiUrl = 'https://taigowiz.org/api/auth';
+const url = 'https://taigowiz.org/api/user';
+
 
 export const useUserStore = defineStore('user', {
   state: () => ({
