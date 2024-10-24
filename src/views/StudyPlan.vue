@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="selectedStudy">
-      <div class="text-h4 text-center text-bold">{{ selectedStudy.study_name }}</div>
-      <div class="row justify-center">
+      <div class="text-h4 text-center text-bold q-mt-md">{{ selectedStudy.study_name }}</div>
+      <div class="row justify-center q-ma-md">
         <Dashboard :selectedStudy="selectedStudy" />
       </div>
       <!-- Iteration durch Phasen und die Fächer, die zu diesen Phasen gehören -->

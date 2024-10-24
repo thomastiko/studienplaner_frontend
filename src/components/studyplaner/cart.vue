@@ -3,12 +3,16 @@
     <q-btn
       @click="setSeamless()"
       @dragenter="setSeamless()"
-      color="purple"
+      color="positive"
       icon="add"
       round
       size="lg"
       class="fab-position"
-    ></q-btn>
+    >
+    <q-tooltip>
+      Ziehe deine LVs hier rein 
+    </q-tooltip>
+    </q-btn>
 
     <q-dialog position="bottom" v-model="internalSeamless" seamless>
       <q-card style="min-width: 400px">
@@ -31,7 +35,7 @@
         <q-card-section>
           <div class="dragzone text-center q-pa-md" @dragover.prevent @drop="handleDrop($event)">
             <q-icon name="cloud_upload" size="50px" />
-            <div>Drag and drop your files here</div>
+            <div>Zieh deine LVs hier rein</div>
           </div>
         </q-card-section>
       </q-card>

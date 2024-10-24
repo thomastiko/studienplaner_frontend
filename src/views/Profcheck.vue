@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm">Prof&shy;check</div>
+    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">Prof&shy;check</div>
+    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+      Finde und bewerte deine Professor*innen
+      </div>
     <div class="q-ma-md">
     <q-table
       id="profTable"
@@ -56,14 +59,14 @@ export default {
         },
         {
           name: 'ratingCount',
-          label: 'Rating Count',
+          label: 'Bewertungen',
           field: (row) => row.factors[0]?.ratings || '-',
           align: 'center',
           sortable: true
         },
         {
           name: 'ratingSummary',
-          label: 'Rating Summary',
+          label: 'Gesamt',
           field: (row) => (row.factors[0]?.gesamt ? row.factors[0].gesamt.toFixed(2) : '-'),
           align: 'center',
           sortable: true

@@ -7,7 +7,7 @@
 
     <q-separator />
 
-    <q-card-actions>
+    <q-card-actions style="cursor: default;">
       <q-chip outline square>
         {{ subject.subject_type }}
         TYPE

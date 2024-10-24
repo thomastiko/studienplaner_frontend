@@ -1,5 +1,8 @@
 <template>
   <div class="subcontent">
+    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+        Dein Kalender
+      </div>
     <div class="col-12 row justify-center q-ma-sm shadow-1">
       <div class="col-12">
         <q-toolbar class="text-blue-7 bg-white">

@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm">Mein Studium</div>
+    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
+      Mein Studium
+    </div>
     <div class="text-h5 text-center text-weight-medium q-mb-lg">
-       Hier siehst du deine Studiengänge und kannst deinen Fortschritte verfolgen
-      </div>
+      Behalte dein Studium im Überblick
+    </div>
 
     <!-- Studium bearbeiten und hinzufügen/entfernen Button immer anzeigen -->
     <div class="col-12 row q-gutter-md q-pa-md">
@@ -49,12 +51,18 @@
     </div>
 
     <!-- Wenn Studiengänge vorhanden sind, zeige die Liste der Studiengänge -->
-    <div v-else class="column items-center">
+    <div v-else class="row justify-center q-gutter-md">
       <div
         class="col q-pa-md q-mb-md q-card"
         v-for="(study, i) in this.userStore.user.studies"
         :key="i"
-        style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 8px"
+        style="
+          display: flex;
+          align-items: center;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          max-width: 400px;
+        "
       >
         <!-- Checkbox wird nur im Auswahlmodus angezeigt -->
         <q-checkbox
@@ -78,17 +86,27 @@
         </q-card>
       </div>
     </div>
+    <div class="q-mt-lg">
+      <Calendar />
+    </div>
   </div>
 </template>
 
 <script>
 import { useUserStore } from '@/stores/user.store'
+import { useLvStore } from '@/stores/lv.store'
+import Calendar from '@/components/lvplaner/calendar.vue'
 
 export default {
+  components: {
+    Calendar
+  },
   setup() {
     const userStore = useUserStore()
+    const lvStore = useLvStore()
     return {
-      userStore
+      userStore,
+      lvStore
     }
   },
   data() {

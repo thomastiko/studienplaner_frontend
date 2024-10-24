@@ -10,7 +10,7 @@
           clearable
           :options="filteredOptions"
           @filter="filterFn"
-          label="Select Subject"
+          label="LVs suchen"
         >
           <template v-slot:no-option>
             <q-item>

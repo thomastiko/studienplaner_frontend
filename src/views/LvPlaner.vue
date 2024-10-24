@@ -1,13 +1,16 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm">LV-Planer</div>
+    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">LV-Planer</div>
+    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+        Behalte deine Lehrveranstalungen im Überblick
+      </div>
     <div class="bg"></div>
     <!-- Select Add LV or Calendar Management-->
     <div class="col-12 row justify-center q-mb-xl">
       <q-btn
         text-color="blue-4"
         color="white"
-        :label="$t('lvplaner.add_lv_button')"
+        label="LV hinzufügen"
         @click="this.$router.push({ name: 'AddLv', path: '/addlv' })"
       />
     </div>

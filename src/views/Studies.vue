@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm">
+    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
       Studien&shy;gänge
     </div>
     <div class="text-h5 text-center text-weight-medium q-mb-lg">
