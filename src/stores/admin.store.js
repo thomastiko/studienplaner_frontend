@@ -1,10 +1,19 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { useProfStore } from './prof.store'
 
-const adminUrl = 'http://localhost:5000/api/admin'
-const profUrl = 'http://localhost:5001/api/profs'
 
+/**
+ * API-URLs für Localhost
+ */
+//const adminUrl = 'http://localhost:5000/api/admin'
+//const profUrl = 'http://localhost:5001/api/profs'
+
+
+/**
+ * API-URLs für Stage
+ */
+const adminUrl = 'https://taigowiz.org/api/admin'
+const profUrl = 'https://taigowiz.org/api/profs'
 export const useAdminStore = defineStore('admin', {
     state: () => ({
       comments: [],
