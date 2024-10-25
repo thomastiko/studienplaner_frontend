@@ -25,12 +25,12 @@
         </div>
 
         <!-- Zeige die gefilterten Kurse an -->
-        <div v-if="filteredCourses.length" class="row">
+        <div v-if="filteredCourses.length" class="col-12 row">
           <div
             v-for="course in filteredCourses"
             :key="course._id.$oid"
             class="col-xs-12 col-md-6 col-lg-3 q-mt-md"
-            style="max-width: 400px"
+            style="max-width: 400px;"
           >
             <q-expansion-item
               :style="{ backgroundColor: isCourseInUserCourses(course) ? 'lightgreen' : '' }"

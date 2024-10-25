@@ -1,16 +1,17 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useUserStore } from './user.store'
+import { Notify } from 'quasar'
 
 /**
  * API-URLs für Localhost
  */
-//const profUrl = 'http://localhost:5001/api/profs'
+const profUrl = 'http://localhost:5001/api/profs'
 
 /**
  * API-URLs für Stage
  */
-const profUrl = 'https://taigowiz.org/api/profs';
+//const profUrl = 'https://taigowiz.org/api/profs';
 
 
 export const useProfStore = defineStore('prof', {
@@ -157,6 +158,25 @@ export const useProfStore = defineStore('prof', {
               this.comments = this.comments.filter(comment => comment._id !== commentId);
             } catch (error) {
               console.error('Fehler beim Freigeben des Kommentars:', error.response?.data?.message || error.message);
+              throw error;
+            }
+          },
+          async deleteProfessor(profId) {
+            try {
+              await axios.delete(`${profUrl}/${profId}`);
+              this.professors = this.professors.filter(prof => prof._id !== profId);
+              Notify.create({
+                type: 'positive',
+                message: 'Professor erfolgreich gelöscht!',
+                timeout: 3000
+              });
+            } catch (error) {
+              Notify.create({
+                type: 'negative',
+                message: 'Fehler beim Löschen des Professors!',
+                timeout: 3000
+              });
+              console.error('Fehler beim Löschen des Professors:', error.response?.data?.message || error.message);
               throw error;
             }
           }

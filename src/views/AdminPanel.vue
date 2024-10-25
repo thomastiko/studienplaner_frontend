@@ -4,7 +4,7 @@
     <div class="row q-ma-md">
       <div class="col-12 column justify-center">
         <q-btn
-          label="Profcheck Kommentare verwalten"
+          label="Profcheck verwalten"
           no-caps
           flat
           icon-right="arrow_right"

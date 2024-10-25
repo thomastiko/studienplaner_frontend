@@ -13,8 +13,42 @@
         />
         <div v-else class="text-body1">Melde dich an um eine Bewertung abgeben zu können!</div>
       </div>
+
+      <!-- Admin delete Button -->
+      <div v-if="userStore.loggedIn && userStore.user.role === 'admin'" class="col-12 text-center">
+        <q-btn label="Professor löschen" color="negative" @click="confirmAll = true" />
+        <q-dialog v-model="confirmAll">
+          <q-card>
+            <q-card-section class="row items-center">
+              <div>Willst du diesen Professor wirklich unwiderruflich löschen?</div>
+            </q-card-section>
+
+            <q-card-actions align="right">
+              <q-btn flat label="Abbrechen" color="primary" v-close-popup />
+              <q-btn
+                flat
+                label="Löschen"
+                color="negative"
+                v-close-popup
+                @click="deleteProfessor(profStore.selectedProf._id)"
+              />
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
+      </div>
       <div class="col-12 row" v-for="(factor, i) in profStore.selectedProf.factors" :key="i">
-        <div class="col-12 row justify-center q-gutter-sm" v-if="factor.ratings > 0 && factor.gesamt !== null && factor.lerninhahlte !== null && factor.atmospahre !== null && factor.benotung !== null && factor.verfugbarkeit !== null && factor.empfhelung !== null">
+        <div
+          class="col-12 row justify-center q-gutter-sm"
+          v-if="
+            factor.ratings > 0 &&
+            factor.gesamt !== null &&
+            factor.lerninhahlte !== null &&
+            factor.atmospahre !== null &&
+            factor.benotung !== null &&
+            factor.verfugbarkeit !== null &&
+            factor.empfhelung !== null
+          "
+        >
           <q-card class="row items-center bg-amber-2">
             <q-card-section class="text-center">
               <div class="text-h3">{{ factor.gesamt.toFixed(2) }}</div>
@@ -143,12 +177,17 @@ export default {
       profId,
       rateProfessor,
       formatDate,
-      confirm: ref(false)
+      confirm: ref(false),
+      confirmAll: ref(false)
     }
   },
   methods: {
     deleteComment(comment) {
       this.profStore.deleteComment(this.profStore.selectedProf._id, comment)
+    },
+    async deleteProfessor(profId) {
+      await this.profStore.deleteProfessor(profId)
+      router.push({ name: 'Profcheck', route: '/profcheck' })
     }
   }
 }

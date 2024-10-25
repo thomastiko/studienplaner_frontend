@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="container">
-      <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm">
+      <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
         Studien&shy;planer
       </div>
       <div class="text-h5 text-center text-weight-medium text-uppercase q-mb-lg">
-        Your tool to keep track of your studies
+        das Tool für dein Studium
       </div>
       <div :class="bg"></div>
       <div class="info q-pa-md">

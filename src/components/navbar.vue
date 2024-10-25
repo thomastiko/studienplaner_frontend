@@ -3,9 +3,9 @@
     <q-layout view="lHh lpr lFf" container style="min-height: 100px">
       <q-header class="bg-blue-4">
         <q-toolbar>
-          <q-avatar class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/' })">
-            <img src="../assets/oeh_logo.svg" />
-          </q-avatar>
+          <div style="min-width: 60px;" class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/' })">
+            <img src="../assets/logo-white.svg" />
+          </div>
 
           <q-toolbar-title
             class="cursor-pointer"

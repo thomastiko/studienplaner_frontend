@@ -6,12 +6,14 @@
         <form @submit.prevent="startScraper">
           <div class="q-mb-md">
             <div class="q-gutter-sm">
-              <input v-model="link.id" placeholder="ID" required />
-              <input v-model="link.url" placeholder="URL" required />
+              <div v-for="(link, index) in links" :key="index" class="q-mb-md">
+                <input v-model="link.id" :placeholder="'ID Link ' + (index + 1)" required />
+                <input v-model="link.url" :placeholder="'URL Link ' + (index + 1)" required />
+              </div>
             </div>
           </div>
           <div class="q-mb-md">
-            <input v-model="semester" placeholder="Semester" required />
+            <input v-model="semester" placeholder="Format: WS2024 SS2025" required />
           </div>
           <button type="submit">Go</button>
         </form>
@@ -25,77 +27,65 @@
         <li v-for="(message, index) in progressMessages" :key="index">{{ message }}</li>
       </ul>
     </div>
+
+    <!-- Spinner anzeigen, wenn aktiv -->
+    <div v-if="loading" class="text-center q-my-lg">
+      <q-spinner color="primary" size="50px" />
+      <div class="text-subtitle1 q-my-sm">Scraper läuft, bitte warten...</div>
+    </div>
   </div>
 </template>
 
 <script>
-import { useAdminStore } from '@/stores/admin.store'
+import { useAdminStore } from '@/stores/admin.store'; // Importiere den adminStore
 
 export default {
   name: 'ScraperComponent',
   data() {
     return {
-      link: { id: '', url: '' }, // Nur ein Link-Objekt
-      semester: '',
-      progressMessages: [],
-      eventSource: null
-    }
+      links: [
+        { id: '', url: '' },
+        { id: '', url: '' },
+        { id: '', url: '' }
+      ],
+      semester: '', // Semester
+      loading: false, // Status für den Spinner
+      progressMessages: [], // Fortschrittsmeldungen
+    };
   },
   methods: {
     async startScraper() {
-      // Überprüfen, ob der Link und die ID eingegeben wurden
-      if (!this.link.id || !this.link.url) {
-        alert('Bitte geben Sie eine ID und eine URL ein.')
-        return
+      // Überprüfen, ob alle Links und der Dateiname eingegeben wurden
+      if (this.links.some(link => !link.id || !link.url) || !this.semester) {
+        alert('Bitte geben Sie alle Links, IDs und den Dateinamen ein.');
+        return;
       }
 
       const payload = {
-        links: [this.link], // Einzelnen Link in ein Array verpacken
+        links: this.links,
         semester: this.semester
-      }
+      };
 
-      // Starte die SSE-Verbindung
-      this.startEventSource()
+      // Spinner aktivieren
+      this.loading = true;
+      this.progressMessages = [];
 
       try {
-        const adminStore = useAdminStore()
-        await adminStore.startScraper(payload.links, payload.semester)
-        alert('Scraping erfolgreich abgeschlossen!')
+        // Verwende den adminStore, um die Scraper-Funktion aufzurufen
+        const adminStore = useAdminStore();
+        await adminStore.runScraper(payload.links, payload.semester);
+        alert('Scraping erfolgreich abgeschlossen!');
       } catch (error) {
-        alert('Fehler beim Scraping: ' + (error.response?.data?.message || error.message))
+        alert('Fehler beim Scraping: ' + (error.response?.data?.message || error.message));
       } finally {
-        // Schließe die SSE-Verbindung
-        this.closeEventSource()
-      }
-    },
-    startEventSource() {
-      // Initialisiere die SSE-Verbindung
-      this.eventSource = new EventSource('http://localhost:5000/api/admin/scrape-progress')
-
-      this.eventSource.onmessage = (event) => {
-        const data = JSON.parse(event.data)
-        this.progressMessages.push(data.message)
-      }
-
-      this.eventSource.onerror = (error) => {
-        console.error('SSE-Verbindungsfehler:', error)
-        this.eventSource.close()
-      }
-    },
-    closeEventSource() {
-      if (this.eventSource) {
-        this.eventSource.close()
-        this.eventSource = null
+        // Spinner deaktivieren
+        this.loading = false;
       }
     }
-  },
-  beforeDestroy() {
-    // Stelle sicher, dass die SSE-Verbindung geschlossen wird
-    this.closeEventSource()
   }
-}
+};
 </script>
 
 <style scoped>
-/* Hier kannst du dein CSS hinzufügen */
+/* Füge hier dein CSS hinzu */
 </style>
