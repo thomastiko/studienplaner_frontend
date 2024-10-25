@@ -3,7 +3,7 @@
     <q-btn
       @click="setSeamless()"
       @dragenter="setSeamless()"
-      color="positive"
+      color="blue-4"
       icon="add"
       round
       size="lg"

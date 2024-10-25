@@ -9,30 +9,30 @@
           <span>
             <q-icon name="fa-regular fa-envelope" />
           </span>
-          info@ag-wu.at
+          beratung@oeh-wu.at
         </div>
         <div class="col-12">
           <span>
             <q-icon name="fa-brands fa-instagram" />
           </span>
           <a
-            href="https://www.instagram.com/aktionsgemeinschaft_wu/"
+            href="https://www.instagram.com/oeh_wu/"
             target="_blank"
             style="text-decoration: none; color: white"
           >
-            aktionsgemeinschaft_wu
+            oeh_wu
           </a>
         </div>
       </div>
       <div class="col-12 col-md-3">
         <span><q-icon name="fa-solid fa-location-dot" /></span>
-        AktionsGemeinschaft WU <br />
+        Österreichische HochschülerInnenschaft der WU <br />
         Welthandelsplatz 1 1020 Wien
       </div>
       <div class="row col-12 col-md-3 text-bold text-uppercase">
         <div class="col-12">
           <a
-            href="https://ag-wu.at/datenschutz/"
+            href="https://oeh-wu.at/datenschutz"
             target="_blank"
             style="text-decoration: none; color: white"
             >Datenschutz</a
@@ -40,7 +40,7 @@
         </div>
         <div class="col-12">
           <a
-            href="https://ag-wu.at/impressum/"
+            href="https://oeh-wu.at/impressum"
             target="_blank"
             style="text-decoration: none; color: white"
             >Impressum</a
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 text-caption">Da steht dann unser name :)</div>
+    <div class="col-12 text-caption">Design and Development by Thomas Tikovits</div>
   </div>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="row q-ma-md" v-if="profStore.selectedProf">
-      {{ profStore.selectedProf }}
       <div class="col-12 text-h4">
         Bewerten: {{ profStore.selectedProf.fname }} {{ profStore.selectedProf.lname }}
       </div>

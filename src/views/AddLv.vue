@@ -1,162 +1,182 @@
 <template>
   <div>
-    <div class="row q-ma-md">
-      <div class="text-h3 text-weight-medium q-mb-sm col-12">LVs hinzufügen</div>
-      <div class="col-12">
-        <q-select
-          filled
-          v-model="selectedSubject"
-          use-input
-          clearable
-          :options="filteredOptions"
-          @filter="filterFn"
-          label="LVs suchen"
-        >
-          <template v-slot:no-option>
-            <q-item>
-              <q-item-section class="text-grey"> No results </q-item-section>
-            </q-item>
-          </template>
-        </q-select>
-      </div>
-
-      <!-- Zeige die gefilterten Kurse an -->
-      <div v-if="filteredCourses.length" class="row">
-        <div
-          v-for="course in filteredCourses"
-          :key="course._id.$oid"
-          class="col-xs-12 col-md-6 col-lg-3 q-mt-md"
-          style="max-width: 400px"
-        >
-          <q-expansion-item
-            :style="{ backgroundColor: isCourseInUserCourses(course) ? 'lightgreen' : '' }"
-            style="max-width: 500px"
-            class="shadow-1"
-            default-opened
-            header-class="text-grey-8"
+    <div v-if="!loading">
+      <div class="row q-ma-md">
+        <div class="text-h3 text-weight-medium q-mb-sm col-12">LVs hinzufügen</div>
+        <div class="col-12">
+          <q-select
+            filled
+            v-model="selectedSubject"
+            use-input
+            clearable
+            :options="filteredOptions"
+            @filter="filterFn"
+            label="LVs suchen"
           >
-            <template v-slot:header>
-              <q-item-section avatar>
-                <!-- Button ändern je nachdem, ob der Kurs bereits hinzugefügt wurde -->
-                <q-btn
-                  v-if="!isCourseInUserCourses(course)"
-                  icon="add"
-                  padding="xs"
-                  round
-                  size="sm"
-                  color="blue-7"
-                  text-color="white"
-                  @click.stop="addCourseToUser(course)"
-                ></q-btn>
-                <q-btn
-                  v-else
-                  icon="remove"
-                  padding="xs"
-                  round
-                  size="sm"
-                  color="red-7"
-                  text-color="white"
-                  @click.stop="removeCourseFromUser(course)"
-                ></q-btn>
-              </q-item-section>
-              <q-item-section>
-                <div class="col-12 row">
-                  <div class="col-12 row items-center">
-                    {{ course.name }}
-                    <span class="text-weight-bold q-ml-xs">({{ course.course_code }})</span>
-                  </div>
-                </div>
-              </q-item-section>
-            </template>
-            <q-separator />
-            <!-- Restlicher Inhalt des q-expansion-item -->
-            <div class="row q-pa-sm">
-              <div class="text-blue-7">
-                <div>Prof:</div>
-                <q-btn
-                  flat
-                  color="grey-8"
-                  v-for="prof in course.taught_bys"
-                  :key="prof"
-                  @click="previewProf(prof)"
-                >
-                  {{ prof }}
-                </q-btn>
-              </div>
-            </div>
-            <q-separator />
-            <div class="row justify-between q-pa-sm">
-              <div class="text-blue-7">
-                Modus <q-tooltip>{{ course.course_mode }}</q-tooltip>
-              </div>
-              <div class="text-blue-7">
-                <a
-                  :href="course.vvz_url"
-                  target="_blank"
-                  class="text-blue-7"
-                  style="text-decoration: none"
-                >
-                  VVZ
-                </a>
-                <q-tooltip>{{ course.comment }}</q-tooltip>
-              </div>
-              <div class="text-blue-7">
-                Sprache <q-tooltip>{{ course.language }}</q-tooltip>
-              </div>
-            </div>
-            <q-separator />
-            <q-list padding separator>
-              <q-item v-for="(date, i) in course.dates" :key="i">
-                {{ formatDateRange(date.start, date.end) }},&nbsp;
-                <span>
-                  <a v-if="date.location !== 'null'" :href="date.location_url">
-                    {{ date.location }}
-                  </a>
-                </span>
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section>
+                  <q-spinner size="20px" color="blue" />
+                  <span class="q-ml-sm">Loading...</span>
+                </q-item-section>
               </q-item>
-            </q-list>
-          </q-expansion-item>
+            </template>
+          </q-select>
+        </div>
+
+        <!-- Zeige die gefilterten Kurse an -->
+        <div v-if="filteredCourses.length" class="row">
+          <div
+            v-for="course in filteredCourses"
+            :key="course._id.$oid"
+            class="col-xs-12 col-md-6 col-lg-3 q-mt-md"
+            style="max-width: 400px"
+          >
+            <q-expansion-item
+              :style="{ backgroundColor: isCourseInUserCourses(course) ? 'lightgreen' : '' }"
+              style="max-width: 500px"
+              class="shadow-1"
+              default-opened
+              header-class="text-grey-8"
+            >
+              <template v-slot:header>
+                <q-item-section avatar>
+                  <!-- Button ändern je nachdem, ob der Kurs bereits hinzugefügt wurde -->
+                  <q-btn
+                    v-if="!isCourseInUserCourses(course)"
+                    icon="add"
+                    padding="xs"
+                    round
+                    size="sm"
+                    color="blue-7"
+                    text-color="white"
+                    @click.stop="addCourseToUser(course)"
+                  ></q-btn>
+                  <q-btn
+                    v-else
+                    icon="remove"
+                    padding="xs"
+                    round
+                    size="sm"
+                    color="red-7"
+                    text-color="white"
+                    @click.stop="removeCourseFromUser(course)"
+                  ></q-btn>
+                </q-item-section>
+                <q-item-section>
+                  <div class="col-12 row">
+                    <div class="col-12 row items-center">
+                      {{ course.name }}
+                      <span class="text-weight-bold q-ml-xs">({{ course.course_code }})</span>
+                    </div>
+                  </div>
+                </q-item-section>
+              </template>
+              <q-separator />
+              <!-- Restlicher Inhalt des q-expansion-item -->
+              <div class="row q-pa-sm">
+                <div class="text-blue-7">
+                  <div>Prof:</div>
+                  <q-btn
+                    flat
+                    color="grey-8"
+                    v-for="prof in course.taught_bys"
+                    :key="prof"
+                    @click="previewProf(prof)"
+                  >
+                    {{ prof }}
+                  </q-btn>
+                </div>
+              </div>
+              <q-separator />
+              <div class="row justify-between q-pa-sm">
+                <div class="text-blue-7">
+                  Modus <q-tooltip>{{ course.course_mode }}</q-tooltip>
+                </div>
+                <div class="text-blue-7">
+                  <a
+                    :href="course.vvz_url"
+                    target="_blank"
+                    class="text-blue-7"
+                    style="text-decoration: none"
+                  >
+                    VVZ
+                  </a>
+                  <q-tooltip>{{ course.comment }}</q-tooltip>
+                </div>
+                <div class="text-blue-7">
+                  Sprache <q-tooltip>{{ course.language }}</q-tooltip>
+                </div>
+              </div>
+              <q-separator />
+              <q-list padding separator>
+                <q-item v-for="(date, i) in course.dates" :key="i">
+                  {{ formatDateRange(date.start, date.end) }},&nbsp;
+                  <span>
+                    <a v-if="date.location !== 'null'" :href="date.location_url">
+                      {{ date.location }}
+                    </a>
+                  </span>
+                </q-item>
+              </q-list>
+            </q-expansion-item>
+          </div>
+        </div>
+      </div>
+      <div class="row q-ma-md">
+        <div class="col-12 q-mt-xl">
+          <Calendar />
         </div>
       </div>
     </div>
-    <div class="row q-ma-md">
-      <div class="col-12 q-mt-xl">
-        <Calendar />
-      </div>
+    <div v-else class="row justify-center q-ma-xl">
+      <q-spinner size="50px" color="blue" />
     </div>
   </div>
   <q-dialog v-model="showProfPreview">
-    <q-card>
-      <q-card-section>
-        <q-card-title>Professoren-Vorschau</q-card-title>
-        <q-btn label="zum Prof" @click="goToProf" />
+    <q-card style="width: 700px; max-width: 80vw">
+      <q-card-section class="row items-center q-pb-none">
+        <div class="text-h6">Vorschau</div>
+        <q-space />
+        <q-btn icon="close" flat round dense v-close-popup />
+      </q-card-section>
+      <q-card-section class="column justify-center">
+        <div class="text-h6 text-center">
+          {{ profStore.profPreview.fname }} {{ profStore.profPreview.lname }}
+        </div>
+        <q-btn label="Mehr Details" flat color="primary" @click="goToProf" />
       </q-card-section>
       <q-card-section>
-        Name: {{ this.profStore.profPreview.fname }} {{ this.profStore.profPreview.lname }}
+        <div class="text-h6 text-center">Bewertungen</div>
+        <div
+          class="row justify-center"
+          v-if="
+            profStore.profPreview.factors[0].ratings > 0 &&
+            profStore.profPreview.factors[0].lerninhahlte !== null &&
+            profStore.profPreview.factors[0].atmospahre !== null &&
+            profStore.profPreview.factors[0].mitarbeit !== null &&
+            profStore.profPreview.factors[0].benotung !== null &&
+            profStore.profPreview.factors[0].verfugbarkeit !== null &&
+            profStore.profPreview.factors[0].empfhelung !== null &&
+            profStore.profPreview.factors[0].gesamt !== null
+          "
+        >
+          <div class="col-3">Ratings: {{ profStore.profPreview.factors[0].ratings }}</div>
+          <div class="col-3">Kommentare: {{ profStore.profPreview.factors[0].comments }}</div>
+          <div class="col-3">Lerninhalte: {{ profStore.profPreview.factors[0].lerninhahlte }}</div>
+          <div class="col-3">Atmosphäre: {{ profStore.profPreview.factors[0].atmospahre }}</div>
+          <div class="col-3">Mitarbeit: {{ profStore.profPreview.factors[0].mitarbeit }}</div>
+          <div class="col-3">Benotung: {{ profStore.profPreview.factors[0].benotung }}</div>
+          <div class="col-3">
+            Verfügbarkeit: {{ profStore.profPreview.factors[0].verfugbarkeit }}
+          </div>
+          <div class="col-3">Empfehlung: {{ profStore.profPreview.factors[0].empfhelung }}</div>
+          <div class="col-3">Gesamtbewertung: {{ profStore.profPreview.factors[0].gesamt }}</div>
+        </div>
+        <div class="row justify-center" v-else>
+          <div>Keine Bewertungen vorhanden.</div>
+        </div>
       </q-card-section>
-      <q-card-section>
-        Bewertung:
-        <ul v-if="this.profStore.profPreview.factors.length > 0">
-          <li>Ratings: {{ profStore.profPreview.factors[0].ratings }}</li>
-          <li>Kommentare: {{ profStore.profPreview.factors[0].comments }}</li>
-          <li>Lerninhalte: {{ profStore.profPreview.factors[0].lerninhahlte }}</li>
-          <li>Atmosphäre: {{ profStore.profPreview.factors[0].atmospahre }}</li>
-          <li>Mitarbeit: {{ profStore.profPreview.factors[0].mitarbeit }}</li>
-          <li>Benotung: {{ profStore.profPreview.factors[0].benotung }}</li>
-          <li>Verfügbarkeit: {{ profStore.profPreview.factors[0].verfugbarkeit }}</li>
-          <li>Empfehlung: {{ profStore.profPreview.factors[0].empfhelung }}</li>
-          <li>Gesamtbewertung: {{ profStore.profPreview.factors[0].gesamt }}</li>
-        </ul>
-      </q-card-section>
-      <q-card-section>
-        Kommentare:
-        <ul v-if="this.profStore.profPreview.comments.length > 0">
-          <li v-for="comment in profStore.profPreview.comments" :key="comment._id.$oid">
-            {{ comment.text }} ({{ comment.date }})
-          </li>
-        </ul>
-      </q-card-section>
-      <q-card-section> </q-card-section>
     </q-card>
   </q-dialog>
 </template>
@@ -179,6 +199,7 @@ export default {
     const profStore = useProfStore()
     const selectedSubject = ref(null)
     const filteredOptions = ref([])
+    const loading = ref(true)
 
     const courses = computed(() => lvStore.list || [])
     const cartItems = computed(() => lvStore.cart)
@@ -249,9 +270,15 @@ export default {
       })
     }
 
-    onMounted(() => {
-      lvStore.fetchCourses()
-      filteredOptions.value = uniqueSubjectNames.value
+    onMounted(async () => {
+      try {
+        await lvStore.fetchCourses()
+        filteredOptions.value = uniqueSubjectNames.value
+      } catch (error) {
+        console.error('Fehler beim Laden der LVs:', error)
+      } finally {
+        loading.value = false
+      }
     })
 
     return {
@@ -266,6 +293,8 @@ export default {
       removeCourseFromUser,
       isCourseInUserCourses,
       filterFn,
+      loading,
+      slide: ref(1),
       formatDateRange(dateStart, dateEnd) {
         const start = new Date(dateStart)
         const end = new Date(dateEnd)
@@ -284,33 +313,46 @@ export default {
   },
   methods: {
     async previewProf(prof) {
-      // Entfernt alle gängigen Titel und Grad-Abkürzungen vor oder nach dem Namen
-      const titles =
-        /((Assoz\.Prof\.|Ass\.Prof\.|Prof\.?|Dr\.?|Univ\.|PD|LL\.M\.?|M\.Sc\.?|MBA|PhD|Ph\.D\.|Mag\.?|Dipl\.-Vw\.?|MSc\(WU\)|MSc|MA|BA|WU|M\.A\.)(\s|\.?|,?))+/g
+  // Erkenne und entferne alle akademischen Titel und Grad-Abkürzungen mit flexibler Punkt-Erkennung
+  const titles =
+    /\b(?:Assoz\.Prof\.?|Ass\.Prof\.?|Assist\.Prof\.?|Prof\.?|Dr\.?|Univ\.?|PD|LL\.M\.?|M\.Sc\.?|MBA|PhD|Ph\.D\.?|Mag\.?|Dipl\.-Vw\.?|MSc\(WU\)|MSc|MA|BA|WU|M\.A\.?|Doz\.?|Univ.-Prof\.?|Priv.-Doz\.?|Ing\.)\b\s*/gi;
 
-      // Entfernt die Titel sowie überflüssige Kommata, behält aber den Namen
-      const nameWithoutTitles = prof.replace(titles, '').replace(/,\s*,/, '').trim()
+  // Entferne alle Titel, Punkte und Leerzeichen, die direkt danach kommen
+  const nameWithoutTitles = prof.replace(titles, '').replace(/^\s*\./, '').trim();
 
-      // Entfernt Klammern, die leer oder nur Platzhalter enthalten, sowie überflüssige Kommata am Ende
-      const cleanName = nameWithoutTitles
-        .replace(/\(\s*\)/, '')
-        .replace(/,\s*$/, '')
-        .trim()
+  // Entferne überflüssige Punkte, Klammern und Kommata am Ende des Namens
+  const cleanName = nameWithoutTitles.replace(/\.+$/, '').replace(/\(\s*\)/, '').replace(/,\s*$/, '').trim();
 
-      // Den vollständigen Namen in Vorname und Nachname aufteilen, indem Leerzeichen als Trennzeichen genutzt werden
-      const nameParts = cleanName.split(/\s+/)
+  // Den vollständigen Namen in Vorname und Nachname aufteilen
+  const nameParts = cleanName.split(/\s+/);
 
-      // Vorname ist das erste Element, Nachname der Rest
-      const fname = nameParts[0] // Vorname (erste Teil)
-      const lname = nameParts.slice(1).join(' ') // Nachname (alles nach dem ersten Teil)
+  if (nameParts.length < 2) {
+    console.error('Fehler: Der Name konnte nicht korrekt aufgeteilt werden.');
+    return;
+  }
 
-      // Ausgabe zur Kontrolle
-      console.log(`Vorname: ${fname}, Nachname: ${lname}`)
-      const obj = { fname, lname }
+  let fname = nameParts[0]; // Vorname
+  let lname = nameParts.slice(1).join(' '); // Nachname
 
-      await this.profStore.fetchProfPreview(obj)
-      this.showProfPreview = true
-    },
+  // Falls der Vorname immer noch ein Punkt ist, nimm den nächsten Teil als Vorname
+  if (fname === '.' || fname === '') {
+    fname = nameParts[1];
+    lname = nameParts.slice(2).join(' ');
+  }
+
+  // Ausgabe zur Kontrolle
+  console.log(`Vorname: ${fname}, Nachname: ${lname}`);
+
+  // Suche den Professor mit den extrahierten Namen
+  try {
+    const obj = { fname, lname };
+    await this.profStore.fetchProfPreview(obj);
+    this.showProfPreview = true;
+  } catch (error) {
+    console.error('Fehler beim Laden der Professorenvorschau:', error);
+  }
+}
+,
     async goToProf() {
       if (this.profStore.profPreview._id) {
         await this.profStore.findProf(this.profStore.profPreview._id)

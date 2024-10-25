@@ -16,7 +16,7 @@
           </q-card-section>
           <q-card-actions align="right">
             <q-btn flat label="Freigeben" color="primary" @click="approveComment(comment)" />
-            <q-btn flat label="Löschen" color="negative" @click="deleteComment(comment._id)" />
+            <q-btn flat label="Löschen" color="negative" @click="deleteCommentSuggestion(comment._id)" />
           </q-card-actions>
         </q-card>
       </q-expansion-item>
@@ -42,8 +42,8 @@ export default {
       const year = date.getFullYear()
       return `${day}.${month}.${year}`
     }
-    const deleteComment = (commentId) => {
-      adminStore.deleteComment(commentId)
+    const deleteCommentSuggestion = (commentId) => {
+      adminStore.deleteCommentSuggestion(commentId)
     }
 
     const approveComment = (comment) => {
@@ -57,7 +57,7 @@ export default {
     return {
       adminStore,
       formatDate,
-      deleteComment,
+      deleteCommentSuggestion,
       approveComment
     }
   }

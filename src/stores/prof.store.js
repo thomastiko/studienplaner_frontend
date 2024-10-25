@@ -127,7 +127,7 @@ export const useProfStore = defineStore('prof', {
               throw error;
             }
           },
-          async deleteComment(commentId) {
+          async deleteCommentSuggestion(commentId) {
             try {
               await axios.delete(`${profUrl}/comments/${commentId}`);
               this.comments = this.comments.filter(comment => comment._id !== commentId); // Kommentar aus dem State entfernen
@@ -136,7 +136,17 @@ export const useProfStore = defineStore('prof', {
               throw error;
             }
           },
-      
+          async deleteComment(profId, comment) {
+            try {
+              const response = await axios.delete(`${profUrl}/${profId}/comments`, {
+                data: { comment }
+              });
+              this.selectedProf = response.data;
+            } catch (error) {
+              console.error('Fehler beim Löschen des Kommentars:', error.response?.data?.message || error.message);
+              throw error;
+            }
+          },
           async approveComment(profId, commentId, commentText) {
             try {
               // Sende den Kommentartext als Teil des Anfrage-Bodys

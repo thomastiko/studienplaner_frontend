@@ -29,7 +29,7 @@ export const useAdminStore = defineStore('admin', {
               throw error;
             }
           },
-          async deleteComment(commentId) {
+          async deleteCommentSuggestion(commentId) {
             try {
               await axios.delete(`${profUrl}/comments/${commentId}`);
               this.comments = this.comments.filter(comment => comment._id !== commentId); // Kommentar aus dem State entfernen
@@ -38,7 +38,6 @@ export const useAdminStore = defineStore('admin', {
               throw error;
             }
           },
-      
           async approveComment(profId, commentId, commentText) {
             try {
               // Sende den Kommentartext als Teil des Anfrage-Bodys
