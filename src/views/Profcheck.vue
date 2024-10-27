@@ -3,31 +3,38 @@
     <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">Prof&shy;check</div>
     <div class="text-h5 text-center text-weight-medium q-mb-lg">
       Finde und bewerte deine Professor*innen
-      </div>
-    <div class="q-ma-md">
-    <q-table
-      id="profTable"
-      wrap-cells
-      style="height: 600px"
-      title="Professors"
-      :title-class="'text-h5'"
-      :rows="rows"
-      :columns="columns"
-      row-key="_id"
-      virtual-scroll
-      :filter="filter"
-      :rows-per-page-options="[0]"
-      @row-click="onRowClick"
-    >
-    <template v-slot:top-right>
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </template>
-    </q-table>
-  </div>
+    </div>
+
+    <!-- Spinner anzeigen, wenn Daten noch laden -->
+    <div v-if="loading" class="row justify-center">
+    <q-spinner size="50px"  color="primary" class="q-my-lg" />
+    </div>
+
+    <!-- Tabelle anzeigen, wenn Daten geladen sind -->
+    <div v-else class="q-ma-md">
+      <q-table
+        id="profTable"
+        wrap-cells
+        style="height: 600px"
+        title="Professors"
+        :title-class="'text-h5'"
+        :rows="rows"
+        :columns="columns"
+        row-key="_id"
+        virtual-scroll
+        :filter="filter"
+        :rows-per-page-options="[0]"
+        @row-click="onRowClick"
+      >
+        <template v-slot:top-right>
+          <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+        </template>
+      </q-table>
+    </div>
   </div>
 </template>
 
@@ -35,6 +42,7 @@
 import { useProfStore } from '@/stores/prof.store'
 import { ref } from 'vue'
 import router from "../router";
+
 export default {
   setup() {
     const profStore = useProfStore()
@@ -42,6 +50,7 @@ export default {
       profStore: ref(profStore),
       rows: ref([]),
       filter: ref(''),
+      loading: ref(true), // Spinner-Status hinzufügen
       columns: [
         {
           name: 'name',
@@ -78,7 +87,6 @@ export default {
     async onRowClick(evt, row) {
       await this.profStore.findProf(row._id);
       router.push({ name: 'ProfessorPage', params: { prof_id: row._id } });
-      
     }
   },
   async mounted() {
@@ -88,6 +96,8 @@ export default {
       this.rows.push(...response.data)
     } catch (error) {
       console.error(error)
+    } finally {
+      this.loading = false // Spinner ausschalten, wenn Laden abgeschlossen ist
     }
   }
 }

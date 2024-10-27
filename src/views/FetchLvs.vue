@@ -19,25 +19,26 @@
         </form>
       </div>
     </div>
+    <!-- Spinner anzeigen, wenn aktiv -->
+    <div v-if="loading" class="text-center q-my-lg">
+      <q-spinner color="primary" size="50px" />
+      <div class="text-subtitle1 q-my-sm">{{ spinnerMessage }}</div>
+    </div>
 
     <!-- Fortschrittsmeldungen anzeigen -->
     <div v-if="progressMessages.length > 0" class="progress-messages">
       <h4>Fortschritt:</h4>
       <ul>
-        <li v-for="(message, index) in progressMessages" :key="index">{{ message }}</li>
+        <li v-for="(message, index) in progressMessages" :key="index">
+          {{ message }}
+        </li>
       </ul>
-    </div>
-
-    <!-- Spinner anzeigen, wenn aktiv -->
-    <div v-if="loading" class="text-center q-my-lg">
-      <q-spinner color="primary" size="50px" />
-      <div class="text-subtitle1 q-my-sm">Scraper läuft, bitte warten...</div>
     </div>
   </div>
 </template>
 
 <script>
-import { useAdminStore } from '@/stores/admin.store'; // Importiere den adminStore
+import { useAdminStore } from '@/stores/admin.store'
 
 export default {
   name: 'ScraperComponent',
@@ -51,41 +52,74 @@ export default {
       semester: '', // Semester
       loading: false, // Status für den Spinner
       progressMessages: [], // Fortschrittsmeldungen
-    };
+      spinnerMessage:
+        'Scraper läuft! Dies kann bis zu 2 Stunden dauern. Bitte stell sicher, dass die Internetverbindung durchgehend hergestellt ist.' // Nachricht beim Laufen des Spinners
+    }
   },
   methods: {
-    async startScraper() {
-      // Überprüfen, ob alle Links und der Dateiname eingegeben wurden
-      if (this.links.some(link => !link.id || !link.url) || !this.semester) {
-        alert('Bitte geben Sie alle Links, IDs und den Dateinamen ein.');
-        return;
+    setupWebSocket() {
+      this.socket = new WebSocket('ws://localhost:5000') // WebSocket-Verbindung zum Backend
+
+      this.socket.onopen = () => {
+        console.log('WebSocket-Verbindung geöffnet')
       }
 
-      const payload = {
-        links: this.links,
-        semester: this.semester
-      };
+      this.socket.onmessage = (event) => {
+        const data = JSON.parse(event.data)
 
-      // Spinner aktivieren
-      this.loading = true;
-      this.progressMessages = [];
+        // Nachrichtentypen verarbeiten
+        if (data.type === 'link' || data.type === 'status') {
+          this.progressMessages.push(data.message)
+
+          if (data.type === 'complete') {
+            this.loading = false
+            this.spinnerMessage = 'Scraping abgeschlossen!'
+            this.progressMessages.push('Scraping abgeschlossen.')
+          }
+        }
+      }
+
+      this.socket.onclose = () => {
+        console.log('WebSocket-Verbindung geschlossen')
+      }
+    },
+    async startScraper() {
+      if (this.links.some((link) => !link.id || !link.url) || !this.semester) {
+        alert('Bitte geben Sie alle Links, IDs und das Semester ein.')
+        return
+      }
+
+      const payload = { links: this.links, semester: this.semester }
+
+      this.loading = true
+      this.progressMessages = [] // Setzt Fortschrittsmeldungen zurück
+
+      this.setupWebSocket() // WebSocket-Verbindung vor dem API-Aufruf starten
 
       try {
-        // Verwende den adminStore, um die Scraper-Funktion aufzurufen
-        const adminStore = useAdminStore();
-        await adminStore.runScraper(payload.links, payload.semester);
-        alert('Scraping erfolgreich abgeschlossen!');
+        const adminStore = useAdminStore()
+        await adminStore.runScraper(payload.links, payload.semester) // API-Aufruf zur Initialisierung des Scrapers
       } catch (error) {
-        alert('Fehler beim Scraping: ' + (error.response?.data?.message || error.message));
-      } finally {
-        // Spinner deaktivieren
-        this.loading = false;
+        alert('Fehler beim Scraping: ' + (error.response?.data?.message || error.message))
+        this.loading = false
+        this.spinnerMessage = 'Fehler beim Scraping!'
       }
     }
+  },
+  beforeDestroy() {
+    if (this.socket) {
+      this.socket.close()
+    }
   }
-};
+}
 </script>
 
 <style scoped>
-/* Füge hier dein CSS hinzu */
+.progress-messages {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 </style>
