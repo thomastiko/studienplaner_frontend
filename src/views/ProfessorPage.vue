@@ -7,11 +7,11 @@
       <div class="col-12 text-center q-mb-lg">
         <q-btn
           v-if="userStore.loggedIn"
-          label="Jetzt bewerten"
+          :label="$t('profcheck.rate_now')"
           @click="rateProfessor"
           style="background-color: #ffee6c"
         />
-        <div v-else class="text-body1">Melde dich an um eine Bewertung abgeben zu können!</div>
+        <div v-else class="text-body1"> {{ $t('profcheck.login_to_rate') }} </div>
       </div>
 
       <!-- Admin delete Button -->
@@ -52,38 +52,38 @@
           <q-card class="row items-center bg-amber-2">
             <q-card-section class="text-center">
               <div class="text-h3">{{ factor.gesamt.toFixed(2) }}</div>
-              <div class="text-subtitle2">Gesamt</div>
+              <div class="text-subtitle2"> {{ $t('lvPlaner.prof_overall') }} </div>
             </q-card-section>
           </q-card>
           <q-card>
             <q-card-section class="col-12 row">
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.lerninhahlte.toFixed(2) }}</div>
-                <div class="text-subtitle2">Lerninhalt und -aufbereitung</div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.prof_learning_content') }} </div>
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.atmospahre.toFixed(2) }}</div>
-                <div class="text-subtitle2">Atmosphäre</div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.prof_atmosphere') }} </div>
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.benotung.toFixed(2) }}</div>
-                <div class="text-subtitle2">Benotung</div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.prof_participation') }} </div>
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.verfugbarkeit.toFixed(2) }}</div>
-                <div class="text-subtitle2">Verfügbarkeit</div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.prof_grading') }} </div>
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.empfhelung.toFixed(2) }}</div>
-                <div class="text-subtitle2">Empfehlung</div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.recommendation') }} </div>
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.ratings }}</div>
-                <div class="text-subtitle2">Bewertungen</div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.prof_ratings') }} </div>
               </div>
             </q-card-section>
           </q-card>
-          <div class="col-12 text-h4">Kommentare:</div>
+          <div class="col-12 text-h4"> {{ $t('lvPlaner.comments') }}:</div>
           <div class="col-12" v-if="profStore.selectedProf.comments.length > 0">
             <q-list bordered separator>
               <q-item v-for="(comment, i) in profStore.selectedProf.comments" :key="i">
@@ -117,12 +117,11 @@
             </q-list>
           </div>
           <div class="col-12" v-else>
-            <div class="text-center text-h5">Noch keine Kommentare vorhanden</div>
+            <div class="text-center text-h5"> {{ $t('lvPlaner.no_comments') }} </div>
           </div>
         </div>
         <div class="col-12" v-else>
-          <div class="text-center text-h5">Noch keine Bewertung vorhanden</div>
-          <div class="text-center text-h6">Sei die erste Person, die diese Lehrkraft bewertet</div>
+          <div class="text-center text-h5"> {{ $t('lvPlaner.no_ratings') }} </div>
         </div>
       </div>
     </div>

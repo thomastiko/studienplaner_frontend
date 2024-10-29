@@ -4,7 +4,7 @@
       Studien&shy;gänge
     </div>
     <div class="text-h5 text-center text-weight-medium q-mb-lg">
-        Wähle deinen Studiengang aus und füge ihn hinzu
+        {{ $t('studies.subtitle_1') }}
       </div>
     <div class="q-pa-md">
       <q-stepper v-model="step" class="stepper" ref="stepper" color="primary" animated>
@@ -114,9 +114,9 @@
         >
           <q-card flat bordered class="q-mb-md">
             <q-card-section>
-              <div class="text-h6">Deine Auswahl</div>
+              <div class="text-h6"> {{ $t('studies.your_selection') }} </div>
               <p>
-                <strong>Studiengang: </strong>
+                <strong>{{ $t('studies.study_program') }}: </strong>
                 <span v-if="selectedStudy === 'wiso'"
                   >Wirtschafts- und Sozialwissenschaften 2023</span
                 >
@@ -124,7 +124,7 @@
                 <span v-else-if="selectedStudy === 'bbe'">Business and Economics 2023</span>
               </p>
               <p v-if="selectedStudy === 'wiso'">
-                <strong>Zweig: </strong>
+                <strong>{{ $t('studies.study_branch') }}: </strong>
                 <span v-if="selectedBranch === 'wiso-bwl-23'">Betriebswirtschaft</span>
                 <span v-else-if="selectedBranch === 'wiso-ibw-23'"
                   >Internationale Betriebswirtschaft</span
@@ -150,7 +150,7 @@
               flat
               color="primary"
               @click="$refs.stepper.previous()"
-              label="Zurück"
+              :label="$t('studies.back')"
               icon="arrow_back"
               class="q-ml-sm"
             />
@@ -159,7 +159,7 @@
             flat
             color="primary"
             @click="step = 1"
-            label="Zurück"
+            :label="$t('studies.back')"
             icon="arrow_back"
             class="q-ml-sm"
           />

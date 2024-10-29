@@ -2,7 +2,7 @@
   <div>
     <div class="row q-ma-md" v-if="profStore.selectedProf">
       <div class="col-12 text-h4">
-        Bewerten: {{ profStore.selectedProf.fname }} {{ profStore.selectedProf.lname }}
+        {{ $t('rateProf.rate') }}: {{ profStore.selectedProf.fname }} {{ profStore.selectedProf.lname }}
       </div>
       <div class="col-xs-12 col-md-6" v-for="(factor, i) in rateSystem" v-bind:key="i">
         <div class="q-pa-md shadow-1">
@@ -18,10 +18,10 @@
         </div>
       </div>
       <div class="col-12 row q-mt-md">
-        <div class="col-12 text-h4">Kommentar hinzufügen:</div>
+        <div class="col-12 text-h4"> {{ $t('profcheck.add_comment') }} :</div>
         <q-input class="full-width" v-model="comment" outlined autogrow />
       </div>
-      <q-btn class="q-mt-md" label="Bewertung absenden" color="primary" @click="updateRate" />
+      <q-btn class="q-mt-md" :label="$t('profcheck.send_rating')" color="primary" @click="updateRate" />
     </div>
   </div>
 </template>
@@ -51,31 +51,31 @@ export default {
       comment: ref(''),
       rateSystem: ref([
         {
-          title: 'Lerninhalt und -aufbereitung',
-          criteria: 'The lecturer is able to convey the course content in a comprehensible manner.',
+          title: `${this.$t('lvPlaner.prof_learning_content')}`,
+          criteria: `${this.$t('rateProf.learning_content_text')}`,
           value: 0
         },
         {
-          title: 'Atmosphäre',
-          criteria: 'The atmosphere in the lecture is pleasant and friendly.',
+          title: `${this.$t('lvPlaner.prof_atmosphere')}`,
+          criteria: `${this.$t('rateProf.atmosphere_text')}`,
           value: 0
         },
         {
-          title: 'Mitarbeit',
-          criteria: 'The presenter will involve the students in the presentation.',
+          title: `${this.$t('lvPlaner.prof_participation')}`,
+          criteria: `${this.$t('rateProf.participation_text')}`,
           value: 0
         },
         {
-          title: 'Benotung',
-          criteria: 'Grading takes place in a fair and transparent manner.',
+          title: `${this.$t('lvPlaner.prof_grading')}`,
+          criteria: `${this.$t('rateProf.grading_text')}`,
           value: 0
         },
         {
-          title: 'Verfügbarkeit',
-          criteria: 'The lecturer is sufficiently available for the students.',
+          title: `${this.$t('lvPlaner.prof_availability')}`,
+          criteria: `${this.$t('rateProf.availability_text')}`,
           value: 0
         },
-        { title: 'Empfehlung', criteria: 'I would recommend this presenter to others.', value: 0 }
+        { title: `${this.$t('lvPlaner.prof_recommendation')}`, criteria: `${this.$t('rateProf.recommendation')}` , value: 0 }
       ])
     }
   },

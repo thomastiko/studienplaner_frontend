@@ -1,0 +1,11 @@
+{
+    "rate": "Rate",
+    "add_comment": "Add comment",
+    "send_rating": "Send rating",
+    "learning_content_text": "The lecturer is able to convey the teaching content in an understandable way.",
+    "atmosphere_text": "The atmosphere in the lecture is pleasant and friendly.",
+    "participation_text": "The lecturer involves the students in the presentation.",
+    "grading_text": "The grading is done in a fair and transparent manner.",
+    "availability_text": "The lecturer is sufficiently available to the students.",
+    "recommendation_text": "I would recommend this presenter to others."
+}
