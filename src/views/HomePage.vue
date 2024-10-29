@@ -5,7 +5,7 @@
         Studien&shy;planer
       </div>
       <div class="text-h5 text-center text-weight-medium text-uppercase q-mb-lg">
-        das Tool für dein Studium
+        {{ $t('homePage.subtitle_1') }}
       </div>
       <div :class="bg"></div>
       <div class="info q-pa-md">
@@ -16,11 +16,11 @@
               id="heading-info-h5"
             >
               <!--How we can support you-->
-              So unterstützen wir dich
+              {{ $t('homePage.heading_2') }}
             </div>
             <div class="text-h5 text-center" id="heading-info-h2">
               <!--Complete your studies with ease -->
-              Meistere dein Studium mit Leichtigkeit
+             {{ $t('homePage.subtitle_2') }}
             </div>
           </div>
         </div>
@@ -48,10 +48,7 @@
               </q-card-section>
               <q-card-section class="q-pt-none">
                 <div class="text-body1 text-start" id="text-mycard">
-                  Ein Studium voller Meilensteine mit deinem ÖH WU Studienplaner! Der Studienplaner
-                  stellt deine Kurse graphisch in Sequenzen dar, macht ECTS unkompliziert planbar
-                  und lässt dich Kursvoraussetzungen schnell und einfach überprüfen. Nie wieder
-                  Voraussetzungsfallen und nie wieder ECTS-Dilemma mit deinem Studienplaner!
+                  {{ $t('homePage.studienplaner_card') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -79,10 +76,7 @@
               </q-card-section>
               <q-card-section class="q-pt-none">
                 <div class="text-body1 text-start" id="text-mycard">
-                  Schreite zielstrebig und effizient voran mit dem ÖH WU LV-Planer! Stell dein
-                  perfektes Semester mit wenigen Klicks aus dem VVZ-Kursangebot zusammen und lade es
-                  dir gleich praktisch in deinen Kalender – Terminüberschneidungen waren gestern,
-                  Turbo im Studium heute mit deinem LV-Planer!
+                  {{ $t('homePage.lvplaner_card') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -110,11 +104,7 @@
               </q-card-section>
               <q-card-section class="q-pt-none">
                 <div class="text-body1 text-start" id="text-mycard">
-                  Ist die Vorlesung der Hit oder doch eher Bockmist? Teil es uns mit, mit dem ÖH WU
-                  ProfCheck! Hier kannst du direkt Lehrende und ihre Lehrveranstaltungen nach
-                  verschiedenen Kriterien bewerten und uns deine Meinung dazu hinterlassen. Damit
-                  unterstützt du uns und all deine Mitstudierenden in unserem Bestreben nach mehr
-                  Fairness, Transparenz und Qualität im Studium.
+                  {{ $t('homePage.profcheck_card') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -137,17 +127,13 @@
               <q-card-section>
                 <div class="col-md-12">
                   <div class="text-h3 text-center text-weight-medium text-uppercase q-mb-lg">
-                    Deine ÖH WU
+                    {{ $t('homePage.heading_3') }}
                   </div>
                 </div>
               </q-card-section>
               <q-card-section>
                 <div class="text-h5">
-                  Wir, die Österreichische Hochschülerschaft der Wirtschaftsuniversität Wien, sind
-                  deine gesetzlich verankerte Interessensvertretung auf unserer Universität. Wir
-                  setzen uns gegenüber allen Stakeholdern der WU – sei‘s Rektorat, Bib-Management
-                  oder Mensa – für deine Anliegen ein und kämpfen somit täglich für mehr Qualität &
-                  Fairness auf unserer WU, damit das Studium die schönste Zeit deines Lebens wird!
+                  {{ $t('homePage.subtitle_3') }}
                 </div>
               </q-card-section>
             </div>

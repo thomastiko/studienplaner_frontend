@@ -2,7 +2,7 @@
   <div>
     <div v-if="!loading">
       <div class="row q-ma-md">
-        <div class="text-h3 text-weight-medium q-mb-sm col-12">LVs hinzufügen</div>
+        <div class="text-h3 text-weight-medium q-mb-sm col-12"> {{ $t('lvPlaner.add_lvs') }} </div>
         <div class="col-12">
           <q-select
             filled
@@ -11,16 +11,8 @@
             clearable
             :options="filteredOptions"
             @filter="filterFn"
-            label="LVs suchen"
+            :label="$t('lvPlaner.search_lvs')"
           >
-            <template v-slot:no-option>
-              <q-item>
-                <q-item-section>
-                  <q-spinner size="20px" color="blue" />
-                  <span class="q-ml-sm">Loading...</span>
-                </q-item-section>
-              </q-item>
-            </template>
           </q-select>
         </div>
 
@@ -91,21 +83,19 @@
               <q-separator />
               <div class="row justify-between q-pa-sm">
                 <div class="text-blue-7">
-                  Modus <q-tooltip>{{ course.course_mode }}</q-tooltip>
+                  {{ $t('lvPlaner.mode') }} <q-tooltip>{{ course.mode }}</q-tooltip>
                 </div>
                 <div class="text-blue-7">
                   <a
                     :href="course.vvz_url"
                     target="_blank"
                     class="text-blue-7"
-                    style="text-decoration: none"
                   >
                     VVZ
                   </a>
-                  <q-tooltip>{{ course.comment }}</q-tooltip>
                 </div>
                 <div class="text-blue-7">
-                  Sprache <q-tooltip>{{ course.language }}</q-tooltip>
+                  {{ $t('lvPlaner.language') }} <q-tooltip>{{ course.language }}</q-tooltip>
                 </div>
               </div>
               <q-separator />
@@ -136,7 +126,7 @@
   <q-dialog v-model="showProfPreview">
     <q-card style="width: 700px; max-width: 80vw">
       <q-card-section class="row items-center q-pb-none">
-        <div class="text-h6">Vorschau</div>
+        <div class="text-h6"> {{ $t('lvPlaner.prof_preview') }} </div>
         <q-space />
         <q-btn icon="close" flat round dense v-close-popup />
       </q-card-section>
@@ -144,10 +134,10 @@
         <div class="text-h6 text-center">
           {{ profStore.profPreview.fname }} {{ profStore.profPreview.lname }}
         </div>
-        <q-btn label="Mehr Details" flat color="primary" @click="goToProf" />
+        <q-btn :label="$t('lvPlaner.prof_more_details')" flat color="primary" @click="goToProf" />
       </q-card-section>
       <q-card-section>
-        <div class="text-h6 text-center">Bewertungen</div>
+        <div class="text-h6 text-center">{{ $t('lvPlaner.prof_ratings') }}</div>
         <div
           class="row justify-center"
           v-if="
@@ -161,20 +151,20 @@
             profStore.profPreview.factors[0].gesamt !== null
           "
         >
-          <div class="col-3">Ratings: {{ profStore.profPreview.factors[0].ratings }}</div>
-          <div class="col-3">Kommentare: {{ profStore.profPreview.factors[0].comments }}</div>
-          <div class="col-3">Lerninhalte: {{ profStore.profPreview.factors[0].lerninhahlte }}</div>
-          <div class="col-3">Atmosphäre: {{ profStore.profPreview.factors[0].atmospahre }}</div>
-          <div class="col-3">Mitarbeit: {{ profStore.profPreview.factors[0].mitarbeit }}</div>
-          <div class="col-3">Benotung: {{ profStore.profPreview.factors[0].benotung }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_rating') }}: {{ profStore.profPreview.factors[0].ratings }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_comments') }}:  {{ profStore.profPreview.factors[0].comments }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_learning_content') }}:  {{ profStore.profPreview.factors[0].lerninhahlte }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_atmosphere') }}:  {{ profStore.profPreview.factors[0].atmospahre }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_participation') }}:  {{ profStore.profPreview.factors[0].mitarbeit }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_grading') }}:  {{ profStore.profPreview.factors[0].benotung }}</div>
           <div class="col-3">
-            Verfügbarkeit: {{ profStore.profPreview.factors[0].verfugbarkeit }}
+            {{ $t('lvPlaner.prof_availability') }}:  {{ profStore.profPreview.factors[0].verfugbarkeit }}
           </div>
-          <div class="col-3">Empfehlung: {{ profStore.profPreview.factors[0].empfhelung }}</div>
-          <div class="col-3">Gesamtbewertung: {{ profStore.profPreview.factors[0].gesamt }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_recommendation') }}:  {{ profStore.profPreview.factors[0].empfhelung }}</div>
+          <div class="col-3">{{ $t('lvPlaner.prof_overall') }}:  {{ profStore.profPreview.factors[0].gesamt }}</div>
         </div>
         <div class="row justify-center" v-else>
-          <div>Keine Bewertungen vorhanden.</div>
+          <div>{{ $t('lvPlaner.prof_no_ratings') }}: </div>
         </div>
       </q-card-section>
     </q-card>

@@ -1,25 +1,25 @@
 <template>
   <div>
     <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
-      Mein Studium
+      {{ $t('myStudy.heading_1') }}
     </div>
     <div class="text-h5 text-center text-weight-medium q-mb-lg">
-      Behalte dein Studium im Überblick
+      {{ $t('myStudy.subtitle_1') }}
     </div>
 
     <!-- Studium bearbeiten und hinzufügen/entfernen Button immer anzeigen -->
     <div class="col-12 row q-gutter-md q-pa-md">
       <q-btn
-        label="Studium bearbeiten"
+        :label="$t('myStudy.edit_study_button')"
         icon-right="edit"
         @click="toggleSelectionMode"
         class="q-mb-md"
       >
-        <q-tooltip>Studium hinzufügen oder entfernen</q-tooltip>
+        <q-tooltip> {{ $t('myStudy.edit_study_button_tooltip') }} </q-tooltip>
       </q-btn>
       <q-btn
         v-if="selectionMode"
-        label="Studium hinzufügen"
+        :label="$t('myStudy.add_study_button')"
         color="positive"
         icon="add"
         @click="this.$router.push({ name: 'studies', route: '/studies' })"
@@ -27,7 +27,7 @@
       />
       <q-btn
         v-if="selectionMode"
-        label="Studium Löschen"
+        :label="$t('myStudy.delete_study_button')"
         color="negative"
         :disable="selectedStudies.length === 0"
         icon="delete"
@@ -38,15 +38,14 @@
 
     <!-- Wenn keine Studiengänge vorhanden sind, zeige den "leeren Zustand" -->
     <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
-      <div class="text-h4 q-mb-md" style="color: grey">Ooooopsie, ziemlich leer hier...</div>
-      <div class="text-h5 q-mb-sm" style="color: grey">Füge jetzt dein Studium hinzu:</div>
+      <div class="text-h4 q-mb-md" style="color: grey"> {{ $t('myStudy.no_study_selected') }} </div>
       <q-btn
-        label="Studium hinzufügen"
+        :label="$t('myStudy.add_study_button')"
         color="primary"
         icon="add"
         @click="this.$router.push({ name: 'studies', route: '/studies' })"
       >
-        <q-tooltip>Jetzt ein Studium hinzufügen</q-tooltip>
+        <q-tooltip> {{ $t('myStudy.add_study_button_tooltip') }} </q-tooltip>
       </q-btn>
     </div>
 

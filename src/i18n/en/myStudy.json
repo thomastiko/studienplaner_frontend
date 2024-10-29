@@ -1,0 +1,10 @@
+{
+    "heading_1": "My Study",
+    "subtitle_1": "Keep an eye on your studies",
+    "edit_study_button": "Edit study",
+    "edit_study_button_tooltip": "Add or remove study",
+    "add_study_button": "Add study",
+    "add_study_button_tooltip": "Add a study now",
+    "delete_study_button": "Delete study",
+    "no_study_selected": "Ooooopsie, pretty empty here... Add your study now:"
+}
