@@ -27,7 +27,7 @@
         @row-click="onRowClick"
       >
         <template v-slot:top-right>
-          <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+          <q-input borderless dense debounce="300" v-model="filter" :placeholder="$t('profcheck.search_placeholder')">
             <template v-slot:append>
               <q-icon name="search" />
             </template>
@@ -40,47 +40,51 @@
 
 <script>
 import { useProfStore } from '@/stores/prof.store'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import router from "../router";
+import { useI18n } from 'vue-i18n';
 
 export default {
   setup() {
     const profStore = useProfStore()
+    const { t } = useI18n()
+    const columns = computed(() => [
+      {
+        name: 'name',
+        label: 'Name',
+        field: (row) => `${row.title ?? ''} ${row.fname} ${row.lname}`,
+        align: 'left',
+        sortable: true
+      },
+      {
+        name: 'institute',
+        label: 'Institute',
+        field: 'institute',
+        align: 'left',
+        sortable: true
+      },
+      {
+        name: 'ratingCount',
+        label: t('profcheck.rating_count'),
+        field: (row) => row.factors[0]?.ratings || '-',
+        align: 'center',
+        sortable: true
+      },
+      {
+        name: 'ratingSummary',
+        label: t('profcheck.rating_summary'),	
+        field: (row) => (row.factors[0]?.gesamt ? row.factors[0].gesamt.toFixed(2) : '-'),
+        align: 'center',
+        sortable: true
+      }
+    ])
     return {
       profStore: ref(profStore),
       rows: ref([]),
       filter: ref(''),
       loading: ref(true), // Spinner-Status hinzufügen
-      columns: [
-        {
-          name: 'name',
-          label: 'Name',
-          field: (row) => `${row.title ?? ''} ${row.fname} ${row.lname}`,
-          align: 'left',
-          sortable: true
-        },
-        {
-          name: 'institute',
-          label: 'Institute',
-          field: 'institute',
-          align: 'left',
-          sortable: true
-        },
-        {
-          name: 'ratingCount',
-          label: `${ this.$t('profcheck.rating_count') }`,
-          field: (row) => row.factors[0]?.ratings || '-',
-          align: 'center',
-          sortable: true
-        },
-        {
-          name: 'ratingSummary',
-          label: `${ this.$t('profcheck.rating_summary') }`,	
-          field: (row) => (row.factors[0]?.gesamt ? row.factors[0].gesamt.toFixed(2) : '-'),
-          align: 'center',
-          sortable: true
-        }
-      ]
+      columns
+      
     }
   },
   methods: {

@@ -27,6 +27,7 @@ const defaultBrowserLocale = navigator.language || navigator.userLanguage;
 async function setupI18n() {
   const messages = await loadLocaleMessages();
   return createI18n({
+    legacy: false,
     locale: defaultBrowserLocale.split('-')[0],
     fallbackLocale: 'de',
     messages: messages,

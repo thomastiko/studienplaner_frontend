@@ -83,7 +83,7 @@
               </div>
             </q-card-section>
           </q-card>
-          <div class="col-12 text-h4"> {{ $t('lvPlaner.comments') }}:</div>
+          <div class="col-12 text-h4"> {{ $t('lvPlaner.prof_comments') }}:</div>
           <div class="col-12" v-if="profStore.selectedProf.comments.length > 0">
             <q-list bordered separator>
               <q-item v-for="(comment, i) in profStore.selectedProf.comments" :key="i">
@@ -117,11 +117,11 @@
             </q-list>
           </div>
           <div class="col-12" v-else>
-            <div class="text-center text-h5"> {{ $t('lvPlaner.no_comments') }} </div>
+            <div class="text-center text-h5"> {{ $t('profcheck.no_comments') }} </div>
           </div>
         </div>
         <div class="col-12" v-else>
-          <div class="text-center text-h5"> {{ $t('lvPlaner.no_ratings') }} </div>
+          <div class="text-center text-h5"> {{ $t('profcheck.no_ratings') }} </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,11 @@
     <q-layout view="lHh lpr lFf" container style="min-height: 100px">
       <q-header class="bg-blue-4">
         <q-toolbar>
-          <div style="min-width: 60px;" class="cursor-pointer" @click="this.$router.push({ name: 'home', path: '/' })">
+          <div
+            style="min-width: 60px"
+            class="cursor-pointer"
+            @click="this.$router.push({ name: 'home', path: '/' })"
+          >
             <img src="../assets/logo-white.svg" />
           </div>
 
@@ -15,6 +19,21 @@
           </q-toolbar-title>
 
           <!-- Überprüfe, ob der Benutzer eingeloggt ist -->
+          <q-btn-dropdown :label="this.$i18n.locale == 'de' ? 'Deutsch' : 'English'" flat>
+            <q-list>
+              <q-item clickable v-close-popup @click="changeLocale('en')">
+                <q-item-section>
+                  <q-item-label>English</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup @click="changeLocale('de')">
+                <q-item-section>
+                  <q-item-label>Deutsch</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
           <q-btn-dropdown
             v-if="userStore.loggedIn"
             flat
@@ -42,7 +61,7 @@
 
         <q-tabs>
           <q-tab
-            label="MY STUDY"
+            :label="$t('myStudy.heading_1')"
             @click="this.$router.push({ name: 'my-study', path: '/my-study' })"
           />
           <q-tab
@@ -84,6 +103,12 @@ export default {
       userStore, // Verfügbarmachen des Stores in der Komponente
       logout
     }
+  },
+  methods: {
+    changeLocale(locale) {
+      this.$i18n.locale = locale;
+      sessionStorage.setItem('selectedLocale', locale);
+    },
   }
 }
 </script>

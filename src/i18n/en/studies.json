@@ -3,5 +3,8 @@
     "your_selection": "Your selection",
     "study_program": "Course of study",
     "study_branch": "Branch",
-    "back": "Back"
+    "back": "Back",
+    "select_study_program": "Select study",
+    "select_study_branch": "Select branch",
+    "finish": "Finish"
 }

@@ -12,7 +12,7 @@
         <q-step
           class="step"
           :name="1"
-          title="Studiengang auswählen"
+          :title="$t('studies.select_study_program')"
           active-icon="fa-solid fa-1"
           icon="fa-solid fa-1"
           :done="step > 1"
@@ -59,7 +59,7 @@
         <q-step
           class="step"
           :name="2"
-          title="Studienzweig auswählen"
+          :title="$t('studies.select_study_branch')"
           active-icon="fa-solid fa-2"
           icon="fa-solid fa-2"
           :done="step > 2"
@@ -108,7 +108,7 @@
         <q-step
           class="step"
           :name="3"
-          title="Fertig"
+          :title="$t('studies.finish')"
           active-icon="fa-solid fa-3"
           icon="fa-solid fa-3"
         >

@@ -3,5 +3,8 @@
     "your_selection": "Deine Auswahl",
     "study_program": "Studiengang",
     "study_branch": "Zweig",
-    "back": "Zurück"
+    "back": "Zurück",
+    "select_study_program": "Studiengang auswählen",
+    "select_study_branch": "Zweig auswählen",
+    "finish": "Fertig"
 }
