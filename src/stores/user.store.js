@@ -337,7 +337,6 @@ export const useUserStore = defineStore('user', {
     async updateBulkSubjectStatus(studyId, subjects) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
-
         const response = await axios.patch(
           `${url}/studies/${studyId}/subjects/bulk`,
           { studyId, subjects },
@@ -483,6 +482,7 @@ export const useUserStore = defineStore('user', {
             headers: { Authorization: `Bearer ${token}` }
           }
         )
+        console.log(freeElective)
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.free_electives = response.data.free_electives
       } catch (error) {
@@ -501,6 +501,19 @@ export const useUserStore = defineStore('user', {
         study.free_electives = response.data.free_electives
       } catch (error) {
         console.error('Fehler beim Löschen des Wahlfachs:', error)
+        throw error
+      }
+    },
+    async deleteEveryFreeElectiveFromStudy(studyId) {
+      try {
+        const token = this.getToken()
+        const response = await axios.delete(`${url}/studies/${studyId}/free-electives/all`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.free_electives = response.data.free_electives
+      } catch (error) {
+        console.error('Fehler beim Löschen aller Wahlfächer:', error)
         throw error
       }
     },

@@ -9,7 +9,7 @@
       </div>
       <div class="q-pa-sm row" v-for="(sbwl, i) in getSbwlLength()" :key="i">
         <div class="col-12 row">
-          <q-btn-dropdown color="blue-7" label="SBWLs hinzufügen" dropdown-icon="add_circle" :disable="!sbwlsAvailable">
+          <q-btn-dropdown color="blue-7" label="SBWLs hinzufügen" dropdown-icon="add_circle">
             <q-item
               clickable
               v-close-popup
@@ -58,10 +58,6 @@ export default {
       type: Object,
       required: true
     },
-    sbwlsAvailable: {
-      type: Boolean,
-      required: true
-    }
   },
   setup() {
     const userStore = useUserStore()

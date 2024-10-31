@@ -119,7 +119,7 @@ export default {
     freeElectivesAvailable: {
       type: Boolean,
       required: true
-    }
+    },
   },
   setup() {
     const userStore = useUserStore()

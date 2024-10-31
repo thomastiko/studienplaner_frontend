@@ -18,19 +18,28 @@
             v-for="subject in subjects"
             :key="subject._id"
           >
-            <Subject :subject="subject" @status-change="updateStatus" @handle-drag-start="handleDragStart($event, subject)" @drag="handleDrag" @dragend="handleDragEnd" />
+            <Subject
+              :subject="subject"
+              @status-change="updateStatus"
+              @handle-drag-start="handleDragStart($event, subject)"
+              @drag="handleDrag"
+              @dragend="handleDragEnd"
+            />
           </div>
         </div>
       </div>
 
       <!-- SBWLs -->
       <div>
-        <SbwlCarousel :selectedStudy="selectedStudy" :sbwlsAvailable="sbwlsAvailable" />
+        <SbwlCarousel :selectedStudy="selectedStudy" />
       </div>
 
       <!-- Freie Wahlfächer -->
       <div v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
-        <FreeElectiveCarousel :selectedStudy="selectedStudy" :freeElectivesAvailable="freeElectivesAvailable" />
+        <FreeElectiveCarousel
+          :selectedStudy="selectedStudy"
+          :freeElectivesAvailable="freeElectivesAvailable"
+        />
       </div>
 
       <!-- Cart -->
@@ -78,8 +87,8 @@ export default {
       lvStore,
       checker,
       seamless: ref(false),
-      sbwlsAvailable: ref(false),
       freeElectivesAvailable: ref(false),
+      freeElectivesDone: ref(false)
     }
   },
   data() {
@@ -91,69 +100,77 @@ export default {
     async updateStatus(subjectId, status, grade) {
       await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
       let update_array = await this.checker.executeAll(this.selectedStudy)
-      this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
+      await this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
+
+      if (!this.freeElectivesAvailable && this.selectedStudy.free_electives.length > 0) {
+        await this.userStore.deleteEveryFreeElectiveFromStudy(this.studyId)
+      }
+      /*if (this.freeElectivesDone && this.selectedStudy.free_electives.length > 0) {
+        console.log('Free Electives Done')
+        const freeElectives = this.selectedStudy.find((subject) => subject.subject_type === 'ANY')
+        await this.userStore.updateSubjectStatus(this.studyId, freeElectives._id, 'done', null)
+      }*/
     },
     updateSeamless(value) {
-      this.seamless = value;
+      this.seamless = value
     },
     handleDragStart(evt, subject) {
-      this.seamless = true;
+      this.seamless = true
 
       // DataTransfer object setup
-      evt.dataTransfer.dropEffect = "move";
-      evt.dataTransfer.effectAllowed = "move";
-      evt.dataTransfer.setData("SubjectName", subject.name);
-      evt.dataTransfer.setData("SubjectEcts", subject.ects);
+      evt.dataTransfer.dropEffect = 'move'
+      evt.dataTransfer.effectAllowed = 'move'
+      evt.dataTransfer.setData('SubjectName', subject.name)
+      evt.dataTransfer.setData('SubjectEcts', subject.ects)
 
       // Creating a custom drag image
-      const dragImage = document.createElement("div");
-      dragImage.style.width = "150px";
-      dragImage.style.height = "100px";
-      dragImage.style.border = "1px solid #ccc";
-      dragImage.style.borderRadius = "6px";
-      dragImage.style.backgroundColor = "white";
-      dragImage.style.display = "flex";
-      dragImage.style.alignItems = "center";
-      dragImage.style.justifyContent = "center";
-      dragImage.style.boxShadow = "0 1px 5px rgba(0, 0, 0, 0.2)";
-      dragImage.innerHTML = `<strong>${subject.name}</strong>`;
-      
-      document.body.appendChild(dragImage);
+      const dragImage = document.createElement('div')
+      dragImage.style.width = '150px'
+      dragImage.style.height = '100px'
+      dragImage.style.border = '1px solid #ccc'
+      dragImage.style.borderRadius = '6px'
+      dragImage.style.backgroundColor = 'white'
+      dragImage.style.display = 'flex'
+      dragImage.style.alignItems = 'center'
+      dragImage.style.justifyContent = 'center'
+      dragImage.style.boxShadow = '0 1px 5px rgba(0, 0, 0, 0.2)'
+      dragImage.innerHTML = `<strong>${subject.name}</strong>`
+
+      document.body.appendChild(dragImage)
 
       // Set custom drag image
-      evt.dataTransfer.setDragImage(dragImage, 75, 50);
+      evt.dataTransfer.setDragImage(dragImage, 75, 50)
 
       // Remove drag image after drag ends
       evt.target.addEventListener('dragend', () => {
-        dragImage.remove();
-      });
+        dragImage.remove()
+      })
     },
     handleDrag(evt) {
-      evt.preventDefault();
+      evt.preventDefault()
     },
     handleDragEnd() {
       if (this.lvStore.cart.length === 0) {
-        this.seamless = false;
-      }
-      else {
-        return;
+        this.seamless = false
+      } else {
+        return
       }
     },
     handleDrop(evt) {
-      let name = evt.dataTransfer.getData("SubjectName");
-      let ects = evt.dataTransfer.getData("SubjectEcts");
-      this.lvStore.addToCart(name, ects);
-    },
+      let name = evt.dataTransfer.getData('SubjectName')
+      let ects = evt.dataTransfer.getData('SubjectEcts')
+      this.lvStore.addToCart(name, ects)
+    }
   },
   computed: {
     selectedStudy() {
       return this.userStore.user.studies.find((study) => study.study_id === this.studyId)
     },
     sbwlSubjects() {
-      return this.selectedStudy.subject_states.filter(subject => subject.subject_type === 'SBWL');
+      return this.selectedStudy.subject_states.filter((subject) => subject.subject_type === 'SBWL')
     },
     freeElectives() {
-      return this.selectedStudy.subject_states.filter(subject => subject.subject_type === 'ANY');
+      return this.selectedStudy.subject_states.filter((subject) => subject.subject_type === 'ANY')
     },
     groupedSubjects() {
       if (!this.selectedStudy || !this.selectedStudy.subject_states) {
@@ -172,37 +189,51 @@ export default {
     }
   },
   watch: {
-    sbwlSubjects: {
-    handler(newVal, oldVal) {
-      console.log("newVal", newVal);
-
-      if (Array.isArray(newVal)) {
-        // Wenn newVal ein Array ist, überprüfen wir jedes Objekt im Array
-        this.sbwlsAvailable = newVal.some(subject => subject.status === 'can-do');
-      } else {
-        // Setze sbwlsAvailable auf false, falls keine der Bedingungen erfüllt ist
-        this.sbwlsAvailable = false;
-      }
-      console.log("sbwlsAvailable", this.sbwlsAvailable);
-    },
-    deep: true,
-  },
     freeElectives: {
       handler(newVal, oldVal) {
-        console.log("newVal", newVal)
-        this.freeElectivesAvailable = newVal.some(subject => subject.status === 'can-do');
-        console.log("freeElectivesAvailable", this.freeElectivesAvailable)
+        this.freeElectivesAvailable = newVal.some((subject) => subject.status === 'can-do')
       },
-      deep: true // 'deep' sorgt dafür, dass auch Änderungen an verschachtelten Objekten beobachtet werden
+      deep: true,
+      immediate: true
+    },
+    'selectedStudy.free_electives': {
+      handler(newVal, oldVal) {
+        const ectsSumStudy = this.freeElectives.reduce(
+          (sum, elective) => sum + (elective.ects || 0),
+          0
+        )
+        const ectsSumUser = newVal.reduce((sum, elective) => sum + (elective.ects || 0), 0)
+        if (ectsSumUser >= ectsSumStudy) {
+          this.freeElectivesDone = true
+        } else {
+          this.freeElectivesDone = false
+        }
+        console.log(this.freeElectivesDone)
+      },
+      deep: true,
+      immediate: true
+    },
+    freeElectivesDone: {
+      async handler() {
+        const freeElectives = this.selectedStudy.subject_states.find(
+          (subject) => subject.subject_type === 'ANY'
+        )
+        if (this.freeElectivesDone) {
+          console.log('Free Electives Done')
+          this.userStore.updateSubjectStatus(this.studyId, freeElectives._id, 'done', null)
+        } else {
+          console.log('Free Electives Not Done')
+          this.userStore.updateSubjectStatus(this.studyId, freeElectives._id, 'can-do', null)
+          
+        }
+      },
+      immediate: true
     }
-
-  },  
+  },
   mounted() {
     console.log(this.userStore.user)
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

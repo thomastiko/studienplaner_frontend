@@ -22,7 +22,7 @@
       </q-chip>
     </q-card-actions>
 
-    <q-card-actions>
+    <q-card-actions v-if="subject.subject_type !== 'ANY' && subject.subject_type !== 'SBWL'">
       <q-btn-dropdown flat label="Status" class="full-width">
         <q-list>
           <q-item clickable v-close-popup @click="setStatus('can-do')">
