@@ -52,7 +52,7 @@
     <!-- Wenn Studiengänge vorhanden sind, zeige die Liste der Studiengänge -->
     <div v-else class="row justify-center q-gutter-md">
       <div
-        class="col q-pa-md q-mb-md q-card"
+        class="col-6 q-pa-md q-mb-md q-card"
         v-for="(study, i) in this.userStore.user.studies"
         :key="i"
         style="

@@ -21,7 +21,7 @@
             />
           </div>
           <div>
-            <q-btn round stack icon="add" color="blue-7" @click="freeElectiveDialog = true" />
+            <q-btn round stack icon="add" color="blue-7" @click="freeElectiveDialog = true" :disable="!freeElectivesAvailable" />
           </div>
         </div>
       </div>
@@ -114,6 +114,10 @@ export default {
   props: {
     selectedStudy: {
       type: Object,
+      required: true
+    },
+    freeElectivesAvailable: {
+      type: Boolean,
       required: true
     }
   },

@@ -25,12 +25,12 @@
 
       <!-- SBWLs -->
       <div>
-        <SbwlCarousel :selectedStudy="selectedStudy" />
+        <SbwlCarousel :selectedStudy="selectedStudy" :sbwlsAvailable="sbwlsAvailable" />
       </div>
 
       <!-- Freie Wahlfächer -->
       <div v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
-        <FreeElectiveCarousel :selectedStudy="selectedStudy" />
+        <FreeElectiveCarousel :selectedStudy="selectedStudy" :freeElectivesAvailable="freeElectivesAvailable" />
       </div>
 
       <!-- Cart -->
@@ -78,6 +78,8 @@ export default {
       lvStore,
       checker,
       seamless: ref(false),
+      sbwlsAvailable: ref(false),
+      freeElectivesAvailable: ref(false),
     }
   },
   data() {
@@ -150,6 +152,9 @@ export default {
     sbwlSubjects() {
       return this.selectedStudy.subject_states.filter(subject => subject.subject_type === 'SBWL');
     },
+    freeElectives() {
+      return this.selectedStudy.subject_states.filter(subject => subject.subject_type === 'ANY');
+    },
     groupedSubjects() {
       if (!this.selectedStudy || !this.selectedStudy.subject_states) {
         return {}
@@ -168,10 +173,25 @@ export default {
   },
   watch: {
     sbwlSubjects: {
+    handler(newVal, oldVal) {
+      console.log("newVal", newVal);
+
+      if (Array.isArray(newVal)) {
+        // Wenn newVal ein Array ist, überprüfen wir jedes Objekt im Array
+        this.sbwlsAvailable = newVal.some(subject => subject.status === 'can-do');
+      } else {
+        // Setze sbwlsAvailable auf false, falls keine der Bedingungen erfüllt ist
+        this.sbwlsAvailable = false;
+      }
+      console.log("sbwlsAvailable", this.sbwlsAvailable);
+    },
+    deep: true,
+  },
+    freeElectives: {
       handler(newVal, oldVal) {
-        // Hier kannst du die Logik einfügen, die ausgeführt werden soll, wenn sich der Status eines SBWL-Subjects ändert
-        // newVal gibt einzelnd die Objekte zurück 
-        // this.userStore.deleteSbwl()
+        console.log("newVal", newVal)
+        this.freeElectivesAvailable = newVal.some(subject => subject.status === 'can-do');
+        console.log("freeElectivesAvailable", this.freeElectivesAvailable)
       },
       deep: true // 'deep' sorgt dafür, dass auch Änderungen an verschachtelten Objekten beobachtet werden
     }

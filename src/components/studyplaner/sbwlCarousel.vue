@@ -9,7 +9,7 @@
       </div>
       <div class="q-pa-sm row" v-for="(sbwl, i) in getSbwlLength()" :key="i">
         <div class="col-12 row">
-          <q-btn-dropdown color="blue-7" label="SBWLs hinzufügen" dropdown-icon="add_circle">
+          <q-btn-dropdown color="blue-7" label="SBWLs hinzufügen" dropdown-icon="add_circle" :disable="!sbwlsAvailable">
             <q-item
               clickable
               v-close-popup
@@ -57,6 +57,10 @@ export default {
     selectedStudy: {
       type: Object,
       required: true
+    },
+    sbwlsAvailable: {
+      type: Boolean,
+      required: true
     }
   },
   setup() {
@@ -83,7 +87,8 @@ export default {
         this.userStore.deleteSbwlFromStudy(this.selectedStudy.study_id, sbwl)
     }
   },
-  mounted() {}
+  mounted() {
+  }
 }
 </script>
 
