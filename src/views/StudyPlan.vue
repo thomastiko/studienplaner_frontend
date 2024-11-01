@@ -87,8 +87,7 @@ export default {
       lvStore,
       checker,
       seamless: ref(false),
-      freeElectivesAvailable: ref(false),
-      freeElectivesDone: ref(false)
+      freeElectivesAvailable: ref(false)
     }
   },
   data() {
@@ -191,42 +190,42 @@ export default {
   watch: {
     freeElectives: {
       handler(newVal, oldVal) {
-        this.freeElectivesAvailable = newVal.some((subject) => subject.status === 'can-do')
+        this.freeElectivesAvailable = newVal.some((subject) => subject.status === 'can-do' || subject.status === 'done')
       },
       deep: true,
       immediate: true
     },
     'selectedStudy.free_electives': {
-      handler(newVal, oldVal) {
-        const ectsSumStudy = this.freeElectives.reduce(
-          (sum, elective) => sum + (elective.ects || 0),
-          0
+      async handler(newVal, oldVal) {
+        const wahlfach = this.selectedStudy.subject_states.find(
+          (obj) => obj.subject_type === 'ANY'
         )
-        const ectsSumUser = newVal.reduce((sum, elective) => sum + (elective.ects || 0), 0)
-        if (ectsSumUser >= ectsSumStudy) {
-          this.freeElectivesDone = true
+        const ectsFreeElectiveUser = newVal.reduce((sum, subject) => sum + (subject.ects || 0), 0)
+        const ectsFreeElectiveStudy = wahlfach.ects
+        const steop1 = this.selectedStudy.subject_states.find((i) => i._id == '1')
+        const steop2 = this.selectedStudy.subject_states.find((i) => i._id == '2')
+        const steop3 = this.selectedStudy.subject_states.find((i) => i._id == '3')
+        const prerequisitesMet = [steop1, steop2, steop3].some((item) => item.status === 'done')
+        if (prerequisitesMet) {
+          if (ectsFreeElectiveUser >= ectsFreeElectiveStudy) {
+            // Setze auf "done", wenn die ECTS-Anforderung erfüllt ist
+            wahlfach.status = 'done'
+          } else {
+            // Setze auf "can-do", wenn die Voraussetzungen erfüllt sind, aber die ECTS noch nicht erreicht sind
+            wahlfach.status = 'can-do'
+          }
         } else {
-          this.freeElectivesDone = false
+          // Setze auf "unavailable", wenn die Voraussetzungen nicht erfüllt sind
+          wahlfach.status = 'unavailable'
         }
-        console.log(this.freeElectivesDone)
+        this.userStore.updateSubjectStatus(
+          this.selectedStudy.study_id,
+          wahlfach._id,
+          wahlfach.status,
+          null
+        )
       },
       deep: true,
-      immediate: true
-    },
-    freeElectivesDone: {
-      async handler() {
-        const freeElectives = this.selectedStudy.subject_states.find(
-          (subject) => subject.subject_type === 'ANY'
-        )
-        if (this.freeElectivesDone) {
-          console.log('Free Electives Done')
-          this.userStore.updateSubjectStatus(this.studyId, freeElectives._id, 'done', null)
-        } else {
-          console.log('Free Electives Not Done')
-          this.userStore.updateSubjectStatus(this.studyId, freeElectives._id, 'can-do', null)
-          
-        }
-      },
       immediate: true
     }
   },

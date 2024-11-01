@@ -41,28 +41,22 @@ async function checkWahlfach(study) {
   const steop3 = study.subject_states.find((i) => i._id == "3");
   const wahlfach = study.subject_states.find((i) => i._id == "27");
 
-  if (
-    [steop1, steop2, steop3].some((item) => item.status == "done") &&
-    wahlfach.status == "unavailable"
-  ) {
-    wahlfach.status = "can-do";
-    update_array.push({
-      study_id: study.study_id,
-      _id: wahlfach._id,
-      status: wahlfach.status,
-      grade: null,
-    });
-  } else if (
-    [steop1, steop2, steop3].every((item) => item.status == "can-do")
-  ) {
-    wahlfach.status = "unavailable";
-    update_array.push({
-      study_id: study.study_id,
-      _id: wahlfach._id,
-      status: wahlfach.status,
-      grade: null,
-    });
+  // Überprüfe, ob mindestens einer der STEOP-Kurse abgeschlossen ist
+  if ([steop1, steop2, steop3].some((item) => item.status === "done")) {
+    if (wahlfach.status !== "done") {
+      wahlfach.status = "can-do"; // Setze auf "can-do", wenn die Voraussetzungen erfüllt sind
+    }
+  } else {
+    wahlfach.status = "unavailable"; // Setze auf "unavailable", wenn die Voraussetzungen nicht erfüllt sind
   }
+
+  update_array.push({
+    study_id: study.study_id,
+    _id: wahlfach._id,
+    status: wahlfach.status,
+    grade: null,
+  });
+
   return update_array;
 }
 async function checkHauptstudium(study, totalDoneECTSValue) {
