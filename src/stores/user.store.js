@@ -400,6 +400,23 @@ export const useUserStore = defineStore('user', {
         throw error
       }
     },
+    async addCoursesAbroadToStudy(studyId, coursesAbroad) {
+      try {
+        const token = this.getToken()
+        const response = await axios.post(
+          `${url}/studies/${studyId}/courses-abroad`,
+          { studyId, coursesAbroad },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.sbwl_states = response.data.sbwl_states
+      } catch (error) {
+        console.error('Fehler beim Hinzufügen der Auslandssemester:', error)
+        throw error
+      }
+    },
     async deleteSbwlFromStudy(studyId, sbwl) {
       try {
         const token = this.getToken()
