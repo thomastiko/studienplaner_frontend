@@ -9,7 +9,7 @@
       </div>
       <div class="q-pa-sm row" v-for="(sbwl, i) in getSbwlLength()" :key="i">
         <div class="col-12 row">
-          <q-btn-dropdown color="blue-7" label="SBWLs hinzufügen" dropdown-icon="add_circle">
+          <q-btn-dropdown color="blue-7" :label="`${i +1} SBWL hinzufügen`" dropdown-icon="add_circle" :disable="i < this.selectedStudy.sbwl_states.length">
             <q-item
               clickable
               v-close-popup

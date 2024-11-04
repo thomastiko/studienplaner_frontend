@@ -16,13 +16,13 @@
         {{ subject.ects }}
         ECTS
       </q-chip>
-      <q-chip outline square>
+      <q-chip outline square v-if="subject.category !== 'Free Electives and Internship' && subject.category !== 'Specializations' && subject.category !== 'Freies Wahlfach' && subject.category !== 'Spezielle Betriebswirtschaftslehre'">
         {{ subject.grade }}
         GRADE
       </q-chip>
     </q-card-actions>
 
-    <q-card-actions v-if="subject.subject_type !== 'ANY' && subject.subject_type !== 'SBWL'">
+    <q-card-actions v-if="subject.category !== 'Free Electives and Internship' && subject.category !== 'Specializations' && subject.category !== 'Freies Wahlfach' && subject.category !== 'Spezielle Betriebswirtschaftslehre'">
       <q-btn-dropdown flat label="Status" class="full-width">
         <q-list>
           <q-item clickable v-close-popup @click="setStatus('can-do')">
