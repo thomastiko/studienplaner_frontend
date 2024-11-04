@@ -131,21 +131,36 @@ export const useUserStore = defineStore('user', {
     // Berechnet den gewichteten Notendurchschnitt (GPA)
     gpa: (state) => (studyId) => {
       if (!state.user.studies || !state.user.studies.length) return '-';
-
+    
       const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
-      if (!selectedStudy || !selectedStudy.subject_states) return '-';
-
-      // Finde die Fächer, die eine Note haben (d.h. `grade` ist nicht null)
+      if (!selectedStudy) return '-';
+    
+      // Finde die Fächer in subject_states, die eine Note haben
       const gradedSubjects = selectedStudy.subject_states.filter(
         subject => subject.status === 'done' && subject.grade != null
       );
-
+    
+      // Finde die Fächer in sbwl_states.subjects, die eine Note haben
+      const gradedSbwlSubjects = selectedStudy.sbwl_states
+        .flatMap(sbwl => sbwl.subjects) // Greift auf alle subjects in jedem sbwl zu
+        .filter(subject => subject.status === 'done' && subject.grade != null);
+    
+      // Finde die Fächer in free_electives, die eine Note haben
+      const gradedFreeElectives = selectedStudy.free_electives.filter(
+        elective => elective.ects > 0 && elective.grade != null // Da alle auf done sind, nur auf ECTS und grade prüfen
+      );
+    
+      // Kombiniere alle bewerteten Fächer
+      const allGradedSubjects = [...gradedSubjects, ...gradedSbwlSubjects, ...gradedFreeElectives];
+    
       // Berechne den gewichteten GPA basierend auf den ECTS
-      const totalWeightedGrade = gradedSubjects.reduce((acc, subject) => acc + (subject.grade * subject.ects), 0);
-      const totalEcts = gradedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
-
+      const totalWeightedGrade = allGradedSubjects.reduce(
+        (acc, subject) => acc + (subject.grade * subject.ects), 0
+      );
+      const totalEcts = allGradedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+    
       return totalEcts ? (totalWeightedGrade / totalEcts).toFixed(2) : '-';
-    }
+    },
   },
   
   
@@ -414,6 +429,21 @@ export const useUserStore = defineStore('user', {
         study.sbwl_states = response.data.sbwl_states
       } catch (error) {
         console.error('Fehler beim Hinzufügen der Auslandssemester:', error)
+        throw error
+      }
+    },
+    async deleteSubjectsFromCourseAbroad(studyId, coursesAbroad) {
+      try {
+        const token = this.getToken()
+        const response = await axios.delete(`${url}/studies/${studyId}/courses-abroad`, {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { studyId, coursesAbroad }
+        })
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.sbwl_states = response.data.sbwl_states
+        console.log(response.data.sbwl_states)
+      } catch (error) {
+        console.error('Fehler beim Löschen der Auslandssemester:', error)
         throw error
       }
     },

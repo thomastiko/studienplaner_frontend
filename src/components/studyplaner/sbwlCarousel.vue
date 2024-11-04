@@ -7,9 +7,15 @@
           <div>{{ getSbwlLength().length }} SBWLs</div>
         </div>
       </div>
+
       <div class="q-pa-sm row" v-for="(sbwl, i) in getSbwlLength()" :key="i">
         <div class="col-12 row">
-          <q-btn-dropdown color="blue-7" :label="`${i +1} SBWL hinzufügen`" dropdown-icon="add_circle" :disable="i < this.selectedStudy.sbwl_states.length">
+          <q-btn-dropdown
+            color="blue-7"
+            :label="`${i + 1} SBWL hinzufügen`"
+            dropdown-icon="add_circle"
+            :disable="i < this.selectedStudy.sbwl_states.length"
+          >
             <q-item
               clickable
               v-close-popup
@@ -20,13 +26,14 @@
               <q-item-section>
                 <q-item-label
                   >{{ sbwl.name }}
-                  <span v-if="sbwl.ects"> - {{ sbwl.ects }} Ects </span>
-                </q-item-label>
+                  <span v-if="sbwl.ects"> - {{ sbwl.ects }} Ects</span></q-item-label
+                >
               </q-item-section>
             </q-item>
           </q-btn-dropdown>
         </div>
       </div>
+
       <div class="col-12 row q-ma-md">
         <div v-for="(sbwl, i) in selectedStudy.sbwl_states" :key="i" class="col-12 q-pb-md">
           <!-- SBWLS -->
@@ -63,12 +70,25 @@
                   :key="subject.subject_id"
                 >
                   <Subject :subject="subject" />
+                  <!-- Checkbox wird nur im Auswahlmodus angezeigt -->
+                  <q-checkbox
+                    v-if="selectionMode"
+                    v-model="selectedSubjectsToDelete"
+                    :val="subject"
+                    label="Wählen"
+                  />
                 </div>
-                <q-btn round icon="add" color="blue-7" @click="this.courses_abroad_dialog = true" />
+
+                <!-- FAB für Hinzufügen oder Löschen -->
+
+                <q-fab color="blue-4" icon="add" direction="right">
+                  <q-fab-action color="positive" @click="openAddDialog" icon="add" label="Hinzufügen" />
+                  <q-fab-action color="negative" @click="enterSelectionMode" icon="delete" label="Löschen" />
+                </q-fab>
               </div>
             </div>
 
-            <!-- Dialog Courses Abroad -->
+            <!-- Dialog Courses Abroad hinzufügen -->
             <q-dialog v-model="courses_abroad_dialog">
               <q-card style="width: 700px; max-width: 80vw">
                 <q-card-section>
@@ -76,7 +96,6 @@
                 </q-card-section>
 
                 <q-card-section class="row justify-start q-col-gutter-xl q-pt-none">
-                  <!-- Name -->
                   <div class="col-6">
                     <q-input
                       filled
@@ -86,30 +105,11 @@
                       hint="Name der Lehrveranstaltung"
                     />
                   </div>
-                  <!-- ECTS -->
                   <div class="col-6">
                     <q-input filled v-model="ects" type="number" label="ECTS" hint="ECTS-Punkte" />
                   </div>
                 </q-card-section>
                 <q-card-section class="row justify-start q-gutter-md">
-                  <!-- TYPE -->
-                  <q-btn-dropdown outline :label="'Typ: ' + selectedType">
-                    <q-list>
-                      <q-item
-                        v-model="selectedType"
-                        v-for="subject_type in subject_types"
-                        :key="subject_type"
-                        clickable
-                        v-close-popup
-                        @click="selectedType = subject_type"
-                      >
-                        <q-item-section>
-                          <q-item-label>{{ subject_type }}</q-item-label>
-                        </q-item-section>
-                      </q-item>
-                    </q-list>
-                  </q-btn-dropdown>
-                  <!-- GRADE -->
                   <q-btn-dropdown
                     outline
                     :label="'Note: ' + (selectedGrade !== undefined ? selectedGrade : '')"
@@ -124,9 +124,7 @@
                         @click="selectedGrade = grade"
                       >
                         <q-item-section>
-                          <q-item-label>
-                            {{ grade }}
-                          </q-item-label>
+                          <q-item-label>{{ grade }}</q-item-label>
                         </q-item-section>
                       </q-item>
                     </q-list>
@@ -134,17 +132,42 @@
                 </q-card-section>
 
                 <q-card-actions align="right">
-                  <q-btn flat color="negative" label="Abbrechen" v-close-popup />
+                  <q-btn
+                    flat
+                    color="negative"
+                    label="Abbrechen"
+                    @click="() => console.log(this.name, this.ects, this.selectedGrade)"
+                    v-close-popup
+                  />
                   <q-btn
                     flat
                     color="positive"
                     label="Hinzufügen"
+                    :disable="isFormIncomplete"
                     @click="selectCoursesAbroad"
                     v-close-popup
                   />
                 </q-card-actions>
               </q-card>
             </q-dialog>
+
+            <!-- Buttons zum Löschen und Abbrechen im Auswahlmodus -->
+            <div v-if="selectionMode" class="q-mt-md">
+              <q-btn
+                flat
+                color="negative"
+                label="Löschen"
+                :disable="selectedSubjectsToDelete.length === 0"
+                @click="deleteSelectedCourseAbroad"
+              />
+              <q-btn
+                flat
+                color="primary"
+                label="Abbrechen"
+                @click="exitSelectionMode"
+                class="q-ml-md"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -153,13 +176,12 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useUserStore } from '@/stores/user.store'
-//import SbwlSubject from './sbwlSubject.vue'
 import Subject from './subject.vue'
+
 export default {
   components: {
-    //SbwlSubject,
     Subject
   },
   props: {
@@ -170,24 +192,29 @@ export default {
   },
   setup() {
     const userStore = useUserStore()
+
     return {
       userStore,
       courses_abroad_dialog: ref(false),
+      selectionMode: ref(false),
       grades: ref(['1', '2', '3', '4', 'Teilgenommen']),
-      subject_types: ref(['LVP', 'VUE', 'PI', 'Any']),
       name: ref(''),
       ects: ref(),
-      selectedType: ref(''),
-      selectedGrade: ref()
+      selectedGrade: ref(),
+      selectedSubjectsToDelete: ref([])
+    }
+  },
+  computed: {
+    isFormIncomplete() {
+      return !this.name || !this.ects || !this.selectedGrade
     }
   },
   methods: {
     getSbwlLength() {
       const specialCategories = ['Spezielle Betriebswirtschaftslehre', 'Specializations']
-
-      return this.selectedStudy.subject_states.filter((obj) => {
-        return specialCategories.includes(obj.category)
-      })
+      return this.selectedStudy.subject_states.filter((obj) =>
+        specialCategories.includes(obj.category)
+      )
     },
     updateStatus(subjectId, status, grade, sbwl) {
       this.userStore.updateSbwlSubjectStatus(
@@ -205,19 +232,45 @@ export default {
       this.userStore.deleteSbwlFromStudy(this.selectedStudy.study_id, sbwl)
     },
     selectCoursesAbroad() {
-      const coursesAbroad = {
-        _id: "1",
+      // Findet die Courses Abroad SBWL und berechnet die nächste ID
+      const coursesAbroad = this.selectedStudy.sbwl_states.find(
+        (sbwl) => sbwl.sbwl_name === 'Courses Abroad'
+      )
+
+      // Berechnet die nächste ID basierend auf der Länge des Subjects-Arrays in Courses Abroad
+      const nextId = coursesAbroad ? coursesAbroad.subjects.length + 1 : 1
+
+      const newCourseAbroad = {
+        _id: nextId.toString(), // Setzt die ID auf den nächsten Wert
         name: this.name,
         ects: this.ects,
-        subject_type: "SBWL",
+        subject_type: 'SBWL',
         grade: this.selectedGrade,
-        status: 'done',
+        status: 'done'
       }
-      console.log(coursesAbroad)
-      this.userStore.addCoursesAbroadToStudy(this.selectedStudy.study_id, coursesAbroad)
+      console.log(newCourseAbroad)
+      this.userStore.addCoursesAbroadToStudy(this.selectedStudy.study_id, newCourseAbroad)
+    },
+    openAddDialog() {
+      this.courses_abroad_dialog = true
+    },
+    enterSelectionMode() {
+      this.selectionMode = true
+    },
+    exitSelectionMode() {
+      this.selectionMode = false
+      this.selectedSubjectsToDelete = []
+    },
+    deleteSelectedCourseAbroad() {
+      console.log('Zu löschende Wahlfächer:', this.selectedSubjectsToDelete)
+      this.userStore.deleteSubjectsFromCourseAbroad(
+        this.selectedStudy.study_id,
+        this.selectedSubjectsToDelete
+      )
+      this.selectedSubjectsToDelete = []
+      this.exitSelectionMode()
     }
-  },
-  mounted() {}
+  }
 }
 </script>
 
