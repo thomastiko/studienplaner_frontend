@@ -14,7 +14,7 @@
             color="blue-7"
             :label="`${i + 1} SBWL hinzufügen`"
             dropdown-icon="add_circle"
-            :disable="i < this.selectedStudy.sbwl_states.length"
+            :disable="i < this.selectedStudy.sbwl_states.length || !this.sbwlsAvailable"
           >
             <q-item
               clickable
@@ -187,6 +187,10 @@ export default {
   props: {
     selectedStudy: {
       type: Object,
+      required: true
+    },
+    sbwlsAvailable: {
+      type: Boolean,
       required: true
     }
   },

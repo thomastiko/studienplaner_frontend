@@ -31,7 +31,7 @@
 
       <!-- SBWLs -->
       <div>
-        <SbwlCarousel :selectedStudy="selectedStudy" />
+        <SbwlCarousel :selectedStudy="selectedStudy" :sbwlsAvailable="sbwlsAvailable" />
       </div>
 
       <!-- Freie Wahlfächer -->
@@ -87,7 +87,8 @@ export default {
       lvStore,
       checker,
       seamless: ref(false),
-      freeElectivesAvailable: ref(false)
+      freeElectivesAvailable: ref(false),
+      sbwlsAvailable: ref(false),
     }
   },
   data() {
@@ -103,6 +104,9 @@ export default {
 
       if (!this.freeElectivesAvailable && this.selectedStudy.free_electives.length > 0) {
         await this.userStore.deleteEveryFreeElectiveFromStudy(this.studyId)
+      }
+      if (!this.sbwlsAvailable && this.selectedStudy.sbwl_states.length > 0) {
+        await this.userStore.deleteEverySbwlFromStudy(this.studyId)
       }
       /*if (this.freeElectivesDone && this.selectedStudy.free_electives.length > 0) {
         console.log('Free Electives Done')
@@ -191,6 +195,13 @@ export default {
     freeElectives: {
       handler(newVal, oldVal) {
         this.freeElectivesAvailable = newVal.some((subject) => subject.status === 'can-do' || subject.status === 'done')
+      },
+      deep: true,
+      immediate: true
+    },
+    sbwlSubjects: {
+      handler(newVal, oldVal) {
+        this.sbwlsAvailable = newVal.some((subject) => subject.status === 'can-do' || subject.status === 'done')
       },
       deep: true,
       immediate: true

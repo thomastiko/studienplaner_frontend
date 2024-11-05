@@ -450,7 +450,7 @@ export const useUserStore = defineStore('user', {
     async deleteSbwlFromStudy(studyId, sbwl) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`, {
+        const response = await axios.delete(`${url}/studies/${studyId}/${sbwl.sbwl_name}`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { studyId, sbwl }
         })
@@ -458,6 +458,19 @@ export const useUserStore = defineStore('user', {
         study.sbwl_states = response.data.sbwl_states
       } catch (error) {
         console.error('Fehler beim Löschen der SBWL:', error)
+        throw error
+      }
+    },
+    async deleteEverySbwlFromStudy(studyId) {
+      try {
+        const token = this.getToken()
+        const response = await axios.delete(`${url}/studies/${studyId}/delete-all-sbwls`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+        study.sbwl_states = response.data.sbwl_states
+      } catch (error) {
+        console.error('Fehler beim Löschen aller SBWLs:', error)
         throw error
       }
     },
