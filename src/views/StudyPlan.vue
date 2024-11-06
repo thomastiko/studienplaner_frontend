@@ -88,7 +88,7 @@ export default {
       checker,
       seamless: ref(false),
       freeElectivesAvailable: ref(false),
-      sbwlsAvailable: ref(false),
+      sbwlsAvailable: ref(false)
     }
   },
   data() {
@@ -105,6 +105,7 @@ export default {
       if (!this.freeElectivesAvailable && this.selectedStudy.free_electives.length > 0) {
         await this.userStore.deleteEveryFreeElectiveFromStudy(this.studyId)
       }
+      console.log(this.sbwlsAvailable)
       if (!this.sbwlsAvailable && this.selectedStudy.sbwl_states.length > 0) {
         await this.userStore.deleteEverySbwlFromStudy(this.studyId)
       }
@@ -194,47 +195,78 @@ export default {
   watch: {
     freeElectives: {
       handler(newVal, oldVal) {
-        this.freeElectivesAvailable = newVal.some((subject) => subject.status === 'can-do' || subject.status === 'done')
+        this.freeElectivesAvailable = newVal.some(
+          (subject) => subject.status === 'can-do' || subject.status === 'done'
+        )
       },
       deep: true,
       immediate: true
     },
     sbwlSubjects: {
       handler(newVal, oldVal) {
-        this.sbwlsAvailable = newVal.some((subject) => subject.status === 'can-do' || subject.status === 'done')
+        this.sbwlsAvailable = newVal.some(
+          (subject) => subject.status === 'can-do' || subject.status === 'done'
+        )
       },
       deep: true,
       immediate: true
     },
     'selectedStudy.free_electives': {
       async handler(newVal, oldVal) {
-        const wahlfach = this.selectedStudy.subject_states.find(
-          (obj) => obj.subject_type === 'ANY'
-        )
-        const ectsFreeElectiveUser = newVal.reduce((sum, subject) => sum + (subject.ects || 0), 0)
-        const ectsFreeElectiveStudy = wahlfach.ects
-        const steop1 = this.selectedStudy.subject_states.find((i) => i._id == '1')
-        const steop2 = this.selectedStudy.subject_states.find((i) => i._id == '2')
-        const steop3 = this.selectedStudy.subject_states.find((i) => i._id == '3')
-        const prerequisitesMet = [steop1, steop2, steop3].some((item) => item.status === 'done')
-        if (prerequisitesMet) {
-          if (ectsFreeElectiveUser >= ectsFreeElectiveStudy) {
-            // Setze auf "done", wenn die ECTS-Anforderung erfüllt ist
-            wahlfach.status = 'done'
-          } else {
-            // Setze auf "can-do", wenn die Voraussetzungen erfüllt sind, aber die ECTS noch nicht erreicht sind
-            wahlfach.status = 'can-do'
+        // Überprüfen, ob study_id nicht "wire-23" ist
+        if (this.selectedStudy.study_id !== 'wire-23' && this.selectedStudy.study_id !== 'bbe') {
+          // `checkWahlfach` aufrufen, um den aktuellen Status zu ermitteln
+          const updateArray = await this.checker.checkWahlfach(this.selectedStudy)
+
+          // Gehe das Update-Array durch und aktualisiere den Status in `userStore`
+          for (const update of updateArray) {
+            await this.userStore.updateSubjectStatus(
+              this.selectedStudy.study_id,
+              update._id,
+              update.status,
+              null
+            )
+            console.log(`Status von Wahlfach ID ${update._id} auf ${update.status} gesetzt.`)
           }
+        } if (this.selectedStudy.study_id == 'bbe') {
+          console.log("bbe")
         } else {
-          // Setze auf "unavailable", wenn die Voraussetzungen nicht erfüllt sind
-          wahlfach.status = 'unavailable'
+          console.log('Handler für `free_electives` übersprungen, da study_id `wire-23` ist.')
         }
-        this.userStore.updateSubjectStatus(
-          this.selectedStudy.study_id,
-          wahlfach._id,
-          wahlfach.status,
-          null
-        )
+      },
+      deep: true,
+      immediate: true
+    },
+    'selectedStudy.sbwl_states': {
+      async handler() {
+        // Rufe `checkSbwl` auf und hole die notwendigen Updates
+        if (this.selectedStudy.study_id !== 'wire-23' && this.selectedStudy.study_id !== 'bbe') {
+          const totalDoneECTSValue = this.checker.totalDoneECTS(this.selectedStudy);
+          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, totalDoneECTSValue)
+          // Wende die Updates für `sbwl_states` an
+          sbwlUpdates.forEach(async (update) => {
+            await this.userStore.updateSubjectStatus(
+              this.studyId,
+              update._id,
+              update.status,
+              update.grade
+            )
+          })
+        } if(this.selectedStudy.study_id == 'bbe') {
+          console.log('Bbe')
+        } else {
+          const twoCbkSubjectsDone = this.checker.checkHs(this.selectedStudy)
+          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, twoCbkSubjectsDone)
+          // Wende die Updates für `sbwl_states` an
+          sbwlUpdates.forEach(async (update) => {
+            await this.userStore.updateSubjectStatus(
+              this.studyId,
+              update._id,
+              update.status,
+              update.grade
+            )
+          })
+        }
       },
       deep: true,
       immediate: true

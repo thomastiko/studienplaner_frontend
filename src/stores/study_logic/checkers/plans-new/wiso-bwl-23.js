@@ -36,18 +36,32 @@ async function checkCBK(study) {
 }
 async function checkWahlfach(study) {
   const update_array = [];
+  
   const steop1 = study.subject_states.find((i) => i._id == "1");
   const steop2 = study.subject_states.find((i) => i._id == "2");
   const steop3 = study.subject_states.find((i) => i._id == "3");
   const wahlfach = study.subject_states.find((i) => i._id == "27");
 
-  // Überprüfe, ob mindestens einer der STEOP-Kurse abgeschlossen ist
-  if ([steop1, steop2, steop3].some((item) => item.status === "done")) {
-    if (wahlfach.status !== "done") {
-      wahlfach.status = "can-do"; // Setze auf "can-do", wenn die Voraussetzungen erfüllt sind
+  const ectsFreeElectiveUser = study.free_electives.reduce((sum, subject) => {
+    return sum + (subject.ects || 0);
+  }, 0);
+  
+
+  // Prüfe, ob mindestens einer der STEOP-Kurse abgeschlossen ist
+  const prerequisitesMet = [steop1, steop2, steop3].some((item) => item.status === "done");
+
+  if (prerequisitesMet) {
+    // Überprüfe, ob die benötigten ECTS für `wahlfach` erreicht sind
+    if (ectsFreeElectiveUser >= wahlfach.ects) {
+      // Setze `wahlfach` auf "done", wenn die ECTS-Anforderung erfüllt ist
+      wahlfach.status = "done";
+    } else {
+      // Setze `wahlfach` auf "can-do", wenn die Voraussetzungen erfüllt sind, aber die ECTS-Anforderung noch nicht erfüllt ist
+      wahlfach.status = "can-do";
     }
   } else {
-    wahlfach.status = "unavailable"; // Setze auf "unavailable", wenn die Voraussetzungen nicht erfüllt sind
+    // Setze `wahlfach` auf "unavailable", wenn die Voraussetzungen nicht erfüllt sind
+    wahlfach.status = "unavailable";
   }
 
   update_array.push({
@@ -57,6 +71,7 @@ async function checkWahlfach(study) {
     grade: null,
   });
 
+  
   return update_array;
 }
 async function checkHauptstudium(study, totalDoneECTSValue) {
@@ -117,95 +132,109 @@ async function checkAMC(study, totalDoneECTSValue) {
   }
   return update_array;
 }
-async function checkSbwl(study, totalDoneECTSValue) {
+export async function checkSbwl(study, totalDoneECTSValue) {
   const update_array = [];
+
   const sbwl1 = study.subject_states.find((i) => i._id == "24");
   const sbwl2 = study.subject_states.find((i) => i._id == "25");
   const sbwl3 = study.subject_states.find((i) => i._id == "26");
   const amc1 = study.subject_states.find((i) => i._id == "4");
   const mathe = study.subject_states.find((i) => i._id == "12");
   const statistik = study.subject_states.find((i) => i._id == "13");
-  if (totalDoneECTSValue >= 20) {
-    if ([amc1, mathe, statistik].every((item) => item.status == "done")) {
-      if (sbwl1.status == "unavailable") {
-        sbwl1.status = "can-do";
-        update_array.push({
-          study_id: study.study_id,
-          _id: sbwl1._id,
-          status: sbwl1.status,
-          grade: null,
-        });
-      } if (sbwl2.status == "unavailable") {
-        sbwl2.status = "can-do";
-        update_array.push({
-          study_id: study.study_id,
-          _id: sbwl2._id,
-          status: sbwl2.status,
-          grade: null,
-        });
-      } if (sbwl3.status == "unavailable") {
-        sbwl3.status = "can-do";
-        update_array.push({
-          study_id: study.study_id,
-          _id: sbwl3._id,
-          status: sbwl3.status,
-          grade: null,
-        });
+
+  // Prüfe allgemeine Voraussetzungen
+  const prerequisitesMet = totalDoneECTSValue >= 20 && [amc1, mathe, statistik].every((item) => item.status === "done");
+
+  // Verarbeite die ersten beiden SBWLs wie gewohnt
+  [sbwl1, sbwl2].forEach((sbwl, index) => {
+    const sbwlState = study.sbwl_states[index];
+
+    if (sbwl && sbwlState) {
+      if (!prerequisitesMet) {
+        sbwl.status = "unavailable"; // Wenn Voraussetzungen nicht erfüllt sind
+      } else if (sbwlState.subjects.every((subject) => subject.status === "done")) {
+        sbwl.status = "done"; // Wenn alle Subjects "done" und Voraussetzungen erfüllt sind
+      } else {
+        sbwl.status = "can-do"; // Wenn Voraussetzungen erfüllt sind, aber nicht alle Subjects "done"
       }
-    } else if (
-      ![amc1, mathe, statistik].every((item) => item.status == "done")
-    ) {
-      sbwl1.status = "unavailable";
-      sbwl2.status = "unavailable";
-      sbwl3.status = "unavailable";
-      update_array.push(
-        {
+
+      update_array.push({
+        study_id: study.study_id,
+        _id: sbwl._id,
+        status: sbwl.status,
+        grade: null,
+      });
+      console.log(`Status von SBWL ID ${sbwl._id} auf ${sbwl.status} gesetzt.`);
+      
+    } else {
+      // Wenn `sbwl` oder `sbwlState` nicht definiert ist
+      const newStatus = prerequisitesMet ? "can-do" : "unavailable";
+      
+      if (sbwl && sbwl.status !== newStatus) {
+        sbwl.status = newStatus;
+        update_array.push({
           study_id: study.study_id,
-          _id: sbwl1._id,
-          status: sbwl1.status,
+          _id: sbwl._id,
+          status: sbwl.status,
           grade: null,
-        },
-        {
-          study_id: study.study_id,
-          _id: sbwl2._id,
-          status: sbwl2.status,
-          grade: null,
-        },
-        {
-          study_id: study.study_id,
-          _id: sbwl3._id,
-          status: sbwl3.status,
-          grade: null,
-        }
-      );
+        });
+        console.log(`SBWL ID ${sbwl._id} ist leer, Status auf ${sbwl.status} gesetzt.`);
+      }
     }
+  });
+
+  // Behandle das dritte SBWL, inklusive Sonderfall für Courses Abroad
+  const thirdSbwlState = study.sbwl_states[2]; // Index 2 entspricht dem dritten SBWL
+  if (sbwl3 && thirdSbwlState) {
+    if (thirdSbwlState.sbwl_name === "Courses Abroad") {
+      // Spezielle Logik für Courses Abroad
+      const totalEcts = thirdSbwlState.subjects.reduce((sum, subject) => sum + (subject.ects || 0), 0);
+      const allSubjectsDone = thirdSbwlState.subjects.every((subject) => subject.status === "done");
+
+      if (!prerequisitesMet) {
+        sbwl3.status = "unavailable";
+      } else if (allSubjectsDone && totalEcts >= 20) {
+        sbwl3.status = "done";
+      } else {
+        sbwl3.status = "can-do";
+      }
+    } else {
+      // Behandle das dritte SBWL wie die anderen SBWLs, falls es kein Courses Abroad ist
+      if (!prerequisitesMet) {
+        sbwl3.status = "unavailable";
+      } else if (thirdSbwlState.subjects.every((subject) => subject.status === "done")) {
+        sbwl3.status = "done";
+      } else {
+        sbwl3.status = "can-do";
+      }
+    }
+
+    update_array.push({
+      study_id: study.study_id,
+      _id: sbwl3._id,
+      status: sbwl3.status,
+      grade: null,
+    });
+    console.log(`Status von SBWL ID ${sbwl3._id} auf ${sbwl3.status} gesetzt.`);
   } else {
-    sbwl1.status = "unavailable";
-    sbwl2.status = "unavailable";
-    sbwl3.status = "unavailable";
-    update_array.push(
-      {
-        study_id: study.study_id,
-        _id: sbwl1._id,
-        status: sbwl1.status,
-        grade: null,
-      },
-      {
-        study_id: study.study_id,
-        _id: sbwl2._id,
-        status: sbwl2.status,
-        grade: null,
-      },
-      {
+    // Wenn das dritte SBWL oder sein Statusobjekt entfernt oder leer ist
+    const newStatus = prerequisitesMet ? "can-do" : "unavailable";
+
+    if (sbwl3 && sbwl3.status !== newStatus) {
+      sbwl3.status = newStatus;
+      update_array.push({
         study_id: study.study_id,
         _id: sbwl3._id,
         status: sbwl3.status,
         grade: null,
-      }
-    );
+      });
+      console.log(`SBWL ID ${sbwl3._id} ist leer, Status auf ${sbwl3.status} gesetzt.`);
+    }
   }
+
   return update_array;
 }
+
 async function checkBachelorarbeit(study, totalDoneECTSValue) {
   const update_array = [];
   const bachelorarbeit = study.subject_states.find(
@@ -283,7 +312,10 @@ export default {
     })
 
     return update_array
-  }
+  },
+  checkWahlfach,
+  checkSbwl,
+  totalDoneECTS
 }/**
  * Funktion, die ein Subject in update_array aktualisiert oder hinzufügt.
  * Wenn das Subject bereits existiert, wird es überschrieben.

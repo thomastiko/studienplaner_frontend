@@ -338,7 +338,6 @@ export const useUserStore = defineStore('user', {
         console.log(
           `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
         )
-        console.log(this.user.studies)
       } catch (error) {
         if (error.response && error.response.status === 400) {
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message)
@@ -385,7 +384,6 @@ export const useUserStore = defineStore('user', {
 
         })
 
-        console.log(this.user.studies)
       } catch (error) {
         if (error.response && error.response.status === 400) {
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message);
@@ -450,7 +448,7 @@ export const useUserStore = defineStore('user', {
     async deleteSbwlFromStudy(studyId, sbwl) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/${sbwl.sbwl_name}`, {
+        const response = await axios.delete(`${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { studyId, sbwl }
         })
@@ -511,7 +509,6 @@ export const useUserStore = defineStore('user', {
             console.log(
               `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
             );
-            console.log(this.user.studies);
           } else {
             console.log('Kein passendes Subject gefunden');
           }

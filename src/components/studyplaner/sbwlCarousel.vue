@@ -14,19 +14,19 @@
             color="blue-7"
             :label="`${i + 1} SBWL hinzufügen`"
             dropdown-icon="add_circle"
-            :disable="i < this.selectedStudy.sbwl_states.length || !this.sbwlsAvailable"
+            :disable="!this.sbwlsAvailable || this.selectedStudy.sbwl_states.length !== i"
           >
             <q-item
               clickable
               v-close-popup
-              v-for="(sbwl, j) in this.selectedStudy.sbwl_list"
+              v-for="(filteredSbwl, j) in this.getSbwlList(sbwl)"
               :key="j"
-              @click="selectSbwl(sbwl)"
+              @click="selectSbwl(filteredSbwl)"
             >
               <q-item-section>
                 <q-item-label
-                  >{{ sbwl.name }}
-                  <span v-if="sbwl.ects"> - {{ sbwl.ects }} Ects</span></q-item-label
+                  >{{ filteredSbwl.name }}
+                  <span v-if="filteredSbwl.ects"> - {{ filteredSbwl.ects }} Ects</span></q-item-label
                 >
               </q-item-section>
             </q-item>
@@ -37,7 +37,7 @@
       <div class="col-12 row q-ma-md">
         <div v-for="(sbwl, i) in selectedStudy.sbwl_states" :key="i" class="col-12 q-pb-md">
           <!-- SBWLS -->
-          <div v-if="sbwl.sbwl_name !== 'Courses Abroad'">
+          <div v-if="sbwl.sbwl_name !== 'Courses Abroad' && sbwl.sbwl_name !== 'Internationale Erfahrung'">
             <div class="text-h5">{{ sbwl.sbwl_name }}</div>
             <q-btn label="löschen" color="red" @click="deleteSbwl(sbwl)" />
             <div class="col-12 row q-col-gutter-md">
@@ -82,8 +82,18 @@
                 <!-- FAB für Hinzufügen oder Löschen -->
 
                 <q-fab color="blue-4" icon="add" direction="right">
-                  <q-fab-action color="positive" @click="openAddDialog" icon="add" label="Hinzufügen" />
-                  <q-fab-action color="negative" @click="enterSelectionMode" icon="delete" label="Löschen" />
+                  <q-fab-action
+                    color="positive"
+                    @click="openAddDialog"
+                    icon="add"
+                    label="Hinzufügen"
+                  />
+                  <q-fab-action
+                    color="negative"
+                    @click="enterSelectionMode"
+                    icon="delete"
+                    label="Löschen"
+                  />
                 </q-fab>
               </div>
             </div>
@@ -215,10 +225,20 @@ export default {
   },
   methods: {
     getSbwlLength() {
-      const specialCategories = ['Spezielle Betriebswirtschaftslehre', 'Specializations']
+      const specialCategories = ['Spezielle Betriebswirtschaftslehre', 'Specializations', 'Internationale Erfahrung']
       return this.selectedStudy.subject_states.filter((obj) =>
         specialCategories.includes(obj.category)
       )
+    },
+    getSbwlList(sbwl) {
+      console.log('SBWL:', sbwl)
+      // Wenn der Name "Courses Abroad" enthält, zeige die gesamte sbwl_list an
+      if (sbwl.name && sbwl.name.includes('Courses Abroad') || sbwl.name.includes('Internationale Erfahrung')) {
+        
+        return this.selectedStudy.sbwl_list
+      }
+      // Andernfalls zeige nur die gefilterten sbwl_list-Einträge ohne "Courses Abroad" an
+      return this.selectedStudy.sbwl_list.filter((item) => !item.name.includes('Courses Abroad') || sbwl.name.includes('Internationale Erfahrung'))
     },
     updateStatus(subjectId, status, grade, sbwl) {
       this.userStore.updateSbwlSubjectStatus(
@@ -233,7 +253,16 @@ export default {
       this.userStore.addSbwlToStudy(this.selectedStudy.study_id, sbwl)
     },
     deleteSbwl(sbwl) {
-      this.userStore.deleteSbwlFromStudy(this.selectedStudy.study_id, sbwl)
+      console.log('Zu löschende SBWL:', sbwl)
+      if (
+        this.selectedStudy.sbwl_states.some(
+          (state) => (state.sbwl_name === 'Courses Abroad' && sbwl.sbwl_name !== 'Courses Abroad') || (state.sbwl_name === 'Internationale Erfahrung' && sbwl.sbwl_name !== 'Internationale Erfahrung')
+        )
+      ) {
+        this.userStore.deleteEverySbwlFromStudy(this.selectedStudy.study_id)
+      } else {
+        this.userStore.deleteSbwlFromStudy(this.selectedStudy.study_id, sbwl)
+      }
     },
     selectCoursesAbroad() {
       // Findet die Courses Abroad SBWL und berechnet die nächste ID

@@ -22,7 +22,7 @@
       </q-chip>
     </q-card-actions>
 
-    <q-card-actions v-if="subject.category !== 'Free Electives and Internship' && subject.category !== 'Specializations' && subject.category !== 'Freies Wahlfach' && subject.category !== 'Spezielle Betriebswirtschaftslehre'">
+    <q-card-actions v-if="subject.category !== 'Free Electives and Internship' && subject.category !== 'Specializations' && subject.category !== 'Freies Wahlfach' && subject.category !== 'Spezielle Betriebswirtschaftslehre' && subject.category !== 'Internationale Erfahrung'">
       <q-btn-dropdown flat label="Status" class="full-width">
         <q-list>
           <q-item clickable v-close-popup @click="setStatus('can-do')">
