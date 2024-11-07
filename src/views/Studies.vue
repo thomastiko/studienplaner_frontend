@@ -179,7 +179,7 @@ import { useRouter } from 'vue-router'
 export default {
   setup() {
     const userStore = useUserStore()
-    const $q = useQuasar()
+    const q = useQuasar()
     const step = ref(1)
     const selectedStudy = ref(null)
     const selectedBranch = ref(null)
@@ -188,7 +188,7 @@ export default {
 
     // Map für schöne Namen
     const studyNames = ref({
-      'wiso-bwl-23': 'Betriebswirtschaf 2023',
+      'wiso-bwl-23': 'Betriebswirtschaft 2023',
       'wiso-ibw-23': 'Internationale Betriebswirtschaft 2023',
       'wiso-vwl-23': 'Volkswirtschaft 2023',
       'wiso-winf-23': 'Wirtschaftsinformatik 2023',
@@ -223,26 +223,10 @@ export default {
       try {
         console.log('Studiengang speichern:', studyId)
         // Studiengang speichern
-        await userStore.addStudy(studyId)
+        await userStore.addStudy(studyId, q.notify)
         router.push({ name: 'my-study', route: '/my-study' })
-
-        // Schönen Namen verwenden für die Benachrichtigung
-        const displayName = studyNames.value[studyId] || studyId
-
-        $q.notify({
-          type: 'positive',
-          message: `${displayName} wurde hinzugefügt`,
-          position: 'bottom',
-          timeout: 2000
-        })
       } catch (error) {
-        console.error('Fehler beim Speichern des Studiengangs:', error)
-        $q.notify({
-          type: 'negative',
-          message: 'Fehler beim Speichern des Studiengangs',
-          position: 'bottom',
-          timeout: 2000
-        })
+        console.log('Fehler beim Speichern des Studiengangs:', error)
       }
     }
 

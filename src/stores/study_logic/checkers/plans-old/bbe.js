@@ -5,12 +5,14 @@ async function checkCBK(study) {
   if (steop1.status == "done" && steop2.status == "done") {
     study.subject_states.forEach((item) => {
       if (
-        item._id !== 5 &&
-        item._id !== 6 &&
-        item._id !== 20 &&
-        item._id !== 21 &&
+        item._id !== "5" &&
+        item._id !== "6" &&
+        item._id !== "19" &&
+        item._id !== "20" &&
+        item._id !== "21" &&
         item.status == "unavailable"
       ) {
+        console.log(item._id);
         update_array.push({
           study_id: study.study_id,
           _id: item._id,
@@ -31,6 +33,45 @@ async function checkCBK(study) {
       }
     });
   }
+  return update_array;
+}
+
+async function checkWahlfach(study) {
+  const update_array = [];
+  
+  const steop1 = study.subject_states.find((i) => i._id == "1");
+  const steop2 = study.subject_states.find((i) => i._id == "2");
+  const wahlfach = study.subject_states.find((i) => i._id == "19");
+
+  const ectsFreeElectiveUser = study.free_electives.reduce((sum, subject) => {
+    return sum + (subject.ects || 0);
+  }, 0);
+  
+
+  const prerequisitesMet = [steop1, steop2].every((item) => item.status === "done");
+
+  if (prerequisitesMet) {
+    // Überprüfe, ob die benötigten ECTS für `wahlfach` erreicht sind
+    if (ectsFreeElectiveUser >= wahlfach.ects) {
+      // Setze `wahlfach` auf "done", wenn die ECTS-Anforderung erfüllt ist
+      wahlfach.status = "done";
+    } else {
+      // Setze `wahlfach` auf "can-do", wenn die Voraussetzungen erfüllt sind, aber die ECTS-Anforderung noch nicht erfüllt ist
+      wahlfach.status = "can-do";
+    }
+  } else {
+    // Setze `wahlfach` auf "unavailable", wenn die Voraussetzungen nicht erfüllt sind
+    wahlfach.status = "unavailable";
+  }
+
+  update_array.push({
+    study_id: study.study_id,
+    _id: wahlfach._id,
+    status: wahlfach.status,
+    grade: null,
+  });
+
+  
   return update_array;
 }
 
@@ -83,31 +124,39 @@ async function checkBusinessAnalytics(study, steopsDone) {
 }
 async function checkSbwl(study, totalDoneECTSValue) {
   const update_array = [];
+
+  // Finde das spezifische SBWL-Objekt
   const sbwl1 = study.subject_states.find((i) => i._id == "20");
-  if (
-    totalDoneECTSValue >= 42 &&
-    (sbwl1.status == "unavailable")
-  ) {
-    sbwl1.status = "can-do";
-    update_array.push(
-      {
-        study_id: study.study_id,
-        _id: sbwl1._id,
-        status: sbwl1.status,
-        grade: 0,
+
+  // Berechne die Summe der ECTS in allen Subjects mit Status "done" innerhalb der sbwl_states
+  let doneEctsSum = 0;
+  study.sbwl_states.forEach((sbwlState) => {
+    sbwlState.subjects.forEach((subject) => {
+      if (subject.status === "done") {
+        doneEctsSum += subject.ects;
       }
-    );
-  } else if (totalDoneECTSValue < 42) {
+    });
+  });
+
+  // Überprüfe den Status auf Basis der erfüllten Voraussetzungen
+  if (totalDoneECTSValue >= 42) {
+    if (doneEctsSum >= 40) {
+      sbwl1.status = "done";
+    } else {
+      sbwl1.status = "can-do";
+    }
+  } else {
     sbwl1.status = "unavailable";
-    update_array.push(
-      {
-        study_id: study.study_id,
-        _id: sbwl1._id,
-        status: sbwl1.status,
-        grade: 0,
-      }
-    );
   }
+
+  // Füge das aktualisierte Objekt zum Update-Array hinzu
+  update_array.push({
+    study_id: study.study_id,
+    _id: sbwl1._id,
+    status: sbwl1.status,
+    grade: 0,
+  });
+
   return update_array;
 }
 async function checkBachelorarbeit(study) {
@@ -159,7 +208,10 @@ export default {
     cbkValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
-
+    const wahlfachValues = await checkWahlfach(study)
+    wahlfachValues.forEach((item) => {
+      update_array = updateOrAdd(update_array, item)
+    })
     const checkBusinessAnalyticsValues = await checkBusinessAnalytics(study, steopsDone)
     checkBusinessAnalyticsValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
@@ -177,8 +229,14 @@ export default {
     })
 
     return update_array
-  }
-}/**
+  },
+  checkWahlfach,
+  checkSbwl,
+  totalDoneECTS
+
+}
+
+/**
  * Funktion, die ein Subject in update_array aktualisiert oder hinzufügt.
  * Wenn das Subject bereits existiert, wird es überschrieben.
  * @param {Array} array - Das bestehende update_array

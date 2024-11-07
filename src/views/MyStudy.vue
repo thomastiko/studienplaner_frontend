@@ -38,7 +38,7 @@
 
     <!-- Wenn keine Studiengänge vorhanden sind, zeige den "leeren Zustand" -->
     <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
-      <div class="text-h4 q-mb-md" style="color: grey"> {{ $t('myStudy.no_study_selected') }} </div>
+      <div class="text-h4 q-mb-md" style="color: grey">{{ $t('myStudy.no_study_selected') }}</div>
       <q-btn
         :label="$t('myStudy.add_study_button')"
         color="primary"
@@ -94,6 +94,7 @@
 <script>
 import { useUserStore } from '@/stores/user.store'
 import { useLvStore } from '@/stores/lv.store'
+import { useQuasar } from 'quasar'
 import Calendar from '@/components/lvplaner/calendar.vue'
 
 export default {
@@ -103,9 +104,11 @@ export default {
   setup() {
     const userStore = useUserStore()
     const lvStore = useLvStore()
+    const q = useQuasar()
     return {
       userStore,
-      lvStore
+      lvStore,
+      q
     }
   },
   data() {
@@ -128,11 +131,16 @@ export default {
       }
     },
     deleteSelectedStudies() {
-      this.selectedStudies.forEach((study_id) => {
-        this.userStore.deleteStudy(study_id)
-      })
-      this.selectedStudies = []
-      this.selectionMode = false // Optional: Auswahlmodus deaktivieren nach dem Löschen
+      // Löscht alle ausgewählten Studiengänge in einem einzigen Aufruf
+      this.userStore
+        .deleteStudies(this.selectedStudies, this.q.notify)
+        .then(() => {
+          this.selectedStudies = []
+          this.selectionMode = false // Optional: Auswahlmodus deaktivieren nach dem Löschen
+        })
+        .catch((error) => {
+          console.error('Fehler beim Löschen der Studiengänge:', error.message || error)
+        })
     }
   },
   mounted() {

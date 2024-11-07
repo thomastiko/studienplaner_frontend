@@ -90,13 +90,15 @@
 <script>
 import { useUserStore } from '@/stores/user.store.js' // Importiere den User-Store
 import { useRouter } from 'vue-router' // Importiere useRouter
+import { useQuasar } from 'quasar' // Importiere Quasar
 
 export default {
   setup() {
     const userStore = useUserStore() // Hole den User-Store
     const router = useRouter()
+    const q = useQuasar()
     const logout = async () => {
-      await userStore.logout(router) // Router übergeben
+      await userStore.logout(router, q.notify) // Router übergeben
     }
 
     return {

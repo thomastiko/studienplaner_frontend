@@ -46,8 +46,8 @@ async function startApp() {
   app.use(pinia);
   app.use(QCalendar)
 
-  const userStore = useUserStore(); // Initialisiere den User-Store
-  await userStore.checkAuthState(router); // Überprüfe den Auth-Status beim Laden der App
+  const userStore = useUserStore();
+  await userStore.checkAuthState(router, Notify.create); // Überprüfe den Auth-Status beim Laden der App
 
   app.use(router);
   app.mount('#app');

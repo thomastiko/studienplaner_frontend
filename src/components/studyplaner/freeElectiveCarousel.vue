@@ -107,6 +107,7 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/stores/user.store'
 import FreeElectiveSubject from './freeElectiveSubject.vue'
+import { useQuasar } from 'quasar'
 export default {
   components: {
     FreeElectiveSubject
@@ -123,8 +124,10 @@ export default {
   },
   setup() {
     const userStore = useUserStore()
+    const q = useQuasar()
     return {
       userStore,
+      q,
       freeElectiveDialog: ref(false),
       grades: ref(['1', '2', '3', '4', 'Teilgenommen']),
       subject_types: ref(['LVP', 'VUE', 'PI', 'Any']),
@@ -143,16 +146,38 @@ export default {
       })
     },
     selectFreeElective() {
+      try {
       const freeElective = {
         name: this.name,
         ects: this.ects,
         subject_type: this.selectedType,
         grade: this.selectedGrade
       }
-      this.userStore.addFreeElectiveToStudy(this.selectedStudy.study_id, freeElective)
+      this.userStore.addFreeElectiveToStudy(this.selectedStudy.study_id, freeElective, this.q.notify)
+      this.name = ''
+      this.ects = ''
+      this.selectedType = ''
+      this.selectedGrade = ''
+
+      } catch (error) {
+        console.log(error)
+      }
     },
     deleteFreeElective(freeElective) {
-      this.userStore.deleteFreeElectiveFromStudy(this.selectedStudy.study_id, freeElective)
+      try {
+      this.userStore.deleteFreeElectiveFromStudy(this.selectedStudy.study_id, freeElective, this.q.notify)
+      this.q.notify({
+        message: 'Wahlfach gelöscht',
+        color: 'positive',
+        position: 'bottom'
+      })
+      } catch (error) {
+        this.q.notify({
+          message: 'Fehler beim Löschen des Wahlfachs',
+          color: 'negative',
+          position: 'bottom'
+        })
+      }
     }
   },
   mounted() {

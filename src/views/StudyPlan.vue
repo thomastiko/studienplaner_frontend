@@ -63,6 +63,7 @@ import FreeElectiveCarousel from '../components/studyplaner/freeElectiveCarousel
 import Dashboard from '../components/studyplaner/dashboard.vue'
 import Cart from '../components/studyplaner/cart.vue'
 import { ref } from 'vue'
+import { useQuasar } from 'quasar'
 export default {
   components: {
     Subject,
@@ -82,13 +83,15 @@ export default {
     const userStore = useUserStore()
     const lvStore = useLvStore()
     const checker = getChecker(studyId.value)
+    const q = useQuasar()
     return {
       userStore,
       lvStore,
       checker,
       seamless: ref(false),
       freeElectivesAvailable: ref(false),
-      sbwlsAvailable: ref(false)
+      sbwlsAvailable: ref(false),
+      q
     }
   },
   data() {
@@ -98,22 +101,16 @@ export default {
   },
   methods: {
     async updateStatus(subjectId, status, grade) {
-      await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade)
+      await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade, true, this.q.notify)
       let update_array = await this.checker.executeAll(this.selectedStudy)
       await this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
 
       if (!this.freeElectivesAvailable && this.selectedStudy.free_electives.length > 0) {
         await this.userStore.deleteEveryFreeElectiveFromStudy(this.studyId)
       }
-      console.log(this.sbwlsAvailable)
       if (!this.sbwlsAvailable && this.selectedStudy.sbwl_states.length > 0) {
         await this.userStore.deleteEverySbwlFromStudy(this.studyId)
       }
-      /*if (this.freeElectivesDone && this.selectedStudy.free_electives.length > 0) {
-        console.log('Free Electives Done')
-        const freeElectives = this.selectedStudy.find((subject) => subject.subject_type === 'ANY')
-        await this.userStore.updateSubjectStatus(this.studyId, freeElectives._id, 'done', null)
-      }*/
     },
     updateSeamless(value) {
       this.seamless = value
@@ -214,7 +211,7 @@ export default {
     'selectedStudy.free_electives': {
       async handler(newVal, oldVal) {
         // Überprüfen, ob study_id nicht "wire-23" ist
-        if (this.selectedStudy.study_id !== 'wire-23' && this.selectedStudy.study_id !== 'bbe') {
+        if (this.selectedStudy.study_id !== 'wire-23') {
           // `checkWahlfach` aufrufen, um den aktuellen Status zu ermitteln
           const updateArray = await this.checker.checkWahlfach(this.selectedStudy)
 
@@ -224,12 +221,12 @@ export default {
               this.selectedStudy.study_id,
               update._id,
               update.status,
-              null
+              null,
+              false,
+              this.q.notify
             )
             console.log(`Status von Wahlfach ID ${update._id} auf ${update.status} gesetzt.`)
           }
-        } if (this.selectedStudy.study_id == 'bbe') {
-          console.log("bbe")
         } else {
           console.log('Handler für `free_electives` übersprungen, da study_id `wire-23` ist.')
         }
@@ -239,22 +236,7 @@ export default {
     },
     'selectedStudy.sbwl_states': {
       async handler() {
-        // Rufe `checkSbwl` auf und hole die notwendigen Updates
-        if (this.selectedStudy.study_id !== 'wire-23' && this.selectedStudy.study_id !== 'bbe') {
-          const totalDoneECTSValue = this.checker.totalDoneECTS(this.selectedStudy);
-          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, totalDoneECTSValue)
-          // Wende die Updates für `sbwl_states` an
-          sbwlUpdates.forEach(async (update) => {
-            await this.userStore.updateSubjectStatus(
-              this.studyId,
-              update._id,
-              update.status,
-              update.grade
-            )
-          })
-        } if(this.selectedStudy.study_id == 'bbe') {
-          console.log('Bbe')
-        } else {
+        if (this.selectedStudy.study_id == 'wire-23') {
           const twoCbkSubjectsDone = this.checker.checkHs(this.selectedStudy)
           const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, twoCbkSubjectsDone)
           // Wende die Updates für `sbwl_states` an
@@ -263,7 +245,23 @@ export default {
               this.studyId,
               update._id,
               update.status,
-              update.grade
+              update.grade,
+              false,
+              this.q.notify
+            )
+          })
+        } else {
+          const totalDoneECTSValue = this.checker.totalDoneECTS(this.selectedStudy)
+          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, totalDoneECTSValue)
+          // Wende die Updates für `sbwl_states` an
+          sbwlUpdates.forEach(async (update) => {
+            await this.userStore.updateSubjectStatus(
+              this.studyId,
+              update._id,
+              update.status,
+              update.grade,
+              false,
+              this.q.notify
             )
           })
         }

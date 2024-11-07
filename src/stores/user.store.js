@@ -176,28 +176,50 @@ export const useUserStore = defineStore('user', {
       }
       return token
     },
-    async login(email, password, router) {
+    async login(email, password, router, notify) {
       try {
-        const response = await axios.post(`${apiUrl}/login`, { email, password })
-
-        localStorage.setItem('token', response.data.token)
-
-        this.loggedIn = true
+        const response = await axios.post(`${apiUrl}/login`, { email, password });
+    
+        localStorage.setItem('token', response.data.token);
+    
+        this.loggedIn = true;
         this.user = {
           email: response.data.email,
           student_id: response.data.student_id,
           role: response.data.role,
           studies: response.data.studies,
           course_entries: response.data.course_entries
-        }
-
-        router.push({ name: 'my-study', path: '/my-study' })
+        };
+    
+        // Nach erfolgreichem Login zur My-Study-Seite navigieren
+        router.push({ name: 'my-study', path: '/my-study' });
+    
+        // Zeige Benachrichtigung an
+        notify({
+          message: 'Erfolgreich angemeldet',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        });
+    
+        // Führe einen Seiten-Refresh durch, nachdem zur My-Study-Seite navigiert wurde
+        setTimeout(() => {
+          window.location.reload();
+        }, 500); // optionaler Timeout, um sicherzustellen, dass die Navigation vollständig ist
+    
       } catch (error) {
-        console.error('Login-Fehler: ', error.response?.data?.message || error.message)
-        throw error
+        notify({
+          message: 'Fehler beim Anmelden',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        });
+    
+        console.error('Login-Fehler: ', error.response?.data?.message || error.message);
+        throw error;
       }
     },
-    async logout(router) {
+    async logout(router, notify) {
       try {
         await axios.post(
           `${apiUrl}/logout`,
@@ -209,9 +231,23 @@ export const useUserStore = defineStore('user', {
 
         this.clearAuthState()
         router.push({ name: 'login', path: '/login' })
+        notify({
+          message: 'Erfolgreich abgemeldet',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
       } catch (error) {
+        notify({
+          message: 'Fehler beim Abmelden',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
         console.error('Logout-Fehler: ', error)
         this.clearAuthState()
+
       }
     },
 
@@ -248,20 +284,28 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async checkAuthState(router) {
-      const token = this.getToken()
+    async checkAuthState(router, notify) {
+      const token = this.getToken();
       if (token) {
-        await this.fetchUser()
+        await this.fetchUser();
       } else {
-        this.clearAuthState()
-        router.push({ name: 'login', path: '/login' })
+        this.clearAuthState();
+        router.push({ name: 'login', path: '/login' });
+    
+        // Benachrichtige den Benutzer, dass er nicht angemeldet ist
+        notify({
+          message: 'Du bist nicht angemeldet',
+          type: 'warning',
+          color: 'negative',
+          position: 'bottom'
+        });
       }
     },
 
     /* USER STUDY ADDING/REMOVING/UPDATING */
     /************************************************************************************/
 
-    async addStudy(studyId) {
+    async addStudy(studyId, notify) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
 
@@ -274,78 +318,118 @@ export const useUserStore = defineStore('user', {
         )
 
         this.user.studies.push(response.data)
+        notify({
+          message: 'Studiengang erfolgreich hinzugefügt',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
+
       } catch (error) {
         if (error.response && error.response.status === 400) {
+
+          notify({
+            message: 'Studiengang bereits hinzugefügt',
+            type: 'error',
+            color: 'negative',
+            position: 'bottom'
+          })
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message)
           throw new Error(error.response.data.message) // Nachricht vom Backend an das Frontend weiterleiten
+
         } else {
+
+          notify({
+            message: 'Fehler beim Hinzufügen des Studiengangs',
+            type: 'error',
+            color: 'negative',
+            position: 'bottom'
+          })
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error)
           throw error // Andere Fehler weitergeben
         }
       }
     },
-    async deleteStudy(studyId) {
+    async deleteStudies(studyIds, notify) {
       try {
-        const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        this.user.studies = response.data.studies
+        const token = this.getToken();
+        const response = await axios.delete(`${url}/studies/delete-studies`, {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { studyIds }  // Sende die Liste von Studiengängen als Anfrage-Daten
+        });
+        this.user.studies = response.data.studies;
+
+        notify({
+          message: 'Studiengang erfolgreich gelöscht',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        });
+
       } catch (error) {
-        if (error.response && error.response.status === 400) {
-          console.error('Fehler beim Löschen des Studiengangs:', error.response.data.message)
-          throw new Error(error.response.data.message)
-        } else {
-          console.error('Fehler beim Löschen des Studiengangs:', error.message || error)
-          throw error
-        }
+        notify({
+          message: 'Fehler beim Löschen des Studiengangs',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        });
+
+          console.error('Fehler beim Löschen der Studiengänge:', error.message || error);
+          throw error;
       }
     },
-    async updateSubjectStatus(studyId, subjectId, status, grade) {
+    async updateSubjectStatus(studyId, subjectId, status, grade, shouldNotify = true, notify) {
       try {
-        const token = this.getToken() // Token über die neue Methode abrufen
-
+        const token = this.getToken();
+    
         const response = await axios.patch(
           `${url}/studies/${studyId}/subjects`,
           { studyId, subjectId, status, grade },
           {
             headers: { Authorization: `Bearer ${token}` }
           }
-        )
-        console.log(response.data)
-        const updatedSubject = response.data.subject
-
-        // Suche den Study im Store basierend auf studyId
-        const study = this.user.studies.find((s) => s.study_id === studyId)
-
+        );
+        console.log(response.data);
+        const updatedSubject = response.data.subject;
+    
+        const study = this.user.studies.find((s) => s.study_id === studyId);
         if (!study) {
-          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`)
-          return
+          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`);
+          return;
         }
-
-        // Suche das Fach (subject) im study.subject_states basierend auf subject._id
-        const subjectToUpdate = study.subject_states.find((s) => s._id === subjectId)
-
+    
+        const subjectToUpdate = study.subject_states.find((s) => s._id === subjectId);
         if (!subjectToUpdate) {
-          console.error(`Fach mit der ID ${subjectId} nicht im Studiengang ${studyId} gefunden`)
-          return
+          console.error(`Fach mit der ID ${subjectId} nicht im Studiengang ${studyId} gefunden`);
+          return;
         }
-
-        // Aktualisiere den Status des Faches
-        subjectToUpdate.status = updatedSubject.status
-        subjectToUpdate.grade = updatedSubject.grade
-
-        console.log(
-          `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
-        )
+    
+        subjectToUpdate.status = updatedSubject.status;
+        subjectToUpdate.grade = updatedSubject.grade;
+    
+        console.log(`Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`);
+        
+        // Benachrichtigung nur anzeigen, wenn shouldNotify true ist
+        if (shouldNotify) {
+          notify({
+            message: 'Fach erfolgreich aktualisiert',
+            type: 'success',
+            color: 'positive',
+            position: 'bottom'
+          });
+        }
+        
       } catch (error) {
-        if (error.response && error.response.status === 400) {
-          console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message)
-          throw new Error(error.response.data.message) // Nachricht vom Backend an das Frontend weiterleiten
-        } else {
-          console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error)
-          throw error // Andere Fehler weitergeben
+        if (shouldNotify) {
+          notify({
+            message: 'Fehler beim Aktualisieren des Faches',
+            type: 'error',
+            color: 'negative',
+            position: 'bottom'
+          });
         }
+        console.error('Fehler beim Aktualisieren des Faches:', error.message || error);
+        throw error;
       }
     },
     async updateBulkSubjectStatus(studyId, subjects) {
@@ -396,7 +480,7 @@ export const useUserStore = defineStore('user', {
     },
     /** USER SBWL ADDING/REMOVING/UPDATING */
     /************************************************************************ */
-    async addSbwlToStudy(studyId, sbwl) {
+    async addSbwlToStudy(studyId, sbwl, notify) {
       try {
         const token = this.getToken()
         const response = await axios.post(
@@ -408,12 +492,27 @@ export const useUserStore = defineStore('user', {
         )
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
+        notify({
+          message: 'SBWL erfolgreich hinzugefügt',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
+
       } catch (error) {
+        
+        notify({
+          message: 'Fehler beim Hinzufügen der SBWL',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
         console.error('Fehler beim Hinzufügen der SBWL:', error)
         throw error
       }
     },
-    async addCoursesAbroadToStudy(studyId, coursesAbroad) {
+    async addCoursesAbroadToStudy(studyId, coursesAbroad, notify) {
       try {
         const token = this.getToken()
         const response = await axios.post(
@@ -425,12 +524,27 @@ export const useUserStore = defineStore('user', {
         )
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
+
+        notify({
+          message: 'Auslandssemester Fach erfolgreich hinzugefügt',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
+
       } catch (error) {
-        console.error('Fehler beim Hinzufügen der Auslandssemester:', error)
+        notify({
+          message: 'Fehler beim Hinzufügen des Auslandssemester Fachs',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
+        console.error('Fehler beim Hinzufügen des Auslandssemester Fachs:', error)
         throw error
       }
     },
-    async deleteSubjectsFromCourseAbroad(studyId, coursesAbroad) {
+    async deleteSubjectsFromCourseAbroad(studyId, coursesAbroad, notify) {
       try {
         const token = this.getToken()
         const response = await axios.delete(`${url}/studies/${studyId}/courses-abroad`, {
@@ -439,13 +553,27 @@ export const useUserStore = defineStore('user', {
         })
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
-        console.log(response.data.sbwl_states)
+        
+        notify({
+          message: 'Auslandssemester Fach erfolgreich gelöscht',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
+
       } catch (error) {
+        notify({
+          message: 'Fehler beim Löschen des Auslandssemester Fachs',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
         console.error('Fehler beim Löschen der Auslandssemester:', error)
         throw error
       }
     },
-    async deleteSbwlFromStudy(studyId, sbwl) {
+    async deleteSbwlFromStudy(studyId, sbwl, notify) {
       try {
         const token = this.getToken()
         const response = await axios.delete(`${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`, {
@@ -454,7 +582,21 @@ export const useUserStore = defineStore('user', {
         })
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
+        notify({
+          message: 'SBWL erfolgreich gelöscht',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
+
       } catch (error) {
+        notify({
+          message: 'Fehler beim Löschen der SBWL',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
         console.error('Fehler beim Löschen der SBWL:', error)
         throw error
       }
@@ -472,7 +614,7 @@ export const useUserStore = defineStore('user', {
         throw error
       }
     },
-    async updateSbwlSubjectStatus(studyId, subjectId, status, grade, sbwl) {
+    async updateSbwlSubjectStatus(studyId, subjectId, status, grade, sbwl, notify) {
       try {
         const token = this.getToken();
         const response = await axios.patch(
@@ -515,21 +657,29 @@ export const useUserStore = defineStore('user', {
         } else {
           console.log('Keine passende SBWL gefunden');
         }
+        notify({
+          message: 'Fach erfolgreich aktualisiert',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        });
     
       } catch (error) {
-        if (error.response && error.response.status === 400) {
-          console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message);
-          throw new Error(error.response.data.message); // Nachricht vom Backend an das Frontend weiterleiten
-        } else {
+        notify({
+          message: 'Fehler beim Aktualisieren des Faches',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        });
+         
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error);
           throw error; // Andere Fehler weitergeben
-        }
       }
     },
     /* USER FREE ELECTIVES ADDING/REMOVING/UPDATING */
     /************************************************************************************/
 
-    async addFreeElectiveToStudy(studyId, freeElective) {
+    async addFreeElectiveToStudy(studyId, freeElective, notify) {
       try {
         const token = this.getToken()
         const response = await axios.post(
@@ -542,12 +692,25 @@ export const useUserStore = defineStore('user', {
         console.log(freeElective)
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.free_electives = response.data.free_electives
+        notify({
+          message: 'Wahlfach erfolgreich hinzugefügt',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
       } catch (error) {
+        notify({
+          message: 'Fehler beim Hinzufügen des Wahlfachs',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
         console.error('Fehler beim Hinzufügen des Wahlfachs:', error)
         throw error
       }
     },
-    async deleteFreeElectiveFromStudy(studyId, freeElective) {
+    async deleteFreeElectiveFromStudy(studyId, freeElective, notify) {
       try {
         const token = this.getToken()
         const response = await axios.delete(`${url}/studies/${studyId}/free-electives`, {
@@ -556,7 +719,20 @@ export const useUserStore = defineStore('user', {
         })
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.free_electives = response.data.free_electives
+        notify({
+          message: 'Wahlfach erfolgreich gelöscht',
+          type: 'success',
+          color: 'positive',
+          position: 'bottom'
+        })
       } catch (error) {
+        notify({
+          message: 'Fehler beim Löschen des Wahlfachs',
+          type: 'error',
+          color: 'negative',
+          position: 'bottom'
+        })
+
         console.error('Fehler beim Löschen des Wahlfachs:', error)
         throw error
       }
