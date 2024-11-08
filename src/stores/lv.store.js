@@ -5,13 +5,13 @@ import axios from 'axios'
 /**
  * API-URLs für Localhost
  */
-const lvUrl = 'http://localhost:5000/api/user/lv'
+//const lvUrl = 'http://localhost:5000/api/user/lv'
 
 /**
  * API-URLs für Stage
  */
 
-//const lvUrl = 'https://taigowiz.org/api/user/lv';
+const lvUrl = 'https://taigowiz.org/api/user/lv';
 
 
 export const useLvStore = defineStore("lv", {

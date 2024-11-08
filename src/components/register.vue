@@ -29,7 +29,7 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await axios.post('http://localhost:5000/api/auth/register', {
+        const response = await axios.post('https://taigowiz.org/api/auth/register', {
           email: this.email,
           password: this.password
         });
