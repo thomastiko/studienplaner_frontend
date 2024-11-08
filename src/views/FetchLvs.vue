@@ -34,11 +34,15 @@
         </li>
       </ul>
     </div>
+    <button @click="setNewCollection">
+      Neue Collection erstellen und verwenden
+    </button>
   </div>
 </template>
 
 <script>
 import { useAdminStore } from '@/stores/admin.store'
+import { useLvStore } from '@/stores/lv.store'
 
 export default {
   name: 'ScraperComponent',
@@ -52,6 +56,7 @@ export default {
       semester: '', // Semester
       loading: false, // Status für den Spinner
       progressMessages: [], // Fortschrittsmeldungen
+      scrapingComplete: false,
       spinnerMessage:
         'Scraper läuft! Dies kann bis zu 2 Stunden dauern. Bitte stell sicher, dass die Internetverbindung durchgehend hergestellt ist.' // Nachricht beim Laufen des Spinners
     }
@@ -73,6 +78,7 @@ export default {
 
           if (data.type === 'complete') {
             this.loading = false
+            this.scrapingComplete = true
             this.spinnerMessage = 'Scraping abgeschlossen!'
             this.progressMessages.push('Scraping abgeschlossen.')
           }
@@ -90,19 +96,33 @@ export default {
       }
 
       const payload = { links: this.links, semester: this.semester }
-
+      console.log('Payload:', payload)
       this.loading = true
-      this.progressMessages = [] // Setzt Fortschrittsmeldungen zurück
+      this.scrapingComplete = false
+      this.progressMessages = []
 
-      this.setupWebSocket() // WebSocket-Verbindung vor dem API-Aufruf starten
+      this.setupWebSocket()
 
       try {
         const adminStore = useAdminStore()
-        await adminStore.runScraper(payload.links, payload.semester) // API-Aufruf zur Initialisierung des Scrapers
+        await adminStore.runScraper(payload.links, payload.semester)
       } catch (error) {
         alert('Fehler beim Scraping: ' + (error.response?.data?.message || error.message))
-        this.loading = false
         this.spinnerMessage = 'Fehler beim Scraping!'
+        this.loading = false
+      }
+    },
+    async setNewCollection() {
+      const adminStore = useAdminStore();
+      const lvStore = useLvStore();
+      try {
+        const collectionName = `courses_${this.semester}`;
+        console.log(collectionName) // Formatierung des Collection-Namens
+        await adminStore.createAndSetNewCollection(collectionName); // Übergibt den Namen ans Backend
+        alert('Neue Collection erstellt und als aktuelle Collection gesetzt!');
+        await lvStore.fetchCourses(); // Abruf der Kurse von der neuen Collection
+      } catch (error) {
+        console.error('Fehler beim Setzen der neuen Collection:', error);
       }
     }
   },

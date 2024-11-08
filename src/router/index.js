@@ -15,11 +15,17 @@ import AddLv from "../views/AddLv.vue"
 import AdminPanel from "../views/AdminPanel.vue"
 import ManageCommentary from "../views/ManageCommentary.vue"
 import FetchLvs from "../views/FetchLvs.vue"
+import NotFound from "../views/NotFound.vue";
 
 // Erstelle den Router
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/:pathMatch(.*)*', // Wildcard für alle nicht definierten Routen
+      name: 'NotFound',
+      component: NotFound,
+    },
     {
       path: "/",
       name: "home",

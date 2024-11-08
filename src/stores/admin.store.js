@@ -5,14 +5,14 @@ import { Notify } from 'quasar'
 /**
  * API-URLs für Localhost
  */
-//const adminUrl = 'http://localhost:5000/api/admin'
-//const profUrl = 'http://localhost:5001/api/profs'
+const adminUrl = 'http://localhost:5000/api/admin'
+const profUrl = 'http://localhost:5001/api/profs'
 
 /**
  * API-URLs für Stage
  */
-const adminUrl = 'https://taigowiz.org/api/admin'
-const profUrl = 'https://taigowiz.org/api/profs'
+//const adminUrl = 'https://taigowiz.org/api/admin'
+//const profUrl = 'https://taigowiz.org/api/profs'
 export const useAdminStore = defineStore('admin', {
   state: () => ({
     comments: [],
@@ -118,6 +118,7 @@ export const useAdminStore = defineStore('admin', {
       }
     },
     async runScraper(linksFrontend, semesterFrontend) {
+      console.log(linksFrontend, semesterFrontend);
       const token = this.getToken(); // Holt das Token aus dem Store oder lokalen Speicher
       try {
         const payload = { linksFrontend, semesterFrontend }; 
@@ -142,6 +143,29 @@ export const useAdminStore = defineStore('admin', {
         throw error;
       }
     },
+    async createAndSetNewCollection(collectionName) {
+      console.log(collectionName);
+      const token = this.getToken();
+      try {
+        // Sende den semester-Wert im Request-Body
+        await axios.post(`${adminUrl}/createAndSetNewCollection`, { collectionName }, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        Notify.create({
+          type: 'positive',
+          message: 'Neue Collection erfolgreich erstellt und als aktuell gesetzt!',
+          timeout: 3000
+        });
+      } catch (error) {
+        Notify.create({
+          type: 'negative',
+          message: error.response?.data?.message || 'Fehler beim Erstellen der neuen Collection',
+          timeout: 5000
+        });
+        console.error('Fehler beim Erstellen der neuen Collection:', error);
+        throw error;
+      }
+    }
     
   }
 })

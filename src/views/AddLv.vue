@@ -225,13 +225,24 @@ export default {
     }
 
     const addCourseToUser = async (course) => {
-      try {
-        await userStore.addCourse(course)
-        console.log('Kurs erfolgreich hinzugefügt:', course)
-      } catch (error) {
-        console.error('Fehler beim Hinzufügen des Kurses:', error)
-      }
-    }
+      console.log(course)
+  // Konvertiere die `start` und `end` Datumsfelder in `Date` Objekte
+  const convertedCourse = {
+    ...course,
+    dates: course.dates.map(date => ({
+      ...date,
+      start: new Date(date.start.$date),
+      end: new Date(date.end.$date)
+    }))
+  };
+
+  try {
+    await userStore.addCourse(convertedCourse);
+    console.log('Kurs erfolgreich hinzugefügt:', convertedCourse);
+  } catch (error) {
+    console.error('Fehler beim Hinzufügen des Kurses:', error);
+  }
+};
 
     const removeCourseFromUser = async (course) => {
       try {
@@ -286,19 +297,29 @@ export default {
       loading,
       slide: ref(1),
       formatDateRange(dateStart, dateEnd) {
-        const start = new Date(dateStart)
-        const end = new Date(dateEnd)
-        const options = {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        }
-        const formattedStart = start.toLocaleString(undefined, options)
-        const formattedEnd = end.toLocaleString(undefined, { hour: '2-digit', minute: '2-digit' })
-        return `${formattedStart} - ${formattedEnd}`
-      }
+  // Extrahiere die Datumsstrings aus den Objekten
+  const start = new Date(dateStart.$date);
+  const end = new Date(dateEnd.$date);
+
+  // Überprüfe, ob das Format korrekt ist
+  if (isNaN(start) || isNaN(end)) {
+    return "Invalid Date";
+  }
+
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  };
+
+  // Formatieren der Start- und Enddaten
+  const formattedStart = start.toLocaleString(undefined, options);
+  const formattedEnd = end.toLocaleString(undefined, { hour: '2-digit', minute: '2-digit' });
+
+  return `${formattedStart} - ${formattedEnd}`;
+}
     }
   },
   methods: {

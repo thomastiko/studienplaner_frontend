@@ -60,8 +60,7 @@
                     <q-btn-dropdown
                       :style="{
                         backgroundColor: course.color || 'lightblue',
-                        border: '2px solid lightgray',
-                        
+                        border: '2px solid lightgray'
                       }"
                       padding="none"
                       rounded
@@ -104,7 +103,7 @@
                   <q-item-section>
                     <div class="col-12 row">
                       <div class="col-12 row items-center">
-                        {{ course.name }}
+                        {{ course.name  }}
                         <span class="text-weight-bold q-ml-xs">({{ course.course_code }})</span>
                       </div>
                     </div>
@@ -404,6 +403,7 @@ export default defineComponent({
   async mounted() {
     try {
       await this.userStore.fetchUser()
+      console.log('User:', this.userStore.user)
     } catch (error) {
       console.log(error)
     }

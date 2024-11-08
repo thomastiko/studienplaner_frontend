@@ -5,16 +5,16 @@ import axios from 'axios'
 /**
  * API-URLs für Localhost
  */
-//const apiUrl = 'http://localhost:5000/api/auth'
-//const url = 'http://localhost:5000/api/user'
+const apiUrl = 'http://localhost:5000/api/auth'
+const url = 'http://localhost:5000/api/user'
 
 
 /**
  * API-Urls für Stage
  */
 
-const apiUrl = 'https://taigowiz.org/api/auth';
-const url = 'https://taigowiz.org/api/user';
+//const apiUrl = 'https://taigowiz.org/api/auth';
+//const url = 'https://taigowiz.org/api/user';
 
 
 export const useUserStore = defineStore('user', {
