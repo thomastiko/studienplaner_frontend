@@ -5,7 +5,12 @@
       <div class="col-12">
         <div class="row text-blue-7 bg-white q-pa-sm">
           <!-- Linke Spalte (bis "Heute") -->
-          <div :class="['col-12 col-md-6 col-lg-4 row items-center', { 'justify-center': $q.screen.lt.md }]">
+          <div
+            :class="[
+              'col-12 col-md-6 col-lg-4 row items-center',
+              { 'justify-center': $q.screen.lt.md }
+            ]"
+          >
             <q-btn flat icon="navigate_before" color="blue-7" @click="onPrev" />
             <div class="q-ma-xs">{{ formattedMonth }}</div>
             <q-btn flat icon="navigate_next" color="blue-7" @click="onNext" />
@@ -42,18 +47,26 @@
           </div>
 
           <!-- Rechte Spalte (Meine Kurse und Ansicht) -->
-          <div :class="['col-12 col-md-6 col-lg-4 row items-center', { 'justify-end': !$q.screen.lt.md, 'justify-center': $q.screen.lt.md }]">
+          <div
+            :class="[
+              'col-12 col-md-6 col-lg-4 row items-center',
+              { 'justify-end': !$q.screen.lt.md, 'justify-center': $q.screen.lt.md }
+            ]"
+          >
             <q-btn-dropdown flat label="Meine Kurse">
-              <q-list separator>
+              <q-list separator style="position: relative; z-index: 3">
                 <q-item v-for="(course, i) in this.userStore.user.course_entries" :key="i">
                   <q-item-section avatar>
-                    <q-fab
+                    <q-btn-dropdown
                       :style="{
                         backgroundColor: course.color || 'lightblue',
-                        border: '2px solid lightgray'
+                        border: '2px solid lightgray',
+                        
                       }"
                       padding="none"
-                      icon="none"
+                      rounded
+                      auto-close
+                      dropdown-icon="none"
                       :direction="setDirection"
                       text-color="white"
                     >
@@ -62,12 +75,31 @@
                         no-header
                         default-view="palette"
                         :palette="[
-                          /* Color palette here */
+                          '#ffcc5c',
+                          '#f2774e',
+                          '#d9534f',
+                          '#f6a6b2',
+                          '#d76b78',
+                          '#6b353c',
+                          '#adcbe3',
+                          '#5bbdf4',
+                          '#4b86b4',
+                          '#2e4c5c',
+                          '#a4d4a3',
+                          '#52bf90',
+                          '#36802d',
+                          '#234d20',
+                          '#d0b783',
+                          '#967259',
+                          '#6f4d37',
+                          '#bfb5b2',
+                          '#86949f',
+                          '#5d5c61'
                         ]"
                         class="my-picker"
                         @change="changeColor(course, $event)"
                       />
-                    </q-fab>
+                    </q-btn-dropdown>
                   </q-item-section>
                   <q-item-section>
                     <div class="col-12 row">

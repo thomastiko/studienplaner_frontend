@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import { trackRouter } from "vue-gtag-next";
 import { useUserStore } from '@/stores/user.store';
 import HomePage from "../views/HomePage.vue";
@@ -18,7 +18,7 @@ import FetchLvs from "../views/FetchLvs.vue"
 
 // Erstelle den Router
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -60,7 +60,7 @@ const router = createRouter({
       path: "/lvplaner",
       name: "LvPlaner",
       component: LvPlaner,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true},
     },
     {
       path: "/addlv",

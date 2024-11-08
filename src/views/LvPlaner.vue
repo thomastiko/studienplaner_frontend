@@ -25,10 +25,17 @@
 <script>
 import Calendar from '../components/lvplaner/calendar.vue'
 import { useUserStore } from '@/stores/user.store'
+import { watch } from 'vue'
 
 export default {
   setup() {
     const userStore = useUserStore();
+    watch(
+      () => userStore.$route, 
+      () => {
+        userStore.fetchUser(); // Daten neu laden
+      }
+    );
 
     return {
       userStore,
@@ -39,7 +46,7 @@ export default {
   },
   mounted() {
     this.userStore.fetchUser();
-  }
+  },
 }
 </script>
 

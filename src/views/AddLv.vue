@@ -122,8 +122,7 @@
     <div v-else class="row justify-center q-ma-xl">
       <q-spinner size="50px" color="blue" />
     </div>
-  </div>
-  <q-dialog v-model="showProfPreview">
+    <q-dialog v-model="showProfPreview">
     <q-card style="width: 700px; max-width: 80vw">
       <q-card-section class="row items-center q-pb-none">
         <div class="text-h6"> {{ $t('lvPlaner.prof_preview') }} </div>
@@ -169,6 +168,7 @@
       </q-card-section>
     </q-card>
   </q-dialog>
+  </div>
 </template>
 
 <script>
