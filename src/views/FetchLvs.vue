@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     setupWebSocket() {
-      this.socket = new WebSocket('ws://localhost:5000') // WebSocket-Verbindung zum Backend
+      this.socket = new WebSocket('wss://localhost:5000') // WebSocket-Verbindung zum Backend
 
       this.socket.onopen = () => {
         console.log('WebSocket-Verbindung geöffnet')

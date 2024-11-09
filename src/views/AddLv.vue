@@ -2,7 +2,7 @@
   <div>
     <div v-if="!loading">
       <div class="row q-ma-md">
-        <div class="text-h3 text-weight-medium q-mb-sm col-12"> {{ $t('lvPlaner.add_lvs') }} </div>
+        <div class="text-h3 text-weight-medium q-mb-sm col-12">{{ $t('lvPlaner.add_lvs') }}</div>
         <div class="col-12">
           <q-select
             filled
@@ -22,7 +22,7 @@
             v-for="course in filteredCourses"
             :key="course._id.$oid"
             class="col-xs-12 col-md-6 col-lg-3 q-mt-md"
-            style="max-width: 400px;"
+            style="max-width: 400px"
           >
             <q-expansion-item
               :style="{ backgroundColor: isCourseInUserCourses(course) ? 'lightgreen' : '' }"
@@ -76,7 +76,7 @@
                     :key="prof"
                     @click="previewProf(prof)"
                   >
-                    {{ prof }}
+                    {{ prof.firstName }} {{ prof.lastName }}
                   </q-btn>
                 </div>
               </div>
@@ -86,13 +86,7 @@
                   {{ $t('lvPlaner.mode') }} <q-tooltip>{{ course.mode }}</q-tooltip>
                 </div>
                 <div class="text-blue-7">
-                  <a
-                    :href="course.vvz_url"
-                    target="_blank"
-                    class="text-blue-7"
-                  >
-                    VVZ
-                  </a>
+                  <a :href="course.vvz_url" target="_blank" class="text-blue-7"> VVZ </a>
                 </div>
                 <div class="text-blue-7">
                   {{ $t('lvPlaner.language') }} <q-tooltip>{{ course.language }}</q-tooltip>
@@ -122,52 +116,92 @@
     <div v-else class="row justify-center q-ma-xl">
       <q-spinner size="50px" color="blue" />
     </div>
-    <q-dialog v-model="showProfPreview">
-    <q-card style="width: 700px; max-width: 80vw">
-      <q-card-section class="row items-center q-pb-none">
-        <div class="text-h6"> {{ $t('lvPlaner.prof_preview') }} </div>
-        <q-space />
-        <q-btn icon="close" flat round dense v-close-popup />
-      </q-card-section>
-      <q-card-section class="column justify-center">
-        <div class="text-h6 text-center">
-          {{ profStore.profPreview.fname }} {{ profStore.profPreview.lname }}
-        </div>
-        <q-btn :label="$t('lvPlaner.prof_more_details')" flat color="primary" @click="goToProf" />
-      </q-card-section>
-      <q-card-section>
-        <div class="text-h6 text-center">{{ $t('lvPlaner.prof_ratings') }}</div>
-        <div
-          class="row justify-center"
-          v-if="
-            profStore.profPreview.factors[0].ratings > 0 &&
-            profStore.profPreview.factors[0].lerninhahlte !== null &&
-            profStore.profPreview.factors[0].atmospahre !== null &&
-            profStore.profPreview.factors[0].mitarbeit !== null &&
-            profStore.profPreview.factors[0].benotung !== null &&
-            profStore.profPreview.factors[0].verfugbarkeit !== null &&
-            profStore.profPreview.factors[0].empfhelung !== null &&
-            profStore.profPreview.factors[0].gesamt !== null
-          "
-        >
-          <div class="col-3">{{ $t('lvPlaner.prof_rating') }}: {{ profStore.profPreview.factors[0].ratings }}</div>
-          <div class="col-3">{{ $t('lvPlaner.prof_comments') }}:  {{ profStore.profPreview.factors[0].comments }}</div>
-          <div class="col-3">{{ $t('lvPlaner.prof_learning_content') }}:  {{ profStore.profPreview.factors[0].lerninhahlte }}</div>
-          <div class="col-3">{{ $t('lvPlaner.prof_atmosphere') }}:  {{ profStore.profPreview.factors[0].atmospahre }}</div>
-          <div class="col-3">{{ $t('lvPlaner.prof_participation') }}:  {{ profStore.profPreview.factors[0].mitarbeit }}</div>
-          <div class="col-3">{{ $t('lvPlaner.prof_grading') }}:  {{ profStore.profPreview.factors[0].benotung }}</div>
-          <div class="col-3">
-            {{ $t('lvPlaner.prof_availability') }}:  {{ profStore.profPreview.factors[0].verfugbarkeit }}
+    <q-dialog v-if="showProfPreview" v-model="showProfPreview">
+      <q-card style="width: 700px; max-width: 80vw">
+        <q-card-section class="row items-center q-pb-none">
+          <div class="text-h6">{{ $t('lvPlaner.prof_preview') }}</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+        <q-card-section class="column justify-center">
+          <div class="text-h6 text-center">
+            {{ profStore.profPreview.fname }} {{ profStore.profPreview.lname }}
           </div>
-          <div class="col-3">{{ $t('lvPlaner.prof_recommendation') }}:  {{ profStore.profPreview.factors[0].empfhelung }}</div>
-          <div class="col-3">{{ $t('lvPlaner.prof_overall') }}:  {{ profStore.profPreview.factors[0].gesamt }}</div>
-        </div>
-        <div class="row justify-center" v-else>
-          <div>{{ $t('lvPlaner.prof_no_ratings') }}: </div>
-        </div>
-      </q-card-section>
-    </q-card>
-  </q-dialog>
+          <q-btn :label="$t('lvPlaner.prof_more_details')" flat color="primary" @click="goToProf" />
+        </q-card-section>
+        <q-card-section>
+          <div class="text-h6 text-center">{{ $t('lvPlaner.prof_ratings') }}</div>
+          <div
+            class="row justify-center"
+            v-if="
+              profStore.profPreview.factors[0].ratings > 0 &&
+              profStore.profPreview.factors[0].lerninhahlte !== null &&
+              profStore.profPreview.factors[0].atmospahre !== null &&
+              profStore.profPreview.factors[0].mitarbeit !== null &&
+              profStore.profPreview.factors[0].benotung !== null &&
+              profStore.profPreview.factors[0].verfugbarkeit !== null &&
+              profStore.profPreview.factors[0].empfhelung !== null &&
+              profStore.profPreview.factors[0].gesamt !== null
+            "
+          >
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_rating') }}: {{ profStore.profPreview.factors[0].ratings }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_comments') }}: {{ profStore.profPreview.factors[0].comments }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_learning_content') }}:
+              {{ profStore.profPreview.factors[0].lerninhahlte }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_atmosphere') }}:
+              {{ profStore.profPreview.factors[0].atmospahre }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_participation') }}:
+              {{ profStore.profPreview.factors[0].mitarbeit }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_grading') }}: {{ profStore.profPreview.factors[0].benotung }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_availability') }}:
+              {{ profStore.profPreview.factors[0].verfugbarkeit }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_recommendation') }}:
+              {{ profStore.profPreview.factors[0].empfhelung }}
+            </div>
+            <div class="col-3">
+              {{ $t('lvPlaner.prof_overall') }}: {{ profStore.profPreview.factors[0].gesamt }}
+            </div>
+          </div>
+          <div class="row justify-center" v-else>
+            <div>{{ $t('lvPlaner.prof_no_ratings') }}:</div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-if="profNotFound" v-model="profNotFound">
+      <q-card style="width: 400px; max-width: 80vw">
+        <q-card-section class="row items-center q-pb-none">
+          <div class="text-h6">Lehrkraft nicht vorhanden</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+        <q-card-section>
+          <div class="text-body1">
+            Leider konnten wir die Lehrkraft nicht finden. Bitte schreibe uns eine E-Mail an
+            <a href="mailto:beratung@oeh-wu.at" class="text-primary">beratung@oeh-wu.at</a>, und wir
+            werden sie so schnell wie möglich hinzufügen. Vielen Dank für dein Verständnis!
+          </div>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn flat label="Ok" color="primary" @click="profNotFound = false" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -226,23 +260,23 @@ export default {
 
     const addCourseToUser = async (course) => {
       console.log(course)
-  // Konvertiere die `start` und `end` Datumsfelder in `Date` Objekte
-  const convertedCourse = {
-    ...course,
-    dates: course.dates.map(date => ({
-      ...date,
-      start: new Date(date.start.$date),
-      end: new Date(date.end.$date)
-    }))
-  };
+      // Konvertiere die `start` und `end` Datumsfelder in `Date` Objekte
+      const convertedCourse = {
+        ...course,
+        dates: course.dates.map((date) => ({
+          ...date,
+          start: new Date(date.start.$date),
+          end: new Date(date.end.$date)
+        }))
+      }
 
-  try {
-    await userStore.addCourse(convertedCourse);
-    console.log('Kurs erfolgreich hinzugefügt:', convertedCourse);
-  } catch (error) {
-    console.error('Fehler beim Hinzufügen des Kurses:', error);
-  }
-};
+      try {
+        await userStore.addCourse(convertedCourse)
+        console.log('Kurs erfolgreich hinzugefügt:', convertedCourse)
+      } catch (error) {
+        console.error('Fehler beim Hinzufügen des Kurses:', error)
+      }
+    }
 
     const removeCourseFromUser = async (course) => {
       try {
@@ -287,6 +321,7 @@ export default {
       userStore,
       profStore,
       showProfPreview: ref(false),
+      profNotFound: ref(false),
       selectedSubject,
       filteredOptions,
       filteredCourses,
@@ -297,73 +332,54 @@ export default {
       loading,
       slide: ref(1),
       formatDateRange(dateStart, dateEnd) {
-  // Extrahiere die Datumsstrings aus den Objekten
-  const start = new Date(dateStart.$date);
-  const end = new Date(dateEnd.$date);
+        // Extrahiere die Datumsstrings aus den Objekten
+        const start = new Date(dateStart.$date)
+        const end = new Date(dateEnd.$date)
 
-  // Überprüfe, ob das Format korrekt ist
-  if (isNaN(start) || isNaN(end)) {
-    return "Invalid Date";
-  }
+        // Überprüfe, ob das Format korrekt ist
+        if (isNaN(start) || isNaN(end)) {
+          return 'Invalid Date'
+        }
 
-  const options = {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  };
+        const options = {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }
 
-  // Formatieren der Start- und Enddaten
-  const formattedStart = start.toLocaleString(undefined, options);
-  const formattedEnd = end.toLocaleString(undefined, { hour: '2-digit', minute: '2-digit' });
+        // Formatieren der Start- und Enddaten
+        const formattedStart = start.toLocaleString(undefined, options)
+        const formattedEnd = end.toLocaleString(undefined, { hour: '2-digit', minute: '2-digit' })
 
-  return `${formattedStart} - ${formattedEnd}`;
-}
+        return `${formattedStart} - ${formattedEnd}`
+      }
     }
   },
   methods: {
     async previewProf(prof) {
-  // Erkenne und entferne alle akademischen Titel und Grad-Abkürzungen mit flexibler Punkt-Erkennung
-  const titles =
-    /\b(?:Assoz\.Prof\.?|Ass\.Prof\.?|Assist\.Prof\.?|Prof\.?|Dr\.?|Univ\.?|PD|LL\.M\.?|M\.Sc\.?|MBA|PhD|Ph\.D\.?|Mag\.?|Dipl\.-Vw\.?|MSc\(WU\)|MSc|MA|BA|WU|M\.A\.?|Doz\.?|Univ.-Prof\.?|Priv.-Doz\.?|Ing\.)\b\s*/gi;
+      // Den vollständigen Namen in Vorname und Nachname aufteilen
+      const { firstName, lastName } = prof
 
-  // Entferne alle Titel, Punkte und Leerzeichen, die direkt danach kommen
-  const nameWithoutTitles = prof.replace(titles, '').replace(/^\s*\./, '').trim();
+      try {
+        // Objekt erstellen und in der Store-Funktion verwenden
+        const obj = { fname: firstName, lname: lastName }
+        await this.profStore.fetchProfPreview(obj)
 
-  // Entferne überflüssige Punkte, Klammern und Kommata am Ende des Namens
-  const cleanName = nameWithoutTitles.replace(/\.+$/, '').replace(/\(\s*\)/, '').replace(/,\s*$/, '').trim();
+        // Wenn der Professor gefunden wurde, zeige die Vorschau an
+        this.showProfPreview = true
+      } catch (error) {
+        console.error('Fehler beim Laden der Professorenvorschau:', error)
+        this.profNotFound = true
 
-  // Den vollständigen Namen in Vorname und Nachname aufteilen
-  const nameParts = cleanName.split(/\s+/);
-
-  if (nameParts.length < 2) {
-    console.error('Fehler: Der Name konnte nicht korrekt aufgeteilt werden.');
-    return;
-  }
-
-  let fname = nameParts[0]; // Vorname
-  let lname = nameParts.slice(1).join(' '); // Nachname
-
-  // Falls der Vorname immer noch ein Punkt ist, nimm den nächsten Teil als Vorname
-  if (fname === '.' || fname === '') {
-    fname = nameParts[1];
-    lname = nameParts.slice(2).join(' ');
-  }
-
-  // Ausgabe zur Kontrolle
-  console.log(`Vorname: ${fname}, Nachname: ${lname}`);
-
-  // Suche den Professor mit den extrahierten Namen
-  try {
-    const obj = { fname, lname };
-    await this.profStore.fetchProfPreview(obj);
-    this.showProfPreview = true;
-  } catch (error) {
-    console.error('Fehler beim Laden der Professorenvorschau:', error);
-  }
-}
-,
+        // Fehlermeldung anzeigen, wenn der Professor nicht gefunden wurde
+        this.$q.notify({
+          type: 'negative',
+          message: `Professor ${firstName} ${lastName} wurde nicht gefunden.`
+        })
+      }
+    },
     async goToProf() {
       if (this.profStore.profPreview._id) {
         await this.profStore.findProf(this.profStore.profPreview._id)
