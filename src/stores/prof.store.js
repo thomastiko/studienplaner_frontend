@@ -83,39 +83,59 @@ export const useProfStore = defineStore('prof', {
               throw error;
             }
           },
-          async rateProfessor(profId, rating, router) {
-            console.log('Rating:', rating)
-            const userStore = useUserStore() // Zugriff auf den User Store
-      
+          async rateProfessor(profId, rating, router, notify) {
+            const userStore = useUserStore();
+          
             // Authentifizierungsstatus überprüfen
-            await userStore.checkAuthState(router)
-      
+            await userStore.checkAuthState(router);
+          
             if (userStore.loggedIn) {
               try {
-                const token = userStore.getToken() // Token abrufen
-      
-                // Anfrage an das Backend zum Hinzufügen eines Ratings senden
+                const token = userStore.getToken();
+                
                 const response = await axios.patch(
                   `${profUrl}/${profId}/rate`,
                   rating,
                   { headers: { Authorization: `Bearer ${token}` } }
-                )
-      
-                console.log(`Rating für Professor ${profId} hinzugefügt:`, response.data)
-      
-                // Optional: Professor-Objekt im Store aktualisieren, falls das Backend die aktualisierten Daten zurücksendet
-                const updatedProf = this.professors.find((p) => p._id === profId)
+                );
+          
+                console.log(`Rating für Professor ${profId} hinzugefügt:`, response.data);
+          
+                const updatedProf = await this.professors.find((p) => p._id === profId);
                 if (updatedProf) {
-                  updatedProf.ratings = response.data.ratings // Aktualisiere die Bewertungen, falls vorhanden
+                  updatedProf.ratings = response.data.ratings;
                 }
-      
+                notify({
+                  type: 'positive',
+                  message: 'Bewertung erfolgreich hinzugefügt.',
+                  position: 'bottom',
+                  timeout: 3000
+                });
+                router.back();
+                window.addEventListener('popstate', () => location.reload(), { once: true });
+          
               } catch (error) {
-                console.error('Fehler beim Hinzufügen des Ratings: ', error.response?.data?.message || error.message)
-                throw error
+                if (error.response?.status === 409) {
+                  notify({
+                    type: 'negative',
+                    message: 'Du hast diesen Professor bereits bewertet.',
+                    position: 'bottom',
+                    timeout: 3000
+                  });
+                  
+                } else {
+                  notify({
+                    type: 'negative',
+                    message: 'Fehler beim Hinzufügen des Ratings.',
+                    position: 'bottom',
+                    timeout: 3000
+                  });
+                  console.error('Fehler beim Hinzufügen des Ratings:', error.response?.data?.message || error.message);
+                  throw error;
+                }
               }
             } else {
-              console.error('Benutzer ist nicht eingeloggt')
-              return
+              console.error('Benutzer ist nicht eingeloggt');
             }
           },
           async fetchAllComments() {

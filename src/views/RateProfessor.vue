@@ -31,8 +31,9 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user.store'
 import { useProfStore } from '@/stores/prof.store'
-import { onMounted, computed } from 'vue'
+import { onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useQuasar } from 'quasar'
 export default {
   props: ['prof_id'],
   setup(props) {
@@ -40,10 +41,11 @@ export default {
     const userStore = useUserStore()
     const profStore = useProfStore()
     const { t } = useI18n()
+    const q = useQuasar()
     const profId = ref(
       props.prof_id || route.params.prof_id || window.location.pathname.split('/')[2]
     )
-    const rateSystem =  computed(() => [
+    const rateSystem = ref([
         {
           title: t('lvPlaner.prof_learning_content'),
           criteria: t('rateProf.learning_content_text'),
@@ -80,6 +82,7 @@ export default {
       profStore,
       comment: ref(''),
       rateSystem,
+      q
     }
   },
   methods: {
@@ -101,7 +104,8 @@ export default {
         await this.profStore.rateProfessor(
           this.profStore.selectedProf._id,
           ratingData,
-          this.$router
+          this.$router,
+          this.q.notify
         )
       } catch (error) {
         console.error('Fehler beim Hinzufügen der Bewertung:', error)
