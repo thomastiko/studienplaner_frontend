@@ -272,6 +272,7 @@ export default {
 
       try {
         await userStore.addCourse(convertedCourse)
+        userStore.fetchUser()
         console.log('Kurs erfolgreich hinzugefügt:', convertedCourse)
       } catch (error) {
         console.error('Fehler beim Hinzufügen des Kurses:', error)
