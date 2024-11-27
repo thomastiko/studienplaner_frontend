@@ -15,7 +15,7 @@ async function checkCBK(study) {
           study_id: study.study_id,
           _id: item._id,
           status: "can-do",
-          grade: 0,
+          grade: null,
         });
       }
     });
@@ -27,7 +27,7 @@ async function checkCBK(study) {
           study_id: study.study_id,
           _id: item._id,
           status: "unavailable",
-          grade: 0,
+          grade: null,
         });
       }
     });
@@ -91,7 +91,7 @@ async function checkHauptstudium(study, totalDoneECTSValue) {
           study_id: study.study_id,
           _id: item._id,
           status: item.status,
-          grade: 0,
+          grade: null,
         });
       }
     });
@@ -102,7 +102,7 @@ async function checkHauptstudium(study, totalDoneECTSValue) {
         study_id: study.study_id,
         _id: item._id,
         status: item.status,
-        grade: 0,
+        grade: null,
       });
     });
   }
@@ -228,7 +228,7 @@ async function checkBachelorarbeit(study, totalDoneECTSValue) {
           study_id: study.study_id,
           _id: bachelorarbeit._id,
           status: bachelorarbeit.status,
-          grade: 0,
+          grade: null,
         });
       }
     } else if (
@@ -239,7 +239,7 @@ async function checkBachelorarbeit(study, totalDoneECTSValue) {
         study_id: study.study_id,
         _id: bachelorarbeit._id,
         status: bachelorarbeit.status,
-        grade: 0,
+        grade: null,
       });
     }
   } else {
@@ -248,7 +248,7 @@ async function checkBachelorarbeit(study, totalDoneECTSValue) {
       study_id: study.study_id,
       _id: bachelorarbeit._id,
       status: bachelorarbeit.status,
-      grade: 0,
+      grade: null,
     });
   }
   return update_array;

@@ -93,13 +93,13 @@ async function checkBusinessAnalytics(study, steopsDone) {
         study_id: study.study_id,
         _id: busAn1._id,
         status: busAn1.status,
-        grade: 0,
+        grade: null,
       },
       {
         study_id: study.study_id,
         _id: busAn2._id,
         status: busAn2.status,
-        grade: 0,
+        grade: null,
       }
     );
   } else if (quanMeth2.status !== "done") {
@@ -110,13 +110,13 @@ async function checkBusinessAnalytics(study, steopsDone) {
         study_id: study.study_id,
         _id: busAn1._id,
         status: busAn1.status,
-        grade: 0,
+        grade: null,
       },
       {
         study_id: study.study_id,
         _id: busAn2._id,
         status: busAn2.status,
-        grade: 0,
+        grade: null,
       }
     );
   }
@@ -154,7 +154,7 @@ async function checkSbwl(study, totalDoneECTSValue) {
     study_id: study.study_id,
     _id: sbwl1._id,
     status: sbwl1.status,
-    grade: 0,
+    grade: null,
   });
 
   return update_array;
@@ -180,7 +180,7 @@ async function checkBachelorarbeit(study) {
       study_id: study.study_id,
       _id: bachelorArb._id,
       status: bachelorArb.status,
-      grade: 0,
+      grade: null,
     });
   } else if (
     academicSkills1.status !== "done" ||
@@ -191,7 +191,7 @@ async function checkBachelorarbeit(study) {
       study_id: study.study_id,
       _id: bachelorArb._id,
       status: bachelorArb.status,
-      grade: 0,
+      grade: null,
     });
   }
   return update_array;

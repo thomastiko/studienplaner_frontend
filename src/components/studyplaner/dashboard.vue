@@ -6,7 +6,9 @@
           <q-card-section>
             <div class="text-h6">Aktuell</div>
           </q-card-section>
-          <div class="text-body1">LVs: {{ userStore.allCurrentSubjects(selectedStudy.study_id).length }}</div>
+          <div class="text-body1">
+            LVs: {{ userStore.allCurrentSubjects(selectedStudy.study_id).length }}
+          </div>
           <div class="text-body1">ECTS: {{ userStore.allCurrentEcts(selectedStudy.study_id) }}</div>
         </q-card-section>
       </q-card>
@@ -15,8 +17,15 @@
           <q-card-section>
             <div class="text-h6">Abgeschlossen</div>
           </q-card-section>
-          <div class="text-body1">LVs: {{ userStore.allCompletedSubjects(selectedStudy.study_id).length }}</div>
-          <div class="text-body1">ECTS: {{ userStore.allCompletedEcts(selectedStudy.study_id) }}</div>
+          <div class="text-body1">
+            LVs: {{ userStore.allCompletedSubjects(selectedStudy.study_id).length }}
+          </div>
+          <div class="text-body1">
+            ECTS: {{ userStore.allCompletedEcts(selectedStudy.study_id).totalEcts }}
+            <span v-if="userStore.allCompletedEcts(selectedStudy.study_id).overflowEcts > 0">
+              ({{ userStore.allCompletedEcts(selectedStudy.study_id).overflowEcts }})
+            </span>
+          </div>
         </q-card-section>
       </q-card>
       <q-card>

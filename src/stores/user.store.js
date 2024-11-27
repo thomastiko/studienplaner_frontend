@@ -1,13 +1,11 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-
 /**
  * API-URLs für Localhost
  */
 const apiUrl = 'http://localhost:5000/api/auth'
 const url = 'http://localhost:5000/api/user'
-
 
 /**
  * API-Urls für Stage
@@ -15,7 +13,6 @@ const url = 'http://localhost:5000/api/user'
 
 //const apiUrl = 'https://taigowiz.org/api/auth';
 //const url = 'https://taigowiz.org/api/user';
-
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -30,140 +27,215 @@ export const useUserStore = defineStore('user', {
   }),
   getters: {
     allCurrentSubjects: (state) => (studyId) => {
-      if (!state.user.studies || !state.user.studies.length) return [];
+      if (!state.user.studies || !state.user.studies.length) return []
 
-      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
-      if (!selectedStudy || !selectedStudy.subject_states) return [];
+      const selectedStudy = state.user.studies.find((study) => study.study_id === studyId)
+      if (!selectedStudy || !selectedStudy.subject_states) return []
 
-      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+      const excludedCategories = [
+        'Spezielle Betriebswirtschaftslehre',
+        'Freies Wahlfach',
+        'Specializations',
+        'Free Electives and Internship'
+      ]
 
       const currentSubjects = selectedStudy.subject_states.filter(
-        subject => subject.status === 'doing' && !excludedCategories.includes(subject.category)
-      );
+        (subject) => subject.status === 'doing' && !excludedCategories.includes(subject.category)
+      )
 
-      const currentSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
-        sbwl.subjects?.filter(subject => subject.status === 'doing') || []
-      ) || [];
+      const currentSbwlSubjects =
+        selectedStudy.sbwl_states?.flatMap(
+          (sbwl) => sbwl.subjects?.filter((subject) => subject.status === 'doing') || []
+        ) || []
 
-      const currentFreeElectives = selectedStudy.free_electives?.filter(
-        elective => elective.status === 'doing'
-      ) || [];
+      const currentFreeElectives =
+        selectedStudy.free_electives?.filter((elective) => elective.status === 'doing') || []
 
-      return [...currentSubjects, ...currentSbwlSubjects, ...currentFreeElectives];
+      return [...currentSubjects, ...currentSbwlSubjects, ...currentFreeElectives]
     },
 
     // Berechnet die aktuellen ECTS direkt basierend auf dem `studyId` und den aktuellen Fächern
     allCurrentEcts: (state) => (studyId) => {
-      if (!state.user.studies || !state.user.studies.length) return 0;
+      if (!state.user.studies || !state.user.studies.length) return 0
 
-      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
-      if (!selectedStudy || !selectedStudy.subject_states) return 0;
+      const selectedStudy = state.user.studies.find((study) => study.study_id === studyId)
+      if (!selectedStudy || !selectedStudy.subject_states) return 0
 
-      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+      const excludedCategories = [
+        'Spezielle Betriebswirtschaftslehre',
+        'Freies Wahlfach',
+        'Specializations',
+        'Free Electives and Internship'
+      ]
 
       // Finde die aktuellen Fächer und SBWLs, die gerade "doing" sind
       const currentSubjects = selectedStudy.subject_states.filter(
-        subject => subject.status === 'doing' && !excludedCategories.includes(subject.category)
-      );
+        (subject) => subject.status === 'doing' && !excludedCategories.includes(subject.category)
+      )
 
-      const currentSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
-        sbwl.subjects?.filter(subject => subject.status === 'doing') || []
-      ) || [];
+      const currentSbwlSubjects =
+        selectedStudy.sbwl_states?.flatMap(
+          (sbwl) => sbwl.subjects?.filter((subject) => subject.status === 'doing') || []
+        ) || []
 
-      const currentFreeElectives = selectedStudy.free_electives?.filter(
-        elective => elective.status === 'doing'
-      ) || [];
+      const currentFreeElectives =
+        selectedStudy.free_electives?.filter((elective) => elective.status === 'doing') || []
 
       // Berechnung der ECTS
-      const allCurrentSubjects = [...currentSubjects, ...currentSbwlSubjects, ...currentFreeElectives];
-      return allCurrentSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+      const allCurrentSubjects = [
+        ...currentSubjects,
+        ...currentSbwlSubjects,
+        ...currentFreeElectives
+      ]
+      return allCurrentSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0)
     },
 
     allCompletedSubjects: (state) => (studyId) => {
-      if (!state.user.studies || !state.user.studies.length) return [];
+      if (!state.user.studies || !state.user.studies.length) return []
 
-      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
-      if (!selectedStudy || !selectedStudy.subject_states) return [];
+      const selectedStudy = state.user.studies.find((study) => study.study_id === studyId)
+      if (!selectedStudy || !selectedStudy.subject_states) return []
 
-      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+      const excludedCategories = [
+        'Spezielle Betriebswirtschaftslehre',
+        'Freies Wahlfach',
+        'Specializations',
+        'Free Electives and Internship'
+      ]
 
       const completedSubjects = selectedStudy.subject_states.filter(
-        subject => subject.status === 'done' && !excludedCategories.includes(subject.category)
-      );
+        (subject) => subject.status === 'done' && !excludedCategories.includes(subject.category)
+      )
 
-      const completedSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
-        sbwl.subjects?.filter(subject => subject.status === 'done') || []
-      ) || [];
+      const completedSbwlSubjects =
+        selectedStudy.sbwl_states?.flatMap(
+          (sbwl) => sbwl.subjects?.filter((subject) => subject.status === 'done') || []
+        ) || []
 
-      const completedFreeElectives = selectedStudy.free_electives?.filter(
-        elective => elective.status === 'done'
-      ) || [];
+      const completedFreeElectives = selectedStudy.free_electives || []
 
-      return [...completedSubjects, ...completedSbwlSubjects, ...completedFreeElectives];
+      return [...completedSubjects, ...completedSbwlSubjects, ...completedFreeElectives]
     },
 
     // Berechnet die abgeschlossenen ECTS direkt basierend auf dem `studyId` und den abgeschlossenen Fächern
     allCompletedEcts: (state) => (studyId) => {
-      if (!state.user.studies || !state.user.studies.length) return 0;
+      if (!state.user.studies || !state.user.studies.length)
+        return { totalEcts: 0, overflowEcts: 0 }
 
-      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
-      if (!selectedStudy || !selectedStudy.subject_states) return 0;
+      const selectedStudy = state.user.studies.find((study) => study.study_id === studyId)
+      if (!selectedStudy || !selectedStudy.subject_states) return { totalEcts: 0, overflowEcts: 0 }
 
-      const excludedCategories = ['Spezielle Betriebswirtschaftslehre', 'Freies Wahlfach', 'Specializations', 'Free Electives and Internship'];
+      const excludedCategories = [
+        'Spezielle Betriebswirtschaftslehre',
+        'Freies Wahlfach',
+        'Specializations',
+        'Free Electives and Internship'
+      ]
 
       // Finde die abgeschlossenen Fächer und SBWLs, die den Status "done" haben
       const completedSubjects = selectedStudy.subject_states.filter(
-        subject => subject.status === 'done' && !excludedCategories.includes(subject.category)
-      );
+        (subject) => subject.status === 'done' && !excludedCategories.includes(subject.category)
+      )
 
-      const completedSbwlSubjects = selectedStudy.sbwl_states?.flatMap(sbwl => 
-        sbwl.subjects?.filter(subject => subject.status === 'done') || []
-      ) || [];
+      const completedSbwlSubjects =
+        selectedStudy.sbwl_states?.flatMap(
+          (sbwl) => sbwl.subjects?.filter((subject) => subject.status === 'done') || []
+        ) || []
 
-      const completedFreeElectives = selectedStudy.free_electives?.filter(
-        elective => elective.status === 'done'
-      ) || [];
+      const completedFreeElectives = selectedStudy.free_electives || []
 
       // Berechnung der ECTS
-      const allCompletedSubjects = [...completedSubjects, ...completedSbwlSubjects, ...completedFreeElectives];
-      return allCompletedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+      const allCompletedSubjects = [
+        ...completedSubjects,
+        ...completedSbwlSubjects,
+        ...completedFreeElectives
+      ]
+      const totalEcts = allCompletedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0)
+
+      // Maximal 180 ECTS, Überschuss in overflowEcts speichern
+      const maxEcts = 180
+      const overflowEcts = totalEcts > maxEcts ? totalEcts - maxEcts : 0
+      const limitedEcts = totalEcts > maxEcts ? maxEcts : totalEcts
+
+      return { totalEcts: limitedEcts, overflowEcts }
     },
     // Berechnet den gewichteten Notendurchschnitt (GPA)
     gpa: (state) => (studyId) => {
       if (!state.user.studies || !state.user.studies.length) return '-';
     
-      const selectedStudy = state.user.studies.find(study => study.study_id === studyId);
+      const selectedStudy = state.user.studies.find((study) => study.study_id === studyId);
       if (!selectedStudy) return '-';
     
-      // Finde die Fächer in subject_states, die eine Note haben
-      const gradedSubjects = selectedStudy.subject_states.filter(
-        subject => subject.status === 'done' && subject.grade != null
-      );
+      // Maximal erlaubte ECTS
+      const maxEcts = 180;
     
-      // Finde die Fächer in sbwl_states.subjects, die eine Note haben
-      const gradedSbwlSubjects = selectedStudy.sbwl_states
-        .flatMap(sbwl => sbwl.subjects) // Greift auf alle subjects in jedem sbwl zu
-        .filter(subject => subject.status === 'done' && subject.grade != null);
+      // Graded and ungraded subjects
+      const gradedSubjects = [];
+      const ungradedSubjects = [];
     
-      // Finde die Fächer in free_electives, die eine Note haben
-      const gradedFreeElectives = selectedStudy.free_electives.filter(
-        elective => elective.ects > 0 && elective.grade != null // Da alle auf done sind, nur auf ECTS und grade prüfen
-      );
+      // Sortiere die Fächer in bewertete und unbewertete
+      const allSubjects = [
+        ...selectedStudy.subject_states,
+        ...selectedStudy.sbwl_states.flatMap((sbwl) => sbwl.subjects || []),
+        ...selectedStudy.free_electives
+      ];
     
-      // Kombiniere alle bewerteten Fächer
-      const allGradedSubjects = [...gradedSubjects, ...gradedSbwlSubjects, ...gradedFreeElectives];
+      for (const subject of allSubjects) {
+        if (selectedStudy.free_electives.includes(subject) && subject.grade != null) {
+          gradedSubjects.push(subject); // Bewertete Fächer aus free_electives
+        } else if (selectedStudy.free_electives.includes(subject) && subject.grade == null) {
+          ungradedSubjects.push(subject); // Unbewertete Fächer aus free_electives
+        } else if (subject.status === 'done' && subject.grade != null) {
+          gradedSubjects.push(subject); // Andere bewertete Fächer
+        }
+      }
     
-      // Berechne den gewichteten GPA basierend auf den ECTS
-      const totalWeightedGrade = allGradedSubjects.reduce(
-        (acc, subject) => acc + (subject.grade * subject.ects), 0
-      );
-      const totalEcts = allGradedSubjects.reduce((acc, subject) => acc + (subject.ects || 0), 0);
+      // Initialisiere Zähler
+      let totalWeightedGrade = 0; // Gewichtete Notensumme für den GPA
+      let gradedEctsForGpa = 0; // Nur ECTS mit Note für den GPA
+      let totalEctsUsed = 0; // Gesamte ECTS, einschließlich ungraded
     
-      return totalEcts ? (totalWeightedGrade / totalEcts).toFixed(2) : '-';
+      // 1. Verarbeite die ungraded Fächer
+      ungradedSubjects.forEach((subject) => {
+        const remainingEcts = maxEcts - totalEctsUsed;
+    
+        if (remainingEcts > 0) {
+          const ectsToAdd = Math.min(subject.ects, remainingEcts);
+          totalEctsUsed += ectsToAdd;
+        }
+      });
+    
+      // 2. Verarbeite die graded Fächer
+      gradedSubjects.forEach((subject) => {
+        const remainingEcts = maxEcts - totalEctsUsed;
+    
+        if (remainingEcts > 0) {
+          const ectsToAdd = Math.min(subject.ects, remainingEcts);
+          totalWeightedGrade += subject.grade * ectsToAdd;
+          gradedEctsForGpa += ectsToAdd;
+          totalEctsUsed += ectsToAdd;
+        }
+      });
+    
+      // Berechne den GPA
+      return gradedEctsForGpa ? (totalWeightedGrade / gradedEctsForGpa).toFixed(2) : '-';
     },
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   },
-  
-  
 
   actions: {
     /* USER LOGIN/LOGOUT & FETCH USER & AUTH */
@@ -178,45 +250,44 @@ export const useUserStore = defineStore('user', {
     },
     async login(email, password, router, notify) {
       try {
-        const response = await axios.post(`${apiUrl}/login`, { email, password });
-    
-        localStorage.setItem('token', response.data.token);
-    
-        this.loggedIn = true;
+        const response = await axios.post(`${apiUrl}/login`, { email, password })
+
+        localStorage.setItem('token', response.data.token)
+
+        this.loggedIn = true
         this.user = {
           email: response.data.email,
           student_id: response.data.student_id,
           role: response.data.role,
           studies: response.data.studies,
           course_entries: response.data.course_entries
-        };
-    
+        }
+
         // Nach erfolgreichem Login zur My-Study-Seite navigieren
-        router.push({ name: 'my-study', path: '/my-study' });
-    
+        router.push({ name: 'my-study', path: '/my-study' })
+
         // Zeige Benachrichtigung an
         notify({
           message: 'Erfolgreich angemeldet',
           type: 'success',
           color: 'positive',
           position: 'bottom'
-        });
-    
+        })
+
         // Führe einen Seiten-Refresh durch, nachdem zur My-Study-Seite navigiert wurde
         setTimeout(() => {
-          window.location.reload();
-        }, 500); // optionaler Timeout, um sicherzustellen, dass die Navigation vollständig ist
-    
+          window.location.reload()
+        }, 500) // optionaler Timeout, um sicherzustellen, dass die Navigation vollständig ist
       } catch (error) {
         notify({
           message: 'Fehler beim Anmelden',
           type: 'error',
           color: 'negative',
           position: 'bottom'
-        });
-    
-        console.error('Login-Fehler: ', error.response?.data?.message || error.message);
-        throw error;
+        })
+
+        console.error('Login-Fehler: ', error.response?.data?.message || error.message)
+        throw error
       }
     },
     async logout(router, notify) {
@@ -247,7 +318,6 @@ export const useUserStore = defineStore('user', {
 
         console.error('Logout-Fehler: ', error)
         this.clearAuthState()
-
       }
     },
 
@@ -285,20 +355,20 @@ export const useUserStore = defineStore('user', {
     },
 
     async checkAuthState(router, notify) {
-      const token = this.getToken();
+      const token = this.getToken()
       if (token) {
-        await this.fetchUser();
+        await this.fetchUser()
       } else {
-        this.clearAuthState();
-        router.push({ name: 'login', path: '/login' });
-    
+        this.clearAuthState()
+        router.push({ name: 'login', path: '/login' })
+
         // Benachrichtige den Benutzer, dass er nicht angemeldet ist
         notify({
           message: 'Du bist nicht angemeldet',
           type: 'warning',
           color: 'negative',
           position: 'bottom'
-        });
+        })
       }
     },
 
@@ -324,10 +394,8 @@ export const useUserStore = defineStore('user', {
           color: 'positive',
           position: 'bottom'
         })
-
       } catch (error) {
         if (error.response && error.response.status === 400) {
-
           notify({
             message: 'Studiengang bereits hinzugefügt',
             type: 'error',
@@ -336,9 +404,7 @@ export const useUserStore = defineStore('user', {
           })
           console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message)
           throw new Error(error.response.data.message) // Nachricht vom Backend an das Frontend weiterleiten
-
         } else {
-
           notify({
             message: 'Fehler beim Hinzufügen des Studiengangs',
             type: 'error',
@@ -352,63 +418,64 @@ export const useUserStore = defineStore('user', {
     },
     async deleteStudies(studyIds, notify) {
       try {
-        const token = this.getToken();
+        const token = this.getToken()
         const response = await axios.delete(`${url}/studies/delete-studies`, {
           headers: { Authorization: `Bearer ${token}` },
-          data: { studyIds }  // Sende die Liste von Studiengängen als Anfrage-Daten
-        });
-        this.user.studies = response.data.studies;
+          data: { studyIds } // Sende die Liste von Studiengängen als Anfrage-Daten
+        })
+        this.user.studies = response.data.studies
 
         notify({
           message: 'Studiengang erfolgreich gelöscht',
           type: 'success',
           color: 'positive',
           position: 'bottom'
-        });
-
+        })
       } catch (error) {
         notify({
           message: 'Fehler beim Löschen des Studiengangs',
           type: 'error',
           color: 'negative',
           position: 'bottom'
-        });
+        })
 
-          console.error('Fehler beim Löschen der Studiengänge:', error.message || error);
-          throw error;
+        console.error('Fehler beim Löschen der Studiengänge:', error.message || error)
+        throw error
       }
     },
     async updateSubjectStatus(studyId, subjectId, status, grade, shouldNotify = true, notify) {
       try {
-        const token = this.getToken();
-    
+        const token = this.getToken()
+
         const response = await axios.patch(
           `${url}/studies/${studyId}/subjects`,
           { studyId, subjectId, status, grade },
           {
             headers: { Authorization: `Bearer ${token}` }
           }
-        );
-        console.log(response.data);
-        const updatedSubject = response.data.subject;
-    
-        const study = this.user.studies.find((s) => s.study_id === studyId);
+        )
+        console.log(response.data)
+        const updatedSubject = response.data.subject
+
+        const study = this.user.studies.find((s) => s.study_id === studyId)
         if (!study) {
-          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`);
-          return;
+          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`)
+          return
         }
-    
-        const subjectToUpdate = study.subject_states.find((s) => s._id === subjectId);
+
+        const subjectToUpdate = study.subject_states.find((s) => s._id === subjectId)
         if (!subjectToUpdate) {
-          console.error(`Fach mit der ID ${subjectId} nicht im Studiengang ${studyId} gefunden`);
-          return;
+          console.error(`Fach mit der ID ${subjectId} nicht im Studiengang ${studyId} gefunden`)
+          return
         }
-    
-        subjectToUpdate.status = updatedSubject.status;
-        subjectToUpdate.grade = updatedSubject.grade;
-    
-        console.log(`Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`);
-        
+
+        subjectToUpdate.status = updatedSubject.status
+        subjectToUpdate.grade = updatedSubject.grade
+
+        console.log(
+          `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
+        )
+
         // Benachrichtigung nur anzeigen, wenn shouldNotify true ist
         if (shouldNotify) {
           notify({
@@ -416,9 +483,8 @@ export const useUserStore = defineStore('user', {
             type: 'success',
             color: 'positive',
             position: 'bottom'
-          });
+          })
         }
-        
       } catch (error) {
         if (shouldNotify) {
           notify({
@@ -426,10 +492,10 @@ export const useUserStore = defineStore('user', {
             type: 'error',
             color: 'negative',
             position: 'bottom'
-          });
+          })
         }
-        console.error('Fehler beim Aktualisieren des Faches:', error.message || error);
-        throw error;
+        console.error('Fehler beim Aktualisieren des Faches:', error.message || error)
+        throw error
       }
     },
     async updateBulkSubjectStatus(studyId, subjects) {
@@ -458,23 +524,23 @@ export const useUserStore = defineStore('user', {
           const subjectToUpdate = study.subject_states.find((s) => s._id === updatedSubject._id)
 
           if (!subjectToUpdate) {
-            console.error(`Fach mit der ID ${updatedSubject._id} nicht im Studiengang ${studyId} gefunden`)
+            console.error(
+              `Fach mit der ID ${updatedSubject._id} nicht im Studiengang ${studyId} gefunden`
+            )
             return
           }
 
           // Aktualisiere den Status des Faches
           subjectToUpdate.status = updatedSubject.status
           subjectToUpdate.grade = updatedSubject.grade
-
         })
-
       } catch (error) {
         if (error.response && error.response.status === 400) {
-          console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message);
-          throw new Error(error.response.data.message); // Nachricht vom Backend an das Frontend weiterleiten
+          console.error('Fehler beim Hinzufügen des Studiengangs:', error.response.data.message)
+          throw new Error(error.response.data.message) // Nachricht vom Backend an das Frontend weiterleiten
         } else {
-          console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error);
-          throw error; // Andere Fehler weitergeben
+          console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error)
+          throw error // Andere Fehler weitergeben
         }
       }
     },
@@ -498,9 +564,7 @@ export const useUserStore = defineStore('user', {
           color: 'positive',
           position: 'bottom'
         })
-
       } catch (error) {
-        
         notify({
           message: 'Fehler beim Hinzufügen der SBWL',
           type: 'error',
@@ -531,7 +595,6 @@ export const useUserStore = defineStore('user', {
           color: 'positive',
           position: 'bottom'
         })
-
       } catch (error) {
         notify({
           message: 'Fehler beim Hinzufügen des Auslandssemester Fachs',
@@ -553,14 +616,13 @@ export const useUserStore = defineStore('user', {
         })
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
-        
+
         notify({
           message: 'Auslandssemester Fach erfolgreich gelöscht',
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
-
       } catch (error) {
         notify({
           message: 'Fehler beim Löschen des Auslandssemester Fachs',
@@ -588,7 +650,6 @@ export const useUserStore = defineStore('user', {
           color: 'positive',
           position: 'bottom'
         })
-
       } catch (error) {
         notify({
           message: 'Fehler beim Löschen der SBWL',
@@ -616,64 +677,61 @@ export const useUserStore = defineStore('user', {
     },
     async updateSbwlSubjectStatus(studyId, subjectId, status, grade, sbwl, notify) {
       try {
-        const token = this.getToken();
+        const token = this.getToken()
         const response = await axios.patch(
           `${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`,
           { studyId, subjectId, status, grade, sbwl },
           {
             headers: { Authorization: `Bearer ${token}` }
           }
-        );
-        console.log(response.data);
-        const updatedSubject = response.data.subject;
-    
+        )
+        console.log(response.data)
+        const updatedSubject = response.data.subject
+
         // Suche den Study im Store basierend auf studyId
-        const study = this.user.studies.find((s) => s.study_id === studyId);
-    
+        const study = this.user.studies.find((s) => s.study_id === studyId)
+
         if (!study) {
-          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`);
-          return;
+          console.error(`Studiengang mit der ID ${studyId} nicht gefunden`)
+          return
         }
-    
+
         // Suche das Fach (subject) im study.subject_states basierend auf subject._id
-        const sbwlToUpdate = study.sbwl_states.find((s) => s.sbwl_name === sbwl.sbwl_name);
-    
+        const sbwlToUpdate = study.sbwl_states.find((s) => s.sbwl_name === sbwl.sbwl_name)
+
         if (sbwlToUpdate) {
-          const subjectToUpdate = sbwlToUpdate.subjects.find(
-            (subject) => subject._id === subjectId
-          );
+          const subjectToUpdate = sbwlToUpdate.subjects.find((subject) => subject._id === subjectId)
           if (subjectToUpdate) {
             // Aktualisiere den Status des Faches
-            subjectToUpdate.status = updatedSubject.status;
-            subjectToUpdate.grade = updatedSubject.grade;
-            console.log('Subject gefunden:', subjectToUpdate);
-    
+            subjectToUpdate.status = updatedSubject.status
+            subjectToUpdate.grade = updatedSubject.grade
+            console.log('Subject gefunden:', subjectToUpdate)
+
             console.log(
               `Status des Faches ${subjectToUpdate.name} aktualisiert auf ${updatedSubject.status} und Note ${updatedSubject.grade}`
-            );
+            )
           } else {
-            console.log('Kein passendes Subject gefunden');
+            console.log('Kein passendes Subject gefunden')
           }
         } else {
-          console.log('Keine passende SBWL gefunden');
+          console.log('Keine passende SBWL gefunden')
         }
         notify({
           message: 'Fach erfolgreich aktualisiert',
           type: 'success',
           color: 'positive',
           position: 'bottom'
-        });
-    
+        })
       } catch (error) {
         notify({
           message: 'Fehler beim Aktualisieren des Faches',
           type: 'error',
           color: 'negative',
           position: 'bottom'
-        });
-         
-          console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error);
-          throw error; // Andere Fehler weitergeben
+        })
+
+        console.error('Fehler beim Hinzufügen des Studiengangs:', error.message || error)
+        throw error // Andere Fehler weitergeben
       }
     },
     /* USER FREE ELECTIVES ADDING/REMOVING/UPDATING */
@@ -750,7 +808,6 @@ export const useUserStore = defineStore('user', {
         throw error
       }
     },
-    
 
     /* USER CALENDAR ADDING/REMOVING/UPDATING */
     /************************************************************************************/

@@ -151,7 +151,7 @@ export default {
         name: this.name,
         ects: this.ects,
         subject_type: this.selectedType,
-        grade: this.selectedGrade
+        grade: this.selectedGrade === "Teilgenommen" ? null : this.selectedGrade
       }
       this.userStore.addFreeElectiveToStudy(this.selectedStudy.study_id, freeElective, this.q.notify)
       this.name = ''

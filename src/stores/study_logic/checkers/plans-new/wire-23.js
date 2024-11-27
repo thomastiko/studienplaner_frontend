@@ -28,7 +28,7 @@ async function checkCBK(study) {
   }
   return update_array
 }
-async function checkLvChoice(study, steopsDone, twoCbkSubjectsDone) {
+async function checkLvChoice(study, steopsDone) {
   const update_array = []
   if (steopsDone) {
     let doneCount = null
@@ -43,7 +43,6 @@ async function checkLvChoice(study, steopsDone, twoCbkSubjectsDone) {
     }
 
     if (doneCount >= 2) {
-      twoCbkSubjectsDone = true
       for (let i = 4; i <= 9; i++) {
         if (!doneIndices.includes(i)) {
           study.subject_states[i].status = 'unavailable'
@@ -56,7 +55,6 @@ async function checkLvChoice(study, steopsDone, twoCbkSubjectsDone) {
         }
       }
     } else {
-      twoCbkSubjectsDone = false
       for (let i = 4; i <= 9; i++) {
         if (study.subject_states[i].status == 'unavailable') {
           study.subject_states[i].status = 'can-do'
