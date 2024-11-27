@@ -1,3 +1,4 @@
+
 async function checkCBK(study) {
   const update_array = []
   const steop1 = study.subject_states.find((i) => i._id == '1')
@@ -239,7 +240,7 @@ async function checkOeffRechtMue(study) {
   }
   return update_array
 }
-export async function checkSbwl(study, twoCbkSubjectsDone) {
+export async function checkSbwl(study, twoCbkSubjectsDone, steopsDone) {
   console.log(twoCbkSubjectsDone)
   const update_array = [];
 
@@ -252,7 +253,7 @@ export async function checkSbwl(study, twoCbkSubjectsDone) {
 
   // Prüfe, ob das `SBWL`-Objekt und `sbwlState` vorhanden sind
   if (sbwl && sbwlState) {
-    if (!prerequisitesMet) {
+    if (!prerequisitesMet || !steopsDone) {
       // Wenn Voraussetzungen nicht erfüllt sind, Status auf "unavailable" setzen
       sbwl.status = 'unavailable';
     } else if (sbwlState.subjects.every((subject) => subject.status === 'done')) {
@@ -417,7 +418,7 @@ export default {
     })
     let totalDoneECTSValue = totalDoneECTS(study)
 
-    const sbwlValues = await checkSbwl(study, twoCbkSubjectsDone)
+    const sbwlValues = await checkSbwl(study, twoCbkSubjectsDone, steopsDone)
     sbwlValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
@@ -430,7 +431,8 @@ export default {
   },
   checkSbwl,
   totalDoneECTS,
-  checkHs
+  checkHs,
+  checkSTEOPs,
 } /**
  * Funktion, die ein Subject in update_array aktualisiert oder hinzufügt.
  * Wenn das Subject bereits existiert, wird es überschrieben.

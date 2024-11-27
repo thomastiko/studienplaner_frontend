@@ -109,7 +109,7 @@ async function checkHauptstudium(study, totalDoneECTSValue) {
   return update_array
 }
 
-export async function checkSbwl(study, totalDoneECTSValue) {
+export async function checkSbwl(study, totalDoneECTSValue, steopsDone) {
   const update_array = [];
 
   const sbwl1 = study.subject_states.find((i) => i._id == "21");
@@ -127,7 +127,7 @@ export async function checkSbwl(study, totalDoneECTSValue) {
     const sbwlState = study.sbwl_states[index];
 
     if (sbwl && sbwlState) {
-      if (!prerequisitesMet) {
+      if (!prerequisitesMet || !steopsDone) {
         sbwl.status = "unavailable"; // Wenn Voraussetzungen nicht erfüllt sind
       } else if (sbwlState.subjects.every((subject) => subject.status === "done")) {
         sbwl.status = "done"; // Wenn alle Subjects "done" und Voraussetzungen erfüllt sind
@@ -168,7 +168,7 @@ export async function checkSbwl(study, totalDoneECTSValue) {
       const totalEcts = thirdSbwlState.subjects.reduce((sum, subject) => sum + (subject.ects || 0), 0);
       const allSubjectsDone = thirdSbwlState.subjects.every((subject) => subject.status === "done");
 
-      if (!prerequisitesMet) {
+      if (!prerequisitesMet || !steopsDone) {
         sbwl3.status = "unavailable";
       } else if (allSubjectsDone && totalEcts >= 20) {
         sbwl3.status = "done";
@@ -177,7 +177,7 @@ export async function checkSbwl(study, totalDoneECTSValue) {
       }
     } else {
       // Behandle das dritte SBWL wie die anderen SBWLs, falls es kein Courses Abroad ist
-      if (!prerequisitesMet) {
+      if (!prerequisitesMet || !steopsDone) {
         sbwl3.status = "unavailable";
       } else if (thirdSbwlState.subjects.every((subject) => subject.status === "done")) {
         sbwl3.status = "done";
@@ -252,6 +252,7 @@ async function checkBachelorarbeit(study, totalDoneECTSValue) {
 export default {
   async executeAll(study) {
     let update_array = []
+    let steopsDone = checkSTEOPs(study)
     const cbkValues = await checkCBK(study)
     cbkValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
@@ -268,7 +269,7 @@ export default {
     hauptstudiumValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
-    const sbwlValues = await checkSbwl(study, totalDoneECTSValue)
+    const sbwlValues = await checkSbwl(study, totalDoneECTSValue, steopsDone)
     sbwlValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
@@ -281,7 +282,8 @@ export default {
   },
   checkWahlfach,
   checkSbwl,
-  totalDoneECTS
+  totalDoneECTS,
+  checkSTEOPs
 } /**
  * Funktion, die ein Subject in update_array aktualisiert oder hinzufügt.
  * Wenn das Subject bereits existiert, wird es überschrieben.
@@ -313,4 +315,15 @@ function totalDoneECTS(study) {
     }
     return sum
   }, 0)
+}
+/**
+ * Funktion die Überprüft ob die STEOPs abgeschlossen sind
+ * @param {Array} subjects - Die Fächer, die überprüft werden sollen
+ * @returns {boolean} - true wenn alle STEOPs abgeschlossen sind
+ */
+function checkSTEOPs(study) {
+  const steop1 = study.subject_states.find((item) => item._id === '1')
+  const steop2 = study.subject_states.find((item) => item._id === '2')
+  const steop3 = study.subject_states.find((item) => item._id === '3')
+  return [steop1, steop2, steop3].every((item) => item.status === 'done')
 }

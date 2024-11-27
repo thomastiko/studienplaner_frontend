@@ -1,3 +1,4 @@
+
 async function checkCBK(study) {
   const update_array = [];
   const steop1 = study.subject_states.find((i) => i._id == "1");
@@ -12,12 +13,11 @@ async function checkCBK(study) {
         item._id !== "21" &&
         item.status == "unavailable"
       ) {
-        console.log(item._id);
         update_array.push({
           study_id: study.study_id,
           _id: item._id,
           status: "can-do",
-          grade: 0,
+          grade: null,
         });
       }
     });
@@ -28,7 +28,7 @@ async function checkCBK(study) {
           study_id: study.study_id,
           _id: item._id,
           status: "unavailable",
-          grade: 0,
+          grade: null,
         });
       }
     });
@@ -122,7 +122,8 @@ async function checkBusinessAnalytics(study, steopsDone) {
   }
   return update_array;
 }
-async function checkSbwl(study, totalDoneECTSValue) {
+async function checkSbwl(study, totalDoneECTSValue, steopsDone) {
+  console.log(steopsDone);
   const update_array = [];
 
   // Finde das spezifische SBWL-Objekt
@@ -139,7 +140,7 @@ async function checkSbwl(study, totalDoneECTSValue) {
   });
 
   // Überprüfe den Status auf Basis der erfüllten Voraussetzungen
-  if (totalDoneECTSValue >= 42) {
+  if (totalDoneECTSValue >= 42 && steopsDone) {
     if (doneEctsSum >= 40) {
       sbwl1.status = "done";
     } else {
@@ -203,7 +204,6 @@ export default {
 
     let steopsDone = checkSTEOPs(study)
 
-
     const cbkValues = await checkCBK(study)
     cbkValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
@@ -219,7 +219,7 @@ export default {
 
     let totalDoneECTSValue = totalDoneECTS(study)
 
-    const sbwlValues = await checkSbwl(study, totalDoneECTSValue)
+    const sbwlValues = await checkSbwl(study, totalDoneECTSValue, steopsDone)
     sbwlValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
@@ -232,7 +232,8 @@ export default {
   },
   checkWahlfach,
   checkSbwl,
-  totalDoneECTS
+  totalDoneECTS,
+  checkSTEOPs,
 
 }
 
@@ -261,7 +262,6 @@ function updateOrAdd(array, newItem) {
  */
 function totalDoneECTS(study) {
   const cbkSubjects = study.subject_states.slice(2, 16) // Main Program excluding Academic Skills
-  console.log(cbkSubjects)
   return cbkSubjects.reduce((sum, item) => {
     if (item.status === 'done') {
       return sum + item.ects

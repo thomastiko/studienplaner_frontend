@@ -238,7 +238,8 @@ export default {
       async handler() {
         if (this.selectedStudy.study_id == 'wire-23') {
           const twoCbkSubjectsDone = this.checker.checkHs(this.selectedStudy)
-          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, twoCbkSubjectsDone)
+          const steopsDone = this.checker.checkSTEOPs(this.selectedStudy)
+          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, twoCbkSubjectsDone, steopsDone)
           // Wende die Updates für `sbwl_states` an
           sbwlUpdates.forEach(async (update) => {
             await this.userStore.updateSubjectStatus(
@@ -252,7 +253,8 @@ export default {
           })
         } else {
           const totalDoneECTSValue = this.checker.totalDoneECTS(this.selectedStudy)
-          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, totalDoneECTSValue)
+          const steopsDone = this.checker.checkSTEOPs(this.selectedStudy)
+          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, totalDoneECTSValue, steopsDone)
           // Wende die Updates für `sbwl_states` an
           sbwlUpdates.forEach(async (update) => {
             await this.userStore.updateSubjectStatus(

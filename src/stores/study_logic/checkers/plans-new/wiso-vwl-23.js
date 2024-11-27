@@ -150,7 +150,7 @@ async function checkSpezangebot(study, totalDoneECTSValue) {
 
   return update_array
 }
-export async function checkSbwl(study, totalDoneECTSValue) {
+export async function checkSbwl(study, totalDoneECTSValue, steopsDone) {
   const update_array = [];
 
   const sbwl1 = study.subject_states.find((i) => i._id == '36'); // Einziges SBWL
@@ -170,7 +170,7 @@ export async function checkSbwl(study, totalDoneECTSValue) {
       const totalEcts = sbwlState.subjects.reduce((sum, subject) => sum + (subject.ects || 0), 0);
       const allSubjectsDone = sbwlState.subjects.every((subject) => subject.status === 'done');
 
-      if (!prerequisitesMet) {
+      if (!prerequisitesMet || !steopsDone) {
         sbwl1.status = 'unavailable';
       } else if (allSubjectsDone && totalEcts >= 20) {
         sbwl1.status = 'done';
@@ -179,7 +179,7 @@ export async function checkSbwl(study, totalDoneECTSValue) {
       }
     } else {
       // Normale Logik für ein Standard-SBWL
-      if (!prerequisitesMet) {
+      if (!prerequisitesMet || !steopsDone) {
         sbwl1.status = 'unavailable';
       } else if (sbwlState.subjects.every((subject) => subject.status === 'done')) {
         sbwl1.status = 'done';
@@ -253,6 +253,7 @@ async function checkBachelorarbeit(study, totalDoneECTSValue) {
 export default {
   async executeAll(study) {
     let update_array = []
+    let steopsDone = checkSTEOPs(study)
     const cbkValues = await checkCBK(study)
     cbkValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
@@ -273,7 +274,7 @@ export default {
     checkSpezangebotValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
-    const sbwlValues = await checkSbwl(study, totalDoneECTSValue)
+    const sbwlValues = await checkSbwl(study, totalDoneECTSValue, steopsDone)
     sbwlValues.forEach((item) => {
       update_array = updateOrAdd(update_array, item)
     })
@@ -286,7 +287,9 @@ export default {
   },
   checkWahlfach,
   checkSbwl,
-  totalDoneECTS
+  totalDoneECTS,
+  checkSTEOPs,
+
 } /**
  * Funktion, die ein Subject in update_array aktualisiert oder hinzufügt.
  * Wenn das Subject bereits existiert, wird es überschrieben.
@@ -318,4 +321,15 @@ function totalDoneECTS(study) {
     }
     return sum
   }, 0)
+}
+/**
+ * Funktion die Überprüft ob die STEOPs abgeschlossen sind
+ * @param {Array} subjects - Die Fächer, die überprüft werden sollen
+ * @returns {boolean} - true wenn alle STEOPs abgeschlossen sind
+ */
+function checkSTEOPs(study) {
+  const steop1 = study.subject_states.find((item) => item._id === '1')
+  const steop2 = study.subject_states.find((item) => item._id === '2')
+  const steop3 = study.subject_states.find((item) => item._id === '3')
+  return [steop1, steop2, steop3].every((item) => item.status === 'done')
 }

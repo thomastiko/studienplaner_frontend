@@ -169,18 +169,16 @@ export const useUserStore = defineStore('user', {
       // Maximal erlaubte ECTS
       const maxEcts = 180;
     
-      // Graded and ungraded subjects
+      // Arrays für bewertete und unbewertete Fächer
       const gradedSubjects = [];
       const ungradedSubjects = [];
     
-      // Sortiere die Fächer in bewertete und unbewertete
-      const allSubjects = [
+      // Sortiere die Fächer (unchanged)
+      for (const subject of [
         ...selectedStudy.subject_states,
         ...selectedStudy.sbwl_states.flatMap((sbwl) => sbwl.subjects || []),
-        ...selectedStudy.free_electives
-      ];
-    
-      for (const subject of allSubjects) {
+        ...selectedStudy.free_electives,
+      ]) {
         if (selectedStudy.free_electives.includes(subject) && subject.grade != null) {
           gradedSubjects.push(subject); // Bewertete Fächer aus free_electives
         } else if (selectedStudy.free_electives.includes(subject) && subject.grade == null) {
@@ -190,35 +188,43 @@ export const useUserStore = defineStore('user', {
         }
       }
     
+      // Debugging-Logs für Übersicht
+    
       // Initialisiere Zähler
-      let totalWeightedGrade = 0; // Gewichtete Notensumme für den GPA
-      let gradedEctsForGpa = 0; // Nur ECTS mit Note für den GPA
-      let totalEctsUsed = 0; // Gesamte ECTS, einschließlich ungraded
-    
-      // 1. Verarbeite die ungraded Fächer
-      ungradedSubjects.forEach((subject) => {
-        const remainingEcts = maxEcts - totalEctsUsed;
-    
-        if (remainingEcts > 0) {
-          const ectsToAdd = Math.min(subject.ects, remainingEcts);
-          totalEctsUsed += ectsToAdd;
-        }
-      });
-    
-      // 2. Verarbeite die graded Fächer
+      let totalWeightedGrade = 0; // Gewichtete Notensumme
+      let gradedEctsForGpa = 0; // Nur bewertete ECTS
+      let totalEctsUsed = 0; // Gesamte ECTS
+
+      // 2. Verarbeite bewertete Fächer (GPA-relevant)
       gradedSubjects.forEach((subject) => {
-        const remainingEcts = maxEcts - totalEctsUsed;
-    
-        if (remainingEcts > 0) {
+        if (totalEctsUsed < maxEcts) {
+          const remainingEcts = maxEcts - totalEctsUsed;
           const ectsToAdd = Math.min(subject.ects, remainingEcts);
           totalWeightedGrade += subject.grade * ectsToAdd;
           gradedEctsForGpa += ectsToAdd;
           totalEctsUsed += ectsToAdd;
+    
         }
       });
     
+      // 1. Verarbeite unbewertete Fächer (nur ECTS zählen, ohne GPA-Einfluss)
+      ungradedSubjects.forEach((subject) => {
+        if (totalEctsUsed < maxEcts) {
+          const remainingEcts = maxEcts - totalEctsUsed;
+          const ectsToAdd = Math.min(subject.ects, remainingEcts);
+          totalEctsUsed += ectsToAdd;
+    
+        }
+      });
+    
+      // Logs vor der finalen Berechnung
+    
       // Berechne den GPA
-      return gradedEctsForGpa ? (totalWeightedGrade / gradedEctsForGpa).toFixed(2) : '-';
+      const finalGpa = gradedEctsForGpa > 0
+        ? (totalWeightedGrade / gradedEctsForGpa).toFixed(2) // Gewichteter Durchschnitt
+        : '-'; // Kein GPA verfügbar
+    
+      return finalGpa;
     },
     
     
@@ -454,7 +460,6 @@ export const useUserStore = defineStore('user', {
             headers: { Authorization: `Bearer ${token}` }
           }
         )
-        console.log(response.data)
         const updatedSubject = response.data.subject
 
         const study = this.user.studies.find((s) => s.study_id === studyId)
@@ -508,7 +513,6 @@ export const useUserStore = defineStore('user', {
             headers: { Authorization: `Bearer ${token}` }
           }
         )
-        console.log(response.data)
         const updatedSubjects = response.data.subjects
 
         // Suche den Study im Store basierend auf studyId
@@ -685,7 +689,6 @@ export const useUserStore = defineStore('user', {
             headers: { Authorization: `Bearer ${token}` }
           }
         )
-        console.log(response.data)
         const updatedSubject = response.data.subject
 
         // Suche den Study im Store basierend auf studyId
@@ -714,7 +717,6 @@ export const useUserStore = defineStore('user', {
             console.log('Kein passendes Subject gefunden')
           }
         } else {
-          console.log('Keine passende SBWL gefunden')
         }
         notify({
           message: 'Fach erfolgreich aktualisiert',
@@ -747,7 +749,6 @@ export const useUserStore = defineStore('user', {
             headers: { Authorization: `Bearer ${token}` }
           }
         )
-        console.log(freeElective)
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.free_electives = response.data.free_electives
         notify({
@@ -813,7 +814,6 @@ export const useUserStore = defineStore('user', {
     /************************************************************************************/
 
     async addCourse(course) {
-      console.log(course)
       try {
         const token = this.getToken()
         course.color = '#5bbdf4' // Setze eine Standardfarbe für den Kurs
