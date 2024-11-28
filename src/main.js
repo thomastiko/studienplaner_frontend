@@ -35,7 +35,7 @@ async function startApp() {
 
   app.use(VueGtag, {
     property: {
-      id: "G-SQY965430R"
+      id: "G-WS5QKSDM7F"
     },
     router
   });
