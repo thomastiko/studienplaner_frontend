@@ -14,11 +14,10 @@
           <q-toolbar-title
             class="cursor-pointer"
             @click="() => { tab = ''; $router.push({ name: 'home', path: '/' }); }"
-            >Studienplaner
+            >LOL
             <q-badge align="top" color="orange">BETA</q-badge>
           </q-toolbar-title>
 
-          <!-- Überprüfe, ob der Benutzer eingeloggt ist -->
           <q-btn-dropdown :label="this.$i18n.locale == 'de' ? 'Deutsch' : 'English'" flat>
             <q-list>
               <q-item clickable v-close-popup @click="changeLocale('en')">
@@ -118,9 +117,7 @@ export default {
 </script>
 
 <style scoped>
-@supports (-webkit-touch-callout: none) {
-  .q-layout-container > div {
-    transform: none;
-  }
+::v-deep(.absolute-full) {
+  transform: none;
 }
 </style>
