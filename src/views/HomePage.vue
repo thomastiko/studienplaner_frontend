@@ -20,7 +20,7 @@
             </div>
             <div class="text-h5 text-center" id="heading-info-h2">
               <!--Complete your studies with ease -->
-             {{ $t('homePage.subtitle_2') }}
+              {{ $t('homePage.subtitle_2') }}
             </div>
           </div>
         </div>
@@ -150,8 +150,12 @@ export default {
   components: {},
   setup() {
     const q = useQuasar()
+    const scale = 1
+    const down = 0.5
     return {
-      q
+      q,
+      scale,
+      down
     }
   },
   computed: {

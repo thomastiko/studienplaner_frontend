@@ -75,7 +75,7 @@
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.empfhelung.toFixed(2) }}</div>
-                <div class="text-subtitle2"> {{ $t('lvPlaner.recommendation') }} </div>
+                <div class="text-subtitle2"> {{ $t('lvPlaner.prof_recommendation') }} </div>
               </div>
               <div class="col-6 col-sm-4 text-center">
                 <div class="text-h4">{{ factor.ratings }}</div>

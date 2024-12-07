@@ -6,14 +6,14 @@
           <div
             style="min-width: 60px"
             class="cursor-pointer"
-            @click="this.$router.push({ name: 'home', path: '/' })"
+            @click="() => { tab = ''; $router.push({ name: 'home', path: '/' }); }"
           >
             <img src="../assets/logo-white.svg" />
           </div>
 
           <q-toolbar-title
             class="cursor-pointer"
-            @click="this.$router.push({ name: 'home', path: '/' })"
+            @click="() => { tab = ''; $router.push({ name: 'home', path: '/' }); }"
             >Studienplaner
             <q-badge align="top" color="orange">BETA</q-badge>
           </q-toolbar-title>
@@ -59,26 +59,26 @@
           />
         </q-toolbar>
 
-        <q-tabs>
+        <q-tabs inline-label outside-arrows mobile-arrows v-model="tab">
           <q-tab
-            :label="$t('myStudy.heading_1')"
+            :label="$t('myStudy.heading_1')" name="my-study"
             @click="this.$router.push({ name: 'my-study', path: '/my-study' })"
           />
           <q-tab
-            label="LV-PLANER"
+            label="LV-PLANER" name="lvplaner"
             @click="this.$router.push({ name: 'LvPlaner', path: '/lvplaner' })"
           />
           <q-tab
-            label="PROFCHECK"
+            label="PROFCHECK" name="profcheck"
             @click="this.$router.push({ name: 'Profcheck', path: '/profcheck' })"
           />
           <q-tab
-            label="STUDIES"
+            label="STUDIES" name="studies"
             @click="this.$router.push({ name: 'studies', path: '/studies' })"
           />
           <q-tab
             v-if="userStore.loggedIn && userStore.user.role === 'admin'"
-            label="ADMIN PANEL"
+            label="ADMIN PANEL" name="admin-panel"
             @click="this.$router.push({ name: 'AdminPanel', path: '/admin-panel' })"
           />
         </q-tabs>
@@ -91,6 +91,7 @@
 import { useUserStore } from '@/stores/user.store.js' // Importiere den User-Store
 import { useRouter } from 'vue-router' // Importiere useRouter
 import { useQuasar } from 'quasar' // Importiere Quasar
+import { ref } from 'vue'
 
 export default {
   setup() {
@@ -103,16 +104,23 @@ export default {
 
     return {
       userStore, // Verfügbarmachen des Stores in der Komponente
-      logout
+      logout,
+      tab: ref('')
     }
   },
   methods: {
     changeLocale(locale) {
-      this.$i18n.locale = locale;
-      sessionStorage.setItem('selectedLocale', locale);
-    },
+      this.$i18n.locale = locale
+      sessionStorage.setItem('selectedLocale', locale)
+    }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+@supports (-webkit-touch-callout: none) {
+  .q-layout-container > div {
+    transform: none;
+  }
+}
+</style>
