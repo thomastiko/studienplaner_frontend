@@ -14,7 +14,7 @@
           <q-toolbar-title
             class="cursor-pointer"
             @click="() => { tab = ''; $router.push({ name: 'home', path: '/' }); }"
-            >LOL
+            >Studienplaner
             <q-badge align="top" color="orange">BETA</q-badge>
           </q-toolbar-title>
 

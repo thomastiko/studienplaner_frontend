@@ -4,10 +4,17 @@
       Studien&shy;gänge
     </div>
     <div class="text-h5 text-center text-weight-medium q-mb-lg">
-        {{ $t('studies.subtitle_1') }}
-      </div>
-    <div class="q-pa-md">
-      <q-stepper v-model="step" class="stepper" ref="stepper" color="primary" animated>
+      {{ $t('studies.subtitle_1') }}
+    </div>
+    <div class="q-pa-md row justify-center">
+      <q-stepper
+        v-model="step"
+        class="stepper"
+        ref="stepper"
+        color="primary"
+        animated
+        style="width: 800px; max-width: 800px"
+      >
         <!-- Schritt 1: Studiengang auswählen -->
         <q-step
           class="step"
@@ -55,6 +62,7 @@
             </div>
           </div>
         </q-step>
+
         <!-- Schritt 2: Zweig auswählen (nur für WISO 23) -->
         <q-step
           class="step"
@@ -62,84 +70,59 @@
           :title="$t('studies.select_study_branch')"
           active-icon="fa-solid fa-2"
           icon="fa-solid fa-2"
-          :done="step > 2"
         >
-          <div v-if="selectedStudy === 'wiso'" class="row justify-center">
-            <div class="q-gutter-md">
+          <div v-if="selectedStudy === 'wiso'">
+            <div class="row justify-center q-mb-md">
               <q-btn
                 label="Betriebswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
+                style="width: 300px"
                 @click="selectBranch('wiso-bwl-23')"
               />
+            </div>
+            <div class="row justify-center q-mb-md">
               <q-btn
                 label="Internationale Betriebswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
+                style="width: 300px"
                 @click="selectBranch('wiso-ibw-23')"
               />
+            </div>
+            <div class="row justify-center q-mb-md">
               <q-btn
                 label="Volkswirtschaft"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
+                style="width: 300px"
                 @click="selectBranch('wiso-vwl-23')"
               />
+            </div>
+            <div class="row justify-center q-mb-md">
               <q-btn
                 label="Wirtschaftsinformatik"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
+                style="width: 300px"
                 @click="selectBranch('wiso-winf-23')"
               />
+            </div>
+            <div class="row justify-center q-mb-md">
               <q-btn
                 label="Wirtschaft - Umwelt - Politik"
                 color="blue-4"
                 padding="sm xl"
                 size="lg"
+                style="width: 300px"
                 @click="selectBranch('wiso-wupol-23')"
               />
             </div>
           </div>
-        </q-step>
-        <!-- Schritt 3: Fertig -->
-        <q-step
-          class="step"
-          :name="3"
-          :title="$t('studies.finish')"
-          active-icon="fa-solid fa-3"
-          icon="fa-solid fa-3"
-        >
-          <q-card flat bordered class="q-mb-md">
-            <q-card-section>
-              <div class="text-h6"> {{ $t('studies.your_selection') }} </div>
-              <p>
-                <strong>{{ $t('studies.study_program') }}: </strong>
-                <span v-if="selectedStudy === 'wiso'"
-                  >Wirtschafts- und Sozialwissenschaften 2023</span
-                >
-                <span v-else-if="selectedStudy === 'wire-23'">Wirtschaftsrecht 2023</span>
-                <span v-else-if="selectedStudy === 'bbe'">Business and Economics 2023</span>
-              </p>
-              <p v-if="selectedStudy === 'wiso'">
-                <strong>{{ $t('studies.study_branch') }}: </strong>
-                <span v-if="selectedBranch === 'wiso-bwl-23'">Betriebswirtschaft</span>
-                <span v-else-if="selectedBranch === 'wiso-ibw-23'"
-                  >Internationale Betriebswirtschaft</span
-                >
-                <span v-else-if="selectedBranch === 'wiso-vwl-23'">Volkswirtschaft</span>
-                <span v-else-if="selectedBranch === 'wiso-winf-23'">Wirtschaftsinformatik</span>
-                <span v-else-if="selectedBranch === 'wiso-wupol-23'"
-                  >Wirtschaft - Umwelt - Politik</span
-                >
-              </p>
-            </q-card-section>
-            <q-card-actions align="center">
-              <q-btn @click="confirmSelection" label="Studiengang hinzufügen" color="primary" />
-            </q-card-actions>
-          </q-card>
         </q-step>
 
         <!-- Navigation -->
@@ -154,15 +137,6 @@
               icon="arrow_back"
               class="q-ml-sm"
             />
-            <q-btn
-            v-else-if="step > 1 && selectedStudy != 'wiso'"
-            flat
-            color="primary"
-            @click="step = 1"
-            :label="$t('studies.back')"
-            icon="arrow_back"
-            class="q-ml-sm"
-          />
           </q-stepper-navigation>
         </template>
       </q-stepper>
@@ -185,8 +159,6 @@ export default {
     const selectedBranch = ref(null)
     const router = useRouter()
 
-
-    // Map für schöne Namen
     const studyNames = ref({
       'wiso-bwl-23': 'Betriebswirtschaft 2023',
       'wiso-ibw-23': 'Internationale Betriebswirtschaft 2023',
@@ -198,23 +170,22 @@ export default {
       wiso: 'WiSo 2023'
     })
 
-    const selectStudy = (study) => {
+    const selectStudy = async (study) => {
       selectedStudy.value = study
       if (study === 'bbe' || study === 'wire-23') {
-        step.value = 3
-        selectedBranch.value = null
+        // Direkt hinzufügen
+        await confirmSelection()
       } else {
         step.value = 2
       }
     }
 
-    const selectBranch = (branch) => {
+    const selectBranch = async (branch) => {
       selectedBranch.value = branch
-      step.value = 3
+      await confirmSelection()
     }
 
     const confirmSelection = async () => {
-      // Formatieren der Study ID
       let studyId = selectedBranch.value
       if (selectedBranch.value == null) {
         studyId = selectedStudy.value
@@ -224,7 +195,11 @@ export default {
         console.log('Studiengang speichern:', studyId)
         // Studiengang speichern
         await userStore.addStudy(studyId, q.notify)
-        router.push({ name: 'my-study', route: '/my-study' })
+
+        await userStore.fetchUser(router)
+
+        await new Promise((resolve) => setTimeout(resolve, 500))
+        router.push({ name: 'Studyplan', params: { study_id: studyId } })
       } catch (error) {
         console.log('Fehler beim Speichern des Studiengangs:', error)
       }
