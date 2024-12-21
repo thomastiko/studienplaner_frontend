@@ -10,10 +10,13 @@
           <!-- Rating -->
           <q-rating
             v-model="profStore.selectedProf.factors[0].gesamt"
-            size="1.5em"
-            icon="thumb_up"
-            color-selected="amber-5"
-            color="grey-5"
+            size="2em"
+            icon="star_border"
+            icon-selected="star"
+            icon-half="star_half"
+            color-half="amber-6"
+            color-selected="amber-6"
+            color="amber-8"
             readonly
           />
 
