@@ -11,12 +11,12 @@
     </div>
 
     <!-- Tabelle anzeigen, wenn Daten geladen sind -->
-    <div v-else class="q-ma-md">
+    <div v-else class="q-ma-md row justify-center">
       <q-table
         id="profTable"
         wrap-cells
-        style="height: 600px"
-        title="Professors"
+        style="height: 600px; width: 800px"
+        :title="$t('profcheck.professors')"
         :title-class="'text-h5'"
         :rows="rows"
         :columns="columns"

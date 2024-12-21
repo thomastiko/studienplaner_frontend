@@ -30,45 +30,73 @@ export const useProfStore = defineStore('prof', {
         }
         return token
       },
-        async fetchProfs() {
-            try {
-              const response = await axios.get(`${profUrl}/all`) 
-              this.professors = response.data;
-              return response;
-            } catch (error) {
-              console.error('Fehler beim Abrufen der Professoren: ', error.response?.data?.message || error.message)
-              throw error
-            }
-          },
-          async findProf(profId) {
-            let prof = false;
+      async fetchProfs() {
+        try {
+          // Backend liefert nur Teil-Daten (Projection)
+          const response = await axios.get(`${profUrl}/all`);
       
-            // first check if the prof is cached
-            for (const p of this.professors) {
-              if (p._id === profId) {
-                prof = p;
-              }
-            }
-            if (prof) {
-              this.selectedProf = prof;
-            }
+          // Wir hängen jedem Eintrag ein Flag an, das ihn als 'teilweise Daten' kennzeichnet
+          const partialData = response.data.map((prof) => ({
+            ...prof,
+            _fullData: false // Kennzeichnet: Das ist nur eine Teilladung
+          }));
       
-            else {
-              try {
-                const response = await axios.get(`${profUrl}/byid/${profId}`);
+          this.professors = partialData;
       
-                if (response.status === 200) {
-                  this.selectedProf = response.data;
-                }
-              } catch (e) {
-                return { status: e.code, message: e.message };
-              }
+          return response;
+        } catch (error) {
+          console.error('[fetchProfs] Fehler beim Abrufen der Professoren: ', error.response?.data?.message || error.message);
+          throw error;
+        }
+      },
+      async findProf(profId) {
+      
+        // Suche Prof nach _id
+        let prof = this.professors.find((p) => p._id === profId);
+      
+        // Fall A) Prof existiert NICHT im Array -> Wir laden ihn direkt vom Server
+        if (!prof) {
+          try {
+            const response = await axios.get(`${profUrl}/byid/${profId}`);
+            if (response.status === 200) {
+              prof = {
+                ...response.data,
+                _fullData: true
+              };
+              this.professors.push(prof);
             }
-            console.log('Selected Prof:', this.selectedProf);
-          },
+          } catch (e) {
+            console.error('[findProf] Error fetching Prof:', e.response?.data?.message || e.message);
+            return { status: e.code, message: e.message };
+          }
+        }
+        // Fall B) Prof existiert im Array, aber nur als Teildaten -> Hole Vollversion
+        else if (!prof._fullData) {
+          try {
+            const response = await axios.get(`${profUrl}/byid/${profId}`);
+            if (response.status === 200) {
+              // Prof-Daten updaten
+              const index = this.professors.findIndex((p) => p._id === profId);
+              prof = {
+                ...response.data,
+                _fullData: true
+              };
+              this.professors[index] = prof;
+            }
+          } catch (e) {
+            console.error('[findProf] Error fetching Prof:', e.response?.data?.message || e.message);
+            return { status: e.code, message: e.message };
+          }
+        }
+        // Fall C) Prof existiert bereits im Array und ist _fullData=true
+        else {
+        }
+      
+        this.selectedProf = prof;
+      },
+
           async fetchProfPreview(prof) {
             try {
-              console.log('Prof:', prof);
               const response = await axios.post(
                 `${profUrl}/preview`,
                 {
@@ -76,7 +104,6 @@ export const useProfStore = defineStore('prof', {
                   lname: prof.lname
                  },
               );
-              console.log('Professoren-Vorschau:', response.data);
               this.profPreview = response.data;
             } catch (error) {
               console.error('Fehler beim Abrufen der Professoren-Vorschau: ', error.response?.data?.message || error.message);
