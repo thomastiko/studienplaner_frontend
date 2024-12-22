@@ -5,6 +5,7 @@
     "rating_summary": "Gesamt",
     "rate_now": "Jetzt bewerten",
     "login_to_rate": "Melde dich an um eine Bewertung abgeben zu können!",
+    "comments": "Kommentare",
     "no_comments": "Noch keine Kommentare vorhanden",
     "no_ratings": "Noch keine Bewertungen vorhanden. Sei die erste Person, die diese Lehrkraft bewertet!",
     "professors": "Professor*innen",
@@ -12,5 +13,9 @@
     "ratings": "Bewertungen",
     "share_your_experience": "Teile deine Erfahrung",
     "share_your_experience_text1": "Hast du Erfahrungen mit diesem*dieser Professor*in?",
-    "share_your_experience_text2": "Teile sie mit anderen Studierenden!"
+    "share_your_experience_text2": "Teile sie mit anderen Studierenden!",
+    "completely_applies": "Trifft vollkommen zu",
+    "applies_not_at_all": "Trifft gar nicht zu",
+    "placeholder": "Du kannst hier optional noch ein Kommentar hinzufügen",
+    "already_rated": "Du hast diese Lehrkraft bereits bewertet - Danke!"
 }

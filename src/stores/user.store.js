@@ -262,12 +262,12 @@ export const useUserStore = defineStore('user', {
 
         this.loggedIn = true
         this.user = {
+          id: response.data.userId,
           email: response.data.email,
-          student_id: response.data.student_id,
+          //student_id: response.data.student_id,
           role: response.data.role,
-          studies: response.data.studies,
-          course_entries: response.data.course_entries
         }
+        console.log('Erfolgreich angemeldet:', this.user)
 
         // Nach erfolgreichem Login zur My-Study-Seite navigieren
         router.push({ name: 'my-study', path: '/my-study' })
@@ -347,6 +347,7 @@ export const useUserStore = defineStore('user', {
         })
 
         this.user = {
+          userId: response.data.userId,
           email: response.data.email,
           student_id: response.data.student_id,
           role: response.data.role,

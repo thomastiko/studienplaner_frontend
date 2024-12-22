@@ -53,10 +53,11 @@ export const useAdminStore = defineStore('admin', {
         throw error
       }
     },
-    async approveComment(profId, commentId, commentText) {
+    async approveComment(profId, commentId, commentValue, commentText) {
       try {
         // Sende den Kommentartext als Teil des Anfrage-Bodys
         await axios.post(`${profUrl}/comments/${profId}/release/${commentId}`, {
+          commentValue: commentValue,
           commentText: commentText
         })
         // Kommentar aus der lokalen Liste entfernen

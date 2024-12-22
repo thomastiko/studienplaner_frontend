@@ -3,7 +3,6 @@
     <div class="row q-ma-md" v-if="profStore.selectedProf">
       <div class="col-12 col-md-6 row my-fixed-height-2">
         <div class="col-12 row items-center q-gutter-sm q-mb-lg">
-
           <!-- Admin delete Button (falls Rolle == 'admin') -->
           <div v-if="userStore.loggedIn && userStore.user.role === 'admin'" class="q-mt-md">
             <q-btn label="Professor löschen" color="negative" @click="confirmAll = true" />
@@ -43,7 +42,9 @@
             />
           </div>
           <div class="col-12 text-body1">
-            {{$t('profcheck.based_on')}}  <strong>{{ profStore.selectedProf.factors[0].ratings }} </strong> {{$t('profcheck.ratings')}} 
+            {{ $t('profcheck.based_on') }}
+            <strong>{{ profStore.selectedProf.factors[0].ratings }} </strong>
+            {{ $t('profcheck.ratings') }}
           </div>
         </div>
 
@@ -103,28 +104,66 @@
             </div>
           </div>
         </div>
-        <div class="col-12 column">
-          <div class="text-h6">{{$t('profcheck.share_your_experience')}} </div>
+        <div class="col-12 column q-mb-lg">
+          <div class="text-h6">{{ $t('profcheck.share_your_experience') }}</div>
           <div style="max-width: 380px">
             <div class="text-body1 q-mb-md">
-              {{$t('profcheck.share_your_experience_text1')}}  <br />
-              {{$t('profcheck.share_your_experience_text2')}}
+              {{ $t('profcheck.share_your_experience_text1') }} <br />
+              {{ $t('profcheck.share_your_experience_text2') }}
             </div>
-            <div>
-              <q-btn
-                class="full-width"
-                v-if="userStore.loggedIn"
-                :label="$t('profcheck.rate_now')"
-                @click="rateProfessor"
-                color="blue-4"
-                outline
-              />
-              <div v-else class="text-body1 text-bold">{{ $t('profcheck.login_to_rate') }}</div>
+
+            <!-- Der Benutzer hat den Professor bereits bewertet -->
+            <div v-if="hasRated" class="text-body1 text-bold row items-center">
+              <span class="q-mr-xs">{{ $t('profcheck.already_rated') }}</span>
+              <q-icon
+                name="info"
+                color="amber-6"
+                class="cursor-pointer"
+                size="1em"
+                @click="rateInfo2 = true"
+              >
+                <q-popup-proxy :offset="[10, 10]" v-model="rateInfo" style="width: 450px">
+                  <q-banner class="bg-amber-2">
+                    <template v-slot:avatar>
+                      <q-icon name="celebration" />
+                    </template>
+                    Vielen Dank für deine Bewertung! <br />
+                    Dein Kommentar wird von ÖH-Mitarbeiter*innen geprüft und anschließend freigegeben.
+                  </q-banner>
+                </q-popup-proxy>
+                <q-popup-proxy :offset="[10, 10]" v-model="rateInfo2" style="width: 450px">
+                  <q-banner class="bg-amber-2">
+                    <template v-slot:avatar>
+                      <q-icon name="celebration" />
+                    </template>
+                    Vielen Dank für deine Bewertung! <br />
+                    Dein Kommentar wird von ÖH-Mitarbeiter*innen geprüft und anschließend freigegeben.
+                  </q-banner>
+                </q-popup-proxy>
+              </q-icon>
+            </div>
+
+            <!-- Der Benutzer ist eingeloggt und kann bewerten -->
+            <q-btn
+              v-else-if="userStore.loggedIn"
+              class="full-width"
+              :label="$t('profcheck.rate_now')"
+              @click="rateProfessor"
+              color="blue-4"
+              outline
+            />
+
+            <!-- Der Benutzer ist nicht eingeloggt -->
+            <div v-else class="text-body1 text-bold">
+              {{ $t('profcheck.login_to_rate') }}
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 row my-fixed-height">
+      <div class="col-12 col-md-6 my-fixed-height">
+        <div class="col-12">
+          <div class="text-h6 q-ml-md">{{ $t('profcheck.comments') }}:</div>
+        </div>
         <div class="col-12" v-if="profStore.selectedProf.comments.length > 0">
           <q-list separator>
             <q-item
@@ -137,31 +176,44 @@
                 <div v-if="userStore.loggedIn && userStore.user.role === 'admin'">
                   <q-btn color="negative" label="Löschen" @click="confirm = true" />
                 </div>
-
-                <div class="text-caption q-mt-lg">{{ formatDate(comment.date) }}</div>
+                <div class="q-mt-lg q-mb-md">
+                  <span v-if="comment.value">
+                    <q-rating
+                      v-model="comment.value"
+                      icon="star"
+                      size="1.5em"
+                      color="amber-6"
+                      readonly
+                    />
+                  </span>
+                </div>
                 <div class="text-body1">{{ comment.text }}</div>
+                <div class="text-caption q-mt-md">{{ formatDate(comment.date) }}</div>
               </q-item-section>
+              <!-- Dialog für Kommentar löschen -->
+              <q-dialog v-model="confirm">
+                <q-card>
+                  <q-card-section class="row items-center">
+                    <div>Willst du dieses Kommentar wirklich unwiderruflich löschen?</div>
+                  </q-card-section>
+
+                  <q-card-actions align="right">
+                    <q-btn flat label="Abbrechen" color="primary" v-close-popup />
+                    <q-btn
+                      flat
+                      label="Löschen"
+                      color="negative"
+                      v-close-popup
+                      @click="deleteComment(comment)"
+                    />
+                  </q-card-actions>
+                </q-card>
+              </q-dialog>
             </q-item>
           </q-list>
-          <!-- Dialog für Kommentar löschen -->
-          <q-dialog v-model="confirm">
-            <q-card>
-              <q-card-section class="row items-center">
-                <div>Willst du dieses Kommentar wirklich unwiderruflich löschen?</div>
-              </q-card-section>
-
-              <q-card-actions align="right">
-                <q-btn flat label="Abbrechen" color="primary" v-close-popup />
-                <q-btn
-                  flat
-                  label="Löschen"
-                  color="negative"
-                  v-close-popup
-                  @click="deleteComment(comment)"
-                />
-              </q-card-actions>
-            </q-card>
-          </q-dialog>
+        </div>
+        <div v-else class="col-12 text-body1 q-mb-lg">
+          {{ $t('profcheck.no_comments') }}
         </div>
       </div>
     </div>
@@ -182,6 +234,9 @@ export default {
     const route = useRoute()
     const profStore = useProfStore()
     const userStore = useUserStore()
+    const hasRated = ref(false)
+    const rateInfo = ref(false)
+    const rateInfo2 = ref(false)
 
     // prof_id aus Prop oder URL oder notfalls Fallback
     const profId = ref(props?.prof_id || route.params.prof_id || window.location.hash.split('/')[2])
@@ -190,6 +245,15 @@ export default {
     onMounted(async () => {
       if (profId.value) {
         await profStore.findProf(profId.value)
+        // Prüfen, ob der Benutzer den Professor bewertet hat
+        if (
+          userStore.loggedIn &&
+          profStore.selectedProf.ratedBy &&
+          profStore.selectedProf.ratedBy.includes(userStore.user.userId)
+        ) {
+          hasRated.value = true
+          rateInfo.value = true
+        }
       }
     })
 
@@ -215,6 +279,9 @@ export default {
       profStore,
       userStore,
       profId,
+      hasRated,
+      rateInfo,
+      rateInfo2,
       rateProfessor,
       formatDate,
       confirm: ref(false),

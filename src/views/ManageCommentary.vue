@@ -99,9 +99,10 @@ export default {
     const approveComment = (comment) => {
       const profId = comment.profId // Prof ID aus dem Kommentar holen
       const commentId = comment._id // Kommentar ID aus dem Kommentar holen
+      const commentValue = comment.value // Kommentar Wert aus dem Kommentar holen
       const commentText = comment.text // Kommentar Text aus dem Kommentar holen
 
-      adminStore.approveComment(profId, commentId, commentText)
+      adminStore.approveComment(profId, commentId, commentValue, commentText)
     }
 
     return {

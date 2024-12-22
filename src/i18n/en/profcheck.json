@@ -5,6 +5,7 @@
     "rating_summary": "Overall",
     "rate_now": "Rate now",
     "login_to_rate": "Log in to rate!",
+    "comments": "Comments",
     "no_comments": "No comments yet",
     "no_ratings": "No ratings yet. Be the first person to rate this teacher!",
     "professors": "Professors",
@@ -12,5 +13,9 @@
     "ratings": "ratings",
     "share_your_experience": "Share your experience",
     "share_your_experience_text1": "Have you had experiences with this teacher?",
-    "share_your_experience_text2": "Share them with other students!"
+    "share_your_experience_text2": "Share them with other students!",
+    "completely_applies": "Completely applies",
+    "applies_not_at_all": "Does not apply at all",
+    "placeholder": "You can optionally add a comment here",
+    "already_rated": "You have already rated this professor - Thank you!"
 }

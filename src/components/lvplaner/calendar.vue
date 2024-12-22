@@ -403,7 +403,6 @@ export default defineComponent({
   async mounted() {
     try {
       await this.userStore.fetchUser()
-      console.log('User:', this.userStore.user)
     } catch (error) {
       console.log(error)
     }

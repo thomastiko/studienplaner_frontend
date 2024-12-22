@@ -1,27 +1,51 @@
 <template>
   <div>
     <div class="row q-ma-md" v-if="profStore.selectedProf">
-      <div class="col-12 text-h4">
-        {{ $t('rateProf.rate') }}: {{ profStore.selectedProf.fname }} {{ profStore.selectedProf.lname }}
+      <div class="col-12 text-h4 q-mb-md">
+        {{ $t('rateProf.rate') }}: {{ profStore.selectedProf.fname }}
+        {{ profStore.selectedProf.lname }}
       </div>
-      <div class="col-xs-12 col-md-6" v-for="(factor, i) in rateSystem" v-bind:key="i">
-        <div class="q-pa-md shadow-1">
-          <h4>{{ factor.title }}</h4>
-          <p>{{ factor.criteria }}</p>
-          <q-rating
-            v-model="factor.value"
-            icon="thumb_up"
-            size="2em"
-            :max="5"
-            color="primary"
-          ></q-rating>
+      <div class="col-12 col-md-8 row q-col-gutter-md">
+        <div class="col-12">
+          <div class="text-body1 row items-center">
+            <span class="q-pr-xs">1</span>
+            <q-icon name="star" color="amber-6" size="1em" />
+            <div class="q-pl-xs">= {{$t('profcheck.applies_not_at_all')}}</div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="text-body1 row items-center">
+            <span class="q-pr-xs">5</span>
+            <q-icon name="star" color="amber-6" size="1em" />
+            <div class="q-pl-xs">= {{$t('profcheck.completely_applies')}}</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4" v-for="(factor, i) in rateSystem" v-bind:key="i">
+          <div class="q-pa-md shadow-1" style="min-height: 160px">
+            <div class="text-h5 q-mb-md">{{ factor.title }}</div>
+            <div class="text-body1">{{ factor.criteria }}</div>
+            <q-rating
+              v-model="factor.value"
+              icon="star"
+              size="2em"
+              :max="5"
+              color="amber-6"
+            ></q-rating>
+          </div>
         </div>
       </div>
-      <div class="col-12 row q-mt-md">
-        <div class="col-12 text-h4"> {{ $t('rateProf.add_comment') }}:</div>
-        <q-input class="full-width" v-model="comment" outlined autogrow />
+      <div class="col-12 col-md-8 row q-mt-lg">
+        <div class="col-12 text-h4 q-mb-sm">{{ $t('rateProf.add_comment') }}:</div>
+        <q-input class="full-width" v-model="comment" outlined autogrow :placeholder="$t('profcheck.placeholder')" />
       </div>
-      <q-btn class="q-mt-md" :label="$t('rateProf.send_rating')" color="primary" @click="updateRate" />
+      <div class="col-12">
+      <q-btn
+        class="q-mt-md"
+        :label="$t('rateProf.send_rating')"
+        color="primary"
+        @click="updateRate"
+      />
+      </div>
     </div>
   </div>
 </template>
@@ -46,33 +70,37 @@ export default {
       props.prof_id || route.params.prof_id || window.location.pathname.split('/')[2]
     )
     const rateSystem = ref([
-        {
-          title: t('lvPlaner.prof_learning_content'),
-          criteria: t('rateProf.learning_content_text'),
-          value: 0
-        },
-        {
-          title: t('lvPlaner.prof_atmosphere'),
-          criteria: t('rateProf.atmosphere_text'),
-          value: 0
-        },
-        {
-          title: t('lvPlaner.prof_participation'),
-          criteria: t('rateProf.participation_text'),
-          value: 0
-        },
-        {
-          title: t('lvPlaner.prof_grading'),
-          criteria: t('rateProf.grading_text'),
-          value: 0
-        },
-        {
-          title: t('lvPlaner.prof_availability'),
-          criteria: t('rateProf.availability_text'),
-          value: 0
-        },
-        { title: t('lvPlaner.prof_recommendation'), criteria: t('rateProf.recommendation_text') , value: 0 }
-      ])
+      {
+        title: t('lvPlaner.prof_learning_content'),
+        criteria: t('rateProf.learning_content_text'),
+        value: 0
+      },
+      {
+        title: t('lvPlaner.prof_atmosphere'),
+        criteria: t('rateProf.atmosphere_text'),
+        value: 0
+      },
+      {
+        title: t('lvPlaner.prof_participation'),
+        criteria: t('rateProf.participation_text'),
+        value: 0
+      },
+      {
+        title: t('lvPlaner.prof_grading'),
+        criteria: t('rateProf.grading_text'),
+        value: 0
+      },
+      {
+        title: t('lvPlaner.prof_availability'),
+        criteria: t('rateProf.availability_text'),
+        value: 0
+      },
+      {
+        title: t('lvPlaner.prof_recommendation'),
+        criteria: t('rateProf.recommendation_text'),
+        value: 0
+      }
+    ])
     onMounted(async () => {
       await profStore.findProf(profId.value)
     })
@@ -90,9 +118,6 @@ export default {
       const ratings = this.rateSystem.map((factor) => factor.value) // Sammle alle Bewertungen
       const comment = this.comment // Hole den Kommentar
 
-      console.log(ratings) // Nur für Debugging, um sicherzustellen, dass die Bewertungen korrekt gesammelt werden
-      console.log(comment)
-
       // Erstelle ein Objekt, das die Ratings und den Kommentar enthält
       const ratingData = {
         ratings,
@@ -109,7 +134,7 @@ export default {
         )
       } catch (error) {
         console.error('Fehler beim Hinzufügen der Bewertung:', error)
-      }
+      } 
     }
   }
 }

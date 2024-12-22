@@ -117,29 +117,48 @@ export const useProfStore = defineStore('prof', {
             await userStore.checkAuthState(router);
           
             if (userStore.loggedIn) {
+              // Beispiel: rating = { ratings: [...], comment: '...'}
+              // Prüfen, ob 'ratings' existiert und ob einer der Werte = 0 ist
+              if (
+                !rating.ratings ||
+                rating.ratings.some((value) => value === 0)
+              ) {
+                notify({
+                  type: 'negative',
+                  message: 'Du musst alle Kategorien auswählen.',
+                  position: 'bottom',
+                  timeout: 3000
+                });
+                return; // Abbruch, kein Request wird gesendet
+              }
+          
               try {
                 const token = userStore.getToken();
-                
+          
                 const response = await axios.patch(
                   `${profUrl}/${profId}/rate`,
-                  rating,
+                  rating, 
                   { headers: { Authorization: `Bearer ${token}` } }
                 );
+        
           
-                console.log(`Rating für Professor ${profId} hinzugefügt:`, response.data);
-          
-                const updatedProf = await this.professors.find((p) => p._id === profId);
+                // Professor in deinem lokalen State aktualisieren
+                const updatedProf = this.professors.find((p) => p._id === profId);
                 if (updatedProf) {
                   updatedProf.ratings = response.data.ratings;
                 }
                 notify({
                   type: 'positive',
-                  message: 'Bewertung erfolgreich hinzugefügt.',
+                  spinner: true,
+                  message: 'Bewertung wird hinzugefügt...',
                   position: 'bottom',
+                  group: false,
                   timeout: 3000
-                });
-                router.back();
-                window.addEventListener('popstate', () => location.reload(), { once: true });
+                });  
+                setTimeout(() => {
+                  router.back();
+                  window.addEventListener('popstate', () => location.reload(), { once: true });
+                }, 3000);
           
               } catch (error) {
                 if (error.response?.status === 409) {
@@ -149,7 +168,6 @@ export const useProfStore = defineStore('prof', {
                     position: 'bottom',
                     timeout: 3000
                   });
-                  
                 } else {
                   notify({
                     type: 'negative',
@@ -164,7 +182,7 @@ export const useProfStore = defineStore('prof', {
             } else {
               console.error('Benutzer ist nicht eingeloggt');
             }
-          },
+          },          
           async fetchAllComments() {
             try {
               // Abrufen aller Kommentare vom Backend
