@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
+    <div class="text-h2 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
       Studien&shy;gänge
     </div>
-    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+    <div class="text-h6 text-center text-weight-medium q-mb-lg">
       {{ $t('studies.subtitle_1') }}
     </div>
     <div class="q-pa-md row justify-center">

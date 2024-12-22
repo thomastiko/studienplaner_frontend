@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">Prof&shy;check</div>
-    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+    <div class="text-h2 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">Prof&shy;check</div>
+    <div class="text-h6 text-center text-weight-medium q-mb-lg">
       {{ $t('profcheck.subtitle_1') }}
     </div>
 

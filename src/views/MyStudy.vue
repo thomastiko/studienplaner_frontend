@@ -1,13 +1,80 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
+    <div class="text-h2 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">
       {{ $t('myStudy.heading_1') }}
     </div>
-    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+    <div class="text-h6 text-center text-weight-medium q-mb-lg">
       {{ $t('myStudy.subtitle_1') }}
     </div>
+    <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
+      <div class="text-h6" style="color: grey">
+        {{ $t('myStudy.no_study_selected_line1') }}
+      </div>
+      <div class="text-h6 q-mb-md" style="color: grey">
+        {{ $t('myStudy.no_study_selected_line2') }}
+      </div>
+      <q-btn
+        :label="$t('myStudy.add_study_button')"
+        color="primary"
+        icon="add"
+        @click="this.$router.push({ name: 'studies', route: '/studies' })"
+      >
+        <q-tooltip> {{ $t('myStudy.add_study_button_tooltip') }} </q-tooltip>
+      </q-btn>
+    </div>
+    <div v-else class="col-12 row justify-center q-gutter-sm q-pa-md">
+      <q-card
+        @click="openStudy(study.study_id)"
+        class="my-card"
+        v-for="(study, i) in this.userStore.user.studies"
+        :key="i"
+      >
+        <q-card-section style="background-color: #00B9F7">
+          <div class="row items-center no-wrap q-mb-md">
+            <div class="col">
+              <div class="text-h5 text-bold text-white">{{ study.study_name_short }}</div>
+            </div>
 
-    <!-- Studium bearbeiten und hinzufügen/entfernen Button immer anzeigen -->
+            <div class="col-auto">
+              <q-btn color="white" round flat icon="more_vert" @click.stop>
+                <q-menu>
+                  <q-list separator>
+                    <q-item
+                      clickable
+                      v-close-popup
+                      class="text-negative"
+                      @click="deleteSelectedStudies(study.study_id)"
+                    >
+                      <q-item-section> {{ $t('myStudy.delete_study_button') }} </q-item-section>
+                      <q-item-section side>
+                        <q-icon color="negative" name="delete" />
+                      </q-item-section>
+                    </q-item>
+                    <q-item
+                      clickable
+                      v-close-popup
+                      class="text-primary"
+                      @click="this.$router.push({ name: 'studies', route: '/studies' })"
+                    >
+                      <q-item-section> {{ $t('myStudy.add_study_button') }} </q-item-section>
+                      <q-item-section side>
+                        <q-icon color="primary" name="add" />
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
+            </div>
+          </div>
+        </q-card-section>
+        <q-separator />
+        <q-card-section class="q-pa-sm q-pl-md">
+          <div class="text-subtitle">{{ study.study_name }}</div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <!-- Studium bearbeiten und hinzufügen/entfernen Button immer anzeigen 
     <div class="col-12 row q-gutter-md q-pa-md">
       <q-btn
         :label="$t('myStudy.edit_study_button')"
@@ -36,7 +103,7 @@
       />
     </div>
 
-    <!-- Wenn keine Studiengänge vorhanden sind, zeige den "leeren Zustand" -->
+     Wenn keine Studiengänge vorhanden sind, zeige den "leeren Zustand" 
     <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
       <div class="text-h4 q-mb-md" style="color: grey">{{ $t('myStudy.no_study_selected') }}</div>
       <q-btn
@@ -49,7 +116,7 @@
       </q-btn>
     </div>
 
-    <!-- Wenn Studiengänge vorhanden sind, zeige die Liste der Studiengänge -->
+     Wenn Studiengänge vorhanden sind, zeige die Liste der Studiengänge 
     <div v-else class="row justify-center q-gutter-md">
       <div
         class="col-12 col-md-6 q-pa-md q-mb-md q-card"
@@ -63,7 +130,7 @@
           max-width: 400px;
         "
       >
-        <!-- Checkbox wird nur im Auswahlmodus angezeigt -->
+         Checkbox wird nur im Auswahlmodus angezeigt 
         <q-checkbox
           v-if="selectionMode"
           v-model="selectedStudies"
@@ -84,7 +151,8 @@
           </q-img>
         </q-card>
       </div>
-    </div>
+    </div>-->
+
     <div class="q-mt-lg">
       <Calendar />
     </div>
@@ -130,7 +198,8 @@ export default {
         this.selectedStudies = []
       }
     },
-    deleteSelectedStudies() {
+    deleteSelectedStudies(studyId) {
+      this.selectedStudies = [studyId]
       // Löscht alle ausgewählten Studiengänge in einem einzigen Aufruf
       this.userStore
         .deleteStudies(this.selectedStudies, this.q.notify)
@@ -155,14 +224,9 @@ export default {
   max-width: 400px;
   width: 100%;
   transition: all 0.3s;
+  cursor: pointer;
 }
-
 .my-card:hover {
-  filter: brightness(1.1);
-}
-
-.col {
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Rahmen mit Schatten für bessere Sichtbarkeit */
-  border-radius: 8px; /* Abgerundete Ecken */
+  filter: brightness(0.95);
 }
 </style>

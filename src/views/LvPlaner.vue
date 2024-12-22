@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="text-h1 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">LV-Planer</div>
-    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+    <div class="text-h2 text-center text-weight-medium text-uppercase q-mb-sm q-mt-md">LV-Planer</div>
+    <div class="text-h6 text-center text-weight-medium q-mb-lg">
         {{ $t('lvPlaner.subtitle_1') }}
       </div>
     <div class="bg"></div>
