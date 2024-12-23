@@ -6,153 +6,102 @@
     <div class="text-h6 text-center text-weight-medium q-mb-lg">
       {{ $t('myStudy.subtitle_1') }}
     </div>
-    <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
-      <div class="text-h6" style="color: grey">
-        {{ $t('myStudy.no_study_selected_line1') }}
-      </div>
-      <div class="text-h6 q-mb-md" style="color: grey">
-        {{ $t('myStudy.no_study_selected_line2') }}
-      </div>
-      <q-btn
-        :label="$t('myStudy.add_study_button')"
-        color="primary"
-        icon="add"
-        @click="this.$router.push({ name: 'studies', route: '/studies' })"
-      >
-        <q-tooltip> {{ $t('myStudy.add_study_button_tooltip') }} </q-tooltip>
-      </q-btn>
-    </div>
-    <div v-else class="col-12 row justify-center q-gutter-sm q-pa-md">
-      <q-card
-        @click="openStudy(study.study_id)"
-        class="my-card"
-        v-for="(study, i) in this.userStore.user.studies"
-        :key="i"
-      >
-        <q-card-section style="background-color: #00B9F7">
-          <div class="row items-center no-wrap q-mb-md">
-            <div class="col">
-              <div class="text-h5 text-bold text-white">{{ study.study_name_short }}</div>
-            </div>
-
-            <div class="col-auto">
-              <q-btn color="white" round flat icon="more_vert" @click.stop>
-                <q-menu>
-                  <q-list separator>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      class="text-negative"
-                      @click="deleteSelectedStudies(study.study_id)"
-                    >
-                      <q-item-section> {{ $t('myStudy.delete_study_button') }} </q-item-section>
-                      <q-item-section side>
-                        <q-icon color="negative" name="delete" />
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      class="text-primary"
-                      @click="this.$router.push({ name: 'studies', route: '/studies' })"
-                    >
-                      <q-item-section> {{ $t('myStudy.add_study_button') }} </q-item-section>
-                      <q-item-section side>
-                        <q-icon color="primary" name="add" />
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
-            </div>
+    <div class="row justify-center q-ma-sm">
+      <div class="col-12 col-md-8 row shadow-1 q-pa-md">
+        <div class="col-12">
+          <q-toolbar class="text-primary">
+            <q-toolbar-title> {{ $t('myStudy.study_programs') }} </q-toolbar-title>
+            <q-btn
+              v-if="$q.screen.gt.sm"
+              outline
+              dense
+              no-caps
+              label="Studiengang hinzufügen"
+              icon-right="add"
+              @click="this.$router.push({ name: 'studies', route: '/studies' })"
+            />
+            <q-btn-dropdown
+              v-else
+              fab-mini
+              flat
+              dense
+              no-caps
+              dropdown-icon="add"
+              @click.stop="menuVisible = true"
+            >
+            
+                      <q-list separator>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          class="text-primary"
+                          @click="deleteSelectedStudies(study.study_id)"
+                        >
+                          <q-item-section> {{ $t('myStudy.add_study_button') }} </q-item-section>
+                        </q-item>
+                      </q-list>
+            </q-btn-dropdown>
+          </q-toolbar>
+          <q-separator />
+        </div>
+        <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
+          <div class="text-h6" style="color: grey">
+            {{ $t('myStudy.no_study_selected_line1') }}
           </div>
-        </q-card-section>
-        <q-separator />
-        <q-card-section class="q-pa-sm q-pl-md">
-          <div class="text-subtitle">{{ study.study_name }}</div>
-        </q-card-section>
-      </q-card>
-    </div>
+          <div class="text-h6 q-mb-md" style="color: grey">
+            {{ $t('myStudy.no_study_selected_line2') }}
+          </div>
+          <q-btn
+            :label="$t('myStudy.add_study_button')"
+            color="primary"
+            icon="add"
+            @click="this.$router.push({ name: 'studies', route: '/studies' })"
+          >
+            <q-tooltip> {{ $t('myStudy.add_study_button_tooltip') }} </q-tooltip>
+          </q-btn>
+        </div>
+        <div v-else class="col-12 row justify-center q-gutter-md q-pa-md">
+          <q-card
+            @click="openStudy(study.study_id)"
+            class="my-card"
+            v-for="(study, i) in this.userStore.user.studies"
+            :key="i"
+          >
+            <q-card-section style="background-color: #00b9f7">
+              <div class="row items-center no-wrap q-mb-md">
+                <div class="col">
+                  <div class="text-h5 text-bold text-white">{{ study.study_name_short }}</div>
+                </div>
 
-    <!-- Studium bearbeiten und hinzufügen/entfernen Button immer anzeigen 
-    <div class="col-12 row q-gutter-md q-pa-md">
-      <q-btn
-        :label="$t('myStudy.edit_study_button')"
-        icon-right="edit"
-        @click="toggleSelectionMode"
-        class="q-mb-md"
-      >
-        <q-tooltip> {{ $t('myStudy.edit_study_button_tooltip') }} </q-tooltip>
-      </q-btn>
-      <q-btn
-        v-if="selectionMode"
-        :label="$t('myStudy.add_study_button')"
-        color="positive"
-        icon="add"
-        @click="this.$router.push({ name: 'studies', route: '/studies' })"
-        class="q-mb-md"
-      />
-      <q-btn
-        v-if="selectionMode"
-        :label="$t('myStudy.delete_study_button')"
-        color="negative"
-        :disable="selectedStudies.length === 0"
-        icon="delete"
-        @click="deleteSelectedStudies"
-        class="q-mb-md"
-      />
-    </div>
-
-     Wenn keine Studiengänge vorhanden sind, zeige den "leeren Zustand" 
-    <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
-      <div class="text-h4 q-mb-md" style="color: grey">{{ $t('myStudy.no_study_selected') }}</div>
-      <q-btn
-        :label="$t('myStudy.add_study_button')"
-        color="primary"
-        icon="add"
-        @click="this.$router.push({ name: 'studies', route: '/studies' })"
-      >
-        <q-tooltip> {{ $t('myStudy.add_study_button_tooltip') }} </q-tooltip>
-      </q-btn>
-    </div>
-
-     Wenn Studiengänge vorhanden sind, zeige die Liste der Studiengänge 
-    <div v-else class="row justify-center q-gutter-md">
-      <div
-        class="col-12 col-md-6 q-pa-md q-mb-md q-card"
-        v-for="(study, i) in this.userStore.user.studies"
-        :key="i"
-        style="
-          display: flex;
-          align-items: center;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          max-width: 400px;
-        "
-      >
-         Checkbox wird nur im Auswahlmodus angezeigt 
-        <q-checkbox
-          v-if="selectionMode"
-          v-model="selectedStudies"
-          :val="study.study_id"
-          class="q-mr-md"
-        />
-        <q-card
-          class="my-card cursor-pointer"
-          v-ripple
-          @click="openStudy(study.study_id)"
-          style="flex-grow: 1"
-        >
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
-            <div class="absolute-bottom">
-              <div class="text-h4 text-white">{{ study.study_name_short }}</div>
-              <div class="text-subtitle1">{{ study.study_name }}</div>
-            </div>
-          </q-img>
-        </q-card>
+                <div class="col-auto">
+                  <q-btn color="white" round flat icon="more_vert" @click.stop>
+                    <q-menu>
+                      <q-list separator>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          class="text-negative"
+                          @click="deleteSelectedStudies(study.study_id)"
+                        >
+                          <q-item-section> {{ $t('myStudy.delete_study_button') }} </q-item-section>
+                          <q-item-section side>
+                            <q-icon color="negative" name="delete" />
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-menu>
+                  </q-btn>
+                </div>
+              </div>
+            </q-card-section>
+            <q-separator />
+            <q-card-section class="q-pa-sm q-pl-md">
+              <div class="text-subtitle">{{ study.study_name }}</div>
+            </q-card-section>
+          </q-card>
+        </div>
       </div>
-    </div>-->
-
+    </div>
     <div class="q-mt-lg">
       <Calendar />
     </div>
@@ -163,6 +112,7 @@
 import { useUserStore } from '@/stores/user.store'
 import { useLvStore } from '@/stores/lv.store'
 import { useQuasar } from 'quasar'
+import { ref } from 'vue'
 import Calendar from '@/components/lvplaner/calendar.vue'
 
 export default {
@@ -176,6 +126,7 @@ export default {
     return {
       userStore,
       lvStore,
+      menuVisible: ref(false),
       q
     }
   },

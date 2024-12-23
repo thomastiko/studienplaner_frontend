@@ -7,5 +7,6 @@
   "add_study_button_tooltip": "Add a study now",
   "delete_study_button": "Delete study",
   "no_study_selected_line1": "Welcome!",
-  "no_study_selected_line2": "Start your journey with our study planner and add your first study program now."
+  "no_study_selected_line2": "Start your journey with our study planner and add your first study program now.",
+  "study_programs": "Study programs"
 }
