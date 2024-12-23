@@ -10,10 +10,11 @@
       <div class="col-12 col-md-8 row shadow-1 q-pa-md">
         <div class="col-12">
           <q-toolbar class="text-primary">
-            <q-toolbar-title> {{ $t('myStudy.study_programs') }} </q-toolbar-title>
+            <q-toolbar-title style="color: #00b9f7"> {{ $t('myStudy.study_programs') }} </q-toolbar-title>
             <q-btn
               v-if="$q.screen.gt.sm"
               outline
+              style="color: #00b9f7"
               dense
               no-caps
               label="Studiengang hinzufügen"
@@ -23,23 +24,23 @@
             <q-btn-dropdown
               v-else
               fab-mini
+              style="color: #00b9f7"
               flat
               dense
               no-caps
               dropdown-icon="add"
               @click.stop="menuVisible = true"
             >
-            
-                      <q-list separator>
-                        <q-item
-                          clickable
-                          v-close-popup
-                          class="text-primary"
-                          @click="deleteSelectedStudies(study.study_id)"
-                        >
-                          <q-item-section> {{ $t('myStudy.add_study_button') }} </q-item-section>
-                        </q-item>
-                      </q-list>
+              <q-list separator>
+                <q-item
+                  clickable
+                  v-close-popup
+                  class="text-primary"
+                  @click="deleteSelectedStudies(study.study_id)"
+                >
+                  <q-item-section style="color: #00b9f7"> {{ $t('myStudy.add_study_button') }} </q-item-section>
+                </q-item>
+              </q-list>
             </q-btn-dropdown>
           </q-toolbar>
           <q-separator />

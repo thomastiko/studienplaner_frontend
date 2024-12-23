@@ -1,6 +1,8 @@
 <template>
   <div class="subcontent">
-    <div class="text-h5 text-center text-weight-medium q-mb-lg"> {{ $t('lvPlaner.my_calendar') }}</div>
+    <div class="text-h5 text-center text-weight-medium q-mb-lg">
+      {{ $t('lvPlaner.my_calendar') }}
+    </div>
     <div class="col-12 row justify-center q-ma-sm shadow-1">
       <div class="col-12">
         <div class="row text-blue-7 bg-white q-pa-sm">
@@ -103,7 +105,7 @@
                   <q-item-section>
                     <div class="col-12 row">
                       <div class="col-12 row items-center">
-                        {{ course.name  }}
+                        {{ course.name }}
                         <span class="text-weight-bold q-ml-xs">({{ course.course_code }})</span>
                       </div>
                     </div>
@@ -366,7 +368,6 @@ export default defineComponent({
     eventsMap() {
       let map = {}
       let events = this.userStore.user?.course_entries || []
-
       events.forEach((event) => {
         event.dates.forEach((date) => {
           // Calculate the duration from start to end time
