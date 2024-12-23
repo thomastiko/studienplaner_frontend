@@ -370,23 +370,29 @@ export default defineComponent({
       let events = this.userStore.user?.course_entries || []
       events.forEach((event) => {
         event.dates.forEach((date) => {
-          // Calculate the duration from start to end time
-          let startTime = new Date(date.start)
-          let endTime = new Date(date.end)
-          let duration = (endTime - startTime) / (1000 * 60) // Duration in minutes
+          try {
+            // Calculate the duration from start to end time
+            let startTime = new Date(date.start)
+            let endTime = new Date(date.end)
+            let duration = (endTime - startTime) / (1000 * 60) // Duration in minutes
 
-          date.duration = duration
-          let dateTransformed = date.start.substring(0, date.start.indexOf('T'))
+            date.duration = duration
 
-          if (!map[dateTransformed]) {
-            map[dateTransformed] = []
+            // Extrahiere das Datum
+            let dateTransformed = date.start.substring(0, date.start.indexOf('T'))
+
+            if (!map[dateTransformed]) {
+              map[dateTransformed] = []
+            }
+
+            map[dateTransformed].push({
+              ...date,
+              subject_name: event.subject_name,
+              color: event.color
+            })
+          } catch (error) {
+            console.error('Fehler in eventsMap:', error, 'bei date:', date)
           }
-
-          map[dateTransformed].push({
-            ...date,
-            subject_name: event.subject_name,
-            color: event.color
-          })
         })
       })
       return map

@@ -107,11 +107,12 @@
                       v-for="(date, i) in course.dates"
                       :key="i"
                       :class="{
-                        'bg-red-3 text-white': findOverlapForDate(date)
+                        'bg-red-3 text-white':
+                          findOverlapForDate(date) && !isCourseInUserCourses(course) && (findOverlapForDate(date)?.subjectName !== selectedSubject && findOverlapForDate(date)?.courseName !== course.name)
                       }"
                     >
                       {{ formatDateRange(date.start, date.end) }}
-                      <q-tooltip v-if="findOverlapForDate(date)">
+                      <q-tooltip v-if="findOverlapForDate(date) && !isCourseInUserCourses(course) && (findOverlapForDate(date)?.subjectName !== selectedSubject && findOverlapForDate(date)?.courseName !== course.name)">
                         <div>
                           Überschneidung mit Kurs:
                           {{ findOverlapForDate(date)?.courseName }}
@@ -310,7 +311,6 @@ export default {
             )
             if (!alreadyExists) {
               this.overlappingDates.push(overlap)
-            } else {
             }
 
             return overlap
@@ -321,30 +321,34 @@ export default {
     }
     function findOverlapForDate(date) {
       const dateStart = new Date(date.start?.$date || date.start)
+      const dateEnd = new Date(date.end?.$date || date.end)
+      const overlap = overlappingDates.value.find((overlap) => {
+        const existingStart = new Date(overlap.existingStart)
+        const existingEnd = new Date(overlap.existingEnd)
 
-      const overlap = overlappingDates.value.find(
-        (overlap) => dateStart >= overlap.existingStart && dateStart < overlap.existingEnd
-      )
+        // Allgemeine Bedingung für Überschneidungen
+        return dateStart < existingEnd && dateEnd > existingStart
+      })
 
       if (overlap) {
-        // Finde das spezifische Datum-Objekt im `overlap.course.dates`, das der Überschneidung entspricht
         const specificDate = overlap.course.dates.find((d) => {
           const dStart = new Date(d.start?.$date || d.start)
           const dEnd = new Date(d.end?.$date || d.end)
 
-          return dateStart >= dStart && dateStart < dEnd // Das `dateStart` liegt innerhalb dieses Datums
+          return dateStart <= dEnd && dateEnd >= dStart
         })
 
         if (specificDate) {
-          return { courseName: overlap.course.name, specificDate } // Gib ein Objekt mit Name und spezifischem Datum zurück
+          return { courseName: overlap.course.name, specificDate, subjectName: overlap.course.subject_name }
         }
       }
 
-      return null // Keine Überschneidung gefunden
+      return null
     }
+
     function formatTimeRange(dateStart, dateEnd) {
-      const start = new Date(dateStart)
-      const end = new Date(dateEnd)
+      const start = new Date(dateStart?.$date || dateStart)
+      const end = new Date(dateEnd?.$date || dateEnd)
 
       // Überprüfe, ob die Werte gültig sind
       if (isNaN(start) || isNaN(end)) {
@@ -367,13 +371,17 @@ export default {
     }
 
     const addCourseToUser = async (course) => {
-      // Konvertiere die start und end Datumsfelder in Date Objekte
+      // Konvertiere die start und end Datumsfelder in ISO-Strings
       const convertedCourse = {
         ...course,
         dates: course.dates.map((date) => ({
           ...date,
-          start: new Date(date.start.$date),
-          end: new Date(date.end.$date)
+          start: date.start?.$date
+            ? new Date(date.start.$date).toISOString()
+            : new Date(date.start).toISOString(),
+          end: date.end?.$date
+            ? new Date(date.end.$date).toISOString()
+            : new Date(date.end).toISOString()
         }))
       }
 
@@ -476,9 +484,16 @@ export default {
 
       // Berechne Überschneidungen
       this.filteredCourses.forEach((course) => {
-        course.dates.forEach((date) => {
-          this.getOverlappingCourse(date, this.userStore.user.course_entries)
-        })
+        // Prüfe, ob der Kurs bereits in course_entries enthalten ist
+        const isCourseInEntries = this.userStore.user.course_entries.some(
+          (entry) => entry.course_code === course.course_code
+        )
+
+        if (!isCourseInEntries) {
+          course.dates.forEach((date) => {
+            this.getOverlappingCourse(date, this.userStore.user.course_entries)
+          })
+        }
       })
     },
     async previewProf(prof) {
@@ -525,8 +540,26 @@ export default {
       } else {
         console.error('Keine Vorschau verfügbar.')
       }
+    },
+    updateOverlappingDates() {
+      this.overlappingDates = [] // Bestehende Überschneidungen zurücksetzen
+
+      this.filteredCourses.forEach((course) => {
+        course.dates.forEach((date) => {
+          this.getOverlappingCourse(date, this.userStore.user.course_entries)
+        })
+      })
     }
-  }
+  },
+  watch: {
+    // Überwache Änderungen in `course_entries` der Benutzer-Daten
+    'userStore.user.course_entries': {
+      handler() {
+        this.updateOverlappingDates()
+      },
+      deep: true // Verschachtelte Änderungen erkennen
+    }
+  },
 }
 </script>
 
