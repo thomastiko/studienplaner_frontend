@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6" :class="{ 'scrollable-container': $q.screen.gt.sm }">
         <div v-if="!loading">
           <div class="row q-ma-md">
             <div class="text-h5 text-weight-medium q-mb-sm col-12">
@@ -97,36 +97,72 @@
                     </div>
                     <div class="text-blue-7">
                       <a :href="course.vvz_url" target="_blank" class="text-blue-7 text-body2"
-                        >Zum Vorlesungsverzeichnis (VVZ)</a
+                        >{{$t('lvPlaner.to_vvz')}}</a
                       >
                     </div>
                   </div>
                   <q-separator />
-                  <q-list padding separator>
+                  <div class="text-blue-7 text-body2 q-pl-sm q-pt-sm"> {{$t('lvPlaner.dates')}}:</div>
+                  <q-list separator>
                     <q-item
                       v-for="(date, i) in course.dates"
                       :key="i"
                       :class="{
-                        'bg-red-3 text-white':
-                          findOverlapForDate(date) && !isCourseInUserCourses(course) && (findOverlapForDate(date)?.subjectName !== selectedSubject && findOverlapForDate(date)?.courseName !== course.name)
+                        'bg-warning shadow-1 text-white cursor-pointer my-clickable':
+                          findOverlapForDate(date) &&
+                          !isCourseInUserCourses(course) &&
+                          findOverlapForDate(date)?.subjectName !== selectedSubject &&
+                          findOverlapForDate(date)?.courseName !== course.name
                       }"
                     >
-                      {{ formatDateRange(date.start, date.end) }}
-                      <q-tooltip v-if="findOverlapForDate(date) && !isCourseInUserCourses(course) && (findOverlapForDate(date)?.subjectName !== selectedSubject && findOverlapForDate(date)?.courseName !== course.name)">
-                        <div>
-                          Überschneidung mit Kurs:
-                          {{ findOverlapForDate(date)?.courseName }}
-                        </div>
-                        <div>
-                          Termin:
-                          {{
-                            formatTimeRange(
-                              findOverlapForDate(date)?.specificDate.start,
-                              findOverlapForDate(date)?.specificDate.end
-                            )
-                          }}
-                        </div>
-                      </q-tooltip>
+                      <div class="q-mr-xs">{{ formatDateRange(date.start, date.end) }},</div>
+                      <div>
+                        <template v-if="date.location_url">
+                          <a
+                            :href="date.location_url"
+                            target="_blank"
+                            class="text-blue-7 text-body2"
+                          >
+                            {{ date.location }}
+                          </a>
+                        </template>
+                        <template v-else>
+                          <span class="text-body2 text-blue-7">{{ date.location }}</span>
+                        </template>
+                      </div>
+                      <q-popup-proxy
+                        v-if="
+                          findOverlapForDate(date) &&
+                          !isCourseInUserCourses(course) &&
+                          findOverlapForDate(date)?.subjectName !== selectedSubject &&
+                          findOverlapForDate(date)?.courseName !== course.name
+                        "
+                      >
+                        <q-banner>
+                          <template v-slot:avatar>
+                            <q-icon name="warning" color="warning" />
+                          </template>
+                          <div>
+                            {{ $t('lvPlaner.overlap_with_course') }}:
+                            <strong
+                              >{{ findOverlapForDate(date)?.courseName }} ({{
+                                findOverlapForDate(date)?.courseCode
+                              }})
+                            </strong>
+                          </div>
+                          <div>
+                            {{ $t('lvPlaner.date') }}:
+                            <strong>
+                              {{
+                                formatTimeRange(
+                                  findOverlapForDate(date)?.specificDate.start,
+                                  findOverlapForDate(date)?.specificDate.end
+                                )
+                              }}</strong
+                            >
+                          </div>
+                        </q-banner>
+                      </q-popup-proxy>
                     </q-item>
                   </q-list>
                 </q-expansion-item>
@@ -226,10 +262,9 @@
           </q-card-section>
           <q-card-section>
             <div class="text-body1">
-              Leider konnten wir die Lehrkraft nicht finden. Bitte schreibe uns eine E-Mail an
-              <a href="mailto:beratung@oeh-wu.at" class="text-primary">beratung@oeh-wu.at</a>, und
-              wir werden sie so schnell wie möglich hinzufügen. Vielen Dank für dein Verständnis!
+              {{ $t('lvPlaner.prof_not_in_db') }}
             </div>
+              <div><a href="mailto:beratung@oeh-wu.at" class="text-primary">beratung@oeh-wu.at</a></div>
           </q-card-section>
           <q-card-actions align="right">
             <q-btn flat label="Ok" color="primary" @click="profNotFound = false" />
@@ -339,7 +374,12 @@ export default {
         })
 
         if (specificDate) {
-          return { courseName: overlap.course.name, specificDate, subjectName: overlap.course.subject_name }
+          return {
+            courseName: overlap.course.name,
+            courseCode: overlap.course.course_code,
+            specificDate,
+            subjectName: overlap.course.subject_name
+          }
         }
       }
 
@@ -559,7 +599,7 @@ export default {
       },
       deep: true // Verschachtelte Änderungen erkennen
     }
-  },
+  }
 }
 </script>
 
@@ -567,5 +607,15 @@ export default {
 .q-card {
   width: 300px;
   margin: 10px;
+}
+.my-clickable {
+  transition: all 0.3s;
+}
+.my-clickable:hover {
+  filter: brightness(1.05);
+}
+.scrollable-container {
+  max-height: 90vh;
+  overflow-y: auto;
 }
 </style>

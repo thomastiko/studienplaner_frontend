@@ -18,6 +18,11 @@
     "prof_recommendation": "Recommendation",
     "prof_overall": "Overall rating",
     "prof_no_ratings": "No ratings available",
-    "my_calendar": "My calendar"
+    "my_calendar": "My calendar",
+    "to_vvz": "To the course directory (VVZ)",
+    "dates": "Dates",
+    "date": "Date",
+    "overlap_with_course": "Overlap with course",
+    "prof_not_in_db": "Unfortunately, we could not find the teacher. Please write us an email and we will add them as soon as possible. Thank you for your understanding!"
     
 }

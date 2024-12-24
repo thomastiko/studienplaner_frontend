@@ -1,8 +1,8 @@
 {
     "subtitle_1": "Behalte deine Lehrveranstalungen im Überblick",
     "add_lv": "LV hinzufügen",
-    "add_lvs": "LVs hinzufügen",
-    "search_lvs": "LVs suchen",
+    "add_lvs": "Lehrveranstaltungen hinzufügen",
+    "search_lvs": "Lehrveranstaltungen suchen",
     "mode": "Modus",
     "language": "Sprache",
     "prof_preview": "Vorschau",
@@ -18,5 +18,10 @@
     "prof_recommendation": "Empfehlung",
     "prof_overall": "Gesamtbewertung",
     "prof_no_ratings": "Keine Bewertungen vorhanden",
-    "my_calendar": "Mein Kalender"
+    "my_calendar": "Mein Kalender",
+    "to_vvz": "Zum Vorlesungsverzeichnis (VVZ)",
+    "dates": "Termine",
+    "date": "Termin",
+    "overlap_with_course": "Überschneidung mit Lehrveranstaltung",
+    "prof_not_in_db": "Leider konnten wir die Lehrkraft nicht finden. Bitte schreibe uns eine E-Mail und wir werden sie so schnell wie möglich hinzufügen. Vielen Dank für dein Verständnis!"
 }
