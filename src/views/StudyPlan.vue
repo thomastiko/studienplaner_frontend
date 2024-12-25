@@ -6,12 +6,17 @@
         <Dashboard :selectedStudy="selectedStudy" />
       </div>
       <!-- Iteration durch Phasen und die Fächer, die zu diesen Phasen gehören -->
-      <div v-for="(subjects, phase) in groupedSubjects" :key="phase" class="shadow-1 q-ma-md">
-        <div class="q-pa-md row q-col-gutter-md items-stretch">
-          <div class="col-12 row justify-between items-center">
+      <q-expansion-item v-model="expandedItem[phase]" v-for="(subjects, phase) in groupedSubjects" :key="phase" class="shadow-1 q-ma-md">
+         <template v-slot:header>
+          <q-item-section>
             <div class="text-h5 text-bold text-uppercase">{{ phase }}</div>
+          </q-item-section>
+
+          <q-item-section>
             <div>{{ subjects.length }} Lehrveranstalungen</div>
-          </div>
+          </q-item-section>
+        </template>
+        <div class="q-ma-sm q-pa-sm row q-col-gutter-md items-stretch">
           <div
             class="col-12 col-md-3"
             style="max-width: 450px"
@@ -27,7 +32,7 @@
             />
           </div>
         </div>
-      </div>
+      </q-expansion-item>
 
       <!-- SBWLs -->
       <div>
@@ -84,6 +89,14 @@ export default {
     const lvStore = useLvStore()
     const checker = getChecker(studyId.value)
     const q = useQuasar()
+    const expandedItem = ref({})  
+
+    const initExpandedItems = (groupedSubjects) => {
+    for (const phase in groupedSubjects) {
+      expandedItem.value[phase] = true
+    }
+  }
+
     return {
       userStore,
       lvStore,
@@ -91,7 +104,10 @@ export default {
       seamless: ref(false),
       freeElectivesAvailable: ref(false),
       sbwlsAvailable: ref(false),
-      q
+      q,
+      expandedItem,
+      initExpandedItems
+      
     }
   },
   data() {
@@ -270,10 +286,22 @@ export default {
       },
       deep: true,
       immediate: true
-    }
+    },
+    groupedSubjects: {
+    handler(newVal) {
+      // Überprüfe, ob alle Subjects in einer Phase auf "done" sind
+      for (const [phase, subjects] of Object.entries(newVal)) {
+        const allDone = subjects.every((subject) => subject.status === 'done')
+        this.expandedItem[phase] = !allDone // Wenn alle "done", klappe zu (false)
+      }
+    },
+    deep: true,
+    immediate: true
+  }
   },
   mounted() {
     console.log(this.userStore.user)
+    
   }
 }
 </script>

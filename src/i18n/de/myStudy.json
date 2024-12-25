@@ -8,5 +8,7 @@
   "delete_study_button": "Studium löschen",
   "no_study_selected_line1": "Schön, dass du hier bist!",
   "no_study_selected_line2": "Starte jetzt voll durch mit deinem Studienplaner und füge dein ersten Studiengang hinzu.",
-  "study_programs": "Studiengänge"
+  "study_programs": "Studiengänge",
+  "grade": "Note",
+  "no_grade": "Keine Note"
 }

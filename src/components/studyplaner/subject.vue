@@ -1,29 +1,61 @@
 <template>
   <q-card class="my-card cursor-pointer">
-    <q-card-section :style="{ backgroundColor: getSubjectColor() }" :draggable="true" @dragstart="handleDragStart($event, subject)" @dragend="handleDragEnd">
+    <q-card-section
+      :style="{ backgroundColor: getSubjectColor() }"
+      style="min-height: 100px"
+      :draggable="true"
+      @dragstart="handleDragStart($event, subject)"
+      @dragend="handleDragEnd"
+    >
       <div class="text-h6 text-grey-9" style="user-select: none">{{ subject.name }}</div>
-      <div class="text-subtitle2" style="user-select: none">{{ subject.category }}</div>
     </q-card-section>
 
     <q-separator />
 
-    <q-card-actions style="cursor: default;">
-      <q-chip outline square>
-        {{ subject.subject_type }}
-        TYPE
+    <q-card-actions>
+      <div class="truncate-chip-labels">
+      <q-chip class="category-chip" square :style="{ backgroundColor: subject.color }" :label="subject.category">
+        <q-popup-proxy :offset="[-10, 2]" :breakpoint="100" :style="{ backgroundColor: subject.color }">
+        <div class="q-pa-sm text-body1 text-black"> {{subject.category}} </div>
+      </q-popup-proxy>
       </q-chip>
-      <q-chip outline square>
+      <q-chip outline square :ripple="false" style="cursor: default">
+        {{ subject.subject_type }}
+      </q-chip>
+      <q-chip outline square :ripple="false" style="cursor: default">
         {{ subject.ects }}
         ECTS
       </q-chip>
-      <q-chip outline square v-if="subject.category !== 'Free Electives and Internship' && subject.category !== 'Specializations' && subject.category !== 'Freies Wahlfach' && subject.category !== 'Spezielle Betriebswirtschaftslehre'">
-        {{ subject.grade }}
-        GRADE
+      <q-chip
+        outline
+        square
+        :ripple="false"
+        v-if="
+          subject.category !== 'Free Electives and Internship' &&
+          subject.category !== 'Specializations' &&
+          subject.category !== 'Freies Wahlfach' &&
+          subject.category !== 'Spezielle Betriebswirtschaftslehre'
+        "
+      >
+        {{
+          subject.grade !== null
+            ? `${$t('myStudy.grade')}: ${subject.grade}`
+            : $t('myStudy.no_grade')
+        }}
       </q-chip>
+      </div>
     </q-card-actions>
 
-    <q-card-actions v-if="subject.category !== 'Free Electives and Internship' && subject.category !== 'Specializations' && subject.category !== 'Freies Wahlfach' && subject.category !== 'Spezielle Betriebswirtschaftslehre' && subject.category !== 'Internationale Erfahrung'">
-      <q-btn-dropdown flat label="Status" class="full-width">
+    <q-card-actions
+      v-if="
+        subject.category !== 'Free Electives and Internship' &&
+        subject.category !== 'Specializations' &&
+        subject.category !== 'Freies Wahlfach' &&
+        subject.category !== 'Spezielle Betriebswirtschaftslehre' &&
+        subject.category !== 'Internationale Erfahrung'
+      "
+    >
+      <q-btn-dropdown flat label="Status" class="full-width" v-if="subject.status !== 'unavailable'">
         <q-list>
           <q-item clickable v-close-popup @click="setStatus('can-do')">
             <q-item-section>
@@ -81,12 +113,19 @@ export default {
   },
   emits: ['status-change', 'handle-drag-start', 'drag', 'dragend'],
   setup() {
-    const grades = [{ label: "1", value: 1 }, { label: "2", value: 2 }, { label: "3", value: 3 }, { label: "4", value: 4 }]
+    const grades = [
+      { label: '1', value: 1 },
+      { label: '2', value: 2 },
+      { label: '3', value: 3 },
+      { label: '4', value: 4 }
+    ]
+
 
     return {
       grade: ref(1),
       dialog: ref(false),
-      grades
+      grades,
+      truncate: ref(true),
     }
   },
   methods: {
@@ -99,7 +138,7 @@ export default {
       } else if (this.subject.status == 'doing') {
         color = '#FFA03D'
       } else {
-        color = this.subject.color
+        color = '#B3E5FC'
       }
       return color || '#FFFFFF'
     },
@@ -110,17 +149,24 @@ export default {
       this.$emit('status-change', this.subject._id, status, this.grade)
     },
     handleDragStart($event, subject) {
-      this.$emit("handle-drag-start", $event, subject);
+      this.$emit('handle-drag-start', $event, subject)
     },
     handleDragEnd() {
-      this.$emit("dragend");
+      this.$emit('dragend')
     }
   },
-  mounted() {
-  }
+  mounted() {}
 }
 </script>
 
 <style scoped>
+.truncate-chip-labels > .q-chip {
+  max-width: 80px
+}
+
+
+.category-chip:hover {
+  filter: brightness(0.95);
+}
 
 </style>
