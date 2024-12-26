@@ -8,7 +8,7 @@
     "prof_preview": "Vorschau",
     "prof_more_details": "Mehr Details",
     "prof_ratings": "Bewertungen",
-    "prof_rating": "Ratings",
+    "prof_rating": "Bewertung",
     "prof_comments": "Kommentare",
     "prof_learning_content": "Lerninhalte und -aufbereitung",
     "prof_atmosphere": "Atmosphäre",
@@ -23,5 +23,6 @@
     "dates": "Termine",
     "date": "Termin",
     "overlap_with_course": "Überschneidung mit Lehrveranstaltung",
+    "prof_not_in_db_title": "Lehrkraft nicht vorhanden",
     "prof_not_in_db": "Leider konnten wir die Lehrkraft nicht finden. Bitte schreibe uns eine E-Mail und wir werden sie so schnell wie möglich hinzufügen. Vielen Dank für dein Verständnis!"
 }

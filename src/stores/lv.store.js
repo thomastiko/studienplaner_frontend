@@ -52,17 +52,18 @@ export const useLvStore = defineStore("lv", {
     },
 
   actions: {
-    addToCart(name, ects) {
-        const isNameInCart = this.cart.some(item => item.name === name);
-        if (!isNameInCart) {
-            this.cart.push({ name, ects })
+    addToCart(subject) {
+        if (this.cart.some(item => item.name === subject.name)) {
+            return // Verhindert das Hinzufügen von Duplikaten basierend auf dem Namen
         } else {
-            return
+            this.cart.push(subject)
         }
-
     },
-    removeFromCart(index) {
-        this.cart.splice(index, 1)
+    removeFromCart(subject) {
+        const index = this.cart.findIndex(item => item.name === subject.name)
+        if (index !== -1) {
+            this.cart.splice(index, 1)
+        }
     },
     async fetchCourses() {
       try {

@@ -1,12 +1,16 @@
 <template>
-  <q-card class="my-card cursor-pointer">
-    <q-card-section
-      :style="{ backgroundColor: getSubjectColor() }"
-      style="min-height: 100px"
-      :draggable="true"
-      @dragstart="handleDragStart($event, subject)"
-      @dragend="handleDragEnd"
-    >
+  <q-card
+    class="my-card cursor-pointer"
+    :class="{
+      selectionMode: selectionMode && !subject.selected,
+      disabled:
+        selectionMode &&
+        (subject.category === 'Free Electives and Internship' ||
+          subject.category === 'Specializations' || subject.category === 'Spezielle Betriebswirtschaftslehre' ||
+          subject.category === 'Bachelorarbeit')
+    }"
+  >
+    <q-card-section :style="{ backgroundColor: getSubjectColor() }" style="min-height: 100px" @click="toggleSelection">
       <div class="text-h6 text-grey-9" style="user-select: none">{{ subject.name }}</div>
     </q-card-section>
 
@@ -14,35 +18,44 @@
 
     <q-card-actions>
       <div class="truncate-chip-labels">
-      <q-chip class="category-chip" square :style="{ backgroundColor: subject.color }" :label="subject.category">
-        <q-popup-proxy :offset="[-10, 2]" :breakpoint="100" :style="{ backgroundColor: subject.color }">
-        <div class="q-pa-sm text-body1 text-black"> {{subject.category}} </div>
-      </q-popup-proxy>
-      </q-chip>
-      <q-chip outline square :ripple="false" style="cursor: default">
-        {{ subject.subject_type }}
-      </q-chip>
-      <q-chip outline square :ripple="false" style="cursor: default">
-        {{ subject.ects }}
-        ECTS
-      </q-chip>
-      <q-chip
-        outline
-        square
-        :ripple="false"
-        v-if="
-          subject.category !== 'Free Electives and Internship' &&
-          subject.category !== 'Specializations' &&
-          subject.category !== 'Freies Wahlfach' &&
-          subject.category !== 'Spezielle Betriebswirtschaftslehre'
-        "
-      >
-        {{
-          subject.grade !== null
-            ? `${$t('myStudy.grade')}: ${subject.grade}`
-            : $t('myStudy.no_grade')
-        }}
-      </q-chip>
+        <q-chip
+          class="category-chip"
+          square
+          :style="{ backgroundColor: subject.color }"
+          :label="subject.category"
+        >
+          <q-popup-proxy
+            :offset="[-10, 2]"
+            :breakpoint="100"
+            :style="{ backgroundColor: subject.color }"
+          >
+            <div class="q-pa-sm text-body1 text-black">{{ subject.category }}</div>
+          </q-popup-proxy>
+        </q-chip>
+        <q-chip outline square :ripple="false" style="cursor: default">
+          {{ subject.subject_type }}
+        </q-chip>
+        <q-chip outline square :ripple="false" style="cursor: default">
+          {{ subject.ects }}
+          ECTS
+        </q-chip>
+        <q-chip
+          outline
+          square
+          :ripple="false"
+          v-if="
+            subject.category !== 'Free Electives and Internship' &&
+            subject.category !== 'Specializations' &&
+            subject.category !== 'Freies Wahlfach' &&
+            subject.category !== 'Spezielle Betriebswirtschaftslehre'
+          "
+        >
+          {{
+            subject.grade !== null
+              ? `${$t('myStudy.grade')}: ${subject.grade}`
+              : $t('myStudy.no_grade')
+          }}
+        </q-chip>
       </div>
     </q-card-actions>
 
@@ -55,7 +68,12 @@
         subject.category !== 'Internationale Erfahrung'
       "
     >
-      <q-btn-dropdown flat label="Status" class="full-width" v-if="subject.status !== 'unavailable'">
+      <q-btn-dropdown
+        flat
+        label="Status"
+        class="full-width"
+        v-if="subject.status !== 'unavailable' && !this.selectionMode"
+      >
         <q-list>
           <q-item clickable v-close-popup @click="setStatus('can-do')">
             <q-item-section>
@@ -109,9 +127,12 @@ export default {
     subject: {
       type: Object,
       required: true
+    },
+    selectionMode: {
+      type: Boolean
     }
   },
-  emits: ['status-change', 'handle-drag-start', 'drag', 'dragend'],
+  emits: ['status-change', 'add-subject-to-cart', 'show-path'],
   setup() {
     const grades = [
       { label: '1', value: 1 },
@@ -120,12 +141,11 @@ export default {
       { label: '4', value: 4 }
     ]
 
-
     return {
       grade: ref(1),
       dialog: ref(false),
       grades,
-      truncate: ref(true),
+      truncate: ref(true)
     }
   },
   methods: {
@@ -140,6 +160,7 @@ export default {
       } else {
         color = '#B3E5FC'
       }
+
       return color || '#FFFFFF'
     },
     setStatus(status) {
@@ -148,11 +169,31 @@ export default {
       }
       this.$emit('status-change', this.subject._id, status, this.grade)
     },
-    handleDragStart($event, subject) {
-      this.$emit('handle-drag-start', $event, subject)
-    },
-    handleDragEnd() {
-      this.$emit('dragend')
+    toggleSelection() {
+      if (this.selectionMode) {
+        if (
+          this.subject.category !== 'Free Electives and Internship' &&
+          this.subject.category !== 'Specializations' &&
+          this.subject.category !== 'Bachelorarbeit'
+        ) {
+          this.subject.selected = !this.subject.selected
+          this.$emit('add-subject-to-cart', this.subject)
+        }
+      } else {
+        this.$emit('show-path', this.subject)
+      }
+    }
+  },
+  watch: {
+    selectionMode: {
+      handler(newVal) {
+        if (!newVal) {
+          if (this.subject.selected) {
+            this.subject.selected = false
+          }
+        }
+      },
+      immediate: true
     }
   },
   mounted() {}
@@ -161,12 +202,26 @@ export default {
 
 <style scoped>
 .truncate-chip-labels > .q-chip {
-  max-width: 80px
+  max-width: 80px;
 }
-
 
 .category-chip:hover {
   filter: brightness(0.95);
 }
+.selectionMode {
+  filter: brightness(0.7);
+}
 
+.my-card.selectionMode:not(.selected) {
+  filter: brightness(0.7);
+}
+
+.my-card.selectionMode.selected {
+  filter: brightness(1);
+}
+.disabled {
+  pointer-events: none; /* Verhindert Klicks */
+  cursor: not-allowed; /* Zeigt an, dass die Karte nicht klickbar ist */
+  opacity: 0.6; /* Optional: Reduziert die Sichtbarkeit für visuelles Feedback */
+}
 </style>

@@ -105,6 +105,7 @@ export const useProfStore = defineStore('prof', {
                  },
               );
               this.profPreview = response.data;
+              console.log('Professoren-Vorschau:', this.profPreview);
             } catch (error) {
               console.error('Fehler beim Abrufen der Professoren-Vorschau: ', error.response?.data?.message || error.message);
               throw error;

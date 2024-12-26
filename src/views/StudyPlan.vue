@@ -6,8 +6,13 @@
         <Dashboard :selectedStudy="selectedStudy" />
       </div>
       <!-- Iteration durch Phasen und die Fächer, die zu diesen Phasen gehören -->
-      <q-expansion-item v-model="expandedItem[phase]" v-for="(subjects, phase) in groupedSubjects" :key="phase" class="shadow-1 q-ma-md">
-         <template v-slot:header>
+      <q-expansion-item
+        v-model="expandedItem[phase]"
+        v-for="(subjects, phase) in groupedSubjects"
+        :key="phase"
+        class="shadow-1 q-ma-md"
+      >
+        <template v-slot:header>
           <q-item-section>
             <div class="text-h5 text-bold text-uppercase">{{ phase }}</div>
           </q-item-section>
@@ -26,9 +31,9 @@
             <Subject
               :subject="subject"
               @status-change="updateStatus"
-              @handle-drag-start="handleDragStart($event, subject)"
-              @drag="handleDrag"
-              @dragend="handleDragEnd"
+              :selectionMode="selectionMode"
+              @add-subject-to-cart="handleLvCart(subject)"
+              @show-path="showPath(subject)"
             />
           </div>
         </div>
@@ -49,19 +54,61 @@
 
       <!-- Cart -->
       <div>
-        <Cart :seamless="seamless" @drop="handleDrop" @update:seamless="updateSeamless" />
+        <Cart
+          :selectionMode="selectionMode"
+          @activate-selection-mode="ActivateSelectionMode"
+          @deactivate-selection-mode="DeactivateSelectionMode"
+        />
       </div>
     </div>
     <div v-else>
       <p>Study not found.</p>
     </div>
+    <!-- Dialog für den Pfad -->
+    <q-dialog v-model="pathDialog">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Path Information</div>
+        </q-card-section>
+        <q-card-section>
+          <!-- Path anzeigen -->
+          <div v-if="selectedPath.value.length">
+            <div class="text-body1">
+              Um diese LV beginnen zu können sind folgende Voraussetzungen notwendig:
+            </div>
+            <div v-if="filteredPath.length">
+            <div class="text-body1">Der postitive Abschluss folgender Lehrveranstaltung(en):</div>
+            <q-list bordered separator dense>
+              <q-item v-for="(item, index) in filteredPath" :key="index">
+                <div>
+                  <div>{{ item.name }}</div>
+                </div>
+              </q-item>
+            </q-list>
+            </div>
+            <div v-for="(item, index) in selectedPath.value" :key="index">
+              <div v-if="item.type == 'text'">
+                <div class="text-body1 q-mt-md" v-if="filteredPath.length">Und zusätzlich:</div>
+                <div class="text-body2">{{ $t(item.key) }}</div>
+              </div>
+            </div>
+          </div>
+          <div v-else>
+            <p>Kein Path gefunden.</p>
+          </div>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn flat label="Schließen" @click="pathDialog = false" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script>
 import { useUserStore } from '@/stores/user.store'
 import { useLvStore } from '@/stores/lv.store'
-import { getChecker } from '@/stores/study_logic'
+import { getChecker, getPath } from '@/stores/study_logic'
 import Subject from '../components/studyplaner/subject.vue'
 import SbwlCarousel from '../components/studyplaner/sbwlCarousel.vue'
 import FreeElectiveCarousel from '../components/studyplaner/freeElectiveCarousel.vue'
@@ -88,26 +135,32 @@ export default {
     const userStore = useUserStore()
     const lvStore = useLvStore()
     const checker = getChecker(studyId.value)
+    const path = getPath(studyId.value)
     const q = useQuasar()
-    const expandedItem = ref({})  
+    const expandedItem = ref({})
+    const selectionMode = ref(false)
+    const pathDialog = ref(false)
+    const selectedPath = ref([])
 
     const initExpandedItems = (groupedSubjects) => {
-    for (const phase in groupedSubjects) {
-      expandedItem.value[phase] = true
+      for (const phase in groupedSubjects) {
+        expandedItem.value[phase] = true
+      }
     }
-  }
 
     return {
       userStore,
       lvStore,
       checker,
-      seamless: ref(false),
+      path,
       freeElectivesAvailable: ref(false),
       sbwlsAvailable: ref(false),
       q,
       expandedItem,
-      initExpandedItems
-      
+      initExpandedItems,
+      selectionMode,
+      pathDialog,
+      selectedPath
     }
   },
   data() {
@@ -117,7 +170,14 @@ export default {
   },
   methods: {
     async updateStatus(subjectId, status, grade) {
-      await this.userStore.updateSubjectStatus(this.studyId, subjectId, status, grade, true, this.q.notify)
+      await this.userStore.updateSubjectStatus(
+        this.studyId,
+        subjectId,
+        status,
+        grade,
+        true,
+        this.q.notify
+      )
       let update_array = await this.checker.executeAll(this.selectedStudy)
       await this.userStore.updateBulkSubjectStatus(this.studyId, update_array)
 
@@ -128,56 +188,34 @@ export default {
         await this.userStore.deleteEverySbwlFromStudy(this.studyId)
       }
     },
-    updateSeamless(value) {
-      this.seamless = value
+    ActivateSelectionMode() {
+      this.selectionMode = true
     },
-    handleDragStart(evt, subject) {
-      this.seamless = true
-
-      // DataTransfer object setup
-      evt.dataTransfer.dropEffect = 'move'
-      evt.dataTransfer.effectAllowed = 'move'
-      evt.dataTransfer.setData('SubjectName', subject.name)
-      evt.dataTransfer.setData('SubjectEcts', subject.ects)
-
-      // Creating a custom drag image
-      const dragImage = document.createElement('div')
-      dragImage.style.width = '150px'
-      dragImage.style.height = '100px'
-      dragImage.style.border = '1px solid #ccc'
-      dragImage.style.borderRadius = '6px'
-      dragImage.style.backgroundColor = 'white'
-      dragImage.style.display = 'flex'
-      dragImage.style.alignItems = 'center'
-      dragImage.style.justifyContent = 'center'
-      dragImage.style.boxShadow = '0 1px 5px rgba(0, 0, 0, 0.2)'
-      dragImage.innerHTML = `<strong>${subject.name}</strong>`
-
-      document.body.appendChild(dragImage)
-
-      // Set custom drag image
-      evt.dataTransfer.setDragImage(dragImage, 75, 50)
-
-      // Remove drag image after drag ends
-      evt.target.addEventListener('dragend', () => {
-        dragImage.remove()
-      })
+    DeactivateSelectionMode() {
+      this.selectionMode = false
+      this.lvStore.cart.length = 0
     },
-    handleDrag(evt) {
-      evt.preventDefault()
+    handleLvCart(subject) {
+      if (!this.lvStore.cart.includes(subject)) {
+        this.lvStore.addToCart(subject)
+      } else {
+        this.lvStore.removeFromCart(subject)
+      }
     },
-    handleDragEnd() {
-      if (this.lvStore.cart.length === 0) {
-        this.seamless = false
+    showPath(subject) {
+      const path = this.path.executePath(this.selectedStudy, subject)
+      this.selectedPath.value = path
+      if (this.selectedPath.value.length > 0) {
+      this.pathDialog = true
       } else {
         return
       }
-    },
-    handleDrop(evt) {
+    }
+    /*handleDrop(evt) {
       let name = evt.dataTransfer.getData('SubjectName')
       let ects = evt.dataTransfer.getData('SubjectEcts')
       this.lvStore.addToCart(name, ects)
-    }
+    }*/
   },
   computed: {
     selectedStudy() {
@@ -203,6 +241,9 @@ export default {
         groups[phase].push(subject)
         return groups
       }, {})
+    },
+    filteredPath() {
+      return this.selectedPath.value.filter((item) => item.type !== 'text')
     }
   },
   watch: {
@@ -255,7 +296,11 @@ export default {
         if (this.selectedStudy.study_id == 'wire-23') {
           const twoCbkSubjectsDone = this.checker.checkHs(this.selectedStudy)
           const steopsDone = this.checker.checkSTEOPs(this.selectedStudy)
-          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, twoCbkSubjectsDone, steopsDone)
+          const sbwlUpdates = await this.checker.checkSbwl(
+            this.selectedStudy,
+            twoCbkSubjectsDone,
+            steopsDone
+          )
           // Wende die Updates für `sbwl_states` an
           sbwlUpdates.forEach(async (update) => {
             await this.userStore.updateSubjectStatus(
@@ -270,7 +315,11 @@ export default {
         } else {
           const totalDoneECTSValue = this.checker.totalDoneECTS(this.selectedStudy)
           const steopsDone = this.checker.checkSTEOPs(this.selectedStudy)
-          const sbwlUpdates = await this.checker.checkSbwl(this.selectedStudy, totalDoneECTSValue, steopsDone)
+          const sbwlUpdates = await this.checker.checkSbwl(
+            this.selectedStudy,
+            totalDoneECTSValue,
+            steopsDone
+          )
           // Wende die Updates für `sbwl_states` an
           sbwlUpdates.forEach(async (update) => {
             await this.userStore.updateSubjectStatus(
@@ -288,20 +337,19 @@ export default {
       immediate: true
     },
     groupedSubjects: {
-    handler(newVal) {
-      // Überprüfe, ob alle Subjects in einer Phase auf "done" sind
-      for (const [phase, subjects] of Object.entries(newVal)) {
-        const allDone = subjects.every((subject) => subject.status === 'done')
-        this.expandedItem[phase] = !allDone // Wenn alle "done", klappe zu (false)
-      }
-    },
-    deep: true,
-    immediate: true
-  }
+      handler(newVal) {
+        // Überprüfe, ob alle Subjects in einer Phase auf "done" sind
+        for (const [phase, subjects] of Object.entries(newVal)) {
+          const allDone = subjects.every((subject) => subject.status === 'done')
+          this.expandedItem[phase] = !allDone // Wenn alle "done", klappe zu (false)
+        }
+      },
+      deep: true,
+      immediate: true
+    }
   },
   mounted() {
     console.log(this.userStore.user)
-    
   }
 }
 </script>

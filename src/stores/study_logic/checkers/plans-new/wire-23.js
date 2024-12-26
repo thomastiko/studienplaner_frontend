@@ -36,7 +36,6 @@ async function checkLvChoice(study, steopsDone) {
     let doneIndices = []
 
     for (let i = 4; i <= 9; i++) {
-      console.log(study.subject_states[i])
       if (study.subject_states[i].status == 'done') {
         doneCount++
         doneIndices.push(i)
@@ -241,7 +240,6 @@ async function checkOeffRechtMue(study) {
   return update_array
 }
 export async function checkSbwl(study, twoCbkSubjectsDone, steopsDone) {
-  console.log(twoCbkSubjectsDone)
   const update_array = [];
 
   const sbwl = study.subject_states.find((i) => i._id == '34'); // Die einzige SBWL in diesem Fall
@@ -271,7 +269,6 @@ export async function checkSbwl(study, twoCbkSubjectsDone, steopsDone) {
       status: sbwl.status,
       grade: null
     });
-    console.log(`Status von SBWL ID ${sbwl._id} auf ${sbwl.status} gesetzt.`);
   } else if (sbwl) {
     // Fallback, wenn `sbwlState` leer oder nicht vorhanden ist
     const newStatus = prerequisitesMet ? 'can-do' : 'unavailable';
@@ -283,7 +280,6 @@ export async function checkSbwl(study, twoCbkSubjectsDone, steopsDone) {
         status: sbwl.status,
         grade: null
       });
-      console.log(`SBWL ID ${sbwl._id} ist leer, Status auf ${sbwl.status} gesetzt.`);
     }
   }
 

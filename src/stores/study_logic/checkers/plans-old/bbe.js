@@ -123,7 +123,6 @@ async function checkBusinessAnalytics(study, steopsDone) {
   return update_array;
 }
 async function checkSbwl(study, totalDoneECTSValue, steopsDone) {
-  console.log(steopsDone);
   const update_array = [];
 
   // Finde das spezifische SBWL-Objekt

@@ -96,13 +96,15 @@
                       <span class="text-grey-8">{{ course.language }}</span>
                     </div>
                     <div class="text-blue-7">
-                      <a :href="course.vvz_url" target="_blank" class="text-blue-7 text-body2"
-                        >{{$t('lvPlaner.to_vvz')}}</a
-                      >
+                      <a :href="course.vvz_url" target="_blank" class="text-blue-7 text-body2">{{
+                        $t('lvPlaner.to_vvz')
+                      }}</a>
                     </div>
                   </div>
                   <q-separator />
-                  <div class="text-blue-7 text-body2 q-pl-sm q-pt-sm"> {{$t('lvPlaner.dates')}}:</div>
+                  <div class="text-blue-7 text-body2 q-pl-sm q-pt-sm">
+                    {{ $t('lvPlaner.dates') }}:
+                  </div>
                   <q-list separator>
                     <q-item
                       v-for="(date, i) in course.dates"
@@ -182,25 +184,43 @@
         </div>
       </div>
       <q-dialog v-if="showProfPreview" v-model="showProfPreview">
-        <q-card style="width: 700px; max-width: 80vw">
+        <q-card style="width: 700px; max-width: 100vw">
           <q-card-section class="row items-center q-pb-none">
             <div class="text-h6">{{ $t('lvPlaner.prof_preview') }}</div>
             <q-space />
             <q-btn icon="close" flat round dense v-close-popup />
           </q-card-section>
-          <q-card-section class="column justify-center">
-            <div class="text-h6 text-center">
-              {{ profStore.profPreview.fname }} {{ profStore.profPreview.lname }}
+          <q-card-section class="column justify-center q-pb-none">
+            <div class="col-12 row justify-center">
+              <div class="text-h6 text-bold q-mr-sm">
+                {{ profStore.profPreview.fname }} {{ profStore.profPreview.lname }}
+              </div>
+              <q-rating
+                v-model="profStore.profPreview.factors[0].gesamt"
+                size="1.5em"
+                icon="star_border"
+                icon-selected="star"
+                icon-half="star_half"
+                color-half="amber-6"
+                color-selected="amber-6"
+                color="amber-8"
+                readonly
+              />
+            </div>
+            <div class="col-12 text-center text-body2">
+              {{ $t('profcheck.based_on') }}
+              <strong>{{ profStore.profPreview.factors[0].ratings }} </strong>
+              {{ $t('profcheck.ratings') }}
             </div>
             <q-btn
               :label="$t('lvPlaner.prof_more_details')"
               flat
-              color="primary"
+              style="color: #00b9f7"
               @click="goToProf"
             />
           </q-card-section>
           <q-card-section>
-            <div class="text-h6 text-center">{{ $t('lvPlaner.prof_ratings') }}</div>
+            <div class="text-h6 text-center">{{ $t('lvPlaner.prof_rating') }}:</div>
             <div
               class="row justify-center"
               v-if="
@@ -214,37 +234,43 @@
                 profStore.profPreview.factors[0].gesamt !== null
               "
             >
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_rating') }}: {{ profStore.profPreview.factors[0].ratings }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_comments') }}: {{ profStore.profPreview.factors[0].comments }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_learning_content') }}:
-                {{ profStore.profPreview.factors[0].lerninhahlte }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_atmosphere') }}:
-                {{ profStore.profPreview.factors[0].atmospahre }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_participation') }}:
-                {{ profStore.profPreview.factors[0].mitarbeit }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_grading') }}: {{ profStore.profPreview.factors[0].benotung }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_availability') }}:
-                {{ profStore.profPreview.factors[0].verfugbarkeit }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_recommendation') }}:
-                {{ profStore.profPreview.factors[0].empfhelung }}
-              </div>
-              <div class="col-3">
-                {{ $t('lvPlaner.prof_overall') }}: {{ profStore.profPreview.factors[0].gesamt }}
+              <div class="col-12 col-md-8 row justify-center">
+                <div class="col-6 col-md-4 row justify-center">
+                  <q-card class="text-center q-pa-xs" style="max-width: 120px">
+                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].lerninhahlte }}</div>
+                    <div class="text-subtitle2">{{ $t('lvPlaner.prof_learning_content') }}</div>
+                  </q-card>
+                </div>
+                <div class="col-6 col-md-4 row justify-center">
+                  <q-card class="text-center q-pa-xs" style="max-width: 120px">
+                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].atmospahre }}</div>
+                    <div class="text-subtitle2">{{ $t('lvPlaner.prof_atmosphere') }}</div>
+                  </q-card>
+                </div>
+                <div class="col-6 col-md-4 row justify-center ">
+                  <q-card class="text-center q-pa-xs" style="max-width: 120px">
+                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].mitarbeit }}</div>
+                    <div class="text-subtitle2">{{ $t('lvPlaner.prof_participation') }}</div>
+                  </q-card>
+                </div>
+                <div class="col-6 col-md-4 row justify-center ">
+                  <q-card class="text-center q-pa-xs" style="max-width: 120px">
+                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].benotung }}</div>
+                    <div class="text-subtitle2">{{ $t('lvPlaner.prof_grading') }}</div>
+                  </q-card>
+                </div>
+                <div class="col-6 col-md-4 row justify-center ">
+                  <q-card class="text-center q-pa-xs" style="max-width: 120px">
+                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].verfugbarkeit }}</div>
+                    <div class="text-subtitle2">{{ $t('lvPlaner.prof_availability') }}</div>
+                  </q-card>
+                </div>
+                <div class="col-6 col-md-4 row justify-center ">
+                  <q-card class="text-center q-pa-xs" style="max-width: 120px">
+                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].empfhelung }}</div>
+                    <div class="text-subtitle2">{{ $t('lvPlaner.prof_recommendation') }}</div>
+                  </q-card>
+                </div>
               </div>
             </div>
             <div class="row justify-center" v-else>
@@ -256,7 +282,7 @@
       <q-dialog v-if="profNotFound" v-model="profNotFound">
         <q-card style="width: 400px; max-width: 80vw">
           <q-card-section class="row items-center q-pb-none">
-            <div class="text-h6">Lehrkraft nicht vorhanden</div>
+            <div class="text-h6">{{ $t('lvPlaner.prof_not_in_db_title') }}</div>
             <q-space />
             <q-btn icon="close" flat round dense v-close-popup />
           </q-card-section>
@@ -264,7 +290,9 @@
             <div class="text-body1">
               {{ $t('lvPlaner.prof_not_in_db') }}
             </div>
-              <div><a href="mailto:beratung@oeh-wu.at" class="text-primary">beratung@oeh-wu.at</a></div>
+            <div>
+              <a href="mailto:beratung@oeh-wu.at" class="text-primary">beratung@oeh-wu.at</a>
+            </div>
           </q-card-section>
           <q-card-actions align="right">
             <q-btn flat label="Ok" color="primary" @click="profNotFound = false" />
@@ -279,7 +307,7 @@
 import { useLvStore } from '@/stores/lv.store'
 import { useUserStore } from '@/stores/user.store'
 import { useProfStore } from '@/stores/prof.store'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import Calendar from '../components/lvplaner/calendar.vue'
 import router from '../router'
 
@@ -294,6 +322,7 @@ export default {
     const selectedSubject = ref(null)
     const filteredOptions = ref([])
     const loading = ref(true)
+    const isDataLoaded = ref(false)
     const overlappingDates = ref([])
 
     const courses = computed(() => lvStore.list || [])
@@ -338,14 +367,14 @@ export default {
           ) {
             const overlap = { course, existingStart, existingEnd }
             // Prüfen, ob die Überschneidung bereits vorhanden ist
-            const alreadyExists = this.overlappingDates.some(
+            const alreadyExists = overlappingDates.value.some(
               (item) =>
                 item.course === course &&
                 item.existingStart.getTime() === existingStart.getTime() &&
                 item.existingEnd.getTime() === existingEnd.getTime()
             )
             if (!alreadyExists) {
-              this.overlappingDates.push(overlap)
+              overlappingDates.value.push(overlap)
             }
 
             return overlap
@@ -353,6 +382,14 @@ export default {
         }
       }
       return null
+    }
+    const updateOverlappingDates = () => {
+      overlappingDates.value = [] // Bestehende Überschneidungen zurücksetzen
+      filteredCourses.value.forEach((course) => {
+        course.dates.forEach((date) => {
+          getOverlappingCourse(date, userStore.user.course_entries)
+        })
+      })
     }
     function findOverlapForDate(date) {
       const dateStart = new Date(date.start?.$date || date.start)
@@ -428,7 +465,6 @@ export default {
       try {
         await userStore.addCourse(convertedCourse)
         userStore.fetchUser()
-        console.log('Kurs erfolgreich hinzugefügt:', convertedCourse)
       } catch (error) {
         console.error('Fehler beim Hinzufügen des Kurses:', error)
       }
@@ -437,7 +473,6 @@ export default {
     const removeCourseFromUser = async (course) => {
       try {
         await userStore.deleteCourse(course.course_code, course.semester)
-        console.log('Kurs erfolgreich entfernt:', course)
       } catch (error) {
         console.error('Fehler beim Entfernen des Kurses:', error)
       }
@@ -465,11 +500,18 @@ export default {
       try {
         await lvStore.fetchCourses()
         filteredOptions.value = uniqueSubjectNames.value
+        isDataLoaded.value = true
+        updateOverlappingDates()
       } catch (error) {
         console.error('Fehler beim Laden der LVs:', error)
       } finally {
         loading.value = false
       }
+    })
+
+    onBeforeUnmount(() => {
+      selectedSubject.value = null
+      lvStore.cart = []
     })
 
     return {
@@ -481,6 +523,7 @@ export default {
       selectedSubject,
       filteredOptions,
       filteredCourses,
+      updateOverlappingDates,
       getOverlappingCourse,
       overlappingDates,
       findOverlapForDate,
@@ -490,6 +533,7 @@ export default {
       isCourseInUserCourses,
       filterFn,
       loading,
+      isDataLoaded,
       slide: ref(1),
       formatDateRange(dateStart, dateEnd) {
         // Extrahiere die Datumsstrings aus den Objekten
@@ -580,25 +624,22 @@ export default {
       } else {
         console.error('Keine Vorschau verfügbar.')
       }
-    },
-    updateOverlappingDates() {
-      this.overlappingDates = [] // Bestehende Überschneidungen zurücksetzen
-
-      this.filteredCourses.forEach((course) => {
-        course.dates.forEach((date) => {
-          this.getOverlappingCourse(date, this.userStore.user.course_entries)
-        })
-      })
     }
   },
   watch: {
-    // Überwache Änderungen in `course_entries` der Benutzer-Daten
     'userStore.user.course_entries': {
       handler() {
-        this.updateOverlappingDates()
+        if (this.isDataLoaded) {
+          // Nur wenn die Daten geladen sind
+          this.updateOverlappingDates()
+        }
       },
       deep: true // Verschachtelte Änderungen erkennen
     }
+  },
+  beforeDestroy() {
+    this.selectedSubject = null
+    this.lvStore.cart = []
   }
 }
 </script>

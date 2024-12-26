@@ -122,7 +122,7 @@
                 size="1em"
                 @click="rateInfo2 = true"
               >
-                <q-popup-proxy :offset="[10, 10]" v-model="rateInfo" style="width: 450px">
+                <q-popup-proxy :offset="[10, 10]" :breakpoint="100" v-model="rateInfo" style="width: 450px">
                   <q-banner class="bg-amber-2">
                     <template v-slot:avatar>
                       <q-icon name="celebration" />

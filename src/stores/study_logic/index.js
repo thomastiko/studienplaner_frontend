@@ -4,17 +4,11 @@ import wisoIbw23Checker from "./checkers/plans-new/wiso-ibw-23";
 import wisoVwl23Checker from "./checkers/plans-new/wiso-vwl-23";
 import wisoWupol23Checker from "./checkers/plans-new/wiso-wupol-23";
 
-import wisoWinfChecker from "./checkers/plans-old/wiso-winf";
-import wisoBwlChecker from "./checkers/plans-old/wiso-bwl";
-import wisoIbwChecker from "./checkers/plans-old/wiso-ibw";
-import wisoVwlChecker from "./checkers/plans-old/wiso-vwl";
-import wisoSzChecker from "./checkers/plans-old/wiso-sz";
-
 import wire23Checker from "./checkers/plans-new/wire-23";
-
-import wireChecker from "./checkers/plans-old/wire";
+import wire23Paths from "./paths/wire-23";
 
 import bbeChecker from "./checkers/plans-old/bbe";
+import bbePaths from "./paths/bbe";
 
 export function getChecker(study_id) {
   switch (study_id) {
@@ -28,27 +22,20 @@ export function getChecker(study_id) {
       return wisoVwl23Checker;
     case "wiso-wupol-23":
       return wisoWupol23Checker;
-
-    case "wiso-winf":
-      return wisoWinfChecker;
-    case "wiso-bwl":
-      return wisoBwlChecker;
-    case "wiso-ibw":
-      return wisoIbwChecker;
-    case "wiso-vwl":
-      return wisoVwlChecker;
-    case "wiso-sz":
-      return wisoSzChecker;
-
     case "wire-23":
       return wire23Checker;
-
-    case "wire":
-      return wireChecker;
-
     case "bbe":
       return bbeChecker;
     
 
+  }
+}
+
+export function getPath(study_id) {
+  switch (study_id) {
+    case "bbe":
+      return bbePaths;
+    case "wire-23":
+      return wire23Paths;
   }
 }
