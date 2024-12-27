@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-layout view="lHh lpr lFf" container style="min-height: 100px">
+    <q-layout view="lHh lpr lFf" style="min-height: 100px;">
       <q-header class="bg-blue-4">
         <q-toolbar>
           <div
