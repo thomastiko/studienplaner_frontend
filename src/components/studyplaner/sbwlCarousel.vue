@@ -3,7 +3,9 @@
     <div class="shadow-1 q-ma-md">
       <div class="q-pa-md row q-col-gutter-md items-stretch">
         <div class="col-12 row justify-between items-center">
-          <div class="text-h5 text-bold text-uppercase">SBWLs</div>
+          <div class="text-h5 text-bold text-uppercase"> {{$t('studyPlan.specializations')}} 
+            <span class="text-capitalize">(SBWLs)</span>
+          </div>
           <div>{{ getSbwlLength().length }} SBWLs</div>
         </div>
       </div>
@@ -14,7 +16,8 @@
           <div class="col-12 row">
             <q-btn-dropdown
               color="blue-7"
-              :label="`${i + 1} SBWL hinzufügen`"
+              no-caps
+              :label="`${i + 1}.` + ' ' + $t('studyPlan.add_sbwl')"
               dropdown-icon="add_circle"
               :disable="!this.sbwlsAvailable || this.selectedStudy.sbwl_states.length !== i"
             >
@@ -45,7 +48,8 @@
         <div class="col-12 row">
           <q-btn-dropdown
             color="blue-7"
-            :label="`${i + 1} SBWL hinzufügen`"
+            no-caps
+            :label="`${i + 1}` + ' ' + $t('studyPlan.add_sbwl')"
             dropdown-icon="add_circle"
             :disable="!this.sbwlsAvailable || this.isButtonDisabled(i)"
           >

@@ -12,17 +12,17 @@
           <q-toolbar class="text-primary">
             <q-toolbar-title style="color: #00b9f7"> {{ $t('myStudy.study_programs') }} </q-toolbar-title>
             <q-btn
-              v-if="$q.screen.gt.sm"
+              v-if="$q.screen.gt.sm && this.userStore.user.studies.length !== 0"
               outline
               style="color: #00b9f7"
               dense
               no-caps
-              label="Studiengang hinzufügen"
+              :label="$t('myStudy.add_study_button')"
               icon-right="add"
               @click="this.$router.push({ name: 'studies', route: '/studies' })"
             />
             <q-btn-dropdown
-              v-else
+              v-else-if="this.userStore.user.studies.length !== 0"
               fab-mini
               style="color: #00b9f7"
               flat
@@ -45,7 +45,7 @@
           </q-toolbar>
           <q-separator />
         </div>
-        <div v-if="this.userStore.user.studies.length === 0" class="text-center q-pa-md">
+        <div v-if="this.userStore.user.studies.length === 0" class="full-width text-center q-pa-md">
           <div class="text-h6" style="color: grey">
             {{ $t('myStudy.no_study_selected_line1') }}
           </div>
@@ -55,7 +55,7 @@
           <q-btn
             :label="$t('myStudy.add_study_button')"
             color="primary"
-            icon="add"
+            icon-right="add"
             @click="this.$router.push({ name: 'studies', route: '/studies' })"
           >
             <q-tooltip> {{ $t('myStudy.add_study_button_tooltip') }} </q-tooltip>

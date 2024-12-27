@@ -78,7 +78,7 @@ async function checkHauptstudium(study, totalDoneECTSValue) {
   const update_array = []
   const hauptstudium = study.subject_states.slice(14, 27) // Hauptstudium
   const hauptstudiumFiltered = hauptstudium.filter(
-    (item) => !['21', '22', '23', '25', '26'].includes(item._id)
+    (item) => !['22', '23', '24', '25', '26'].includes(item._id)
   )
 
   if (totalDoneECTSValue >= 20) {
@@ -112,9 +112,9 @@ async function checkHauptstudium(study, totalDoneECTSValue) {
 export async function checkSbwl(study, totalDoneECTSValue, steopsDone) {
   const update_array = [];
 
-  const sbwl1 = study.subject_states.find((i) => i._id == "21");
-  const sbwl2 = study.subject_states.find((i) => i._id == "22");
-  const sbwl3 = study.subject_states.find((i) => i._id == "23");
+  const sbwl1 = study.subject_states.find((i) => i._id == "22");
+  const sbwl2 = study.subject_states.find((i) => i._id == "23");
+  const sbwl3 = study.subject_states.find((i) => i._id == "24");
   const amc1 = study.subject_states.find((i) => i._id == "4");
   const mathe = study.subject_states.find((i) => i._id == "12");
   const statistik = study.subject_states.find((i) => i._id == "13");

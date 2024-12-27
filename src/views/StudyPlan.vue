@@ -14,7 +14,7 @@
       >
         <template v-slot:header>
           <q-item-section>
-            <div class="text-h5 text-bold text-uppercase">{{ phase }}</div>
+            <div class="text-h5 text-bold text-uppercase">{{ phase === 'Hauptstudium' ? $t('studyPlan.main_program') : phase }}</div>
           </q-item-section>
 
           <q-item-section>
@@ -67,28 +67,28 @@
     <!-- Dialog für den Pfad -->
     <q-dialog v-model="pathDialog">
       <q-card>
-        <q-card-section>
-          <div class="text-h6">Path Information</div>
+        <q-card-section class="q-pb-none">
+          <div class="text-h6"> {{$t('studyPlan.path_information')}} </div>
         </q-card-section>
         <q-card-section>
           <!-- Path anzeigen -->
           <div v-if="selectedPath.value.length">
             <div class="text-body1">
-              Um diese LV beginnen zu können sind folgende Voraussetzungen notwendig:
+              {{$t('studyPlan.path_information_text')}}:
             </div>
             <div v-if="filteredPath.length">
-            <div class="text-body1">Der postitive Abschluss folgender Lehrveranstaltung(en):</div>
-            <q-list bordered separator dense>
+            <div class="text-body1">{{$t('studyPlan.path_information_subjects')}}:</div>
+            <q-list dense>
               <q-item v-for="(item, index) in filteredPath" :key="index">
-                <div>
-                  <div>{{ item.name }}</div>
+                <div class="q-mt-sm text-bold">
+                  <div>- {{ item.name }}</div>
                 </div>
               </q-item>
             </q-list>
             </div>
             <div v-for="(item, index) in selectedPath.value" :key="index">
               <div v-if="item.type == 'text'">
-                <div class="text-body1 q-mt-md" v-if="filteredPath.length">Und zusätzlich:</div>
+                <div class="text-body1 q-mt-sm text-bold" v-if="filteredPath.length">{{$t('studyPlan.additional_information')}}:</div>
                 <div class="text-body2">{{ $t(item.key) }}</div>
               </div>
             </div>
@@ -98,7 +98,7 @@
           </div>
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn flat label="Schließen" @click="pathDialog = false" />
+          <q-btn flat :label="$t('studyPlan.close')" @click="pathDialog = false" />
         </q-card-actions>
       </q-card>
     </q-dialog>

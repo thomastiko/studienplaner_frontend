@@ -19,6 +19,7 @@
     <q-card-actions>
       <div class="truncate-chip-labels">
         <q-chip
+        v-if="subject.category !== undefined"
           class="category-chip"
           square
           :style="{ backgroundColor: subject.color }"

@@ -1,5 +1,7 @@
 {
     "bbe_specialisations": "Prerequisite for admission to courses from the Specializations is the successful completion of at least 42 ECTS Credits of the main program phase except the 'Academic Skills'.",
     "wire_specialisations": "Prerequisite 'Statistik' + course BW and/or 'Mathematik' and/or 'Makroökonomik'",
-    "wire_ba": "Prerequisite for the assessment of the Bachelor Thesis is the positive completion of all courses of the STEOP, the CBK, and 'Standards rechtswissenschaftlichen Arbeitens und Zitierens'."
+    "wire_ba": "Prerequisite for the assessment of the Bachelor Thesis is the positive completion of all courses of the STEOP, the CBK, and 'Standards rechtswissenschaftlichen Arbeitens und Zitierens'.",
+    "wiso_bwl_hs": "Prerequisite are at least 20 ECTS from the CBK",
+    "wiso_bwl_fw": "Prerequisite: Completion of at least 1 STEOP course"
 }

@@ -266,12 +266,19 @@ export const useUserStore = defineStore('user', {
           email: response.data.email,
           //student_id: response.data.student_id,
           role: response.data.role,
+          studies: response.data.studies,
         }
         console.log('Erfolgreich angemeldet:', this.user)
 
-        // Nach erfolgreichem Login zur My-Study-Seite navigieren
-        router.push({ name: 'my-study', path: '/my-study' })
-
+        // Redirect abhängig ob Studiengänge vorhanden sind	
+        if(this.user.studies.length == 0) {
+          router.push({ name: 'studies', path: 'studies' })
+        } else {
+          router.push({ name: 'my-study', path: '/my-study' })
+          setTimeout(() => {
+            window.location.reload()
+          }, 500)
+        }
         // Zeige Benachrichtigung an
         notify({
           message: 'Erfolgreich angemeldet',
@@ -280,10 +287,12 @@ export const useUserStore = defineStore('user', {
           position: 'bottom'
         })
 
+
+
         // Führe einen Seiten-Refresh durch, nachdem zur My-Study-Seite navigiert wurde
-        setTimeout(() => {
+        /*setTimeout(() => {
           window.location.reload()
-        }, 500) // optionaler Timeout, um sicherzustellen, dass die Navigation vollständig ist
+        }, 500)*/ // optionaler Timeout, um sicherzustellen, dass die Navigation vollständig ist
       } catch (error) {
         notify({
           message: 'Fehler beim Anmelden',

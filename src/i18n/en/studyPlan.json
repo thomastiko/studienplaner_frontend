@@ -1,0 +1,20 @@
+{
+    "add_free_elective": "Add free elective",
+    "name_hint": "Name of the course",
+    "ects_hint": "ECTS points",
+    "type": "Type",
+    "cancel": "Cancel",
+    "close": "Close",
+    "add": "Add",
+    "add_lvs": "Add LVs",
+    "add_lvs_title": "Add courses",
+    "go_to_lv_planer": "Go to LV-Planner",
+    "add_sbwl": "Add Specialization",
+    "path_information": "Requirements",
+    "path_information_text": "To start this course the following requirements are necessary",
+    "path_information_subjects": "The positive completion of the following course(s)",
+    "additional_information": "And additionally",
+    "main_program": "Main program",
+    "specializations": "Specializations",
+    "free_electives": "Free electives"
+}

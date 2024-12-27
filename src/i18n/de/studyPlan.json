@@ -1,0 +1,20 @@
+{
+    "add_free_elective": "Freies Wahlfach hinzufügen",
+    "name_hint": "Name der Lehrveranstaltung",
+    "ects_hint": "ECTS-Punkte",
+    "type": "Typ",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "add": "Hinzufügen",
+    "add_lvs": "LVs hinzufügen",
+    "add_lvs_title": "Füge Lehrveranstaltungen hinzu",
+    "go_to_lv_planer": "Weiter zum LV-Planer",
+    "add_sbwl": "Spezialisierung hinzufügen",
+    "path_information": "Voraussetzungen",
+    "path_information_text": "Um diese LV beginnen zu können sind folgende Voraussetzungen notwendig",
+    "path_information_subjects": "Der postitive Abschluss folgender Lehrveranstaltung(en)",
+    "additional_information": "Und zusätzlich",
+    "main_program": "Hauptstudium",
+    "specializations": "Spezialisierungen",
+    "free_electives": "Freie Wahlfächer"
+}
