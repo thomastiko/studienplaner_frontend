@@ -103,7 +103,7 @@
         </div>
       </div>
     </div>
-    <div class="q-mt-lg">
+    <div class="q-mt-lg q-ma-md">
       <Calendar />
     </div>
   </div>

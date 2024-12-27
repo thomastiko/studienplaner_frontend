@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="row">
+    <!-- Desktop/Laptop Ansicht -->
+    <div class="row" v-if="$q.screen.gt.sm">
       <div class="col-12 col-md-6" :class="{ 'scrollable-container': $q.screen.gt.sm }">
         <div v-if="!loading">
           <div class="row q-ma-md">
@@ -237,37 +238,49 @@
               <div class="col-12 col-md-8 row justify-center">
                 <div class="col-6 col-md-4 row justify-center">
                   <q-card class="text-center q-pa-xs" style="max-width: 120px">
-                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].lerninhahlte }}</div>
+                    <div class="text-h6 text-bold">
+                      {{ profStore.profPreview.factors[0].lerninhahlte }}
+                    </div>
                     <div class="text-subtitle2">{{ $t('lvPlaner.prof_learning_content') }}</div>
                   </q-card>
                 </div>
                 <div class="col-6 col-md-4 row justify-center">
                   <q-card class="text-center q-pa-xs" style="max-width: 120px">
-                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].atmospahre }}</div>
+                    <div class="text-h6 text-bold">
+                      {{ profStore.profPreview.factors[0].atmospahre }}
+                    </div>
                     <div class="text-subtitle2">{{ $t('lvPlaner.prof_atmosphere') }}</div>
                   </q-card>
                 </div>
-                <div class="col-6 col-md-4 row justify-center ">
+                <div class="col-6 col-md-4 row justify-center">
                   <q-card class="text-center q-pa-xs" style="max-width: 120px">
-                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].mitarbeit }}</div>
+                    <div class="text-h6 text-bold">
+                      {{ profStore.profPreview.factors[0].mitarbeit }}
+                    </div>
                     <div class="text-subtitle2">{{ $t('lvPlaner.prof_participation') }}</div>
                   </q-card>
                 </div>
-                <div class="col-6 col-md-4 row justify-center ">
+                <div class="col-6 col-md-4 row justify-center">
                   <q-card class="text-center q-pa-xs" style="max-width: 120px">
-                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].benotung }}</div>
+                    <div class="text-h6 text-bold">
+                      {{ profStore.profPreview.factors[0].benotung }}
+                    </div>
                     <div class="text-subtitle2">{{ $t('lvPlaner.prof_grading') }}</div>
                   </q-card>
                 </div>
-                <div class="col-6 col-md-4 row justify-center ">
+                <div class="col-6 col-md-4 row justify-center">
                   <q-card class="text-center q-pa-xs" style="max-width: 120px">
-                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].verfugbarkeit }}</div>
+                    <div class="text-h6 text-bold">
+                      {{ profStore.profPreview.factors[0].verfugbarkeit }}
+                    </div>
                     <div class="text-subtitle2">{{ $t('lvPlaner.prof_availability') }}</div>
                   </q-card>
                 </div>
-                <div class="col-6 col-md-4 row justify-center ">
+                <div class="col-6 col-md-4 row justify-center">
                   <q-card class="text-center q-pa-xs" style="max-width: 120px">
-                    <div class="text-h6 text-bold">{{ profStore.profPreview.factors[0].empfhelung }}</div>
+                    <div class="text-h6 text-bold">
+                      {{ profStore.profPreview.factors[0].empfhelung }}
+                    </div>
                     <div class="text-subtitle2">{{ $t('lvPlaner.prof_recommendation') }}</div>
                   </q-card>
                 </div>
@@ -300,6 +313,210 @@
         </q-card>
       </q-dialog>
     </div>
+
+    <!-- Mobile Ansicht -->
+    <div v-if="$q.screen.lt.md">
+      <div class="col-12 col-md-6" :class="{ 'scrollable-container': $q.screen.gt.sm }">
+        <div v-if="!loading">
+          <div class="row q-ma-md">
+            <div class="text-h5 text-weight-medium q-mb-sm col-12">
+              {{ $t('lvPlaner.add_lvs') }}
+            </div>
+            <div class="col-12">
+              <q-select
+                filled
+                v-model="selectedSubject"
+                use-input
+                clearable
+                :options="filteredOptions"
+                @filter="filterFn"
+                :label="$t('lvPlaner.search_lvs')"
+                @update:model-value="onSubjectChange"
+              >
+              </q-select>
+            </div>
+
+            <!-- Zeige die gefilterten Kurse an -->
+            <div v-if="filteredCourses.length" class="col-12 row q-col-gutter-sm">
+              <div
+                v-for="course in filteredCourses"
+                :key="course._id.$oid"
+                class="col-xs-12 col-md-6 col-lg-4 q-mt-md"
+                style="max-width: 400px"
+              >
+                <q-expansion-item
+                  :style="{
+                    backgroundColor: isCourseInUserCourses(course) ? 'lightgreen' : ''
+                  }"
+                  style="max-width: 500px"
+                  class="shadow-1"
+                  default-opened
+                  header-class="text-grey-8"
+                >
+                  <template v-slot:header>
+                    <q-item-section avatar>
+                      <!-- Button ändern je nachdem, ob der Kurs bereits hinzugefügt wurde -->
+                      <q-btn
+                        v-if="!isCourseInUserCourses(course)"
+                        icon="add"
+                        padding="xs"
+                        round
+                        size="sm"
+                        color="blue-7"
+                        text-color="white"
+                        @click.stop="addCourseToUser(course)"
+                      ></q-btn>
+                      <q-btn
+                        v-else
+                        icon="remove"
+                        padding="xs"
+                        round
+                        size="sm"
+                        color="red-7"
+                        text-color="white"
+                        @click.stop="removeCourseFromUser(course)"
+                      ></q-btn>
+                    </q-item-section>
+                    <q-item-section>
+                      <div class="col-12 row">
+                        <div class="col-12 row items-center">
+                          {{ course.name }}
+                          <span class="text-weight-bold q-ml-xs">({{ course.course_code }})</span>
+                        </div>
+                      </div>
+                    </q-item-section>
+                  </template>
+                  <q-separator />
+                  <!-- Restlicher Inhalt des q-expansion-item -->
+                  <div class="row q-pa-sm">
+                    <div class="col-12 row items-center text-blue-7 text-body2">
+                      <div>Prof:</div>
+                      <q-btn
+                        no-caps
+                        flat
+                        dense
+                        color="grey-8"
+                        v-for="prof in course.taught_bys"
+                        :key="prof"
+                        @click="previewProf(prof)"
+                        class="text-bold"
+                      >
+                        {{ prof.firstName }} {{ prof.lastName }},
+                      </q-btn>
+                    </div>
+                    <q-separator />
+                    <div class="col-12 text-blue-7 text-body2">
+                      {{ $t('lvPlaner.mode') }}:
+                      <span class="text-grey-8">{{ course.mode }}</span>
+                    </div>
+                    <div class="col-12 text-blue-7 text-body2">
+                      {{ $t('lvPlaner.language') }}:
+                      <span class="text-grey-8">{{ course.language }}</span>
+                    </div>
+                    <div class="text-blue-7">
+                      <a :href="course.vvz_url" target="_blank" class="text-blue-7 text-body2">{{
+                        $t('lvPlaner.to_vvz')
+                      }}</a>
+                    </div>
+                  </div>
+                  <q-separator />
+                  <div class="text-blue-7 text-body2 q-pl-sm q-pt-sm">
+                    {{ $t('lvPlaner.dates') }}:
+                  </div>
+                  <q-list separator>
+                    <q-item
+                      v-for="(date, i) in course.dates"
+                      :key="i"
+                      :class="{
+                        'bg-warning shadow-1 text-white cursor-pointer my-clickable':
+                          findOverlapForDate(date) &&
+                          !isCourseInUserCourses(course) &&
+                          findOverlapForDate(date)?.subjectName !== selectedSubject &&
+                          findOverlapForDate(date)?.courseName !== course.name
+                      }"
+                    >
+                      <div class="q-mr-xs">{{ formatDateRange(date.start, date.end) }},</div>
+                      <div>
+                        <template v-if="date.location_url">
+                          <a
+                            :href="date.location_url"
+                            target="_blank"
+                            class="text-blue-7 text-body2"
+                          >
+                            {{ date.location }}
+                          </a>
+                        </template>
+                        <template v-else>
+                          <span class="text-body2 text-blue-7">{{ date.location }}</span>
+                        </template>
+                      </div>
+                      <q-popup-proxy
+                        v-if="
+                          findOverlapForDate(date) &&
+                          !isCourseInUserCourses(course) &&
+                          findOverlapForDate(date)?.subjectName !== selectedSubject &&
+                          findOverlapForDate(date)?.courseName !== course.name
+                        "
+                      >
+                        <q-banner>
+                          <template v-slot:avatar>
+                            <q-icon name="warning" color="warning" />
+                          </template>
+                          <div>
+                            {{ $t('lvPlaner.overlap_with_course') }}:
+                            <strong
+                              >{{ findOverlapForDate(date)?.courseName }} ({{
+                                findOverlapForDate(date)?.courseCode
+                              }})
+                            </strong>
+                          </div>
+                          <div>
+                            {{ $t('lvPlaner.date') }}:
+                            <strong>
+                              {{
+                                formatTimeRange(
+                                  findOverlapForDate(date)?.specificDate.start,
+                                  findOverlapForDate(date)?.specificDate.end
+                                )
+                              }}</strong
+                            >
+                          </div>
+                        </q-banner>
+                      </q-popup-proxy>
+                    </q-item>
+                  </q-list>
+                </q-expansion-item>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else class="row justify-center q-ma-xl">
+          <q-spinner size="50px" color="blue" />
+        </div>
+        <div>
+          <q-btn
+            color="blue-4"
+            icon-right="calendar_month"
+            :label="$t('lvPlaner.my_calendar')"
+            no-caps
+            size="md"
+            class="fab-position"
+            @click="showCalendar = true"
+          ></q-btn>
+        </div>
+      </div>
+      <q-dialog v-model="showCalendar" maximized persistent>
+        <div class="q-ma-none q-pa-none">
+          <div class="row items-center q-pa-sm bg-white">
+            <q-space />
+            <q-btn class="q-pa-sm" icon="close" flat round dense v-close-popup />
+          </div>
+          <div>
+            <Calendar />
+          </div>
+        </div>
+      </q-dialog>
+    </div>
   </div>
 </template>
 
@@ -324,6 +541,7 @@ export default {
     const loading = ref(true)
     const isDataLoaded = ref(false)
     const overlappingDates = ref([])
+    const showCalendar = ref(false)
 
     const courses = computed(() => lvStore.list || [])
     const cartItems = computed(() => lvStore.cart)
@@ -534,6 +752,7 @@ export default {
       filterFn,
       loading,
       isDataLoaded,
+      showCalendar,
       slide: ref(1),
       formatDateRange(dateStart, dateEnd) {
         // Extrahiere die Datumsstrings aus den Objekten
@@ -658,5 +877,10 @@ export default {
 .scrollable-container {
   max-height: 90vh;
   overflow-y: auto;
+}
+.fab-position {
+  position: fixed;
+  bottom: 16px;
+  right: 20px;
 }
 </style>
