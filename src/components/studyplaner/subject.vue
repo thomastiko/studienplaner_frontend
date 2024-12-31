@@ -10,7 +10,12 @@
           subject.category === 'Bachelorarbeit')
     }"
   >
-    <q-card-section :style="{ backgroundColor: getSubjectColor() }" style="min-height: 100px" @click="toggleSelection">
+  <q-img v-if="subject.status == 'done'" src="@/assets/schleife_award_icon_2.svg" fit="scale-down" height="30px" width="30px" style="position: absolute; right: -10px; top: -5px; z-index: 1;">
+    <q-tooltip>
+      {{ $t('studyPlan.done_badge') }}
+    </q-tooltip>
+  </q-img>
+  <q-card-section :style="{ backgroundColor: getSubjectColor() }" style="min-height: 100px" @click="toggleSelection">
       <div class="text-h6 text-grey-9" style="user-select: none">{{ subject.name }}</div>
     </q-card-section>
 
