@@ -6,16 +6,28 @@
       disabled:
         selectionMode &&
         (subject.category === 'Free Electives and Internship' ||
-          subject.category === 'Specializations' || subject.category === 'Spezielle Betriebswirtschaftslehre' ||
+          subject.category === 'Specializations' ||
+          subject.category === 'Spezielle Betriebswirtschaftslehre' ||
           subject.category === 'Bachelorarbeit')
     }"
   >
-  <q-img v-if="subject.status == 'done'" src="@/assets/schleife_award_icon_2.svg" fit="scale-down" height="30px" width="30px" style="position: absolute; right: -10px; top: -5px; z-index: 1;">
-    <q-tooltip>
-      {{ $t('studyPlan.done_badge') }}
-    </q-tooltip>
-  </q-img>
-  <q-card-section :style="{ backgroundColor: getSubjectColor() }" style="min-height: 100px" @click="toggleSelection">
+    <q-img
+      v-if="subject.status == 'done'"
+      src="@/assets/schleife_award_icon_2.svg"
+      fit="scale-down"
+      height="30px"
+      width="30px"
+      style="position: absolute; right: -10px; top: -5px; z-index: 1"
+    >
+      <q-tooltip>
+        {{ $t('studyPlan.done_badge') }}
+      </q-tooltip>
+    </q-img>
+    <q-card-section
+      :style="{ backgroundColor: getSubjectColor() }"
+      style="min-height: 100px"
+      @click="toggleSelection"
+    >
       <div class="text-h6 text-grey-9" style="user-select: none">{{ subject.name }}</div>
     </q-card-section>
 
@@ -24,7 +36,7 @@
     <q-card-actions>
       <div class="truncate-chip-labels">
         <q-chip
-        v-if="subject.category !== undefined"
+          v-if="subject.category !== undefined"
           class="category-chip"
           square
           :style="{ backgroundColor: subject.color }"
@@ -101,6 +113,33 @@
         </q-list>
       </q-btn-dropdown>
     </q-card-actions>
+    <q-card-section
+      class="text-center"
+      v-if="
+        subject.category == 'Specializations' ||
+        subject.category == 'Spezielle Betriebswirtschaftslehre' ||
+        subject.category == 'Internationale Erfahrung'
+      "
+    >
+      <q-btn
+        no-caps
+        v-if="subject.status !== 'unavailable' && !this.selectionMode"
+        :label="$t('studyPlan.to_sbwls')"
+        @click="scrollToSbwl"
+      />
+    </q-card-section>
+    <q-card-section
+      class="text-center"
+      v-if="
+        subject.category == 'Free Electives and Internship' || subject.category == 'Freies Wahlfach'
+      "
+    >
+    <q-btn
+        no-caps
+        v-if="subject.status !== 'unavailable' && !this.selectionMode"
+        :label="$t('studyPlan.to_free_electives')"
+        @click="scrollToFreeElectives"
+      /></q-card-section>
   </q-card>
 
   <!-- Dialog nachdem der Status auf "done" geändert werden will -->
@@ -127,6 +166,7 @@
 </template>
 
 <script>
+import StudyPlan from '@/views/StudyPlan.vue'
 import { ref } from 'vue'
 export default {
   props: {
@@ -188,6 +228,58 @@ export default {
       } else {
         this.$emit('show-path', this.subject)
       }
+    },
+    scrollToSbwl() {
+      const sbwlElement = document.getElementById('sbwls')
+      const titleElement = document.getElementById('sbwls-title') // Titel für das Highlighting
+      if (sbwlElement) {
+        const offset = -100 // Scrollen um 100px höher
+        const elementPosition = sbwlElement.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({
+          top: elementPosition + offset,
+          behavior: 'smooth'
+        })
+
+        // Optional: Hervorheben des Titels
+        if (titleElement) {
+          this.highlightElement(titleElement)
+        } else {
+          console.warn('Element with id "sbwls-title" not found.')
+        }
+      } else {
+        console.warn('Element with id "sbwls" not found.')
+      }
+    },
+    scrollToFreeElectives() {
+      const sbwlElement = document.getElementById('free-electives')
+      const titleElement = document.getElementById('free-electives-title') // Titel für das Highlighting
+      if (sbwlElement) {
+        const offset = -100 // Scrollen um 100px höher
+        const elementPosition = sbwlElement.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({
+          top: elementPosition + offset,
+          behavior: 'smooth'
+        })
+
+        // Optional: Hervorheben des Titels
+        if (titleElement) {
+          this.highlightElement(titleElement)
+        } else {
+          console.warn('Element with id "free-electives-title" not found.')
+        }
+      } else {
+        console.warn('Element with id "free-electives" not found.')
+      }
+    },
+    highlightElement(element) {
+      // Stil hinzufügen für eine kurze Hervorhebung
+      element.style.transition = 'background-color 0.5s ease, transform 0.5s ease'
+      element.style.transform = 'scale(1.1)' // Leicht vergrößern für den Effekt
+
+      // Zurücksetzen nach 1 Sekunde
+      setTimeout(() => {
+        element.style.transform = 'scale(1)'
+      }, 1000)
     }
   },
   watch: {

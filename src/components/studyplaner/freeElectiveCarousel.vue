@@ -3,7 +3,7 @@
     <div class="shadow-1 q-ma-md">
       <div class="q-pa-md row items-stretch">
         <div class="col-12 row justify-between items-center">
-          <div class="text-h5 text-bold text-uppercase"> {{$t('studyPlan.free_electives')}} </div>
+          <div id="free-electives-title" class="text-h5 text-bold text-uppercase"> {{$t('studyPlan.free_electives')}} </div>
           <div>{{ getFreeElectivesEcts().ects}} ECTS</div>
         </div>
       </div>

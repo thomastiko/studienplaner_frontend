@@ -40,12 +40,12 @@
       </q-expansion-item>
 
       <!-- SBWLs -->
-      <div>
+      <div id="sbwls">
         <SbwlCarousel :selectedStudy="selectedStudy" :sbwlsAvailable="sbwlsAvailable" />
       </div>
 
       <!-- Freie Wahlfächer -->
-      <div v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
+      <div id="free-electives" v-if="this.study_id !== 'wire' && this.study_id !== 'wire-23'">
         <FreeElectiveCarousel
           :selectedStudy="selectedStudy"
           :freeElectivesAvailable="freeElectivesAvailable"
@@ -354,4 +354,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

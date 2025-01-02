@@ -10,6 +10,7 @@
     "add_lvs_title": "Add courses",
     "go_to_lv_planer": "Go to LV-Planner",
     "add_sbwl": "Add Specialization",
+    "to_sbwls": "Add specialization",
     "path_information": "Requirements",
     "path_information_text": "To start this course the following requirements are necessary",
     "path_information_subjects": "The positive completion of the following course(s)",
@@ -17,5 +18,6 @@
     "main_program": "Main program",
     "specializations": "Specializations",
     "free_electives": "Free electives",
+    "to_free_electives": "Add free elective",
     "done_badge": "Congratulations! You have successfully completed this course"
 }

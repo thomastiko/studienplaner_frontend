@@ -3,7 +3,7 @@
     <div class="shadow-1 q-ma-md">
       <div class="q-pa-md row q-col-gutter-md items-stretch">
         <div class="col-12 row justify-between items-center">
-          <div class="text-h5 text-bold text-uppercase"> {{$t('studyPlan.specializations')}} 
+          <div id="sbwls-title" class="text-h5 text-bold text-uppercase"> {{$t('studyPlan.specializations')}} 
             <span class="text-capitalize">(SBWLs)</span>
           </div>
           <div>{{ getSbwlLength().length }} SBWLs</div>
@@ -404,4 +404,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+
+</style>

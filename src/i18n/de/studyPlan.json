@@ -7,6 +7,7 @@
     "close": "Schließen",
     "add": "Hinzufügen",
     "add_lvs": "LVs hinzufügen",
+    "to_sbwls": "Spezialisierung hinzufügen",
     "add_lvs_title": "Füge Lehrveranstaltungen hinzu",
     "go_to_lv_planer": "Weiter zum LV-Planer",
     "add_sbwl": "Spezialisierung hinzufügen",
@@ -17,5 +18,6 @@
     "main_program": "Hauptstudium",
     "specializations": "Spezialisierungen",
     "free_electives": "Freie Wahlfächer",
+    "to_free_electives": "Freies Wahlfach hinzufügen",
     "done_badge": "Gratuliere! Du hast diese LV erfolgreich abgeschlossen"
 }
