@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user.store'
 import { useProfStore } from '@/stores/prof.store'
@@ -64,11 +64,16 @@ export default {
     const route = useRoute()
     const userStore = useUserStore()
     const profStore = useProfStore()
-    const { t } = useI18n()
+    const { t, locale } = useI18n()
     const q = useQuasar()
     const profId = ref(
       props.prof_id || route.params.prof_id || window.location.pathname.split('/')[2]
     )
+    watch(locale, (newLocale, oldLocale) => {
+      if (newLocale !== oldLocale) {
+        window.location.reload() // Seite neu laden
+      }
+    })
     const rateSystem = ref([
       {
         title: t('lvPlaner.prof_learning_content'),

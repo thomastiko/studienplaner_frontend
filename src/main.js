@@ -22,8 +22,10 @@ import router from './router';
 
 import setupI18n from './i18n';
 
+let i18n;
+
 async function startApp() {
-  const i18n = await setupI18n();
+  i18n = await setupI18n();
   
   const app = createApp(App);
 
@@ -54,3 +56,4 @@ async function startApp() {
 }
 
 startApp();
+export { i18n };

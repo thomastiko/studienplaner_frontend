@@ -12,15 +12,17 @@
     <q-card-actions>
       <q-chip outline square>
       {{ subject.subject_type}}
-        TYPE
       </q-chip>
       <q-chip outline square>
         {{subject.ects}}
         ECTS
       </q-chip>
       <q-chip outline square>
-       {{ subject.grade}}
-        GRADE
+       {{
+            subject.grade !== null
+              ? `${$t('myStudy.grade')}: ${subject.grade}`
+              : $t('myStudy.no_grade')
+          }}
       </q-chip>
     </q-card-actions>
   </q-card>

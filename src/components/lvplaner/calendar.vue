@@ -6,30 +6,36 @@
     <div class="col-12 row justify-center shadow-1">
       <div class="col-12">
         <div class="row text-blue-7 bg-white q-pa-sm">
-          <!-- Linke Spalte (bis "Heute") -->
+          <!-- Linke Spalte (bis "Download Calendar") -->
           <div
             :class="[
-              'col-12 col-md-6 col-lg-4 row items-center',
+              'col-12 col-md-6 col-lg-6 row items-center',
               { 'justify-center': $q.screen.lt.md }
             ]"
           >
             <q-btn flat icon="navigate_before" color="blue-7" @click="onPrev" />
             <div class="q-ma-xs">{{ formattedMonth }}</div>
             <q-btn flat icon="navigate_next" color="blue-7" @click="onNext" />
-            <q-btn flat label="Heute" @click="onToday" />
-          </div>
-
-          <!-- Mittlere Spalte (Kalender herunterladen) -->
-          <div class="col-12 col-md-6 col-lg-4 row items-center justify-center">
+            <q-btn flat :label="$t('lvPlaner.today')" @click="onToday" />
             <q-btn
-              :label="'Kalender herunterladen'"
+              v-if="$q.screen.lt.md"
+              no-caps
+              size="sm"
+              icon="download"
+              color="primary"
+              @click="(openDownloadDialog = true), selectAllCourses()"
+            />
+            <q-btn
+              v-else
+              no-caps
+              :label="$t('lvPlaner.download_calendar')"
               color="primary"
               @click="(openDownloadDialog = true), selectAllCourses()"
             />
             <q-dialog v-model="openDownloadDialog">
               <q-card>
                 <q-card-section>
-                  <div class="text-h6">Kalender-Download - LV auswählen</div>
+                  <div class="text-h6">{{ $t('lvPlaner.download_calendar_dialog') }}:</div>
                 </q-card-section>
                 <q-card-section class="q-pt-none">
                   <div v-for="(course, i) in this.userStore.user.course_entries" :key="i">
@@ -41,21 +47,27 @@
                   </div>
                 </q-card-section>
                 <q-card-actions align="right">
-                  <q-btn flat label="Abbrechen" color="red-4" v-close-popup />
-                  <q-btn flat label="OK" color="primary" v-close-popup @click="downloadICalFeed" />
+                  <q-btn no-caps flat :label="$t('lvPlaner.cancel')" color="red-4" v-close-popup />
+                  <q-btn
+                    no-caps
+                    flat
+                    :label="$t('lvPlaner.download')"
+                    color="primary"
+                    v-close-popup
+                    @click="downloadICalFeed"
+                  />
                 </q-card-actions>
               </q-card>
             </q-dialog>
           </div>
-
           <!-- Rechte Spalte (Meine Kurse und Ansicht) -->
           <div
             :class="[
-              'col-12 col-md-6 col-lg-4 row items-center',
+              'col-12 col-md-6 col-lg-6 row items-center justify-end',
               { 'justify-end': !$q.screen.lt.md, 'justify-center': $q.screen.lt.md }
             ]"
           >
-            <q-btn-dropdown flat label="Meine Kurse">
+            <q-btn-dropdown flat :label="$t('lvPlaner.my_courses')">
               <q-list separator style="position: relative; z-index: 3">
                 <q-item v-for="(course, i) in this.userStore.user.course_entries" :key="i">
                   <q-item-section avatar>
@@ -117,16 +129,16 @@
               </q-list>
             </q-btn-dropdown>
 
-            <q-btn-dropdown flat label="Ansicht">
+            <q-btn-dropdown flat :label="$t('lvPlaner.view')">
               <q-list>
                 <q-item clickable v-close-popup @click="() => updateSelected('day', 'week')">
                   <q-item-section>
-                    <q-item-label>Woche</q-item-label>
+                    <q-item-label> {{ $t('lvPlaner.week') }} </q-item-label>
                   </q-item-section>
                 </q-item>
                 <q-item clickable v-close-popup @click="() => updateSelected('month', 'day')">
                   <q-item-section>
-                    <q-item-label>Monat</q-item-label>
+                    <q-item-label>{{ $t('lvPlaner.month') }}</q-item-label>
                   </q-item-section>
                 </q-item>
               </q-list>
@@ -141,7 +153,7 @@
           :view="selectedView"
           bordered
           animated
-          locale="de-DE"
+          :locale="locale"
           day-min-height="120"
           hoverable
           focusable
@@ -153,19 +165,100 @@
         >
           <template #day="{ scope: { timestamp } }">
             <template v-for="event in eventsMap[timestamp.date]" :key="event._id || event.id">
-              <q-badge align="middle" multi-line :style="{ backgroundColor: event.color }">
+              <q-badge
+                class="cursor-pointer"
+                align="middle"
+                multi-line
+                :style="{ backgroundColor: event.color }"
+              >
                 <div class="col-12 row">
-                  {{ event.subject_name }}
+                  {{ event.name || event.subject_name }}
                 </div>
-                <q-tooltip>
-                  <div>
-                    <span style="text-decoration: underline">Ort:</span> {{ event.location }}
+
+                <q-popup-proxy>
+                  <div v-if="showCourse(event)">
+                    <q-card
+                      style="max-width: 400px"
+                      class="shadow-1"
+                      default-opened
+                      header-class="text-grey-8"
+                    >
+                      <q-card-section>
+                        <q-item-section>
+                          <div class="col-12 row">
+                            <div class="col-12 row items-center">
+                              {{ showCourse(event).name }}
+                              <span class="text-bold q-ml-xs"
+                                >({{ showCourse(event).course_code }})</span
+                              >
+                            </div>
+                          </div>
+                        </q-item-section>
+                      </q-card-section>
+                      <q-separator />
+                      <!-- Restlicher Inhalt des q-expansion-item -->
+                      <div class="row q-pa-sm">
+                        <div class="col-12 row items-center text-body2">
+                          <div class="q-pr-xs text-blue-7">Prof:</div>
+                          <div
+                            v-for="prof in showCourse(event).taught_bys"
+                            :key="prof"
+                            class="q-mr-xs"
+                          >
+                            {{ prof.firstName }} {{ prof.lastName }},
+                          </div>
+                        </div>
+                        <q-separator />
+                        <div class="col-12 text-blue-7 text-body2">
+                          {{ $t('lvPlaner.mode') }}:
+                          <span class="text-grey-8">{{ showCourse(event).mode }}</span>
+                        </div>
+                        <div class="col-12 text-blue-7 text-body2">
+                          {{ $t('lvPlaner.language') }}:
+                          <span class="text-grey-8">{{ showCourse(event).language }}</span>
+                        </div>
+                        <div class="text-blue-7">
+                          <a
+                            :href="showCourse(event).vvz_url"
+                            target="_blank"
+                            class="text-blue-7 text-body2"
+                            >{{ $t('lvPlaner.to_vvz') }}</a
+                          >
+                        </div>
+                      </div>
+                      <q-separator />
+                      <div class="text-blue-7 text-body2 q-pl-sm q-pt-sm">
+                        {{ $t('lvPlaner.dates') }}:
+                      </div>
+                      <q-list separator>
+                        <q-item
+                          v-for="(date, i) in showCourse(event).dates"
+                          :key="i"
+                          dense
+                          :class="{
+                            'bg-blue-2 shadow-1': event.start === date.start && event.end === date.end
+                          }"
+                        >
+                          <div class="q-mr-xs">{{ formatDateRange(date.start, date.end) }},</div>
+                          <div>
+                            <template v-if="date.location_url">
+                              <a
+                                :href="date.location_url"
+                                target="_blank"
+                                class="text-blue-7 text-body2"
+                              >
+                                {{ date.location }}
+                              </a>
+                            </template>
+                            <template v-else>
+                              <span v-if="date.location" class="text-body2 text-blue-7">{{ date.location }}</span>
+                            </template>
+                          </div>
+                        </q-item>
+                      </q-list>
+                    </q-card>
                   </div>
-                  <div>
-                    <span style="text-decoration: underline">Uhrzeit:</span>
-                    {{ formatTime(event.start) }} - {{ formatTime(event.end) }}
-                  </div>
-                </q-tooltip>
+                </q-popup-proxy>
               </q-badge>
             </template>
           </template>
@@ -174,24 +267,97 @@
             <template v-for="event in getEvents(timestamp.date)" :key="event._id || event.id">
               <q-badge
                 v-if="event.start && event.duration"
-                class="my-event justify-center ellipsis"
-                :style="badgeStyles(event, 'day', timeStartPos, timeDurationHeight)"
+                multi-line
+                class="my-event justify-center ellipsis cursor-pointer"
+                :style="badgeStyles(event, 'day', timeStartPos, timeDurationHeight)" style="white-space: normal"
               >
-                <div class="row col-12 text-caption">
-                  {{ event.subject_name }}
+              <div class="col-12 row">
+                  {{ event.name || event.subject_name }}
                 </div>
-                <q-tooltip>
-                  <div>
-                    <span style="text-decoration: underline">Name:</span> {{ event.subject_name }}
+                <q-popup-proxy>
+                  <div v-if="showCourse(event)">
+                    <q-card
+                      style="max-width: 400px"
+                      class="shadow-1"
+                      default-opened
+                      header-class="text-grey-8"
+                    >
+                      <q-card-section>
+                        <q-item-section>
+                          <div class="col-12 row">
+                            <div class="col-12 row items-center">
+                              {{ showCourse(event).name }}
+                              <span class="text-bold q-ml-xs"
+                                >({{ showCourse(event).course_code }})</span
+                              >
+                            </div>
+                          </div>
+                        </q-item-section>
+                      </q-card-section>
+                      <q-separator />
+                      <!-- Restlicher Inhalt des q-expansion-item -->
+                      <div class="row q-pa-sm">
+                        <div class="col-12 row items-center text-body2">
+                          <div class="q-pr-xs text-blue-7">Prof:</div>
+                          <div
+                            v-for="prof in showCourse(event).taught_bys"
+                            :key="prof"
+                            class="q-mr-xs"
+                          >
+                            {{ prof.firstName }} {{ prof.lastName }},
+                          </div>
+                        </div>
+                        <q-separator />
+                        <div class="col-12 text-blue-7 text-body2">
+                          {{ $t('lvPlaner.mode') }}:
+                          <span class="text-grey-8">{{ showCourse(event).mode }}</span>
+                        </div>
+                        <div class="col-12 text-blue-7 text-body2">
+                          {{ $t('lvPlaner.language') }}:
+                          <span class="text-grey-8">{{ showCourse(event).language }}</span>
+                        </div>
+                        <div class="text-blue-7">
+                          <a
+                            :href="showCourse(event).vvz_url"
+                            target="_blank"
+                            class="text-blue-7 text-body2"
+                            >{{ $t('lvPlaner.to_vvz') }}</a
+                          >
+                        </div>
+                      </div>
+                      <q-separator />
+                      <div class="text-blue-7 text-body2 q-pl-sm q-pt-sm">
+                        {{ $t('lvPlaner.dates') }}:
+                      </div>
+                      <q-list separator>
+                        <q-item
+                          v-for="(date, i) in showCourse(event).dates"
+                          :key="i"
+                          dense
+                          :class="{
+                            'bg-blue-2 shadow-1': event.start === date.start && event.end === date.end
+                          }"
+                        >
+                          <div class="q-mr-xs">{{ formatDateRange(date.start, date.end) }},</div>
+                          <div>
+                            <template v-if="date.location_url">
+                              <a
+                                :href="date.location_url"
+                                target="_blank"
+                                class="text-blue-7 text-body2"
+                              >
+                                {{ date.location }}
+                              </a>
+                            </template>
+                            <template v-else>
+                              <span v-if="date.location" class="text-body2 text-blue-7">{{ date.location }}</span>
+                            </template>
+                          </div>
+                        </q-item>
+                      </q-list>
+                    </q-card>
                   </div>
-                  <div>
-                    <span style="text-decoration: underline">Ort:</span> {{ event.location }}
-                  </div>
-                  <div>
-                    <span style="text-decoration: underline">Uhrzeit:</span>
-                    {{ formatTime(event.start) }} - {{ formatTime(event.end) }}
-                  </div>
-                </q-tooltip>
+                </q-popup-proxy>
               </q-badge>
             </template>
           </template>
@@ -205,6 +371,7 @@
 import { QCalendar, today } from '@quasar/quasar-ui-qcalendar/src/index.js'
 import { defineComponent, ref, computed } from 'vue'
 import { useUserStore } from '@/stores/user.store'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'CalendarComponent',
@@ -220,6 +387,7 @@ export default defineComponent({
     const userStore = useUserStore()
     const openDownloadDialog = ref(false)
     const checkbox = ref([])
+    const { locale, t } = useI18n({ useScope: 'global' })
 
     const deleteCourse = async (course) => {
       try {
@@ -344,6 +512,8 @@ export default defineComponent({
     }
 
     return {
+      t,
+      locale,
       deleteCourse,
       changeColor,
       selectedDate,
@@ -361,7 +531,29 @@ export default defineComponent({
       downloadICalFeed,
       getEvents,
       badgeStyles,
-      formatTime
+      formatTime,
+      formatDateRange(dateStart, dateEnd) {
+        // Konvertiere die Eingaben zu Date-Objekten
+        const start = new Date(dateStart)
+        const end = new Date(dateEnd)
+
+        // Überprüfe, ob das Format korrekt ist
+        if (isNaN(start) || isNaN(end)) {
+          return 'Invalid Date'
+        }
+
+        // Optionen für das Formatieren des Datums
+        const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' }
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false }
+
+        // Formatieren des Startdatums
+        const formattedDate = start.toLocaleDateString('de-DE', dateOptions)
+        const formattedStartTime = start.toLocaleTimeString('de-DE', timeOptions)
+        const formattedEndTime = end.toLocaleTimeString('de-DE', timeOptions)
+
+        // Zusammenfügen der Ergebnisse
+        return `${formattedDate}, ${formattedStartTime} - ${formattedEndTime}`
+      }
     }
   },
   computed: {
@@ -387,7 +579,9 @@ export default defineComponent({
 
             map[dateTransformed].push({
               ...date,
+              name: event.name,
               subject_name: event.subject_name,
+              course_code: event.course_code,
               color: event.color
             })
           } catch (error) {
@@ -405,6 +599,11 @@ export default defineComponent({
     updateSelected(calendar, view) {
       this.selectedCalendar = calendar
       this.selectedView = view
+    },
+    showCourse(event) {
+      return this.userStore.user.course_entries.find(
+        (course) => course.course_code === event.course_code
+      )
     }
   },
   async mounted() {

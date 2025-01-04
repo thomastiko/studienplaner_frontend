@@ -24,5 +24,14 @@
     "date": "Termin",
     "overlap_with_course": "Überschneidung mit Lehrveranstaltung",
     "prof_not_in_db_title": "Lehrkraft nicht vorhanden",
-    "prof_not_in_db": "Leider konnten wir die Lehrkraft nicht finden. Bitte schreibe uns eine E-Mail und wir werden sie so schnell wie möglich hinzufügen. Vielen Dank für dein Verständnis!"
+    "prof_not_in_db": "Leider konnten wir die Lehrkraft nicht finden. Bitte schreibe uns eine E-Mail und wir werden sie so schnell wie möglich hinzufügen. Vielen Dank für dein Verständnis!",
+    "today": "Heute",
+    "download_calendar": "Kalender herunterladen",
+    "download_calendar_dialog": "Wähle die Lehrveranstaltungen aus, die du herunterladen möchtest",
+    "cancel": "Abbrechen",
+    "download": "Herunterladen",
+    "my_courses": "Meine LVs",
+    "view": "Ansicht",
+    "week": "Woche",
+    "month": "Monat"
 }

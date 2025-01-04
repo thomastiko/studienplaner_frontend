@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { i18n } from '@/main';
 
 /**
  * API-URLs für Localhost
@@ -273,6 +274,9 @@ export const useUserStore = defineStore('user', {
         // Redirect abhängig ob Studiengänge vorhanden sind	
         if(this.user.studies.length == 0) {
           router.push({ name: 'studies', path: 'studies' })
+          setTimeout(() => {
+            window.location.reload()
+          }, 100)
         } else {
           router.push({ name: 'my-study', path: '/my-study' })
           setTimeout(() => {
@@ -281,7 +285,7 @@ export const useUserStore = defineStore('user', {
         }
         // Zeige Benachrichtigung an
         notify({
-          message: 'Erfolgreich angemeldet',
+          message: i18n.global.t('userNotify.successfully_logged_in'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
@@ -295,7 +299,7 @@ export const useUserStore = defineStore('user', {
         }, 500)*/ // optionaler Timeout, um sicherzustellen, dass die Navigation vollständig ist
       } catch (error) {
         notify({
-          message: 'Fehler beim Anmelden',
+          message: i18n.global.t('userNotify.error_while_logging_in'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -318,14 +322,14 @@ export const useUserStore = defineStore('user', {
         this.clearAuthState()
         router.push({ name: 'login', path: '/login' })
         notify({
-          message: 'Erfolgreich abgemeldet',
+          message: i18n.global.t('userNotify.successfully_logged_out'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Abmelden',
+          message: i18n.global.t('userNotify.error_while_logging_out'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -370,21 +374,43 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async checkAuthState(router, notify) {
-      const token = this.getToken()
+    async checkAuthState(router, notify, previousLocale = null, currentLocale = null) {
+      // Falls keine Werte übergeben wurden, verwende die aktuelle und gespeicherte Locale
+      if (!previousLocale || !currentLocale) {
+        previousLocale = i18n.global.locale.value;
+        currentLocale = sessionStorage.getItem('selectedLocale') || previousLocale;
+      }
+    
+      console.log("Vorherige Locale:", previousLocale);
+      console.log("Aktuelle Locale:", currentLocale);
+    
+      const token = this.getToken();
       if (token) {
-        await this.fetchUser()
+        await this.fetchUser();
       } else {
-        this.clearAuthState()
-        router.push({ name: 'login', path: '/login' })
-
-        // Benachrichtige den Benutzer, dass er nicht angemeldet ist
-        notify({
-          message: 'Du bist nicht angemeldet',
+        this.clearAuthState();
+        router.push({ name: 'login', path: '/login' });
+    
+        // Zeige die neue Benachrichtigung
+        const dismissNotification = notify({
+          message: i18n.global.t('userNotify.not_logged_in'),
           type: 'warning',
-          color: 'negative',
-          position: 'bottom'
-        })
+          position: 'bottom',
+          timeout: 0 // Dauerhaft anzeigen
+        });
+    
+        // Falls sich die Locale geändert hat, schließe die alte und zeige eine neue
+        if (previousLocale !== currentLocale) {
+          setTimeout(() => {
+            dismissNotification(); // Alte Benachrichtigung schließen
+            notify({
+              message: i18n.global.t('userNotify.not_logged_in'), // Neue Nachricht in aktualisierter Sprache
+              type: 'warning',
+              position: 'bottom',
+              timeout: 0 // Wieder dauerhaft anzeigen
+            });
+          }, 10); // Verzögerung für die Aktualisierung
+        }
       }
     },
 
@@ -405,7 +431,7 @@ export const useUserStore = defineStore('user', {
 
         this.user.studies.push(response.data)
         notify({
-          message: 'Studiengang erfolgreich hinzugefügt',
+          message: i18n.global.t('userNotify.study_successfully_added'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
@@ -413,7 +439,7 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         if (error.response && error.response.status === 400) {
           notify({
-            message: 'Studiengang bereits hinzugefügt',
+            message: i18n.global.t('userNotify.study_already_added'),
             type: 'error',
             color: 'negative',
             position: 'bottom'
@@ -422,7 +448,7 @@ export const useUserStore = defineStore('user', {
           throw new Error(error.response.data.message) // Nachricht vom Backend an das Frontend weiterleiten
         } else {
           notify({
-            message: 'Fehler beim Hinzufügen des Studiengangs',
+            message: i18n.global.t('userNotify.error_while_adding_study'),
             type: 'error',
             color: 'negative',
             position: 'bottom'
@@ -442,14 +468,14 @@ export const useUserStore = defineStore('user', {
         this.user.studies = response.data.studies
 
         notify({
-          message: 'Studiengang erfolgreich gelöscht',
+          message: i18n.global.t('userNotify.study_successfully_removed'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Löschen des Studiengangs',
+          message: i18n.global.t('userNotify.error_while_removing_study'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -494,7 +520,7 @@ export const useUserStore = defineStore('user', {
         // Benachrichtigung nur anzeigen, wenn shouldNotify true ist
         if (shouldNotify) {
           notify({
-            message: 'Fach erfolgreich aktualisiert',
+            message: i18n.global.t('userNotify.course_successfully_updated'),
             type: 'success',
             color: 'positive',
             position: 'bottom'
@@ -503,7 +529,7 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         if (shouldNotify) {
           notify({
-            message: 'Fehler beim Aktualisieren des Faches',
+            message: i18n.global.t('userNotify.error_while_updating_course'),
             type: 'error',
             color: 'negative',
             position: 'bottom'
@@ -573,14 +599,14 @@ export const useUserStore = defineStore('user', {
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
         notify({
-          message: 'SBWL erfolgreich hinzugefügt',
+          message: i18n.global.t('userNotify.sbwl_successfully_added'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Hinzufügen der SBWL',
+          message: i18n.global.t('userNotify.error_while_adding_sbwl'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -604,14 +630,14 @@ export const useUserStore = defineStore('user', {
         study.sbwl_states = response.data.sbwl_states
 
         notify({
-          message: 'Auslandssemester Fach erfolgreich hinzugefügt',
+          message: i18n.global.t('userNotify.course_abroad_successfully_added'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Hinzufügen des Auslandssemester Fachs',
+          message: i18n.global.t('userNotify.error_while_adding_course_abroad'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -632,14 +658,14 @@ export const useUserStore = defineStore('user', {
         study.sbwl_states = response.data.sbwl_states
 
         notify({
-          message: 'Auslandssemester Fach erfolgreich gelöscht',
+          message: i18n.global.t('userNotify.course_abroad_successfully_removed'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Löschen des Auslandssemester Fachs',
+          message: i18n.global.t('userNotify.error_while_removing_course_abroad'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -659,14 +685,14 @@ export const useUserStore = defineStore('user', {
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.sbwl_states = response.data.sbwl_states
         notify({
-          message: 'SBWL erfolgreich gelöscht',
+          message: i18n.global.t('userNotify.sbwl_successfully_removed'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Löschen der SBWL',
+          message: i18n.global.t('userNotify.error_while_removing_sbwl'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -729,14 +755,14 @@ export const useUserStore = defineStore('user', {
         } else {
         }
         notify({
-          message: 'Fach erfolgreich aktualisiert',
+          message: i18n.global.t('userNotify.course_successfully_updated'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Aktualisieren des Faches',
+          message: i18n.global.t('userNotify.error_while_updating_course'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -762,14 +788,14 @@ export const useUserStore = defineStore('user', {
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.free_electives = response.data.free_electives
         notify({
-          message: 'Wahlfach erfolgreich hinzugefügt',
+          message: i18n.global.t('userNotify.free_elective_successfully_added'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Hinzufügen des Wahlfachs',
+          message: i18n.global.t('userNotify.error_while_adding_free_elective'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -789,14 +815,14 @@ export const useUserStore = defineStore('user', {
         const study = this.user.studies.find((s) => s.study_id === studyId)
         study.free_electives = response.data.free_electives
         notify({
-          message: 'Wahlfach erfolgreich gelöscht',
+          message: i18n.global.t('userNotify.free_elective_successfully_removed'),
           type: 'success',
           color: 'positive',
           position: 'bottom'
         })
       } catch (error) {
         notify({
-          message: 'Fehler beim Löschen des Wahlfachs',
+          message: i18n.global.t('userNotify.error_while_removing_free_elective'),
           type: 'error',
           color: 'negative',
           position: 'bottom'
@@ -829,6 +855,7 @@ export const useUserStore = defineStore('user', {
         course.color = '#5bbdf4' // Setze eine Standardfarbe für den Kurs
         // Füge den Kurs zur Benutzerobjekt hinzu
         this.user.course_entries.push(course)
+        console.log('Kurs hinzugefügt:', course)
 
         // Optional: Sende den Kurs an das Backend zur dauerhaften Speicherung
         await axios.post(`${url}/course`, course, {

@@ -83,7 +83,7 @@
             "
           >
             <div class="text-h5">{{ sbwl.sbwl_name }}</div>
-            <q-btn label="löschen" color="red" @click="deleteSbwl(sbwl)" />
+            <q-btn no-caps :label="$t('userNotify.delete')" color="red" @click="deleteSbwl(sbwl)" />
             <div class="col-12 row q-col-gutter-md">
               <div
                 v-for="subject in sbwl.subjects"
@@ -104,7 +104,7 @@
           <!-- Courses Abroad -->
           <div v-else>
             <div class="text-h5">{{ sbwl.sbwl_name }}</div>
-            <q-btn label="löschen" color="red" @click="deleteSbwl(sbwl)" />
+            <q-btn no-caps :label="$t('userNotify.delete')" color="red" @click="deleteSbwl(sbwl)" />
             <div class="col-12 row items-center full-height" style="min-height: 250px">
               <div class="col-12 row items-center q-gutter-md">
                 <div
@@ -119,7 +119,7 @@
                     v-if="selectionMode"
                     v-model="selectedSubjectsToDelete"
                     :val="subject"
-                    label="Wählen"
+                    :label="$t('userNotify.select')"
                   />
                 </div>
 
@@ -130,13 +130,13 @@
                     color="positive"
                     @click="openAddDialog"
                     icon="add"
-                    label="Hinzufügen"
+                    :label="$t('userNotify.add')"
                   />
                   <q-fab-action
                     color="negative"
                     @click="enterSelectionMode"
                     icon="delete"
-                    label="Löschen"
+                    :label="$t('userNotify.delete')"
                   />
                 </q-fab>
               </div>
@@ -156,17 +156,17 @@
                       v-model="name"
                       type="text"
                       label="Name"
-                      hint="Name der Lehrveranstaltung"
+                      :hint="$t('studyPlan.name_hint')"
                     />
                   </div>
                   <div class="col-6">
-                    <q-input filled v-model="ects" type="number" label="ECTS" hint="ECTS-Punkte" />
+                    <q-input filled v-model="ects" type="number" label="ECTS" :hint="$t('studyPlan.ects_hint')" />
                   </div>
                 </q-card-section>
                 <q-card-section class="row justify-start q-gutter-md">
                   <q-btn-dropdown
                     outline
-                    :label="'Note: ' + (selectedGrade !== undefined ? selectedGrade : '')"
+                    :label="`${$t('myStudy.grade')}: ${selectedGrade !== undefined ? selectedGrade : ''}`"
                   >
                     <q-list>
                       <q-item
@@ -189,14 +189,14 @@
                   <q-btn
                     flat
                     color="negative"
-                    label="Abbrechen"
+                    :label="$t('userNotify.cancel')"
                     @click="() => console.log(this.name, this.ects, this.selectedGrade)"
                     v-close-popup
                   />
                   <q-btn
                     flat
                     color="positive"
-                    label="Hinzufügen"
+                    :label="$t('userNotify.add')"
                     :disable="isFormIncomplete"
                     @click="selectCoursesAbroad"
                     v-close-popup
@@ -210,14 +210,14 @@
               <q-btn
                 flat
                 color="negative"
-                label="Löschen"
+                :label="$t('userNotify.delete')"
                 :disable="selectedSubjectsToDelete.length === 0"
                 @click="deleteSelectedCourseAbroad"
               />
               <q-btn
                 flat
                 color="primary"
-                label="Abbrechen"
+                :label="$t('userNotify.cancel')"
                 @click="exitSelectionMode"
                 class="q-ml-md"
               />
@@ -282,6 +282,7 @@ export default {
       )
     },
     getSbwlList(sbwl) {
+      console.log('SBWL:', sbwl)
       // Wenn der Name "Courses Abroad" enthält, zeige die gesamte sbwl_list an
       if (
         (sbwl.name && sbwl.name.includes('Courses Abroad')) ||
@@ -374,7 +375,7 @@ export default {
         name: this.name,
         ects: this.ects,
         subject_type: 'SBWL',
-        grade: this.selectedGrade,
+        grade: typeof this.selectedGrade === 'number' && !isNaN(this.selectedGrade) ? this.selectedGrade : null,
         status: 'done'
       }
       console.log(newCourseAbroad)

@@ -127,8 +127,8 @@
                     <template v-slot:avatar>
                       <q-icon name="celebration" />
                     </template>
-                    Vielen Dank für deine Bewertung! <br />
-                    Dein Kommentar wird von ÖH-Mitarbeiter*innen geprüft und anschließend freigegeben.
+                    {{$t('rateProf.rating_thanks')}} <br />
+                    {{$t('rateProf.rating_thanks_2')}}
                   </q-banner>
                 </q-popup-proxy>
                 <q-popup-proxy :offset="[10, 10]" v-model="rateInfo2" style="width: 450px">
@@ -136,8 +136,8 @@
                     <template v-slot:avatar>
                       <q-icon name="celebration" />
                     </template>
-                    Vielen Dank für deine Bewertung! <br />
-                    Dein Kommentar wird von ÖH-Mitarbeiter*innen geprüft und anschließend freigegeben.
+                    {{$t('rateProf.rating_thanks')}} <br />
+                    {{$t('rateProf.rating_thanks_2')}}
                   </q-banner>
                 </q-popup-proxy>
               </q-icon>

@@ -32,6 +32,7 @@
         <q-card-section class="text-center">
           <q-card-section>
             <div class="text-h6">GPA</div>
+            <div class="text-caption">({{$t('userNotify.weighted_gpa')}})</div>
           </q-card-section>
           <div class="text-body1">{{ userStore.gpa(selectedStudy.study_id) }}</div>
         </q-card-section>

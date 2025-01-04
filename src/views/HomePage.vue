@@ -28,26 +28,25 @@
           <div class="col-md-4 col-xs-12" style="max-width: 600px">
             <q-card
               ref="card3"
-              class="my-card full-height"
+              class="my-card full-height no-shadow"
               style="background-color: transparent"
-              @mouseover="expandImage(3)"
-              @mouseleave="shrinkImage(3)"
+              
             >
               <q-card-section class="q-pa-md">
                 <q-img
                   class="card-image"
                   src="../assets/notebook-straight.svg"
                   :fit="(scale - down).toFixed(0)"
-                  style="max-height: 150px"
+                  style="max-height: 150px;"
                 ></q-img>
               </q-card-section>
               <q-card-section>
                 <div class="text-h5 text-center text-weight-bold" id="heading-mycard">
-                  Studienplaner
+                  Notebook
                 </div>
               </q-card-section>
               <q-card-section class="q-pt-none">
-                <div class="text-body1 text-start" id="text-mycard">
+                <div class="text-body1 text-center" id="text-mycard">
                   {{ $t('homePage.studienplaner_card') }}
                 </div>
               </q-card-section>
@@ -56,10 +55,9 @@
           <div class="col-md-4 col-xs-12" style="max-width: 600px">
             <q-card
               ref="card1"
-              class="my-card full-height"
+              class="my-card full-height no-shadow"
               style="background-color: transparent"
-              @mouseover="expandImage(1)"
-              @mouseleave="shrinkImage(1)"
+              
             >
               <q-card-section class="q-pa-md">
                 <q-img
@@ -75,7 +73,7 @@
                 </div>
               </q-card-section>
               <q-card-section class="q-pt-none">
-                <div class="text-body1 text-start" id="text-mycard">
+                <div class="text-body1 text-center" id="text-mycard">
                   {{ $t('homePage.lvplaner_card') }}
                 </div>
               </q-card-section>
@@ -84,10 +82,9 @@
           <div class="col-md-4 col-xs-12" style="max-width: 600px">
             <q-card
               ref="card2"
-              class="my-card full-height"
+              class="my-card full-height no-shadow"
               style="background-color: transparent"
-              @mouseover="expandImage(2)"
-              @mouseleave="shrinkImage(2)"
+              
             >
               <q-card-section class="q-pa-md">
                 <q-img
@@ -103,7 +100,7 @@
                 </div>
               </q-card-section>
               <q-card-section class="q-pt-none">
-                <div class="text-body1 text-start" id="text-mycard">
+                <div class="text-body1 text-center" id="text-mycard">
                   {{ $t('homePage.profcheck_card') }}
                 </div>
               </q-card-section>
@@ -126,13 +123,13 @@
             <div class="col-md-6 col-xs-12">
               <q-card-section>
                 <div class="col-md-12">
-                  <div class="text-h3 text-center text-weight-medium text-uppercase q-mb-lg">
+                  <div class="text-h3 text-center text-weight-medium text-uppercase">
                     {{ $t('homePage.heading_3') }}
                   </div>
                 </div>
               </q-card-section>
               <q-card-section>
-                <div class="text-h5">
+                <div class="text-h6">
                   {{ $t('homePage.subtitle_3') }}
                 </div>
               </q-card-section>
@@ -173,24 +170,6 @@ export default {
     }
   },
   methods: {
-    expandImage(cardId) {
-      if (this.$q.platform.is.desktop) {
-        let img = this.$refs[`card${cardId}`]
-        img.$el.style.transition = 'transform 0.6s ease'
-        img.$el.style.transform = 'scale(1.2)'
-        img.$el.style.zIndex = '2'
-        img.$el.style.backgroundColor = 'white'
-      }
-    },
-    shrinkImage(cardId) {
-      if (this.$q.platform.is.desktop) {
-        let img = this.$refs[`card${cardId}`]
-        img.$el.style.transition = 'transform 0.6s ease'
-        img.$el.style.transform = 'scale(1)'
-        img.$el.style.zIndex = '1'
-        img.$el.style.backgroundColor = 'transparent'
-      }
-    }
   }
 }
 </script>

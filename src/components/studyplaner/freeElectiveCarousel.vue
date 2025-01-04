@@ -51,7 +51,7 @@
         </q-card-section>
         <q-card-section class="row justify-start q-gutter-md">
           <!-- TYPE -->
-          <q-btn-dropdown outline :label="$t('studyPlan.type') + selectedType">
+          <q-btn-dropdown outline :label="$t('studyPlan.type') + ': ' + selectedType">
             <q-list>
               <q-item
                 v-model="selectedType"
@@ -68,7 +68,7 @@
             </q-list>
           </q-btn-dropdown>
           <!-- GRADE -->
-          <q-btn-dropdown outline :label="'Note: ' + (selectedGrade !== undefined ? selectedGrade : '')">
+          <q-btn-dropdown outline :label="`${$t('myStudy.grade')}: ${selectedGrade !== undefined ? selectedGrade : ''}`">
             <q-list>
               <q-item
                 v-model="selectedGrade"

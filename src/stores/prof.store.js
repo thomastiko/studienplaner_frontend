@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useUserStore } from './user.store'
 import { Notify } from 'quasar'
+import { i18n } from '@/main';
 
 /**
  * API-URLs für Localhost
@@ -126,7 +127,7 @@ export const useProfStore = defineStore('prof', {
               ) {
                 notify({
                   type: 'negative',
-                  message: 'Du musst alle Kategorien auswählen.',
+                  message: i18n.global.t('rateProf.not_all_fields_filled'),
                   position: 'bottom',
                   timeout: 3000
                 });
@@ -151,7 +152,7 @@ export const useProfStore = defineStore('prof', {
                 notify({
                   type: 'positive',
                   spinner: true,
-                  message: 'Bewertung wird hinzugefügt...',
+                  message: i18n.global.t('rateProf.adding_rating'),
                   position: 'bottom',
                   group: false,
                   timeout: 3000
@@ -165,14 +166,14 @@ export const useProfStore = defineStore('prof', {
                 if (error.response?.status === 409) {
                   notify({
                     type: 'negative',
-                    message: 'Du hast diesen Professor bereits bewertet.',
+                    message: i18n.global.t('rateProf.prof_already_rated'),
                     position: 'bottom',
                     timeout: 3000
                   });
                 } else {
                   notify({
                     type: 'negative',
-                    message: 'Fehler beim Hinzufügen des Ratings.',
+                    message: i18n.global.t('rateProf.error_while_adding_rating'),
                     position: 'bottom',
                     timeout: 3000
                   });

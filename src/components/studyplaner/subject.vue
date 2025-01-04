@@ -134,24 +134,24 @@
         subject.category == 'Free Electives and Internship' || subject.category == 'Freies Wahlfach'
       "
     >
-    <q-btn
+      <q-btn
         no-caps
         v-if="subject.status !== 'unavailable' && !this.selectionMode"
         :label="$t('studyPlan.to_free_electives')"
         @click="scrollToFreeElectives"
-      /></q-card-section>
+    /></q-card-section>
   </q-card>
 
   <!-- Dialog nachdem der Status auf "done" geändert werden will -->
   <q-dialog v-model="dialog" persistent>
     <q-card>
       <q-card-section>
-        <div class="text-h6">Gratuliere!</div>
+        <div class="text-h6 row items-center"> {{$t('userNotify.congratulations')}}! <span> <q-icon name="celebration" color="amber-4" size="md" /> </span> </div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        Du hast das Fach <strong>{{ this.subject.name }}</strong> erfolgreich abgeschlossen. Bitte
-        gib deine Note an:
+        {{$t('userNotify.congratulations_text_1')}} <strong>{{ this.subject.name }}</strong> {{$t('userNotify.congratulations_text_2')}} <br>
+        {{$t('userNotify.congratulations_text_3')}}
       </q-card-section>
       <q-card-section>
         <q-option-group v-model="grade" :options="grades" color="primary" inline />
@@ -166,7 +166,6 @@
 </template>
 
 <script>
-import StudyPlan from '@/views/StudyPlan.vue'
 import { ref } from 'vue'
 export default {
   props: {
@@ -212,6 +211,15 @@ export default {
     setStatus(status) {
       if (status !== 'done') {
         this.grade = null
+      } else if (status === 'done' && this.grade === null) {
+        this.$q.notify({
+          message: this.$t('userNotify.select_grade'), // Übersetzungsschlüssel für die Nachricht
+          type: 'warning',
+          color: 'negative',
+          position: 'bottom',
+          timeout: 5000 // Timeout, um die Nachricht für 5 Sekunden anzuzeigen
+        })
+        return
       }
       this.$emit('status-change', this.subject._id, status, this.grade)
     },

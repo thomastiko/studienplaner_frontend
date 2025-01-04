@@ -7,5 +7,13 @@
     "participation_text": "The lecturer involves the students in the presentation.",
     "grading_text": "The grading is done in a fair and transparent manner.",
     "availability_text": "The lecturer is sufficiently available to the students.",
-    "recommendation_text": "I would recommend this presenter to others."
+    "recommendation_text": "I would recommend this presenter to others.",
+    "not_all_fields_filled": "Please select all categories",
+    "adding_rating": "Rating is being added..",
+    "prof_already_rated": "You have already rated this professor.",
+    "error_while_adding_rating": "Error while adding rating",
+    "rating_thanks": "Thank you for your rating!",
+    "rating_thanks_2": "If you have written a comment, it will first be checked by ÖH employees and then released."
+    
+
 }

@@ -7,5 +7,11 @@
     "participation_text": "Der Vortragende bezieht die Schüler in die Präsentation ein.",
     "grading_text": "Die Benotung erfolgt auf faire und transparente Weise.",
     "availability_text": "Der Dozent ist ausreichend für die Studierenden erreichbar.",
-    "recommendation_text": "I would recommend this presenter to others."
+    "recommendation_text": "Ich würde diesen Vortragenden anderen empfehlen.",
+    "not_all_fields_filled": "Bitte wähle alle Kategorien aus",
+    "adding_rating": "Bewertung wird hinzugefügt..",
+    "prof_already_rated": "Du hast diesen Professor bereits bewertet.",
+    "error_while_adding_rating": "Fehler beim Hinzufügen der Bewertung",
+    "rating_thanks": "Vielen Dank für deine Bewertung!",
+    "rating_thanks_2": "Falls du ein Kommentar geschrieben hast, wird es zuerst von ÖH-Mitarbeiter*innen geprüft und anschließend freigegeben."
 }
