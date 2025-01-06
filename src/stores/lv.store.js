@@ -1,17 +1,11 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { lvAxios } from './config';
 
 
 /**
- * API-URLs für Localhost
- */
-const lvUrl = 'http://localhost:5000/api/user/lv'
-
-/**
- * API-URLs für Stage
+ * Change the URL APIs in the config.js file
  */
 
-//const lvUrl = 'https://taigowiz.org/api/user/lv';
 
 
 export const useLvStore = defineStore("lv", {
@@ -67,7 +61,7 @@ export const useLvStore = defineStore("lv", {
     },
     async fetchCourses() {
       try {
-          const response = await axios.get(`${lvUrl}/search`, {
+          const response = await lvAxios.get(`/search`, {
               headers: {
                   Authorization: `Bearer ${localStorage.getItem('token')}`, // Token aus dem lokalen Speicher hinzufügen
               },

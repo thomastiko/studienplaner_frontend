@@ -1,19 +1,12 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { adminAxios, profAxios } from './config'
 import { Notify } from 'quasar'
 
 /**
- * API-URLs für Localhost
+ * Change the URL APIs in the config.js file
  */
 
-const adminUrl = 'http://localhost:5000/api/admin'
-const profUrl = 'http://localhost:5001/api/profs'
 
-/**
- * API-URLs für Stage
- */
-//const adminUrl = 'https://taigowiz.org/api/admin'
-//const profUrl = 'https://taigowiz.org/api/profs'
 export const useAdminStore = defineStore('admin', {
   state: () => ({
     comments: [],
@@ -31,7 +24,7 @@ export const useAdminStore = defineStore('admin', {
     async fetchAllComments() {
       try {
         // Abrufen aller Kommentare vom Backend
-        const response = await axios.get(`${profUrl}/comments/all`)
+        const response = await profAxios.get(`/comments/all`)
         this.comments = response.data
       } catch (error) {
         console.error(
@@ -43,7 +36,7 @@ export const useAdminStore = defineStore('admin', {
     },
     async deleteCommentSuggestion(commentId) {
       try {
-        await axios.delete(`${profUrl}/comments/${commentId}`)
+        await profAxios.delete(`/comments/${commentId}`)
         this.comments = this.comments.filter((comment) => comment._id !== commentId) // Kommentar aus dem State entfernen
       } catch (error) {
         console.error(
@@ -56,7 +49,7 @@ export const useAdminStore = defineStore('admin', {
     async approveComment(profId, commentId, commentValue, commentText) {
       try {
         // Sende den Kommentartext als Teil des Anfrage-Bodys
-        await axios.post(`${profUrl}/comments/${profId}/release/${commentId}`, {
+        await profAxios.post(`/comments/${profId}/release/${commentId}`, {
           commentValue: commentValue,
           commentText: commentText
         })
@@ -73,7 +66,7 @@ export const useAdminStore = defineStore('admin', {
     async addProf(professor) {
       const token = this.getToken()
       try {
-        const response = await axios.post(`${profUrl}/add`, professor, {
+        const response = await profAxios.post(`/add`, professor, {
           headers: { Authorization: `Bearer ${token}` }
         })
 
@@ -106,7 +99,7 @@ export const useAdminStore = defineStore('admin', {
     async fetchUsers() {
       const token = this.getToken()
       try {
-        const response = await axios.get(`${adminUrl}/all`, {
+        const response = await adminAxios.get(`/all`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         this.users = response.data
@@ -125,7 +118,7 @@ export const useAdminStore = defineStore('admin', {
       try {
         const payload = { linksFrontend, semesterFrontend }; 
         console.log(payload); 
-        const response = await axios.post(`${adminUrl}/scrape`, payload, {
+        const response = await adminAxios.post(`/scrape`, payload, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log(response.data);
@@ -150,7 +143,7 @@ export const useAdminStore = defineStore('admin', {
       const token = this.getToken();
       try {
         // Sende den semester-Wert im Request-Body
-        await axios.post(`${adminUrl}/createAndSetNewCollection`, { collectionName }, {
+        await adminAxios.post(`/createAndSetNewCollection`, { collectionName }, {
           headers: { Authorization: `Bearer ${token}` },
         });
         Notify.create({

@@ -1,19 +1,12 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { authAxios, userAxios } from './config';
 import { i18n } from '@/main';
 
-/**
- * API-URLs für Localhost
- */
-const apiUrl = 'http://localhost:5000/api/auth'
-const url = 'http://localhost:5000/api/user'
 
 /**
- * API-Urls für Stage
+ * Change the URL APIs in the config.js file
  */
 
-//const apiUrl = 'https://taigowiz.org/api/auth';
-//const url = 'https://taigowiz.org/api/user';
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -255,11 +248,14 @@ export const useUserStore = defineStore('user', {
       }
       return token
     },
+    
     async login(email, password, router, notify) {
       try {
-        const response = await axios.post(`${apiUrl}/login`, { email, password })
+        const response = await authAxios.post('/login', { email, password });
+        const token = response.data.token;
 
-        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('token', token);
+        //setAuthToken(token);
 
         this.loggedIn = true
         this.user = {
@@ -311,13 +307,8 @@ export const useUserStore = defineStore('user', {
     },
     async logout(router, notify) {
       try {
-        await axios.post(
-          `${apiUrl}/logout`,
-          {},
-          {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-          }
-        )
+        await authAxios.post('/logout');
+        this.clearAuthState();
 
         this.clearAuthState()
         router.push({ name: 'login', path: '/login' })
@@ -355,7 +346,7 @@ export const useUserStore = defineStore('user', {
           return
         }
 
-        const response = await axios.get(`${url}/me`, {
+        const response = await userAxios.get('/me', {
           headers: { Authorization: `Bearer ${token}` }
         })
 
@@ -421,8 +412,8 @@ export const useUserStore = defineStore('user', {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
 
-        const response = await axios.post(
-          `${url}/studies/${studyId}`,
+        const response = await userAxios.post(
+          `/studies/${studyId}`,
           {},
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -461,7 +452,7 @@ export const useUserStore = defineStore('user', {
     async deleteStudies(studyIds, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/delete-studies`, {
+        const response = await userAxios.delete(`/studies/delete-studies`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { studyIds } // Sende die Liste von Studiengängen als Anfrage-Daten
         })
@@ -489,8 +480,8 @@ export const useUserStore = defineStore('user', {
       try {
         const token = this.getToken()
 
-        const response = await axios.patch(
-          `${url}/studies/${studyId}/subjects`,
+        const response = await userAxios.patch(
+          `/studies/${studyId}/subjects`,
           { studyId, subjectId, status, grade },
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -542,8 +533,8 @@ export const useUserStore = defineStore('user', {
     async updateBulkSubjectStatus(studyId, subjects) {
       try {
         const token = this.getToken() // Token über die neue Methode abrufen
-        const response = await axios.patch(
-          `${url}/studies/${studyId}/subjects/bulk`,
+        const response = await userAxios.patch(
+          `/studies/${studyId}/subjects/bulk`,
           { studyId, subjects },
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -589,8 +580,8 @@ export const useUserStore = defineStore('user', {
     async addSbwlToStudy(studyId, sbwl, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.post(
-          `${url}/studies/${studyId}/sbwls/${sbwl.name}`,
+        const response = await userAxios.post(
+          `/studies/${studyId}/sbwls/${sbwl.name}`,
           { studyId, sbwl },
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -619,8 +610,8 @@ export const useUserStore = defineStore('user', {
     async addCoursesAbroadToStudy(studyId, coursesAbroad, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.post(
-          `${url}/studies/${studyId}/courses-abroad`,
+        const response = await userAxios.post(
+          `/studies/${studyId}/courses-abroad`,
           { studyId, coursesAbroad },
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -650,7 +641,7 @@ export const useUserStore = defineStore('user', {
     async deleteSubjectsFromCourseAbroad(studyId, coursesAbroad, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/courses-abroad`, {
+        const response = await userAxios.delete(`/studies/${studyId}/courses-abroad`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { studyId, coursesAbroad }
         })
@@ -678,7 +669,7 @@ export const useUserStore = defineStore('user', {
     async deleteSbwlFromStudy(studyId, sbwl, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`, {
+        const response = await userAxios.delete(`/studies/${studyId}/sbwls/${sbwl.sbwl_name}`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { studyId, sbwl }
         })
@@ -705,7 +696,7 @@ export const useUserStore = defineStore('user', {
     async deleteEverySbwlFromStudy(studyId) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/delete-all-sbwls`, {
+        const response = await userAxios.delete(`/studies/${studyId}/delete-all-sbwls`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         const study = this.user.studies.find((s) => s.study_id === studyId)
@@ -718,8 +709,8 @@ export const useUserStore = defineStore('user', {
     async updateSbwlSubjectStatus(studyId, subjectId, status, grade, sbwl, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.patch(
-          `${url}/studies/${studyId}/sbwls/${sbwl.sbwl_name}`,
+        const response = await userAxios.patch(
+          `/studies/${studyId}/sbwls/${sbwl.sbwl_name}`,
           { studyId, subjectId, status, grade, sbwl },
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -778,8 +769,8 @@ export const useUserStore = defineStore('user', {
     async addFreeElectiveToStudy(studyId, freeElective, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.post(
-          `${url}/studies/${studyId}/free-electives`,
+        const response = await userAxios.post(
+          `/studies/${studyId}/free-electives`,
           { studyId, freeElective },
           {
             headers: { Authorization: `Bearer ${token}` }
@@ -808,7 +799,7 @@ export const useUserStore = defineStore('user', {
     async deleteFreeElectiveFromStudy(studyId, freeElective, notify) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/free-electives`, {
+        const response = await userAxios.delete(`/studies/${studyId}/free-electives`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { studyId, freeElective }
         })
@@ -835,7 +826,7 @@ export const useUserStore = defineStore('user', {
     async deleteEveryFreeElectiveFromStudy(studyId) {
       try {
         const token = this.getToken()
-        const response = await axios.delete(`${url}/studies/${studyId}/free-electives/all`, {
+        const response = await userAxios.delete(`/studies/${studyId}/free-electives/all`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         const study = this.user.studies.find((s) => s.study_id === studyId)
@@ -858,7 +849,7 @@ export const useUserStore = defineStore('user', {
         console.log('Kurs hinzugefügt:', course)
 
         // Optional: Sende den Kurs an das Backend zur dauerhaften Speicherung
-        await axios.post(`${url}/course`, course, {
+        await userAxios.post(`/course`, course, {
           headers: { Authorization: `Bearer ${token}` }
         })
       } catch (error) {
@@ -871,7 +862,7 @@ export const useUserStore = defineStore('user', {
         const token = this.getToken() // Token für die Authentifizierung abrufen
 
         // Sende die Anfrage zum Löschen des Kurses an das Backend
-        const response = await axios.delete(`${url}/course`, {
+        const response = await userAxios.delete(`/course`, {
           headers: { Authorization: `Bearer ${token}` }, // Token in den Header einfügen
           data: { courseCode, semester } // Die Kursdaten im Body der Anfrage senden
         })
@@ -887,8 +878,8 @@ export const useUserStore = defineStore('user', {
         const token = this.getToken()
 
         // Send a request to the backend to update the course color
-        await axios.patch(
-          `${url}/course`,
+        await userAxios.patch(
+          `/course`,
           { courseCode, semester, color: newColor },
           { headers: { Authorization: `Bearer ${token}` } }
         )

@@ -7,13 +7,13 @@
           <div class="q-mb-md">
             <div class="q-gutter-sm">
               <div v-for="(link, index) in links" :key="index" class="q-mb-md">
-                <input v-model="link.id" :placeholder="'ID Link ' + (index + 1)" required />
-                <input v-model="link.url" :placeholder="'URL Link ' + (index + 1)" required />
+                <input style="width: 200px" v-model="link.id" :placeholder="'ID Link ' + (index + 1) + ' (bbe, wire, wiso)'" required />
+                <input style="width: 200px" v-model="link.url" :placeholder="'URL Link ' + (index + 1)" required />
               </div>
             </div>
           </div>
           <div class="q-mb-md">
-            <input v-model="semester" placeholder="Format: WS2024 SS2025" required />
+            <input style="width: 200px" v-model="semester" placeholder="Format: WS24, SS25, WS26" required />
           </div>
           <button type="submit">Go</button>
         </form>

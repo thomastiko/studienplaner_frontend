@@ -1,18 +1,12 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import { profAxios } from './config';
 import { useUserStore } from './user.store'
 import { Notify } from 'quasar'
 import { i18n } from '@/main';
 
 /**
- * API-URLs für Localhost
+ * Change the URL APIs in the config.js file
  */
-const profUrl = 'http://localhost:5001/api/profs'
-
-/**
- * API-URLs für Stage
- */
-//const profUrl = 'https://taigowiz.org/api/profs';
 
 
 export const useProfStore = defineStore('prof', {
@@ -34,7 +28,7 @@ export const useProfStore = defineStore('prof', {
       async fetchProfs() {
         try {
           // Backend liefert nur Teil-Daten (Projection)
-          const response = await axios.get(`${profUrl}/all`);
+          const response = await profAxios.get(`/all`);
       
           // Wir hängen jedem Eintrag ein Flag an, das ihn als 'teilweise Daten' kennzeichnet
           const partialData = response.data.map((prof) => ({
@@ -58,7 +52,7 @@ export const useProfStore = defineStore('prof', {
         // Fall A) Prof existiert NICHT im Array -> Wir laden ihn direkt vom Server
         if (!prof) {
           try {
-            const response = await axios.get(`${profUrl}/byid/${profId}`);
+            const response = await profAxios.get(`/byid/${profId}`);
             if (response.status === 200) {
               prof = {
                 ...response.data,
@@ -74,7 +68,7 @@ export const useProfStore = defineStore('prof', {
         // Fall B) Prof existiert im Array, aber nur als Teildaten -> Hole Vollversion
         else if (!prof._fullData) {
           try {
-            const response = await axios.get(`${profUrl}/byid/${profId}`);
+            const response = await profAxios.get(`/byid/${profId}`);
             if (response.status === 200) {
               // Prof-Daten updaten
               const index = this.professors.findIndex((p) => p._id === profId);
@@ -98,8 +92,8 @@ export const useProfStore = defineStore('prof', {
 
           async fetchProfPreview(prof) {
             try {
-              const response = await axios.post(
-                `${profUrl}/preview`,
+              const response = await profAxios.post(
+                `/preview`,
                 {
                   fname: prof.fname,
                   lname: prof.lname
@@ -137,8 +131,8 @@ export const useProfStore = defineStore('prof', {
               try {
                 const token = userStore.getToken();
           
-                const response = await axios.patch(
-                  `${profUrl}/${profId}/rate`,
+                const response = await profAxios.patch(
+                  `/${profId}/rate`,
                   rating, 
                   { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -188,7 +182,7 @@ export const useProfStore = defineStore('prof', {
           async fetchAllComments() {
             try {
               // Abrufen aller Kommentare vom Backend
-              const response = await axios.get(`${profUrl}/comments/all`);
+              const response = await profAxios.get(`/comments/all`);
               this.comments = response.data;
             } catch (error) {
               console.error('Fehler beim Abrufen der Kommentare: ', error.response?.data?.message || error.message);
@@ -197,7 +191,7 @@ export const useProfStore = defineStore('prof', {
           },
           async deleteCommentSuggestion(commentId) {
             try {
-              await axios.delete(`${profUrl}/comments/${commentId}`);
+              await profAxios.delete(`/comments/${commentId}`);
               this.comments = this.comments.filter(comment => comment._id !== commentId); // Kommentar aus dem State entfernen
             } catch (error) {
               console.error('Fehler beim Löschen des Kommentars:', error.response?.data?.message || error.message);
@@ -206,7 +200,7 @@ export const useProfStore = defineStore('prof', {
           },
           async deleteComment(profId, comment) {
             try {
-              const response = await axios.delete(`${profUrl}/${profId}/comments`, {
+              const response = await profAxios.delete(`/${profId}/comments`, {
                 data: { comment }
               });
               this.selectedProf = response.data;
@@ -218,7 +212,7 @@ export const useProfStore = defineStore('prof', {
           async approveComment(profId, commentId, commentText) {
             try {
               // Sende den Kommentartext als Teil des Anfrage-Bodys
-              await axios.post(`${profUrl}/comments/${profId}/release/${commentId}`, {
+              await profAxios.post(`/comments/${profId}/release/${commentId}`, {
                 commentText: commentText,
               });
               // Kommentar aus der lokalen Liste entfernen
@@ -230,7 +224,7 @@ export const useProfStore = defineStore('prof', {
           },
           async deleteProfessor(profId) {
             try {
-              await axios.delete(`${profUrl}/${profId}`);
+              await profAxios.delete(`/${profId}`);
               this.professors = this.professors.filter(prof => prof._id !== profId);
               Notify.create({
                 type: 'positive',
