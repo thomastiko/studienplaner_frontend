@@ -40,5 +40,21 @@ export function setAuthToken(token) {
     instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   });
 }
+export function getOAuthUrl() {
+    const root_url = "https://oauth.oeh-wu.at/authorize";
+  
+    const options = {
+      redirect_uri: "http://localhost:5000/api/auth/oauth/callback", // Passe an deine Backend-URL an
+      client_id: "profcheck-dev",
+      response_type: "code",
+      prompt: "consent",
+      scope: "basic, study",
+      state: "/", // Optional: kann genutzt werden, um Statusdaten zu übertragen
+    };
+  
+    const qs = new URLSearchParams(options);
+    return `${root_url}?${qs}`;
+  }
+
 
 export default config;

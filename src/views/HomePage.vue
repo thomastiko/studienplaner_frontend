@@ -30,20 +30,17 @@
               ref="card3"
               class="my-card full-height no-shadow"
               style="background-color: transparent"
-              
             >
               <q-card-section class="q-pa-md">
                 <q-img
                   class="card-image"
                   src="../assets/notebook-straight.svg"
                   :fit="(scale - down).toFixed(0)"
-                  style="max-height: 150px;"
+                  style="max-height: 150px"
                 ></q-img>
               </q-card-section>
               <q-card-section>
-                <div class="text-h5 text-center text-weight-bold" id="heading-mycard">
-                  Notebook
-                </div>
+                <div class="text-h5 text-center text-weight-bold" id="heading-mycard">Notebook</div>
               </q-card-section>
               <q-card-section class="q-pt-none">
                 <div class="text-body1 text-center" id="text-mycard">
@@ -57,7 +54,6 @@
               ref="card1"
               class="my-card full-height no-shadow"
               style="background-color: transparent"
-              
             >
               <q-card-section class="q-pa-md">
                 <q-img
@@ -84,7 +80,6 @@
               ref="card2"
               class="my-card full-height no-shadow"
               style="background-color: transparent"
-              
             >
               <q-card-section class="q-pa-md">
                 <q-img
@@ -133,6 +128,14 @@
                   {{ $t('homePage.subtitle_3') }}
                 </div>
               </q-card-section>
+              <q-card-section>
+                <q-btn
+                  color="primary"
+                  label="Jetzt OAuth testen"
+                  @click="startOAuth"
+                  class="q-mt-lg"
+                />
+              </q-card-section>
             </div>
           </div>
         </q-card>
@@ -143,16 +146,18 @@
 
 <script>
 import { useQuasar } from 'quasar'
+import { getOAuthUrl } from '@/stores/config.js'; 
 export default {
   components: {},
   setup() {
     const q = useQuasar()
     const scale = 1
     const down = 0.5
+
     return {
       q,
       scale,
-      down
+      down,
     }
   },
   computed: {
@@ -170,6 +175,9 @@ export default {
     }
   },
   methods: {
+    startOAuth() {
+      window.location.href = getOAuthUrl();
+    }
   }
 }
 </script>
